@@ -67,7 +67,7 @@ p {
 }
 
 .card.highlight-card {
-  background-color: #1976d2;
+  background-color: #78838b;
   color: white;
   font-weight: 600;
   border: none;
@@ -83,12 +83,12 @@ p {
 a,
 a:visited,
 a:hover {
-  color: #1976d2;
+  color: #070a0c;
   text-decoration: none;
 }
 
 a:hover {
-  color: #125699;
+  color: #2d3c48;
 }
 
 /* Responsive Styles */
