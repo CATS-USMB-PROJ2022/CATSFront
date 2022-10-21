@@ -10,6 +10,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { NgChartsModule } from 'ng2-charts';
 import { CallTimeDiagramComponent } from './pages/call-time-diagram/call-time-diagram.component';
 import {MatIconModule} from "@angular/material/icon";
+import { TotalCallDiagramComponent } from './pages/total-call-diagram/total-call-diagram.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {MatIconModule} from "@angular/material/icon";
     NotFoundComponent,
     EndCallDiagramComponent,
     HomeComponent,
-    CallTimeDiagramComponent
+    CallTimeDiagramComponent,
+    TotalCallDiagramComponent
   ],
     imports: [
         BrowserModule,

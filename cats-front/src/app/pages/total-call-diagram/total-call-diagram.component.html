@@ -1,0 +1,12 @@
+<div class="diagram">
+  <h1>Statistique d'appel par heure</h1>
+  <div style="display: block">
+    <canvas baseChart
+            [data]="barChartData"
+            [options]="barChartOptions"
+            [type]="barChartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)">
+    </canvas>
+  </div>
+</div>

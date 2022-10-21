@@ -1,0 +1,12 @@
+.diagram {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+  margin: 5% 25% 5%;
+}
+
+.diagram h1{
+  margin: 8px 0;
+  text-align: center;
+}
