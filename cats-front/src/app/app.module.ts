@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { EndCallDiagramComponent } from './pages/end-call-diagram/end-call-diagram.component';
+import { StatusCallDiagramComponent } from './pages/status-call-diagram/status-call-diagram.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NgChartsModule } from 'ng2-charts';
 import { CallTimeDiagramComponent } from './pages/call-time-diagram/call-time-diagram.component';
@@ -17,6 +18,7 @@ import { TotalCallDiagramComponent } from './pages/total-call-diagram/total-call
     AppComponent,
     NotFoundComponent,
     EndCallDiagramComponent,
+    StatusCallDiagramComponent,
     HomeComponent,
     CallTimeDiagramComponent,
     TotalCallDiagramComponent

@@ -4,14 +4,14 @@ import data from '../../../assets/json/data.json';
 
 @Component({
   selector: 'app-end-call-diagram',
-  templateUrl: './end-call-diagram.component.html',
-  styleUrls: ['./end-call-diagram.component.css']
+  templateUrl: './status-call-diagram.component.html',
+  styleUrls: ['./status-call-diagram.component.css']
 })
-export class EndCallDiagramComponent implements OnInit {
+export class StatusCallDiagramComponent implements OnInit {
   constructor() {}
   public pieChartData: ChartData<'pie', number[], string | string[]> = {
-    labels: data.End_call_data.label,
-    datasets: data.End_call_data.nb
+    labels: data.Status_call_data.label,
+    datasets: data.Status_call_data.nb
   };
 
   public pieChartType: ChartType = 'pie';

@@ -1,8 +1,14 @@
 {
-  "Status_data": {
-    "label": [ "Comm", "Abd", "Dis" ],
+  "Status_call_data": {
+    "label": [ "Comm", "Abd", "Dis", "Svi" ],
     "nb":[ {
-      "data": [ 30, 5, 10 ]
+      "data": [ 386, 38, 38, 13 ]
+    } ]
+  },
+  "End_call_data": {
+    "label": [ "1","2","3","4","5","6","7","8","9","10" ],
+    "nb":[ {
+      "data": [ 225,17,0,0,182,0,38,0,0,0,0,0 ]
     } ]
   },
   "Time_data":{
