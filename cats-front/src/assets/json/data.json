@@ -6,7 +6,7 @@
     } ]
   },
   "End_call_data": {
-    "label": [ "1","2","3","4","5","6","7","8","9","10" ],
+    "label": [ "0 - raccroché agent ","1 - commande de raccroché agent depuis le bandeau en cours de conversation ","2 - commande de raccroché agent depuis le bandeau avant l’établissement (refus) ","3 - dérangement ","4 - raccroché usager ","5 - time-out ","6 - abandon client en phase d’attente ","7 - reprise pendant le transfert ","8 - reprise SVI ","9 - problème Telecom ","10 - fermeture groupe de trafic ","11 - temps d’attente max atteint" ],
     "nb":[ {
       "data": [ 225,17,0,0,182,0,38,0,0,0,0,0 ]
     } ]

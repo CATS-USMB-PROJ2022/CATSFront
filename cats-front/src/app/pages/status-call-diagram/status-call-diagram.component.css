@@ -3,10 +3,15 @@
   flex-wrap: wrap;
   justify-content: center;
   flex-direction: column;
-  margin: 2em 2em 2em;
+  margin: 5% 25% 5%;
 }
 
 .diagram h1{
-  margin: 1em;
+  margin: 8px 0;
   text-align: center;
+}
+
+
+.diagram .chart{
+  padding: 0em 8em;
 }
