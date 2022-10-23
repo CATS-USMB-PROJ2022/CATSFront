@@ -3,7 +3,7 @@
     <h3> Nombre d'appel  par journée :</h3>
     <h1 id="nb-appel">475</h1>
   </a>
-  <a class="card" routerLink="temp_appel">
+  <a class="card" >
     <h3>Temps d'attente moyen d'un appel :</h3>
     <h1>48 secondes</h1>
   </a>
@@ -12,23 +12,18 @@
 <div class="card-container" >
   <a class="card" routerLink="/cause_fin_dappel">
     <span>Cause de fin d'appel</span>
+    <img src="./../../../assets/image/piechart.png">
   </a>
 
   <a class="card" routerLink="/statut_appel">
     <span>Statut d'appel</span>
-    <div class="diagram">
-      <div class="chart">
-        <canvas baseChart
-                [data]="pieChartData"
-                [type]="pieChartType">
-        </canvas>
-      </div>
-    </div>
+    <img src="./../../../assets/image/piechart.png">
     
   </a>
 
-  <a class="card" routerLink="/quelque chose">
-    <span>Error 404</span>
+  <a class="card" routerLink="/partnair_call">
+    <span>Routing d'un partenaire</span>
+    <img src="./../../../assets/image/charBar.png">
   </a>
 
 </div>

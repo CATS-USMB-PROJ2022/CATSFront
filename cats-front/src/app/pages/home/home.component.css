@@ -53,6 +53,11 @@ p {
   margin-right: 0;
 }
 
+img{
+  height: 5em;
+  width: 5em;
+}
+
 .card-container .card:not(.highlight-card) {
   cursor: pointer;
 }
