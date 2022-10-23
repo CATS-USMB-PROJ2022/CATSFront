@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StatusCallDiagramComponent } from './status-call-diagram.component';
 
-describe('EndCallDiagramComponent', () => {
+describe('StatusCallDiagramComponent', () => {
   let component: StatusCallDiagramComponent;
   let fixture: ComponentFixture<StatusCallDiagramComponent>;
 

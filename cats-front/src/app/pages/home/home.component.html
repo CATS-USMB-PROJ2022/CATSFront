@@ -16,6 +16,15 @@
 
   <a class="card" routerLink="/statut_appel">
     <span>Statut d'appel</span>
+    <div class="diagram">
+      <div class="chart">
+        <canvas baseChart
+                [data]="pieChartData"
+                [type]="pieChartType">
+        </canvas>
+      </div>
+    </div>
+    
   </a>
 
   <a class="card" routerLink="/quelque chose">
