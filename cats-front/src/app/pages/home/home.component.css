@@ -1,21 +1,4 @@
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 8px 0;
-}
-
-p {
-  margin: 0;
-}
-
-.spacer {
-  flex: 1;
-}
-
 .content {
   display: flex;
   margin: 82px auto 32px;
@@ -45,7 +28,7 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.1s ease-in-out;
   line-height: 24px;
 }
 
@@ -64,7 +47,7 @@ img{
 
 .card-container .card:not(.highlight-card):hover {
   transform: translateY(-3px);
-  box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 4px 17px #008991;
 }
 
 .card-container .card:not(.highlight-card):hover .material-icons path {
@@ -88,12 +71,8 @@ img{
 a,
 a:visited,
 a:hover {
-  color: #070a0c;
+  color: #008991;
   text-decoration: none;
-}
-
-a:hover {
-  color: #2d3c48;
 }
 
 /* Responsive Styles */
