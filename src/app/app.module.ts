@@ -13,6 +13,8 @@ import { StatusCallDiagramComponent } from './pages/status-call-diagram/status-c
 import { HomeComponent } from './pages/home/home.component';
 import { TotalCallDiagramComponent } from './pages/total-call-diagram/total-call-diagram.component';
 import { PartnairCallComponent } from './pages/partnair-call/partnair-call.component';
+import { CallService } from './service/call.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,9 +32,10 @@ import { PartnairCallComponent } from './pages/partnair-call/partnair-call.compo
         BrowserAnimationsModule,
         NgChartsModule,
         MatIconModule,
-        NgxGraphModule
+        NgxGraphModule,
+        HttpClientModule
     ],
-  providers: [],
+  providers: [CallService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
