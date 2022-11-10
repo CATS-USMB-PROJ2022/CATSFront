@@ -5,7 +5,7 @@
   </a>
   <a class="card" >
     <h3>Temps d'attente moyen d'un appel :</h3>
-    <h1>48 s</h1>
+    <h1>{{averageCall}} s</h1>
   </a>
 </div>
 
@@ -17,8 +17,19 @@
 
   <a class="card" routerLink="/statut_appel">
     <span>Statut d'appel</span>
-    <img src="./../../../assets/image/piechart.png">
-
+    <div>
+      <img src="./../../../assets/image/piechart.png">
+      <div>
+        <div>
+          <h3>COM : </h3>
+          <h3>{{percentageCom}}</h3>
+        </div>
+        <div>
+          <h3>Autre : </h3>
+          <h3>{{percentageOther}}</h3>
+        </div>
+      </div>
+  </div>
   </a>
 </div>
 <div class="card-container">
