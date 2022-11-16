@@ -1,3 +1,12 @@
+<mat-form-field appearance="fill">
+  <mat-label>Select an option</mat-label>
+  <mat-select (selectionChange)="recupCaisse()" [(value)]="selected">
+    <mat-option>All</mat-option>
+    <mat-option   *ngFor="let caisse of caisses; let i = index" value="{{caisse}}">{{caisse}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+
 <div class="card-container" id="home">
   <a class="card" routerLink="/call_hours">
     <h3> Nombre d'appels  par journée :</h3>
@@ -14,6 +23,10 @@
     <span>Cause de fin d'appel</span>
     <img src="./../../../assets/image/piechart.png">
   </a>
+
+  
+ 
+
 
   <a class="card" routerLink="/statut_appel">
     <span>Statut d'appel</span>

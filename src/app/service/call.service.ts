@@ -15,8 +15,8 @@ export class CallService {
 
   constructor(private http: HttpClient) { }
 
-  public getNumberCall(): Observable<Call>{
+  public getNumberCallWithCaisse(caisse:number): Observable<Call>{
     
-    return this.http.get<Call>(globalUrl+'Home');
+    return this.http.get<Call>(globalUrl+'Home?RUB_ID_CAISSE='+caisse);
   }
 }

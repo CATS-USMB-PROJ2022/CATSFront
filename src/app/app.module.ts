@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
 import { AppRoutingModule } from './app-routing.module';
+import {MatSelectModule} from "@angular/material/select";
 import {MatIconModule} from "@angular/material/icon";
 import { NgChartsModule } from 'ng2-charts';
 
@@ -14,6 +15,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { TotalCallDiagramComponent } from './pages/total-call-diagram/total-call-diagram.component';
 import { PartnairCallComponent } from './pages/partnair-call/partnair-call.component';
 import { CallService } from './service/call.service';
+import { CookieService } from 'ngx-cookie-service';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -26,16 +28,20 @@ import { HttpClientModule } from '@angular/common/http';
     TotalCallDiagramComponent,
     PartnairCallComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        NgChartsModule,
-        MatIconModule,
-        NgxGraphModule,
-        HttpClientModule
-    ],
-  providers: [CallService],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    NgChartsModule,
+    MatIconModule,
+    NgxGraphModule,
+    HttpClientModule,
+    MatSelectModule
+  ],
+  providers: [
+    CallService,
+    CookieService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
