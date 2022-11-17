@@ -49,9 +49,9 @@ h1 {
   border: 1px solid #eee;
   background-color: #eaeaea;
   min-height: 10em;
-  width: 20em;
-  margin: 0 8px 16px;
-  padding: 16px;
+  width: 25em;
+  margin: 0 1em 1em;
+  padding: 1em;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -94,6 +94,10 @@ img {
 
 .card.card.highlight-card span {
   margin-left: 60px;
+}
+
+.card h2{
+  text-align: center;
 }
 
 a,

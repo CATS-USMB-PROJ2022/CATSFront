@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit, OnChanges{
   public caisses:number[];
   selected = 'All';
   nbrCaisse:number;
+  public gtAppele:string[];
   public start_date:Date;
   public end_date:Date;
   range = new FormGroup({
@@ -66,6 +67,8 @@ export class HomeComponent implements OnInit, OnChanges{
     }
     this.end_date=new Date(this.cookieService.get("end_date"));
 
+    this.gtAppele=[""];
+
   }
 
 
@@ -90,6 +93,7 @@ export class HomeComponent implements OnInit, OnChanges{
         this.nbCall=data.nbrAppel;
         this.averageCall=Math.round(data.moyenneTempsAttente);
         this.caisses=data.caisses;
+        this.gtAppele=data.gtAppeleId;
     })
   }
 
