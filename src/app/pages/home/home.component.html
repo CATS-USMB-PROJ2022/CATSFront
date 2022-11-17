@@ -1,7 +1,7 @@
 <mat-form-field appearance="fill">
   <mat-label>Select an option</mat-label>
   <mat-select (selectionChange)="recupCaisse()" [(value)]="selected">
-    <mat-option>All</mat-option>
+    <mat-option value="All">All</mat-option>
     <mat-option   *ngFor="let caisse of caisses; let i = index" value="{{caisse}}">{{caisse}}</mat-option>
   </mat-select>
 </mat-form-field>
@@ -24,8 +24,8 @@
     <img src="./../../../assets/image/piechart.png">
   </a>
 
-  
- 
+
+
 
 
   <a class="card" routerLink="/statut_appel">
