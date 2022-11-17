@@ -3,4 +3,5 @@ export interface Call{
     moyenneTempsAttente: number;
     nbrAppelHeure: number[];
     caisses: number[];
+    gtAppeleId: string[];
 }

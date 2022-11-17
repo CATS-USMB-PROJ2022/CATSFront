@@ -1,20 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { ChartData, ChartType } from 'chart.js';
-import { AppComponent } from 'src/app/app.component';
-import { Call } from 'src/app/model/calls';
-import data from '../../../assets/json/data.json';
+import {Component, OnChanges, OnInit} from '@angular/core';
 import {CallService} from './../../service/call.service';
 import {StatusCallService} from './../../service/status_call.service';
 import { CookieService } from 'ngx-cookie-service';
-import { ContentObserver } from '@angular/cdk/observers';
-import { isEmpty } from 'rxjs';
+import {ThemePalette} from "@angular/material/core";
+import {FormControl, FormGroup} from "@angular/forms";
+import {ChartConfiguration, ChartData, ChartType} from "chart.js";
+
+export interface Filtre {
+  name: string;
+  completed: boolean;
+  color: ThemePalette;
+  subtasks?: Filtre[];
+}
+const default_date_start = new Date(0);
+const default_date_end = new Date();
+default_date_end.setFullYear(2023);
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnChanges{
 
   public nbCall:number;
   public averageCall:number;
@@ -25,6 +32,13 @@ export class HomeComponent implements OnInit {
   public caisses:number[];
   selected = 'All';
   nbrCaisse:number;
+  public gtAppele:string[];
+  public start_date:Date;
+  public end_date:Date;
+  range = new FormGroup({
+    start: new FormControl<Date | null>(null),
+    end: new FormControl<Date | null>(null),
+  });
 
 
   constructor(private CallService: CallService, private StatusCallService: StatusCallService, public cookieService:CookieService) {
@@ -35,37 +49,61 @@ export class HomeComponent implements OnInit {
     this.label=[""];
     this.statusCall=[0];
     this.caisses=[0];
+    this.start_date=default_date_start;
+    this.end_date=default_date_end;
     if(this.cookieService.get("caisse").length==0 )
       {
         this.cookieService.set("caisse", "-1");
       }
-      this.nbrCaisse=Number(this.cookieService.get("caisse"));
-    
+    this.nbrCaisse=Number(this.cookieService.get("caisse"));
+
+    if(this.cookieService.get("start_date")==""){
+      this.cookieService.set("start_date",this.start_date.toString())
+    }
+    this.start_date=new Date(this.cookieService.get("start_date"));
+
+    if(this.cookieService.get("end_date")==""){
+      this.cookieService.set("end_date",this.start_date.toString())
+    }
+    this.end_date=new Date(this.cookieService.get("end_date"));
+
+    this.gtAppele=[""];
+
   }
+
 
   ngOnInit(): void {
-    if(this.cookieService.get("caisse")==null )
-      {
-        this.cookieService.set("caisse", "-1");
-      }
-    
-    this.getDataCalls(this.nbrCaisse);
-    this.getDataStatus(this.nbrCaisse);
+    this.getDataCalls(this.nbrCaisse, this.start_date, this.end_date);
+    this.getDataStatus();
   }
 
-  private getDataCalls(caisse:number){
-    this.CallService.getNumberCallWithCaisse(caisse).subscribe(data => {
+  ngOnChanges(): void {
+    this.pieChartData = {
+      labels: this.label,
+      datasets: [{
+        data: this.statusCall
+      }]
+    }
+
+  }
+
+  private getDataCalls(caisse:number, start:Date, end:Date){
+    this.CallService.getNumberCallWithCaisse(caisse, start, end).subscribe(data => {
+      console.log(data);
         this.nbCall=data.nbrAppel;
         this.averageCall=Math.round(data.moyenneTempsAttente);
         this.caisses=data.caisses;
+        this.gtAppele=data.gtAppeleId;
     })
   }
 
-  getDataStatus(caisse:number){
-    this.StatusCallService.getStatusCall(caisse).subscribe(data => {
+  getDataStatus(){
+    this.StatusCallService.getStatusCall(this.nbrCaisse).subscribe(data => {
+      console.log(this.nbrCaisse);
       this.label=data.label
       this.statusCall=data.nbr
-      this.extractStatusData()
+      this.extractStatusData();
+
     })
   }
 
@@ -84,17 +122,93 @@ export class HomeComponent implements OnInit {
       }
       totalcall +=statusCallElement;
     }
+    if(totalcall==0){
+      totalcall=1;
+    }
     this.percentageCom = Math.round((numberCom/totalcall)*100);
     this.percentageOther = Math.round((numberOther/totalcall)*100);
+    this.ngOnChanges()
   }
 
   public recupCaisse(){
     this.cookieService.set("caisse", this.selected);
     if(this.selected!="All"){
-      this.getDataCalls(Number(this.selected));
+      this.nbrCaisse=Number(this.selected);
     }
     else{
-      this.getDataCalls(-1);
+      this.nbrCaisse=-1;
+    }
+    this.getDataCalls(this.nbrCaisse, this.start_date, this.end_date);
+    this.getDataStatus();
+  }
+
+  public recupRange(){
+
+    //@ts-ignore
+    this.cookieService.set("start_date", new Date(this.range.value.start).toString());
+    //@ts-ignore
+    this.cookieService.set("end_date", new Date(this.range.value.end).toString());
+    if((this.range.value.start!=default_date_start) && (this.range.value.end!=default_date_end)){
+      if(this.range.value.start==null ||this.range.value.end==null){
+        this.getDataCalls(this.nbrCaisse, default_date_start, default_date_end);
+      }else {
+        this.getDataCalls(this.nbrCaisse, this.range.value.start, this.range.value.end);
+        this.start_date=this.range.value.start;
+        this.end_date=this.range.value.end;
+      }
+    }else {
+      this.getDataCalls(this.nbrCaisse, default_date_start, default_date_end);
     }
   }
+
+  //Parties Filtres
+  filtre: Filtre = {
+    name: 'Tout Filtres',
+    completed: true,
+    color: 'primary',
+    subtasks: [
+      {name: 'Filtres n1', completed: false, color: 'primary'},
+      {name: 'Filtres n2', completed: false, color: 'primary'},
+      {name: 'Filtres n3', completed: false, color: 'primary'},
+    ],
+  };
+
+  allComplete: boolean = false;
+
+  updateAllComplete() {
+    this.allComplete = this.filtre.subtasks != null && this.filtre.subtasks.every(t => t.completed);
+  }
+
+  someComplete(): boolean {
+    if (this.filtre.subtasks == null) {
+      return false;
+    }
+    return this.filtre.subtasks.filter(t => t.completed).length > 0 && !this.allComplete;
+  }
+
+  setAll(completed: boolean) {
+    this.allComplete = completed;
+    if (this.filtre.subtasks == null) {
+      return;
+    }
+    this.filtre.subtasks.forEach(t => (t.completed = completed));
+  }
+
+  public pieChartData: ChartData<'pie', number[], string | string[]> = {
+    labels: ["label"],
+    datasets: [ {
+      data: [0]
+    } ]
+  };
+
+  public pieChartType: ChartType = 'pie';
+
+  public pieChartOptions: ChartConfiguration['options'] = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+      },
+    }
+  };
 }

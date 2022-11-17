@@ -11,12 +11,11 @@ const globalUrl="http://localhost:8080/";
 })
 export class CallService {
 
-  
 
   constructor(private http: HttpClient) { }
 
-  public getNumberCallWithCaisse(caisse:number): Observable<Call>{
-    
-    return this.http.get<Call>(globalUrl+'Home?RUB_ID_CAISSE='+caisse);
+  public getNumberCallWithCaisse(caisse:number, start:Date, end:Date): Observable<Call>{
+
+    return this.http.get<Call>(globalUrl+'Home?RUB_ID_CAISSE='+caisse+'&START='+start.toISOString()+'&END='+end.toISOString());
   }
 }
