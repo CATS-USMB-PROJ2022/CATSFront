@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import {MatSelectModule} from "@angular/material/select";
 import {MatIconModule} from "@angular/material/icon";
 import { NgChartsModule } from 'ng2-charts';
+import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,6 +18,11 @@ import { PartnairCallComponent } from './pages/partnair-call/partnair-call.compo
 import { CallService } from './service/call.service';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpClientModule } from '@angular/common/http';
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatNativeDateModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -36,6 +42,13 @@ import { HttpClientModule } from '@angular/common/http';
     MatIconModule,
     NgxGraphModule,
     HttpClientModule,
+    MatDatepickerModule,
+    FormsModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatNativeDateModule,
+    MatCheckboxModule,
+    NgxMaterialTimepickerModule,
     MatSelectModule
   ],
   providers: [
