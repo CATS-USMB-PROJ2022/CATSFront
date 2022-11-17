@@ -4,7 +4,7 @@
         <span class="list-section">
           <mat-checkbox
             [checked]="allComplete"
-            [color]="filtre.color"
+            color="primary"
             [indeterminate]="someComplete()"
             (change)="setAll($event.checked)">
             {{filtre.name}}
@@ -12,11 +12,11 @@
         </span>
       <span class="list-section">
         <ul>
-          <li *ngFor="let subtask of filtre.subtasks">
-            <mat-checkbox [(ngModel)]="subtask.completed"
-                          [color]="subtask.color"
+          <li *ngFor="let subfiltre of filtre.subfiltres">
+            <mat-checkbox [(ngModel)]="subfiltre.completed"
+                          color="primary"
                           (ngModelChange)="updateAllComplete()">
-              {{subtask.name}}
+              {{subfiltre.name}}
             </mat-checkbox>
           </li>
         </ul>

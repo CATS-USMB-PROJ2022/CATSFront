@@ -2,15 +2,13 @@ import {Component, OnChanges, OnInit} from '@angular/core';
 import {CallService} from './../../service/call.service';
 import {StatusCallService} from './../../service/status_call.service';
 import { CookieService } from 'ngx-cookie-service';
-import {ThemePalette} from "@angular/material/core";
 import {FormControl, FormGroup} from "@angular/forms";
 import {ChartConfiguration, ChartData, ChartType} from "chart.js";
 
 export interface Filtre {
   name: string;
   completed: boolean;
-  color: ThemePalette;
-  subtasks?: Filtre[];
+  subfiltres?: Filtre[];
 }
 const default_date_start = new Date(0);
 const default_date_end = new Date();
@@ -39,6 +37,7 @@ export class HomeComponent implements OnInit, OnChanges{
     start: new FormControl<Date | null>(null),
     end: new FormControl<Date | null>(null),
   });
+  public filtre:Filtre;
 
 
   constructor(private CallService: CallService, private StatusCallService: StatusCallService, public cookieService:CookieService) {
@@ -68,6 +67,12 @@ export class HomeComponent implements OnInit, OnChanges{
     this.end_date=new Date(this.cookieService.get("end_date"));
 
     this.gtAppele=[""];
+    //Parties Filtres
+    this.filtre = {
+      name: 'GT APPELE',
+      completed: true,
+      subfiltres: this.getGtAppele(),
+    };
 
   }
 
@@ -87,6 +92,17 @@ export class HomeComponent implements OnInit, OnChanges{
 
   }
 
+  miseJourGtAppel(){
+    //Parties Filtres
+      this.filtre = {
+        name: 'GT APPELE',
+        completed: true,
+        subfiltres: this.getGtAppele(),
+      };
+  }
+
+
+
   private getDataCalls(caisse:number, start:Date, end:Date){
     this.CallService.getNumberCallWithCaisse(caisse, start, end).subscribe(data => {
       console.log(data);
@@ -94,6 +110,7 @@ export class HomeComponent implements OnInit, OnChanges{
         this.averageCall=Math.round(data.moyenneTempsAttente);
         this.caisses=data.caisses;
         this.gtAppele=data.gtAppeleId;
+        this.miseJourGtAppel();
     })
   }
 
@@ -161,37 +178,39 @@ export class HomeComponent implements OnInit, OnChanges{
     }
   }
 
-  //Parties Filtres
-  filtre: Filtre = {
-    name: 'Tout Filtres',
-    completed: true,
-    color: 'primary',
-    subtasks: [
-      {name: 'Filtres n1', completed: false, color: 'primary'},
-      {name: 'Filtres n2', completed: false, color: 'primary'},
-      {name: 'Filtres n3', completed: false, color: 'primary'},
-    ],
-  };
 
+
+
+
+  public getGtAppele():Filtre[] {
+    let filtres:Filtre[]=[];
+    console.log(this.gtAppele)
+
+    for(let index=0; index < this.gtAppele.length; index++){
+      let filtre:Filtre = {
+        name: this.gtAppele[index], completed:false
+      }
+      filtres[index]=filtre;
+    }
+    return filtres;
+  }
   allComplete: boolean = false;
 
   updateAllComplete() {
-    this.allComplete = this.filtre.subtasks != null && this.filtre.subtasks.every(t => t.completed);
+    this.allComplete = this.filtre.subfiltres != null && this.filtre.subfiltres.every(t => t.completed);
   }
-
   someComplete(): boolean {
-    if (this.filtre.subtasks == null) {
+    if (this.filtre.subfiltres == null) {
       return false;
     }
-    return this.filtre.subtasks.filter(t => t.completed).length > 0 && !this.allComplete;
+    return this.filtre.subfiltres.filter(t => t.completed).length > 0 && !this.allComplete;
   }
-
   setAll(completed: boolean) {
     this.allComplete = completed;
-    if (this.filtre.subtasks == null) {
+    if (this.filtre.subfiltres == null) {
       return;
     }
-    this.filtre.subtasks.forEach(t => (t.completed = completed));
+    this.filtre.subfiltres.forEach(t => (t.completed = completed));
   }
 
   public pieChartData: ChartData<'pie', number[], string | string[]> = {

@@ -1,7 +1,7 @@
 
 .home-container {
   display: grid;
-  grid-template-columns: 20em auto 30em;
+  grid-template-columns: 25em auto 25em;
 }
 
 .filtre-picker {
