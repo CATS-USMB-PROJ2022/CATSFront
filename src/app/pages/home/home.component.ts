@@ -179,9 +179,6 @@ export class HomeComponent implements OnInit, OnChanges{
   }
 
 
-
-
-
   public getGtAppele():Filtre[] {
     let filtres:Filtre[]=[];
     console.log(this.gtAppele)
@@ -198,6 +195,16 @@ export class HomeComponent implements OnInit, OnChanges{
 
   updateAllComplete() {
     this.allComplete = this.filtre.subfiltres != null && this.filtre.subfiltres.every(t => t.completed);
+    console.log("changement detect")
+    this.CallService.postNumberCall(this.nbrCaisse, this.start_date, this.end_date, this.gtAppele).subscribe(data => {
+
+      console.log("POST");
+      /*this.nbCall=data.nbrAppel;
+      this.averageCall=Math.round(data.moyenneTempsAttente);
+      this.caisses=data.caisses;
+
+      this.miseJourGtAppel();*/
+    })
   }
   someComplete(): boolean {
     if (this.filtre.subfiltres == null) {
