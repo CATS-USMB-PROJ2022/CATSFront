@@ -11,12 +11,11 @@ const globalUrl="http://localhost:8080/";
 })
 export class StatusCallService {
 
-  
+
 
   constructor(private http: HttpClient) { }
 
   public getStatusCall(caisse:number): Observable<StatusCall>{
-    
     return this.http.get<StatusCall>(globalUrl+'AppelStatut?RUB_ID_CAISSE='+caisse);
   }
 }
