@@ -1,29 +1,114 @@
-<div class="card-container" id="home">
-  <a class="card" routerLink="/call_hours">
-    <h3> Nombre d'appels  par journée :</h3>
-    <h1 id="nb-appel">{{nbCall}}</h1>
-  </a>
-  <a class="card" >
-    <h3>Temps d'attente moyen d'un appel :</h3>
-    <h1>48 s</h1>
-  </a>
-</div>
+<div class="home-container">
+  <div class="filtre-picker">
+      <div class="gt" id="groupe-appele" [hidden]="selected=='All'">
+        <span class="list-section">
+          <mat-checkbox
+            [checked]="allComplete"
+            color="primary"
+            [indeterminate]="someComplete()"
+            (change)="setAll($event.checked)">
+            {{filtre.name}}
+          </mat-checkbox>
+        </span>
+      <span class="list-section">
+        <ul>
+          <li *ngFor="let subfiltre of filtre.subfiltres">
+            <mat-checkbox [(ngModel)]="subfiltre.completed"
+                          color="primary"
+                          (ngModelChange)="updateAllComplete()">
+              {{subfiltre.name}}
+            </mat-checkbox>
+          </li>
+        </ul>
+      </span>
+    </div>
+  </div>
+  <div class="central-container">
+    <div class="caisse-picker">
+      <div class="test">
+      <h2>Caisse :</h2>
+        <mat-form-field appearance="legacy" class="caisse-picker">
+          <mat-label>Choisir une caisse</mat-label>
+          <mat-select (selectionChange)="recupCaisse()" [(value)]="selected">
+            <mat-option value="All">Toutes les caissses</mat-option>
+            <mat-option   *ngFor="let caisse of caisses; let i = index" value="{{caisse}}">{{caisse}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="card-container" id="home">
+      <a class="card" routerLink="/call_hours">
+        <h2> Nombre d'appels  par journée :</h2>
+        <h1 id="nb-appel">{{nbCall}}</h1>
+      </a>
+      <a class="card" >
+        <h2>Temps d'attente moyen d'un appel :</h2>
+        <h1>{{averageCall}} s</h1>
+      </a>
+    </div>
+    <div class="card-container" >
+      <a class="card" routerLink="/statut_appel">
+        <h2>Statut d'appel</h2>
+        <div class="data-holder">
+          <div class="diagram">
+              <canvas baseChart
+                      [data]="pieChartData"
+                      [type]="pieChartType"
+                      [options]="pieChartOptions">
+              </canvas>
+          </div>
+          <div>
+            <div class="data-card">
+              <h3>COM : </h3>
+              <h3>&nbsp;{{percentageCom}} %</h3>
+            </div>
+            <div class="data-card">
+              <h3>Autre : </h3>
+              <h3>&nbsp;{{percentageOther}} %</h3>
+            </div>
+          </div>
 
-<div class="card-container" >
-  <a class="card" routerLink="/cause_fin_dappel">
-    <span>Cause de fin d'appel</span>
-    <img src="./../../../assets/image/piechart.png">
-  </a>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="date-picker">
+    <div class="input-date">
+      <mat-form-field appearance="fill">
+        <mat-label>Entrez une plage de Dates</mat-label>
+        <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+          <input matStartDate formControlName="start" placeholder="Start date" (dateChange)="recupRange()">
+          <input matEndDate formControlName="end" placeholder="End date" (dateChange)="recupRange()">
+        </mat-date-range-input>
+        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+        <mat-error>Plage de dates invalides</mat-error>
+      </mat-form-field>
+    </div>
 
-  <a class="card" routerLink="/statut_appel">
-    <span>Statut d'appel</span>
-    <img src="./../../../assets/image/piechart.png">
-
-  </a>
-</div>
-<div class="card-container">
-  <a class="card" routerLink="/partnair_call">
-    <span>Cheminement d'un partenaire</span>
-    <img src="./../../../assets/image/graph.png" >
-  </a>
+    <!--
+    <div class="input-time">
+      <h3>Heure début :</h3>
+      <input placeholder="Heure début"
+             [ngxTimepicker]="start_time"
+             min="08:00"
+             max="20:30"
+             [format]="24"
+             readonly>
+      <ngx-material-timepicker-toggle [for]="start_time"></ngx-material-timepicker-toggle>
+      <ngx-material-timepicker #start_time [minutesGap]="15" [defaultTime]="'08:00'" ></ngx-material-timepicker>
+    </div>
+    <div class="input-time">
+      <h3>Heure fin : </h3>
+      <input placeholder="Heure fin"
+             [ngxTimepicker]="end_time"
+             min="08:00"
+             max="20:30"
+             [format]="24"
+             readonly>
+      <ngx-material-timepicker-toggle [for]="end_time"></ngx-material-timepicker-toggle>
+      <ngx-material-timepicker #end_time [minutesGap]="15" [defaultTime]="'08:00'" ></ngx-material-timepicker>
+    </div>-->
+  </div>
 </div>

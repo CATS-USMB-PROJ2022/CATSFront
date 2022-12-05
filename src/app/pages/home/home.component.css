@@ -1,5 +1,29 @@
 
-h1{
+.home-container {
+  display: grid;
+  grid-template-columns: 25em auto 25em;
+}
+
+.filtre-picker {
+  margin: 2em 2em;
+  padding: 1em 1em;
+}
+
+.gt{
+  border: 1px solid black;
+  padding: 1em 1em;
+}
+
+.caisse-picker {
+  margin-top: 2em;
+  text-align: center;
+}
+
+.date-picker {
+  margin: 2em 0 2em 0;
+}
+
+h1 {
   font-size: 2.5em;
 }
 
@@ -25,9 +49,9 @@ h1{
   border: 1px solid #eee;
   background-color: #eaeaea;
   min-height: 10em;
-  width: 20em;
-  margin: 0 8px 16px;
-  padding: 16px;
+  width: 25em;
+  margin: 0 1em 1em;
+  padding: 1em;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -40,7 +64,7 @@ h1{
   margin-right: 0;
 }
 
-img{
+img {
   height: 5em;
   width: 5em;
 }
@@ -72,6 +96,10 @@ img{
   margin-left: 60px;
 }
 
+.card h2{
+  text-align: center;
+}
+
 a,
 a:visited,
 a:hover {
@@ -79,16 +107,37 @@ a:hover {
   text-decoration: none;
 }
 
-/* Responsive Styles */
-@media screen and (max-width: 767px) {
-  .card-container > *:not(.circle-link) ,
+.data-holder {
+  display: flex;
+  flex-direction: row;
+}
 
-  .card:not(.highlight-card) {
-    height: 16px;
-    margin: 8px 0;
-  }
+.data-card {
+  display: flex;
+  margin-left: 1em;
+}
 
-  .card.highlight-card span {
-    margin-left: 72px;
-  }
+input {
+  margin: 0 0 0 1em;
+  max-width: 8em;
+  max-height: 2em;
+}
+
+.input-date {
+  margin-bottom: 1em;
+}
+
+.input-time {
+  display: flex;
+  flex-direction: row;
+}
+
+.test{
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.diagram{
+  width: 10em;
+  height: 10em;
 }

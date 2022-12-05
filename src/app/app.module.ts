@@ -2,8 +2,10 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
 import { AppRoutingModule } from './app-routing.module';
+import {MatSelectModule} from "@angular/material/select";
 import {MatIconModule} from "@angular/material/icon";
 import { NgChartsModule } from 'ng2-charts';
+import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,7 +16,13 @@ import { HomeComponent } from './pages/home/home.component';
 import { TotalCallDiagramComponent } from './pages/total-call-diagram/total-call-diagram.component';
 import { PartnairCallComponent } from './pages/partnair-call/partnair-call.component';
 import { CallService } from './service/call.service';
+import { CookieService } from 'ngx-cookie-service';
 import { HttpClientModule } from '@angular/common/http';
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatNativeDateModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -26,16 +34,27 @@ import { HttpClientModule } from '@angular/common/http';
     TotalCallDiagramComponent,
     PartnairCallComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        NgChartsModule,
-        MatIconModule,
-        NgxGraphModule,
-        HttpClientModule
-    ],
-  providers: [CallService],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    NgChartsModule,
+    MatIconModule,
+    NgxGraphModule,
+    HttpClientModule,
+    MatDatepickerModule,
+    FormsModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatNativeDateModule,
+    MatCheckboxModule,
+    NgxMaterialTimepickerModule,
+    MatSelectModule
+  ],
+  providers: [
+    CallService,
+    CookieService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
