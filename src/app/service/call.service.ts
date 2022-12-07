@@ -18,8 +18,22 @@ export class CallService {
 
   public postNumberCall(caisse: number, date_start: Date, date_end: Date, time_start: Time, time_end: Time, gt: string[]): Observable<Call> {
     let post: Post;
-    const formatTime = (time: Time): string => `${time}:00`;
-    post = new Post(caisse, date_start.toISOString(), date_end.toISOString(), formatTime(time_start), formatTime(time_end), [], gt);
+    
+    if(time_end.minutes==0 && time_end.hours==0)
+      var env_time_end="00:00:00";
+    else{
+      var env_time_end=`${time_end}:00`
+    }
+
+    if(time_start.minutes==0 && time_start.hours==0)
+      var env_time_start="00:00:00";
+    else{
+      var env_time_start=`${time_start}:00`
+    }
+    console.log("start"+env_time_start);
+    console.log("end : "+env_time_end);
+    
+    post = new Post(caisse, date_start.toISOString(), date_end.toISOString(), env_time_start, env_time_end, [], gt);
     return this.http.post<Call>(`${globalUrl}Home`, post);
   }
 

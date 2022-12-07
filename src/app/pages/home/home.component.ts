@@ -16,8 +16,9 @@ const default_date_start = new Date(0);
 const default_date_end = new Date();
 default_date_end.setFullYear(2023);
 
-const default_time_start: Time = { hours: 0, minutes: 0 };
+const default_time_start: Time ={ hours: 0, minutes: 0 };
 const default_time_end: Time = { hours: 0, minutes: 0 };
+
 
 @Component({
   selector: 'app-home',
@@ -35,6 +36,7 @@ export class HomeComponent implements OnInit, OnChanges {
   public caisses: number[];
   selected = 'All';
   nbrCaisse: number;
+  public gtAppeleId: string[];
   public gtAppele: string[];
   public labelsStatut: string[];
   public valuesStatut: number[];
@@ -80,6 +82,7 @@ export class HomeComponent implements OnInit, OnChanges {
     }
     this.end_date = new Date(this.cookieService.get("end_date"));
 
+    this.gtAppeleId = [""];
     this.gtAppele = [""];
     this.labelsStatut = [""];
     this.valuesStatut = [0];
@@ -119,12 +122,14 @@ export class HomeComponent implements OnInit, OnChanges {
 
 
   private initDataCalls(caisse: number, date_start: Date, date_end: Date, time_start: Time, time_end: Time, gt: string[] = []) {
+    console.log(time_start, time_end);
     this.CallService.postNumberCall(caisse, date_start, date_end, time_start, time_end, gt).subscribe(data => {
       console.log(data);
       this.nbCall = data.nbrAppel;
       this.averageCall = Math.round(data.moyenneTempsAttente);
       this.caisses = data.caisses;
-      this.gtAppele = data.gtAppeleId;
+      this.gtAppeleId = data.gtAppeleId;
+      this.gtAppele = data.gtAppele;
       this.labelsStatut = data.labelsStatut;
       this.valuesStatut = data.valuesStatut;
 
@@ -146,7 +151,8 @@ export class HomeComponent implements OnInit, OnChanges {
       this.nbCall = data.nbrAppel;
       this.averageCall = Math.round(data.moyenneTempsAttente);
       this.caisses = data.caisses;
-      this.gtAppele = data.gtAppeleId;
+      this.gtAppeleId = data.gtAppeleId;
+      this.gtAppele = data.gtAppele;
       this.labelsStatut = data.labelsStatut;
       this.valuesStatut = data.valuesStatut;
 

@@ -4,6 +4,7 @@ export interface Call {
   nbrAppelHeure: number[];
   caisses: number[];
   gtAppeleId: string[];
+  gtAppele: string[];
   labelsStatut: string[];
   valuesStatut: number[];
 }
