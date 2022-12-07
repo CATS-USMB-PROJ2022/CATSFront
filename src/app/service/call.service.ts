@@ -18,7 +18,7 @@ export class CallService {
 
   public postNumberCall(caisse: number, date_start: Date, date_end: Date, time_start: Time, time_end: Time, gt: string[]): Observable<Call> {
     let post: Post;
-    
+
     if(time_end.minutes==0 && time_end.hours==0)
       var env_time_end="00:00:00";
     else{
@@ -30,10 +30,9 @@ export class CallService {
     else{
       var env_time_start=`${time_start}:00`
     }
-    console.log("start"+env_time_start);
+    console.log("start : "+env_time_start);
     console.log("end : "+env_time_end);
-    
-    post = new Post(caisse, date_start.toISOString(), date_end.toISOString(), env_time_start, env_time_end, [], gt);
+    post = new Post(caisse, date_start.toLocaleDateString(), date_end.toLocaleDateString(), env_time_start, env_time_end, [], gt);
     return this.http.post<Call>(`${globalUrl}Home`, post);
   }
 
