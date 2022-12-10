@@ -23,6 +23,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatNativeDateModule} from "@angular/material/core";
+import {UploadService} from "./service/upload.service";
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import {MatNativeDateModule} from "@angular/material/core";
   ],
   providers: [
     CallService,
-    CookieService
+    CookieService,
+    UploadService
   ],
   bootstrap: [AppComponent]
 })
