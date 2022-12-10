@@ -1,27 +1,37 @@
-.topnav {
+.navbar {
+  height: 50px;
   background-color: #00643e;
-  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 52px;
+  -webkit-box-shadow: 0 1px 5px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 5px 5px rgba(0, 0, 0, 0.5);
+  /*overflow: hidden;*/
 }
 
-.topnav a {
-  float: left;
-  display: block;
+.navbar a {
+  font-size: 16pt;
   color: white;
-  text-align: center;
-  padding: 1em;
-  font-size: 24px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 5px 26px;
+
+  /*float: left;*/
+  /*display: block;*/
+  /*color: white;*/
+  /*text-align: center;*/
+  /*padding: 1em;*/
+  /*font-size: 24px;*/
 }
 
-.topnav a:hover{
+.navbar a:hover {
   background-color: #00a666;
   color: white;
+  transition: all 0.2s ease-in-out;
 }
 
-.topnav a.active{
-  background-color: #04aa6d;
-  color: white;
-}
-
-.topnav a:link{
+.navbar a:link {
   text-decoration: none;
 }

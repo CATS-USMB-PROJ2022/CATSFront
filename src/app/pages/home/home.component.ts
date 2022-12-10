@@ -16,8 +16,8 @@ const default_date_start = new Date(0);
 const default_date_end = new Date();
 default_date_end.setFullYear(2023);
 
-const default_time_start: Time ={ hours: 0, minutes: 0 };
-const default_time_end: Time = { hours: 0, minutes: 0 };
+const default_time_start: Time = {hours: 0, minutes: 0};
+const default_time_end: Time = {hours: 0, minutes: 0};
 
 
 @Component({
@@ -167,17 +167,6 @@ export class HomeComponent implements OnInit, OnChanges {
     })
   }
 
-  public recupCaisse() {
-    this.cookieService.set("caisse", this.selected);
-    if (this.selected != "All") {
-      this.nbrCaisse = Number(this.selected);
-    } else {
-      this.nbrCaisse = -1;
-    }
-    this.initDataCalls(this.nbrCaisse, this.start_date, this.end_date, this.start_time, this.end_time);
-    //this.getDataStatus();
-  }
-
   public recupRange() {
 
     //@ts-ignore
@@ -187,7 +176,7 @@ export class HomeComponent implements OnInit, OnChanges {
     if ((this.range.value.start != default_date_start) && (this.range.value.end != default_date_end)) {
       if (this.range.value.start == null || this.range.value.end == null) {
         this.start_date = default_date_start;
-        this.end_date=default_date_end;
+        this.end_date = default_date_end;
         this.getDataCalls(this.nbrCaisse, default_date_start, default_date_end, default_time_start, default_time_end);
       } else {
         this.getDataCalls(this.nbrCaisse, this.range.value.start, this.range.value.end, this.start_time, this.end_time);
@@ -217,7 +206,7 @@ export class HomeComponent implements OnInit, OnChanges {
     console.log(this.gtAppele)
 
     for (let index = 0; index < this.gtAppele.length; index++) {
-      filtres[index] = { name: this.gtAppele[index], completed: false };
+      filtres[index] = {name: this.gtAppele[index], completed: false};
     }
     return filtres;
   }
