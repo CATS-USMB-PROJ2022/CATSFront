@@ -3,7 +3,7 @@
     <div class='dropdown-select no-touch' (click)="toggle()">
       <div *ngIf="selected == '-1'; then defaultOption else selectedOption"></div>
       <ng-template #defaultOption>Sélectionner une caisse</ng-template>
-      <ng-template #selectedOption>{{selected}}</ng-template>
+      <ng-template #selectedOption>{{getSelectedLabel()}}</ng-template>
 
       <div *ngIf="isOpen; then thenBlock else elseBlock"></div>
       <ng-template #thenBlock><caret-up></caret-up></ng-template>

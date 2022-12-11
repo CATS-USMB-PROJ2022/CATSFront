@@ -6,6 +6,7 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {ChartConfiguration, ChartData, ChartType} from "chart.js";
 import {Time} from "@angular/common";
 import {DateRange} from "@angular/material/datepicker";
+import {DataService} from "../../service/data.service";
 
 export interface Filtre {
   name: string;
@@ -18,7 +19,7 @@ const default_date_end = new Date();
 default_date_end.setFullYear(2023);
 
 const default_time_start: Time = {hours: 0, minutes: 0};
-const default_time_end: Time = {hours: 0, minutes: 0};
+const default_time_end: Time = {hours: 23, minutes: 59};
 
 
 @Component({
@@ -57,10 +58,11 @@ export class HomeComponent implements OnInit, OnChanges {
     start: new FormControl<Time | null>(null),
     end: new FormControl<Time | null>(null),
   });
-  public filtre: Filtre;
+  public filtreGt: Filtre;
+  public filtreAgence: Filtre;
 
 
-  constructor(/*private data: DataService, */private CallService: CallService, private StatusCallService: StatusCallService, public cookieService: CookieService) {
+  constructor(private data: DataService, private CallService: CallService, private StatusCallService: StatusCallService, public cookieService: CookieService) {
     this.nbCall = 0;
     this.averageCall = 0;
     this.percentageCom = 0;
@@ -87,27 +89,34 @@ export class HomeComponent implements OnInit, OnChanges {
 
     this.gtAppeleId = [""];
     this.gtAppele = [""];
-    this.rubTypeNum=[""];
+    this.rubTypeNum = [""];
     this.labelsStatut = [""];
     this.valuesStatut = [0];
     //Parties Filtres
-    this.filtre = {
+    this.filtreGt = {
       name: 'GT APPELE',
       completed: true,
       subfiltres: this.getGtAppele(),
     };
 
+    this.filtreAgence = {
+      name: 'AGENCE',
+      completed: true,
+      subfiltres: this.getAgences(),
+    };
 
 
+    this.data.current.subscribe(_ => this.initDataCalls(this.getCookieCaisse(), this.start_date, this.end_date, this.start_time, this.end_time));
     //this.data.currentCaisse.subscribe(caisse => this.getDataCalls(caisse, this.start_date, this.end_date, this.start_time, this.end_time));
   }
 
 
   ngOnInit(): void {
+    this.data.current.subscribe(_ => this.initDataCalls(this.getCookieCaisse(), this.start_date, this.end_date, this.start_time, this.end_time));
     //this.data.currentCaisse.subscribe(caisse => this.getDataCalls(caisse, this.start_date, this.end_date, this.start_time, this.end_time));
     this.initDataCalls(this.getCookieCaisse(), this.start_date, this.end_date, this.start_time, this.end_time);
     //this.getDataStatus();
-    console.log("ID CAISSE COOKI:"+this.cookieService.get("caisse"));
+    console.log("ID CAISSE COOKI:" + this.cookieService.get("caisse"));
   }
 
   ngOnChanges(): void {
@@ -122,16 +131,24 @@ export class HomeComponent implements OnInit, OnChanges {
 
   miseJourGtAppel() {
     //Parties Filtres
-    this.filtre = {
+    this.filtreGt = {
       name: 'GT APPELE',
       completed: true,
       subfiltres: this.getGtAppele(),
     };
   }
 
+  miseJourAgences() {
+    this.filtreAgence = {
+      name: 'AGENCES',
+      completed: true,
+      subfiltres: this.getAgences(),
+    };
+  }
+
   private initDataCalls(caisse: number, date_start: Date, date_end: Date, time_start: Time, time_end: Time, gt: string[] = []) {
     console.log(time_start, time_end);
-    this.CallService.postNumberCall(this.getCookieCaisse(), date_start, date_end, time_start, time_end, gt).subscribe(data => {
+    this.CallService.postNumberCall(this.getCookieCaisse(), date_start, date_end, time_start, time_end, gt, []).subscribe(data => {
       console.log(data);
       this.nbCall = data.nbrAppel;
       this.averageCall = Math.round(data.moyenneTempsAttente);
@@ -139,7 +156,7 @@ export class HomeComponent implements OnInit, OnChanges {
       this.caisse = data.caisse;*/
       this.gtAppeleId = data.gtAppeleId;
       this.gtAppele = data.gtAppele;
-      this.rubTypeNum=data.rubTypenum;
+      this.rubTypeNum = data.rubTypenum;
       this.labelsStatut = data.labelsStatut;
       this.valuesStatut = data.valuesStatut;
 
@@ -153,14 +170,15 @@ export class HomeComponent implements OnInit, OnChanges {
       /*this.selected=this.cookieService.get("caisse");*/
 
       this.miseJourGtAppel();
+      this.miseJourAgences();
       this.ngOnChanges();
     })
   }
 
-  private getDataCalls(caisse: number, date_start: Date, date_end: Date, time_start: Time, time_end: Time, gt: string[] = []) {
+  private getDataCalls(caisse: number, date_start: Date, date_end: Date, time_start: Time, time_end: Time, gt: string[] = [], agences: string[] = []) {
     //this.nbrCaisse = caisse;
 
-    this.CallService.postNumberCall(this.getCookieCaisse(), date_start, date_end, time_start, time_end, gt).subscribe(data => {
+    this.CallService.postNumberCall(this.getCookieCaisse(), date_start, date_end, time_start, time_end, gt, agences).subscribe(data => {
       console.log(data);
       this.nbCall = data.nbrAppel;
       this.averageCall = Math.round(data.moyenneTempsAttente);
@@ -220,6 +238,9 @@ export class HomeComponent implements OnInit, OnChanges {
       this.cookieService.set("end_date", end.toString());
     }
 
+    this.start_date = this.selectedRangeValue.start ?? default_date_start;
+    this.end_date = this.selectedRangeValue.end ?? default_date_end;
+
     //const start = this.selectedRangeValue?.start;
     //const end = this.selectedRangeValue?.end;
 
@@ -237,7 +258,7 @@ export class HomeComponent implements OnInit, OnChanges {
   }
 
   applyDateTime() {
-    this.getDataCalls(/*this.nbrCaisse*/0, this.start_date, this.end_date, this.start_time, this.end_time);
+    this.getDataCalls(/*this.nbrCaisse*/this.getCookieCaisse(), this.start_date, this.end_date, this.start_time, this.end_time);
   }
 
 
@@ -251,41 +272,71 @@ export class HomeComponent implements OnInit, OnChanges {
     return filtres;
   }
 
-  public updateGtAppel() {
-    let filtres = [this.filtre];
+  public getAgences(): Filtre[] {
+    let filtres: Filtre[] = [];
+    console.log(this.rubTypeNum);
+
+    for (let index = 0; index < this.rubTypeNum.length; index++) {
+      filtres[index] = {name: this.rubTypeNum[index], completed: false};
+    }
+
+    return filtres;
+  }
+
+  public updateFiltres() {
+    let filtresGt = [this.filtreGt];
     let gt: string[];
     gt = [];
 
-    for (let {name, completed} of filtres) {
+    let filtresAgence = [this.filtreAgence];
+    let agences: string[];
+    agences = [];
+
+    for (let {name, completed} of filtresGt.slice(1)) {
       if (completed) {
         gt.push(name);
       }
     }
 
-    this.getDataCalls(/*this.nbrCaisse*/0, this.start_date, this.end_date, this.start_time, this.end_time, gt);
+    for (let {name, completed} of filtresAgence.slice(1)) {
+      if (completed) {
+        agences.push(name);
+      }
+    }
+
+    this.getDataCalls(/*this.nbrCaisse*/0, this.start_date, this.end_date, this.start_time, this.end_time, gt, agences);
   }
 
   allComplete: boolean = false;
 
   updateAllComplete() {
-    this.allComplete = this.filtre.subfiltres != null && this.filtre.subfiltres.every(t => t.completed);
-    this.updateGtAppel();
+    this.allComplete = this.filtreGt.subfiltres != null && this.filtreGt.subfiltres.every(t => t.completed);
+    // this.updateFiltres();
   }
 
   someComplete(): boolean {
-    if (this.filtre.subfiltres == null) {
+    if (this.filtreGt.subfiltres == null) {
       return false;
     }
-    return this.filtre.subfiltres.filter(t => t.completed).length > 0 && !this.allComplete;
+    return this.filtreGt.subfiltres.filter(t => t.completed).length > 0 && !this.allComplete;
   }
 
-  setAll(completed: boolean) {
+  setAllGt(completed: boolean) {
     this.allComplete = completed;
-    if (this.filtre.subfiltres == null) {
+    if (this.filtreGt.subfiltres == null) {
       return;
     }
-    this.filtre.subfiltres.forEach(t => (t.completed = completed));
-    this.updateGtAppel();
+    this.filtreGt.subfiltres.forEach(t => (t.completed = completed));
+    // this.updateFiltres();
+  }
+
+  setAllAgences(completed: boolean) {
+    this.allComplete = completed;
+    if (this.filtreAgence.subfiltres == null) {
+      return;
+    }
+    this.filtreAgence.subfiltres.forEach(t => (t.completed = completed));
+    // this.updateFiltres();
   }
 
   public pieChartData: ChartData<'pie', number[], string | string[]> = {
@@ -306,7 +357,7 @@ export class HomeComponent implements OnInit, OnChanges {
     }
   };
 
-  public getCookieCaisse(){
+  public getCookieCaisse() {
     /*if (this.cookieService.get("caisse").length != 0) {
       this.cookieService.set("caisse", "-1");
     }
