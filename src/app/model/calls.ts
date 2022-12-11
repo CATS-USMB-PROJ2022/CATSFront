@@ -1,10 +1,11 @@
 export interface Call {
   nbrAppel: number;
   moyenneTempsAttente: number;
-  nbrAppelHeure: number[];
-  caisses: number[];
+  rubIdCaisse: number[];
+  caisse: string[];
   gtAppeleId: string[];
   gtAppele: string[];
+  rubTypenum: string[];
   labelsStatut: string[];
   valuesStatut: number[];
 }

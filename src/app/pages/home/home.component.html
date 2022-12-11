@@ -1,18 +1,23 @@
 <div class="home-container">
-  <div class="filter-border" [ngClass]="{'hidden': nbrCaisse == -1}">
+  <div class="filter-border" [ngClass]="{'hidden': getCookieCaisse() == -1}">
     <div class="filter-container">
       <div class="multi-select" id="groupe-appele">
         <h2 class="multi-title">Groupes de trafic</h2>
-        <div class="select-deselect"><span class="ms-all">Cocher tout</span><span class="ms-all">Décocher tout</span>
+        <div class="select-deselect">
+          <span class="ms-all" (click)="setAll(true)">Cocher tout</span>
+          <span class="ms-all" (click)="setAll(false)">Décocher tout</span>
         </div>
         <span class="list-section">
-          <mat-checkbox
-            [checked]="allComplete"
-            color="primary"
-            [indeterminate]="someComplete()"
-            (change)="setAll($event.checked)">
-            {{filtre.name}}
-          </mat-checkbox>
+          <ul>
+              <li *ngFor="let subfiltre of filtre.subfiltres">
+                <mat-checkbox
+                  [(ngModel)]="subfiltre.completed"
+                  color="primary"
+                  (ngModelChange)="updateAllComplete()">
+                  {{subfiltre.name}}
+                </mat-checkbox>
+              </li>
+            </ul>
         </span>
       </div>
 
@@ -23,16 +28,17 @@
         <div class="select-deselect"><span class="ms-all">Cocher tout</span><span class="ms-all">Décocher tout</span>
         </div>
         <span class="list-section">
-            <ul>
-              <li *ngFor="let subfiltre of filtre.subfiltres">
-                <mat-checkbox
-                  [(ngModel)]="subfiltre.completed"
-                  color="primary"
-                  (ngModelChange)="updateAllComplete()">
-                  {{subfiltre.name}}
-                </mat-checkbox>
-              </li>
-            </ul>
+          <!-- TODO: Use compétences                               -->
+          <!-- <ul>                                                -->
+          <!--   <li *ngFor="let subfiltre of filtre.subfiltres">  -->
+          <!--     <mat-checkbox                                   -->
+          <!--       [(ngModel)]="subfiltre.completed"             -->
+          <!--       color="primary"                               -->
+          <!--       (ngModelChange)="updateAllComplete()">        -->
+          <!--       {{subfiltre.name}}                            -->
+          <!--     </mat-checkbox>                                 -->
+          <!--   </li>                                             -->
+          <!-- </ul>                                               -->
           </span>
       </div>
 
@@ -48,7 +54,7 @@
     <!--          <mat-label>Choisir une caisse</mat-label>-->
     <!--          <mat-select (selectionChange)="recupCaisse()" [(value)]="selected">-->
     <!--            <mat-option value="All">Toutes les caissses</mat-option>-->
-    <!--            <mat-option *ngFor="let caisse of caisses; let i = index" value="{{caisse}}">{{caisse}}</mat-option>-->
+    <!--            <mat-option *ngFor="let caisse of rubIdCaisse; let i = index" value="{{caisse}}">{{caisse}}</mat-option>-->
     <!--          </mat-select>-->
     <!--        </mat-form-field>-->
     <!--      </div>-->
@@ -105,17 +111,19 @@
     <div class="filter-container">
       <div class="date-container">
         <div class="input-date">
-          <mat-form-field appearance="fill">
-            <mat-label>Entrez une plage de Dates</mat-label>
-            <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
-              <input matStartDate formControlName="start" placeholder="Start date" (dateChange)="recupRange()">
-              <input matEndDate formControlName="end" placeholder="End date" (dateChange)="recupRange()">
-            </mat-date-range-input>
-            <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-date-range-picker #picker></mat-date-range-picker>
-            <mat-error>Plage de dates invalides</mat-error>
-          </mat-form-field>
+          <mat-calendar [selected]="selectedRangeValue" (selectedChange)="selectedChange($event)"></mat-calendar>
+          <!-- <mat-form-field appearance="fill">                                                                    -->
+          <!--   <mat-label>Entrez une plage de Dates</mat-label>                                                    -->
+          <!--   <mat-date-range-input [formGroup]="range" [rangePicker]="picker">                                   -->
+          <!--     <input matStartDate formControlName="start" placeholder="Start date" (dateChange)="recupRange()"> -->
+          <!--     <input matEndDate formControlName="end" placeholder="End date" (dateChange)="recupRange()">       -->
+          <!--   </mat-date-range-input>                                                                             -->
+          <!--   <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>                                                        -->
+          <!--   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>                            -->
+          <!--   <mat-date-range-picker #picker></mat-date-range-picker>                                             -->
+          <!--   <mat-date-range-picker (selectionchange)="recupRange()"></mat-date-range-picker>                    -->
+          <!--   <mat-error>Plage de dates invalides</mat-error>                                                     -->
+          <!-- </mat-form-field>                                                                                     -->
         </div>
       </div>
       <div class="time-container" [formGroup]="horaires">
@@ -143,7 +151,7 @@
         </div>
       </div>
 
-      <button class="confirm-button">Appliquer</button>
+      <button class="confirm-button" (click)="applyDateTime()">Appliquer</button>
     </div>
   </div>
 </div>
