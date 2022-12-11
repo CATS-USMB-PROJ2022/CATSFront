@@ -1,18 +1,14 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CookieService} from "ngx-cookie-service";
-
-interface CaisseRegionale {
-  viewValue: string;
-  valueOld: number;
-  valueNew: number;
-}
+import {CaisseRegionale} from "../../model/caisse";
+import {DataService} from "../../service/data.service";
 
 @Component({
   selector: 'caisse-dropdown',
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.css']
 })
-export class DropdownComponent {
+export class DropdownComponent implements OnInit {
   isOpen = false;
   selected = 'All';
   nbrCaisse: number;
@@ -22,10 +18,7 @@ export class DropdownComponent {
   };
 
   setSelected(caisse: CaisseRegionale | null) {
-    this.selected = caisse?.viewValue ?? 'All';
-    this.nbrCaisse = caisse?.valueOld ?? -1;
-    this.isOpen = false;
-    this.recupCaisse();
+    this.data.changeCaisse(caisse ?? DataService.defaultValue);
   }
 
   clickedOutside(): void {
@@ -38,13 +31,21 @@ export class DropdownComponent {
     {viewValue: 'Caisse Régionale de Loire et Haute-Loire', valueOld: 848, valueNew: 84800},
   ];
 
-  constructor(public cookieService: CookieService) {
+  constructor(private data: DataService, public cookieService: CookieService) {
     if (this.cookieService.get("caisse").length == 0) {
       this.cookieService.set("caisse", "-1");
     }
+
     this.nbrCaisse = Number(this.cookieService.get("caisse"));
+  }
 
-
+  ngOnInit() {
+    this.data.currentCaisse.subscribe(caisse => {
+      this.selected = caisse?.viewValue ?? 'All';
+      this.nbrCaisse = caisse?.valueOld ?? -1;
+      this.isOpen = false;
+      this.recupCaisse();
+    });
   }
 
   public recupCaisse() {
@@ -54,8 +55,5 @@ export class DropdownComponent {
     } else {
       this.nbrCaisse = -1;
     }
-
-    // this.initDataCalls(this.nbrCaisse, this.start_date, this.end_date, this.start_time, this.end_time);
-    //this.getDataStatus();
   }
 }

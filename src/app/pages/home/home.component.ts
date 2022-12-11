@@ -1,10 +1,12 @@
 import {Component, OnChanges, OnInit} from '@angular/core';
-import {CallService} from './../../service/call.service';
-import {StatusCallService} from './../../service/status_call.service';
+import {CallService} from '../../service/call.service';
+import {StatusCallService} from '../../service/status_call.service';
 import {CookieService} from 'ngx-cookie-service';
 import {FormControl, FormGroup} from "@angular/forms";
 import {ChartConfiguration, ChartData, ChartType} from "chart.js";
 import {Time} from "@angular/common";
+import {CaisseRegionale} from "../../model/caisse";
+import {DataService} from "../../service/data.service";
 
 export interface Filtre {
   name: string;
@@ -55,7 +57,7 @@ export class HomeComponent implements OnInit, OnChanges {
   public filtre: Filtre;
 
 
-  constructor(private CallService: CallService, private StatusCallService: StatusCallService, public cookieService: CookieService) {
+  constructor(private data: DataService, private CallService: CallService, private StatusCallService: StatusCallService, public cookieService: CookieService) {
     this.nbCall = 0;
     this.averageCall = 0;
     this.percentageCom = 0;
@@ -93,10 +95,12 @@ export class HomeComponent implements OnInit, OnChanges {
       subfiltres: this.getGtAppele(),
     };
 
+    this.data.currentCaisse.subscribe(caisse => this.getDataCalls(caisse.valueOld, this.start_date, this.end_date, this.start_time, this.end_time));
   }
 
 
   ngOnInit(): void {
+    this.data.currentCaisse.subscribe(caisse => this.getDataCalls(caisse.valueOld, this.start_date, this.end_date, this.start_time, this.end_time));
     this.initDataCalls(this.nbrCaisse, this.start_date, this.end_date, this.start_time, this.end_time);
     //this.getDataStatus();
   }
@@ -119,7 +123,6 @@ export class HomeComponent implements OnInit, OnChanges {
       subfiltres: this.getGtAppele(),
     };
   }
-
 
   private initDataCalls(caisse: number, date_start: Date, date_end: Date, time_start: Time, time_end: Time, gt: string[] = []) {
     console.log(time_start, time_end);
@@ -146,6 +149,8 @@ export class HomeComponent implements OnInit, OnChanges {
   }
 
   private getDataCalls(caisse: number, date_start: Date, date_end: Date, time_start: Time, time_end: Time, gt: string[] = []) {
+    this.nbrCaisse = caisse;
+
     this.CallService.postNumberCall(caisse, date_start, date_end, time_start, time_end, gt).subscribe(data => {
       console.log(data);
       this.nbCall = data.nbrAppel;
