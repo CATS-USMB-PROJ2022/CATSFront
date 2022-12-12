@@ -1,9 +1,8 @@
-import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, OnChanges} from '@angular/core';
 import {ChartData, ChartType} from "chart.js";
 import { StatusCallService } from 'src/app/service/status_call.service';
 import { CookieService } from 'ngx-cookie-service';
 import {Time} from "@angular/common";
-import { parse } from 'date-fns';
 import {DataService} from "../../service/data.service";
 
 
@@ -66,10 +65,12 @@ export class StatusCallDiagramComponent implements OnInit, OnChanges {
     let start_date=new Date(this.cookieService.get("start_date"));
     let end_date= new Date(this.cookieService.get("end_date"));
 
-    this.StatusCallService.postStatusCall(this.getCookieCaisse(), start_date, end_date, this.start_time, this.end_time, [], []).subscribe(data => {
+    let gt: string[] = JSON.parse(this.cookieService.get("gt"));
+    let agences: string[] = JSON.parse(this.cookieService.get("agences"));
+
+    this.StatusCallService.postStatusCall(this.getCookieCaisse(), start_date, end_date, this.start_time, this.end_time, gt, agences).subscribe(data => {
       this.label=data.label;
       this.statusCall=data.nbr;
-      console.log("COUCOU C MOI"+ this.statusCall);
       this.ngOnChanges()
     })
 

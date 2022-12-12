@@ -34,7 +34,7 @@ export class CallService {
     }
     console.log("start : "+env_time_start);
     console.log("end : "+env_time_end);
-    post = new Post(caisse, date_start.toLocaleDateString(), date_end.toLocaleDateString(), env_time_start, env_time_end, [], gt);
+    post = new Post(caisse, date_start.toLocaleDateString(), date_end.toLocaleDateString(), env_time_start, env_time_end, agences, gt);
     console.log(post);
     return this.http.post<Call>(`${globalUrl}Home`, post);
   }

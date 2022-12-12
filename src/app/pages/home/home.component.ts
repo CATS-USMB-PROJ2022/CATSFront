@@ -1,6 +1,5 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {CallService} from '../../service/call.service';
-import {StatusCallService} from '../../service/status_call.service';
 import {CookieService} from 'ngx-cookie-service';
 import {FormControl, FormGroup} from "@angular/forms";
 import {ChartConfiguration, ChartData, ChartType} from "chart.js";
@@ -34,13 +33,8 @@ export class HomeComponent implements OnInit, OnChanges {
   public nbCall: number;
   public averageCall: number;
   private label: string[];
-  private statusCall: number[];
   public percentageCom: number;
   public percentageOther: number;
-  /*public rubIdCaisse: number[];
-  public caisse: string[];
-  selected = 'All';*/
-  //nbrCaisse: number;
   public gtAppeleId: string[];
   public gtAppele: string[];
   public rubTypeNum: string[];
@@ -61,15 +55,12 @@ export class HomeComponent implements OnInit, OnChanges {
   public filtreGt: Filtre;
   public filtreAgence: Filtre;
 
-  constructor(private data: DataService, private CallService: CallService, private StatusCallService: StatusCallService, public cookieService: CookieService) {
+  constructor(private data: DataService, private CallService: CallService, public cookieService: CookieService) {
     this.nbCall = 0;
     this.averageCall = 0;
     this.percentageCom = 0;
     this.percentageOther = 0;
     this.label = [""];
-    this.statusCall = [0];
-    /*this.rubIdCaisse = [0];
-    this.caisse = [""];*/
     this.start_date = default_date_start;
     this.end_date = default_date_end;
     this.start_time = default_time_start;
@@ -100,9 +91,6 @@ export class HomeComponent implements OnInit, OnChanges {
     this.end_time.hours = Number(this.cookieService.get("end_time_hours"));
     this.end_time.minutes = Number(this.cookieService.get("end_time_minutes"));
 
-    console.log("NOTICE ME DAIGOOOOOOOOOOOOOOOOOOOOOOOOOOO" + this.start_time.hours+ this.start_time.minutes);
-    console.log("NOTICE ME 2" + + this.end_time.hours+ this.end_time.minutes);
-
     this.gtAppeleId = [""];
     this.gtAppele = [""];
     this.rubTypeNum = [""];
@@ -122,17 +110,16 @@ export class HomeComponent implements OnInit, OnChanges {
     };
 
 
-    this.data.current.subscribe(_ => this.initDataCalls(this.getCookieCaisse(), this.start_date, this.end_date, this.start_time, this.end_time));
+    this.data.current.subscribe(_ => this.initDataCalls( this.start_date, this.end_date, this.start_time, this.end_time));
     //this.data.currentCaisse.subscribe(caisse => this.getDataCalls(caisse, this.start_date, this.end_date, this.start_time, this.end_time));
   }
 
 
   ngOnInit(): void {
-    this.data.current.subscribe(_ => this.initDataCalls(this.getCookieCaisse(), this.start_date, this.end_date, this.start_time, this.end_time));
+    this.data.current.subscribe(_ => this.initDataCalls( this.start_date, this.end_date, this.start_time, this.end_time));
     //this.data.currentCaisse.subscribe(caisse => this.getDataCalls(caisse, this.start_date, this.end_date, this.start_time, this.end_time));
-    this.initDataCalls(this.getCookieCaisse(), this.start_date, this.end_date, this.start_time, this.end_time);
+    this.initDataCalls(this.start_date, this.end_date, this.start_time, this.end_time);
     //this.getDataStatus();
-    console.log("ID CAISSE COOKI:" + this.cookieService.get("caisse"));
   }
 
   ngOnChanges(): void {
@@ -162,14 +149,12 @@ export class HomeComponent implements OnInit, OnChanges {
     };
   }
 
-  private initDataCalls(caisse: number, date_start: Date, date_end: Date, time_start: Time, time_end: Time, gt: string[] = []) {
+  private initDataCalls( date_start: Date, date_end: Date, time_start: Time, time_end: Time, gt: string[] = [], agences: string[] = []) {
     console.log(time_start, time_end);
-    this.CallService.postNumberCall(this.getCookieCaisse(), date_start, date_end, time_start, time_end, gt, []).subscribe(data => {
+    this.CallService.postNumberCall(this.getCookieCaisse(), date_start, date_end, time_start, time_end, gt, agences).subscribe(data => {
       console.log(data);
       this.nbCall = data.nbrAppel;
       this.averageCall = Math.round(data.moyenneTempsAttente);
-      /*this.rubIdCaisse = data.rubIdCaisse;
-      this.caisse = data.caisse;*/
       this.gtAppeleId = data.gtAppeleId;
       this.gtAppele = data.gtAppele;
       this.rubTypeNum = data.rubTypenum;
@@ -183,7 +168,6 @@ export class HomeComponent implements OnInit, OnChanges {
       this.percentageCom = Math.round((numberCom / totalcall) * 100);
       this.percentageOther = Math.round((numberOther / totalcall) * 100);
 
-      /*this.selected=this.cookieService.get("caisse");*/
 
       this.miseJourGtAppel();
       this.miseJourAgences();
@@ -191,15 +175,12 @@ export class HomeComponent implements OnInit, OnChanges {
     })
   }
 
-  private getDataCalls(caisse: number, date_start: Date, date_end: Date, time_start: Time, time_end: Time, gt: string[] = [], agences: string[] = []) {
-    //this.nbrCaisse = caisse;
+  private getDataCalls( date_start: Date, date_end: Date, time_start: Time, time_end: Time, gt: string[] = [], agences: string[] = []) {
 
     this.CallService.postNumberCall(this.getCookieCaisse(), date_start, date_end, time_start, time_end, gt, agences).subscribe(data => {
       console.log(data);
       this.nbCall = data.nbrAppel;
       this.averageCall = Math.round(data.moyenneTempsAttente);
-      /*this.rubIdCaisse = data.rubIdCaisse;
-      this.caisse = data.caisse;*/
       this.gtAppeleId = data.gtAppeleId;
       this.gtAppele = data.gtAppele;
       this.labelsStatut = data.labelsStatut;
@@ -216,31 +197,7 @@ export class HomeComponent implements OnInit, OnChanges {
     })
   }
 
-  public recupRange() {
-    const start = this.selectedRangeValue?.start;
-    const end = this.selectedRangeValue?.end;
-
-    //@ts-ignore
-    this.cookieService.set("start_date", start.toString());
-    //@ts-ignore
-    this.cookieService.set("end_date", end.toString());
-
-    if ((start != default_date_start) && (end != default_date_end)) {
-      if (start == null || end == null) {
-        this.start_date = default_date_start;
-        this.end_date = default_date_end;
-      } else {
-        this.start_date = start;
-        this.end_date = end;
-      }
-    } else {
-
-    }
-
-    this.getDataCalls(/*this.nbrCaisse*/0, this.start_date, this.end_date, this.start_time, this.end_time);
-  }
-
-  selectedChange(m: Date) {
+  recupDate(m: Date) {
 
     if (!this.selectedRangeValue?.start || this.selectedRangeValue?.end) {
       this.selectedRangeValue = new DateRange<Date>(m, null);
@@ -274,7 +231,7 @@ export class HomeComponent implements OnInit, OnChanges {
   }
 
   applyDateTime() {
-    this.getDataCalls(/*this.nbrCaisse*/this.getCookieCaisse(), this.start_date, this.end_date, this.start_time, this.end_time);
+    this.getDataCalls(this.start_date, this.end_date, this.start_time, this.end_time);
   }
 
 
@@ -300,52 +257,45 @@ export class HomeComponent implements OnInit, OnChanges {
   }
 
   public updateFiltres() {
-    let filtresGt = [this.filtreGt];
+    let filtresGt = this.filtreGt.subfiltres ? this.filtreGt.subfiltres : [];
     let gt: string[];
     gt = [];
 
-    let filtresAgence = [this.filtreAgence];
+    let filtresAgence = this.filtreAgence.subfiltres ? this.filtreAgence.subfiltres : [];
     let agences: string[];
     agences = [];
 
-    for (let {name, completed} of filtresGt.slice(1)) {
+    for (let i = 0; i < filtresGt.length; i++){
+      let id = this.gtAppeleId[i];
+      let {completed} = filtresGt[i];
       if (completed) {
-        gt.push(name);
+        gt.push(id);
       }
     }
 
-    for (let {name, completed} of filtresAgence.slice(1)) {
+    for (let {name, completed} of filtresAgence) {
       if (completed) {
         agences.push(name);
       }
     }
 
-    this.getDataCalls(/*this.nbrCaisse*/0, this.start_date, this.end_date, this.start_time, this.end_time, gt, agences);
+    this.cookieService.set("gt", JSON.stringify(gt));
+    this.cookieService.set("agences", JSON.stringify(agences));
+
+    this.getDataCalls(this.start_date, this.end_date, this.start_time, this.end_time, gt, agences);
   }
 
-  //allComplete: boolean = false;
-
-  setGtSelected() {
+    setGtSelected() {
     this.setAllAgences(false);
-    //this.allComplete = this.filtreGt.subfiltres != null && this.filtreGt.subfiltres.every(t => t.completed);
     // this.updateFiltres();
   }
 
   setAgenceSelected() {
     this.setAllGt(false);
-    //this.allComplete = this.filtreAgence.subfiltres != null && this.filtreAgence.subfiltres.every(t => t.completed);
     // this.updateFiltres();
   }
 
-  // someComplete(): boolean {
-  //   if (this.filtreGt.subfiltres == null) {
-  //     return false;
-  //   }
-  //   return this.filtreGt.subfiltres.filter(t => t.completed).length > 0 && !this.allComplete;
-  // }
-
   setAllGt(completed: boolean) {
-    //this.allComplete = completed;
     if (this.filtreGt.subfiltres == null) {
       return;
     }
@@ -354,7 +304,6 @@ export class HomeComponent implements OnInit, OnChanges {
   }
 
   setAllAgences(completed: boolean) {
-    //this.allComplete = completed;
     if (this.filtreAgence.subfiltres == null) {
       return;
     }
@@ -381,10 +330,6 @@ export class HomeComponent implements OnInit, OnChanges {
   };
 
   public getCookieCaisse() {
-    /*if (this.cookieService.get("caisse").length != 0) {
-      this.cookieService.set("caisse", "-1");
-    }
-    this.nbrCaisse =*/
     return Number(this.cookieService.get("caisse"));
   }
 }
