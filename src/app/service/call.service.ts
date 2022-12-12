@@ -21,8 +21,10 @@ export class CallService {
 
     if(time_end.minutes==0 && time_end.hours==0)
       var env_time_end="00:00:00";
-    else{
+    else if(time_end.minutes==59 && time_end.hours==23){
       var env_time_end=`${time_end.hours}:${time_end.minutes}:00`
+    }else{
+      var env_time_end=`${time_end}:00`
     }
 
     if(time_start.minutes==0 && time_start.hours==0)

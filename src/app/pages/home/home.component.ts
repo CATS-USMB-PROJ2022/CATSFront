@@ -61,7 +61,6 @@ export class HomeComponent implements OnInit, OnChanges {
   public filtreGt: Filtre;
   public filtreAgence: Filtre;
 
-
   constructor(private data: DataService, private CallService: CallService, private StatusCallService: StatusCallService, public cookieService: CookieService) {
     this.nbCall = 0;
     this.averageCall = 0;
@@ -83,9 +82,26 @@ export class HomeComponent implements OnInit, OnChanges {
     this.start_date = new Date(this.cookieService.get("start_date"));
 
     if (this.cookieService.get("end_date") == "") {
-      this.cookieService.set("end_date", this.start_date.toString())
+      this.cookieService.set("end_date", this.end_date.toString())
     }
     this.end_date = new Date(this.cookieService.get("end_date"));
+
+    if (this.cookieService.get("start_time") == "") {
+      this.cookieService.set("start_time_hours", this.start_time.hours.toString());
+      this.cookieService.set("start_time_minutes", this.start_time.minutes.toString())
+    }
+    this.start_time.hours = Number(this.cookieService.get("start_time_hours"));
+    this.start_time.minutes = Number(this.cookieService.get("start_time_minutes"));
+
+    if (this.cookieService.get("end_time") == "") {
+      this.cookieService.set("end_time_hours", this.end_time.hours.toString());
+      this.cookieService.set("end_time_minutes", this.end_time.minutes.toString())
+    }
+    this.end_time.hours = Number(this.cookieService.get("end_time_hours"));
+    this.end_time.minutes = Number(this.cookieService.get("end_time_minutes"));
+
+    console.log("NOTICE ME DAIGOOOOOOOOOOOOOOOOOOOOOOOOOOO" + this.start_time.hours+ this.start_time.minutes);
+    console.log("NOTICE ME 2" + + this.end_time.hours+ this.end_time.minutes);
 
     this.gtAppeleId = [""];
     this.gtAppele = [""];
@@ -307,22 +323,29 @@ export class HomeComponent implements OnInit, OnChanges {
     this.getDataCalls(/*this.nbrCaisse*/0, this.start_date, this.end_date, this.start_time, this.end_time, gt, agences);
   }
 
-  allComplete: boolean = false;
+  //allComplete: boolean = false;
 
-  updateAllComplete() {
-    this.allComplete = this.filtreGt.subfiltres != null && this.filtreGt.subfiltres.every(t => t.completed);
+  setGtSelected() {
+    this.setAllAgences(false);
+    //this.allComplete = this.filtreGt.subfiltres != null && this.filtreGt.subfiltres.every(t => t.completed);
     // this.updateFiltres();
   }
 
-  someComplete(): boolean {
-    if (this.filtreGt.subfiltres == null) {
-      return false;
-    }
-    return this.filtreGt.subfiltres.filter(t => t.completed).length > 0 && !this.allComplete;
+  setAgenceSelected() {
+    this.setAllGt(false);
+    //this.allComplete = this.filtreAgence.subfiltres != null && this.filtreAgence.subfiltres.every(t => t.completed);
+    // this.updateFiltres();
   }
 
+  // someComplete(): boolean {
+  //   if (this.filtreGt.subfiltres == null) {
+  //     return false;
+  //   }
+  //   return this.filtreGt.subfiltres.filter(t => t.completed).length > 0 && !this.allComplete;
+  // }
+
   setAllGt(completed: boolean) {
-    this.allComplete = completed;
+    //this.allComplete = completed;
     if (this.filtreGt.subfiltres == null) {
       return;
     }
@@ -331,7 +354,7 @@ export class HomeComponent implements OnInit, OnChanges {
   }
 
   setAllAgences(completed: boolean) {
-    this.allComplete = completed;
+    //this.allComplete = completed;
     if (this.filtreAgence.subfiltres == null) {
       return;
     }

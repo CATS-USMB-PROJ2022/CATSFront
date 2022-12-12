@@ -13,7 +13,7 @@
                 <mat-checkbox
                   [(ngModel)]="subfiltre.completed"
                   color="primary"
-                  (ngModelChange)="updateAllComplete()">
+                  (ngModelChange)="setGtSelected()">
                   {{subfiltre.name}}
                 </mat-checkbox>
               </li>
@@ -35,7 +35,7 @@
                <mat-checkbox
                  [(ngModel)]="subfiltre.completed"
                  color="primary"
-                 (ngModelChange)="updateAllComplete()">
+                 (ngModelChange)="setAgenceSelected()">
                  {{subfiltre.name}}
                </mat-checkbox>
              </li>

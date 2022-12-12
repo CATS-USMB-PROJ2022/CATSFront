@@ -9,7 +9,7 @@ const default_date_end = new Date();
 default_date_end.setFullYear(2023);
 
 const default_time_start: Time = {hours: 0, minutes: 0};
-const default_time_end: Time = {hours: 0, minutes: 0};
+const default_time_end: Time = {hours: 23, minutes: 59};
 
 @Component({
   selector: 'caisse-dropdown',
