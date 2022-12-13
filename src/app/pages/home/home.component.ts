@@ -223,10 +223,11 @@ export class HomeComponent implements OnInit, OnChanges {
     this.start_time = this.horaires.value.start ? this.horaires.value.start : default_time_start;
     this.end_time = this.horaires.value.end ? this.horaires.value.end : default_time_end;
 
-    //@ts-ignore
-    this.cookieService.set("start_time", this.start_time.toString());
-    //@ts-ignore
-    this.cookieService.set("end_time", this.end_time.toString());
+    this.cookieService.set("start_time_hours", this.start_time.hours.toString());
+    this.cookieService.set("start_time_minutes", this.start_time.minutes.toString())
+
+    this.cookieService.set("end_time_hours", this.end_time.hours.toString());
+    this.cookieService.set("end_time_minutes", this.end_time.minutes.toString())
   }
 
   applyDateTime() {
