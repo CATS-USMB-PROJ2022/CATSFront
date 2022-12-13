@@ -16,12 +16,14 @@ export class CallService {
   constructor(private http: HttpClient) {
   }
 
-  public postNumberCall(caisse: number, date_start: Date, date_end: Date, time_start: Time, time_end: Time, gt: string[]): Observable<Call> {
+  public postNumberCall(caisse: number, date_start: Date, date_end: Date, time_start: Time, time_end: Time, gt: string[], agences: string[]): Observable<Call> {
     let post: Post;
 
     if(time_end.minutes==0 && time_end.hours==0)
       var env_time_end="00:00:00";
-    else{
+    else if(time_end.minutes==59 && time_end.hours==23){
+      var env_time_end=`${time_end.hours}:${time_end.minutes}:00`
+    }else{
       var env_time_end=`${time_end}:00`
     }
 
@@ -32,7 +34,8 @@ export class CallService {
     }
     console.log("start : "+env_time_start);
     console.log("end : "+env_time_end);
-    post = new Post(caisse, date_start.toLocaleDateString(), date_end.toLocaleDateString(), env_time_start, env_time_end, [], gt);
+    post = new Post(caisse, date_start.toLocaleDateString(), date_end.toLocaleDateString(), env_time_start, env_time_end, agences, gt);
+    console.log(post);
     return this.http.post<Call>(`${globalUrl}Home`, post);
   }
 
