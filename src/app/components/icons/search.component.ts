@@ -10,8 +10,6 @@ import {Component} from "@angular/core";
   `
 })
 export class SearchComponent {
-  filter = 'invert(56%) sepia(71%) saturate(6609%) hue-rotate(161deg) brightness(97%) contrast(101%)';
-
   style = {
     height: '26px',
     padding: '7px 8px',

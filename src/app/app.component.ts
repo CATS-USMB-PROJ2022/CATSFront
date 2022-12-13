@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UploadService} from "./service/upload.service";
+import {DataService} from "./service/data.service";
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-root',
@@ -14,25 +16,8 @@ export class AppComponent {
   //initialisation sur un fichier vide
   file: File = new File([], "");
 
-  constructor(private uploadService: UploadService) {}
-  //recuperation du fichier selectionné
-  onFileChange(event: any) {
-    console.log("file changed");
-    this.file = event.target.files[0];
-  }
-
-  //lancement de l'upload du fichier vers l'api
-  onFileUpload() {
-    console.log("file upload started");
-    this.loading = true;
-    this.uploadService.postFileUpload(this.file).subscribe(
-      (event: any) => {
-        if (typeof (event) === 'object') {
-          this.loading = false;
-          console.log("file upload finished");
-        }
-      }
-    );
+  constructor(private data: DataService, private cookieService: CookieService, private uploadService: UploadService) {
+    this.data.current.subscribe(_ => {});
   }
 
   isOverlayOpen = false;
@@ -54,7 +39,7 @@ export class AppComponent {
   }
 
   getFileName(): string {
-    return this.file ? this.file.name : 'Parcourir...';
+    return this.file.name != "" ? this.file.name : 'Parcourir...';
   }
 
   onChange(event: Event) {
@@ -84,6 +69,7 @@ export class AppComponent {
           this.error = false;
           console.log("file upload finished");
           this.closeOverlay();
+          this.data.setCaisse(Number(this.cookieService.get("caisse")));
         }
       }
     );
