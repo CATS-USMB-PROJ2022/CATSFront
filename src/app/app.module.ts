@@ -25,8 +25,9 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatNativeDateModule} from "@angular/material/core";
 import {DropdownComponent} from "./components/dropdown/dropdown.component";
 import {ClickOutsideDirective} from "./directives/click-outside/clicked_outside.directive";
-import {CaretUpComponent} from "./components/dropdown/carets/caret_up.component";
-import {CaretDownComponent} from "./components/dropdown/carets/caret_down.component";
+import {CaretUpComponent} from "./components/icons/carets/caret_up.component";
+import {CaretDownComponent} from "./components/icons/carets/caret_down.component";
+import {SearchComponent} from "./components/icons/search.component";
 
 @NgModule({
   declarations: [
@@ -41,6 +42,8 @@ import {CaretDownComponent} from "./components/dropdown/carets/caret_down.compon
     DropdownComponent,
     CaretUpComponent,
     CaretDownComponent,
+
+    SearchComponent,
 
     ClickOutsideDirective,
   ],

@@ -1,9 +1,25 @@
-  <div class="navbar">
+<div class='overlay' *ngIf="isOverlayOpen">
+  <div class='upload-border' (clickOutside)="closeOverlay()">
+    <div class='upload-container'>
+      <h1>Importer un CSV</h1>
+
+      <div class='upload-area'>
+        <input type="file" name="file" id="file" class="upload-input" (change)="onChange($event)" />
+        <label for="file">{{getFileName()}}<search></search></label>
+        <span class="error" [ngClass]="{'hidden': !error}">Veuillez sélectionner un fichier.</span>
+      </div>
+
+      <button class='upload-button' (click)="upload()">Importer</button>
+    </div>
+  </div>
+</div>
+
+<div class="navbar">
     <a routerLink="/">Home</a>
 
     <caisse-dropdown></caisse-dropdown>
 
-    <a routerLink="/">Importer un CSV</a>
+    <a routerLink="/" (click)="openOverlay()">Importer un CSV</a>
   </div>
 
   <router-outlet></router-outlet>

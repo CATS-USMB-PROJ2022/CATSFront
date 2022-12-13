@@ -68,25 +68,25 @@ export class HomeComponent implements OnInit, OnChanges {
 
 
     if (this.cookieService.get("start_date") == "") {
-      this.cookieService.set("start_date", this.start_date.toString())
+      this.cookieService.set("start_date", this.start_date.toString());
     }
     this.start_date = new Date(this.cookieService.get("start_date"));
 
     if (this.cookieService.get("end_date") == "") {
-      this.cookieService.set("end_date", this.end_date.toString())
+      this.cookieService.set("end_date", this.end_date.toString());
     }
     this.end_date = new Date(this.cookieService.get("end_date"));
 
     if (this.cookieService.get("start_time") == "") {
       this.cookieService.set("start_time_hours", this.start_time.hours.toString());
-      this.cookieService.set("start_time_minutes", this.start_time.minutes.toString())
+      this.cookieService.set("start_time_minutes", this.start_time.minutes.toString());
     }
     this.start_time.hours = Number(this.cookieService.get("start_time_hours"));
     this.start_time.minutes = Number(this.cookieService.get("start_time_minutes"));
 
     if (this.cookieService.get("end_time") == "") {
       this.cookieService.set("end_time_hours", this.end_time.hours.toString());
-      this.cookieService.set("end_time_minutes", this.end_time.minutes.toString())
+      this.cookieService.set("end_time_minutes", this.end_time.minutes.toString());
     }
     this.end_time.hours = Number(this.cookieService.get("end_time_hours"));
     this.end_time.minutes = Number(this.cookieService.get("end_time_minutes"));
@@ -128,8 +128,7 @@ export class HomeComponent implements OnInit, OnChanges {
       datasets: [{
         data: this.valuesStatut
       }]
-    }
-
+    };
   }
 
   miseJourGtAppel() {
@@ -236,21 +235,31 @@ export class HomeComponent implements OnInit, OnChanges {
 
 
   public getGtAppele(): Filtre[] {
+    if (this.cookieService.get("gt") == "") {
+      this.cookieService.set("gt", "[]");
+    }
+    let selectedGt = JSON.parse(this.cookieService.get("gt"));
+
     let filtres: Filtre[] = [];
     console.log(this.gtAppele)
 
     for (let index = 0; index < this.gtAppele.length; index++) {
-      filtres[index] = {name: this.gtAppele[index], completed: false};
+      filtres[index] = {name: this.gtAppele[index], completed: selectedGt.includes(this.gtAppeleId[index])};
     }
     return filtres;
   }
 
   public getAgences(): Filtre[] {
+    if (this.cookieService.get("agences") == "") {
+      this.cookieService.set("agences", "[]");
+    }
+    let selectedAgences = JSON.parse(this.cookieService.get("agences"));
+
     let filtres: Filtre[] = [];
     console.log(this.rubTypeNum);
 
     for (let index = 0; index < this.rubTypeNum.length; index++) {
-      filtres[index] = {name: this.rubTypeNum[index], completed: false};
+      filtres[index] = {name: this.rubTypeNum[index], completed: selectedAgences.includes(this.rubTypeNum[index])};
     }
 
     return filtres;
