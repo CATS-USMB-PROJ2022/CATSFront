@@ -1,6 +1,6 @@
 .navbar {
   height: 50px;
-  background-color: #00643e;
+  background-color: var(--green-primary);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -18,18 +18,10 @@
   display: flex;
   align-items: center;
   padding: 5px 26px;
-
-  /*float: left;*/
-  /*display: block;*/
-  /*color: white;*/
-  /*text-align: center;*/
-  /*padding: 1em;*/
-  /*font-size: 24px;*/
 }
 
 .navbar a:hover {
-  background-color: #00a666;
-  color: white;
+  background-color: var(--green-accent);
   transition: all 0.2s ease-in-out;
 }
 
@@ -51,7 +43,7 @@
 .upload-border {
   padding: 2px;
   border-radius: 4px;
-  background-color: #808080;
+  background-color: var(--container-border);
   margin: 25px;
   height: fit-content;
   width: fit-content;
@@ -59,7 +51,7 @@
 
 .upload-container {
   padding: 21px;
-  background-color: #80b29f;
+  background-color: var(--container-fill);
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -125,7 +117,7 @@ label {
 .error {
   margin-top: .25em;
   margin-left: 1em;
-  color: #de1300;
+  color: var(--red-primary);
   font-size: small;
 }
 
@@ -140,7 +132,7 @@ label {
   font-weight: bold;
   margin-top: 21px;
   text-align: center;
-  background-color: #00643e;
+  background-color: var(--green-primary);
   color: white;
   text-transform: uppercase;
   cursor: pointer;

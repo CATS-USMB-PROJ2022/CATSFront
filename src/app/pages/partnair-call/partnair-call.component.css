@@ -5,12 +5,12 @@
     flex-direction: column;
     margin: 5% 5% 5%;
   }
-  
+
   .diagram h1{
     margin: 8px 0;
     text-align: center;
   }
-  
+
   .diagram .chart{
-    padding: 0em 2em;
+    padding: 0 2em;
   }
