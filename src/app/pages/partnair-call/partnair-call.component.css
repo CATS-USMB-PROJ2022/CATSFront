@@ -1,16 +1,23 @@
 .diagram {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    flex-direction: column;
-    margin: 5% 5% 5%;
-  }
+  /* Flexbox */
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
 
-  .diagram h1{
-    margin: 8px 0;
-    text-align: center;
-  }
+  /* Box model */
+  margin: 5% 25% 5%;
+}
 
-  .diagram .chart{
-    padding: 0 2em;
-  }
+.diagram h1 {
+  /* Box model */
+  margin: 8px 0;
+
+  /* Typography */
+  text-align: center;
+}
+
+.diagram .chart {
+  /* Box model */
+  padding: 0 2em;
+}

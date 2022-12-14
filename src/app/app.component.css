@@ -1,112 +1,166 @@
+/*************************************************************************************************/
+/* Navbar ****************************************************************************************/
+/*************************************************************************************************/
 .navbar {
-  height: 50px;
-  background-color: var(--green-primary);
+  /* Flexbox properties */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 52px;
+
+  /* Box model */
+  margin-bottom: 25px;
   -webkit-box-shadow: 0 1px 5px 5px rgba(0, 0, 0, 0.5);
   box-shadow: 0 1px 5px 5px rgba(0, 0, 0, 0.5);
-  margin-bottom: 25px;
-  /*overflow: hidden;*/
+  height: 50px;
+  padding: 5px 52px;
+
+  /* Background */
+  background-color: var(--green-primary);
 }
 
 .navbar a {
-  font-size: 16pt;
-  color: white;
-  height: 100%;
+  /* Flexbox properties */
   display: flex;
   align-items: center;
+
+  /* Box model */
+  height: 100%;
   padding: 5px 26px;
+
+  /* Typography */
+  font-size: 16pt;
+  color: white;
 }
 
 .navbar a:hover {
-  background-color: var(--green-accent);
+  /* Animation */
   transition: all 0.2s ease-in-out;
+
+  /* Background */
+  background-color: var(--green-accent);
 }
 
 .navbar a:link {
+  /* Typography */
   text-decoration: none;
 }
 
+/*************************************************************************************************/
+/* Upload overlay ********************************************************************************/
+/*************************************************************************************************/
 .overlay {
+  /* Position and layout */
   position: absolute;
-  width: 100vw;
-  height: 100vh;
   z-index: 99;
-  background: rgba(255, 255, 255, 0.5);
+
+  /* Flexbox properties */
   display: flex;
   justify-content: center;
   align-items: center;
+
+  /* Box model */
+  width: 100vw;
+  height: 100vh;
+
+  /* Background */
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .upload-border {
-  padding: 2px;
+  /* Box model */
   border-radius: 4px;
-  background-color: var(--container-border);
-  margin: 25px;
-  height: fit-content;
   width: fit-content;
+  height: fit-content;
+  padding: 2px;
+
+  /* Padding */
+  background-color: var(--container-border);
 }
 
 .upload-container {
-  padding: 21px;
-  background-color: var(--container-fill);
+  /* Flexbox */
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+
+  /* Box model */
   width: 30em;
   height: 20em;
+  padding: 21px;
+
+  /* Background */
+  background-color: var(--container-fill);
 }
 
 .upload-container h1 {
+  /* Typography */
   color: black;
 }
 
 .upload-area {
-  width: 100%;
-  height: fit-content;
+  /* Flexbox */
   display: flex;
   flex-direction: column;
   align-items: start;
+
+  /* Box model */
+  width: 100%;
+  height: fit-content;
 }
 
 /*noinspection CssNonIntegerLengthInPixels*/
 .upload-input {
-  width: 0.1px;
-  height: 0.1px;
-  opacity: 0;
-  overflow: hidden;
+  /* Position and layout */
   position: absolute;
   z-index: -1;
+
+  /* Display and visibility */
+  opacity: 0;
+
+  /* Clipping */
+  overflow: hidden;
+
+  /* Box model */
+  width: 0.1px;
+  height: 0.1px;
 }
 
 .upload-input + label {
-  padding: 0.5em 1em;
-  font-size: 1.25em;
-  font-weight: 300;
-  color: #808080;
-  background-color: white;
+  /* Flexbox */
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  /* Box model */
+  -webkit-box-shadow: inset 0 0 2px 0 black;
+  box-shadow: inset 0 0 2px 0 black;
   border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 2px 0 #000000;
-  box-shadow: inset 0 0 2px 0 #000000;
+  padding: 0.5em 1em;
+
+  /* Background */
+  background-color: white;
+
+  /* Typography */
+  font-size: 1.25em;
+  font-weight: 300;
+  color: var(--grey-128);
 }
 
 label {
+  /* Box model */
   width: calc(100% - 2em);
 }
 
 .upload-input + label {
+  /* Background */
   cursor: pointer;
 }
 
 .upload-input:focus + label,
 .upload-input + label:hover {
-  color: #b9b9b9;
+  /* Typography */
+  color: var(--grey-185);
 }
 
 .upload-input:focus + label search,
@@ -115,27 +169,36 @@ label {
 }
 
 .error {
+  /* Box model */
   margin-top: .25em;
   margin-left: 1em;
-  color: var(--red-primary);
+
+  /* Typography */
   font-size: small;
+  color: var(--red-primary);
 }
 
 .hidden {
+  /* Display and visibility */
   visibility: hidden;
 }
 
 .upload-button {
+  /* Box model */
+  margin-top: 21px;
   border: none;
   width: 50%;
   padding: 12px;
-  font-weight: bold;
-  margin-top: 21px;
-  text-align: center;
+
+  /* Background */
   background-color: var(--green-primary);
-  color: white;
-  text-transform: uppercase;
   cursor: pointer;
+
+  /* Typography */
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
 }
 
 .upload-button:hover {

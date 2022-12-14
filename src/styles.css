@@ -3,9 +3,17 @@
   --green-primary: #00643e;
   --green-accent: #00a666;
 
+  --teal-primary: #008991;
+  --teal-secondary: #006166;
+  --teal-accent: #009aa9;
+
   --red-primary: #de1300;
 
-  --container-border: #808080;
+  --grey-128: gray(128);
+  --grey-185: gray(185);
+  --grey-233: gray(233);
+
+  --container-border: var(--grey-128);
   --container-fill: #80b29f;
 }
 

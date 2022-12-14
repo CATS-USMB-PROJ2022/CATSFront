@@ -1,12 +1,18 @@
 .diagram {
+  /* Flexbox */
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
-  flex-direction: column;
+
+  /* Box model */
   margin: 5% 25% 5%;
 }
 
-.diagram h1{
+.diagram h1 {
+  /* Box model */
   margin: 8px 0;
+
+  /* Typography */
   text-align: center;
 }
