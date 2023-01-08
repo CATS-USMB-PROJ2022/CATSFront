@@ -12,6 +12,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NotFoundComponent} from './pages/not-found/not-found.component';
 import {EndCallDiagramComponent} from './pages/end-call-diagram/end-call-diagram.component';
 import {StatusCallDiagramComponent} from './pages/status-call-diagram/status-call-diagram.component';
+import {MotiveEndCallDiagramComponent} from './pages/motive-end-call-diagram/motive-end-call-diagram.component';
 import {HomeComponent} from './pages/home/home.component';
 import {TotalCallDiagramComponent} from './pages/total-call-diagram/total-call-diagram.component';
 import {PartnairCallComponent} from './pages/partnair-call/partnair-call.component';
@@ -36,6 +37,7 @@ import {SearchComponent} from "./components/icons/search.component";
     NotFoundComponent,
     EndCallDiagramComponent,
     StatusCallDiagramComponent,
+    MotiveEndCallDiagramComponent,
     HomeComponent,
     TotalCallDiagramComponent,
     PartnairCallComponent,

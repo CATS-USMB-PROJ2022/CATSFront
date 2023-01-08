@@ -105,6 +105,20 @@
           </div>
         </a>
       </div>
+      <div class="main-row">
+        <a class="card" routerLink="/motif-fin_appel">
+          <h2>Motifs de fin d'appels</h2>
+          <div class="data-holder">
+            <div class="diagram">
+              <canvas baseChart
+                      [data]="pieChartDataMotiveEndCall"
+                      [type]="pieChartTypeMotiveEndCall"
+                      [options]="pieChartOptionsMotiveEndCall">
+              </canvas>
+            </div>
+          </div>
+        </a>
+      </div>
     </div>
   </div>
 

@@ -8,4 +8,6 @@ export interface Call {
   rubTypenum: string[];
   labelsStatut: string[];
   valuesStatut: number[];
+  labelsCauseFin: string[];
+  valuesCauseFin: number[];
 }

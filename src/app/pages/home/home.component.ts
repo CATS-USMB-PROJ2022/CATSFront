@@ -40,6 +40,9 @@ export class HomeComponent implements OnInit, OnChanges {
   public rubTypeNum: string[];
   public labelsStatut: string[];
   public valuesStatut: number[];
+
+  public labelsMotiveEndCall: string[];
+  public valuesMotiveEndCall: number[];
   public start_date: Date;
   public end_date: Date;
   public start_time: Time;
@@ -96,6 +99,9 @@ export class HomeComponent implements OnInit, OnChanges {
     this.rubTypeNum = [""];
     this.labelsStatut = [""];
     this.valuesStatut = [0];
+    this.labelsMotiveEndCall = [""];
+    this.valuesMotiveEndCall = [0];
+
     //Parties Filtres
     this.filtreGt = {
       name: 'GT APPELE',
@@ -129,6 +135,13 @@ export class HomeComponent implements OnInit, OnChanges {
         data: this.valuesStatut
       }]
     };
+
+    this.pieChartDataMotiveEndCall = {
+      labels: this.labelsMotiveEndCall,
+      datasets: [{
+        data: this.valuesMotiveEndCall
+      }]
+    };
   }
 
   miseJourGtAppel() {
@@ -159,6 +172,8 @@ export class HomeComponent implements OnInit, OnChanges {
       this.rubTypeNum = data.rubTypenum;
       this.labelsStatut = data.labelsStatut;
       this.valuesStatut = data.valuesStatut;
+      this.labelsMotiveEndCall = data.labelsCauseFin;
+      this.valuesMotiveEndCall = data.valuesCauseFin;
 
       const numberCom = this.valuesStatut[0];
       const numberOther = this.valuesStatut[1];
@@ -184,6 +199,8 @@ export class HomeComponent implements OnInit, OnChanges {
       this.gtAppele = data.gtAppele;
       this.labelsStatut = data.labelsStatut;
       this.valuesStatut = data.valuesStatut;
+      this.labelsMotiveEndCall = data.labelsCauseFin;
+      this.valuesMotiveEndCall = data.valuesCauseFin;
 
       const numberCom = this.valuesStatut[0];
       const numberOther = this.valuesStatut[1];
@@ -339,7 +356,28 @@ export class HomeComponent implements OnInit, OnChanges {
     }
   };
 
+  public pieChartDataMotiveEndCall: ChartData<'pie', number[], string | string[]> = {
+    labels: ["label"],
+    datasets: [{
+      data: [0]
+    }]
+  };
+
+  public pieChartTypeMotiveEndCall: ChartType = 'pie';
+
+  public pieChartOptionsMotiveEndCall: ChartConfiguration['options'] = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+      },
+    }
+  };
+
   public getCookieCaisse() {
     return Number(this.cookieService.get("caisse"));
   }
+
+  
+
 }
