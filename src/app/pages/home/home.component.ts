@@ -31,6 +31,7 @@ export class HomeComponent implements OnInit, OnChanges {
   @Input() selectedRangeValue: DateRange<Date> | undefined;
 
   public nbCall: number;
+  public averageWorkingCall: number;
   public averageCall: number;
   private label: string[];
   public percentageCom: number;
@@ -57,6 +58,7 @@ export class HomeComponent implements OnInit, OnChanges {
 
   constructor(private data: DataService, private CallService: CallService, public cookieService: CookieService) {
     this.nbCall = 0;
+    this.averageWorkingCall = 0;
     this.averageCall = 0;
     this.percentageCom = 0;
     this.percentageOther = 0;
@@ -153,7 +155,8 @@ export class HomeComponent implements OnInit, OnChanges {
     this.CallService.postNumberCall(this.getCookieCaisse(), date_start, date_end, time_start, time_end, gt, agences).subscribe(data => {
       console.log(data);
       this.nbCall = data.nbrAppel;
-      this.averageCall = Math.round(data.moyenneTempsAttente);
+      this.averageWorkingCall = Math.round(data.moyenneTempsAttente);
+      this.averageCall = Math.round(data.moyenneTempsTravail);
       this.gtAppeleId = data.gtAppeleId;
       this.gtAppele = data.gtAppele;
       this.rubTypeNum = data.rubTypenum;
@@ -179,7 +182,8 @@ export class HomeComponent implements OnInit, OnChanges {
     this.CallService.postNumberCall(this.getCookieCaisse(), date_start, date_end, time_start, time_end, gt, agences).subscribe(data => {
       console.log(data);
       this.nbCall = data.nbrAppel;
-      this.averageCall = Math.round(data.moyenneTempsAttente);
+      this.averageWorkingCall = Math.round(data.moyenneTempsAttente);
+      this.averageCall = Math.round(data.moyenneTempsTravail);
       this.gtAppeleId = data.gtAppeleId;
       this.gtAppele = data.gtAppele;
       this.labelsStatut = data.labelsStatut;
