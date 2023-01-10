@@ -44,6 +44,7 @@ export class HomeComponent implements OnInit, OnChanges {
   public end_date: Date;
   public start_time: Time;
   public end_time: Time;
+  public threshold: number;
   range = new FormGroup({
     start: new FormControl<Date | null>(null),
     end: new FormControl<Date | null>(null),
@@ -65,6 +66,7 @@ export class HomeComponent implements OnInit, OnChanges {
     this.end_date = default_date_end;
     this.start_time = default_time_start;
     this.end_time = default_time_end;
+    this.threshold = 0.0;
 
 
     if (this.cookieService.get("start_date") == "") {
@@ -90,6 +92,11 @@ export class HomeComponent implements OnInit, OnChanges {
     }
     this.end_time.hours = Number(this.cookieService.get("end_time_hours"));
     this.end_time.minutes = Number(this.cookieService.get("end_time_minutes"));
+
+    if (this.cookieService.get("threshold") == "") {
+      this.cookieService.set("threshold", this.threshold.toString());
+    }
+    this.threshold = Number(this.cookieService.get("threshold"));
 
     this.gtAppeleId = [""];
     this.gtAppele = [""];
@@ -148,9 +155,9 @@ export class HomeComponent implements OnInit, OnChanges {
     };
   }
 
-  private initDataCalls( date_start: Date, date_end: Date, time_start: Time, time_end: Time, gt: string[] = [], agences: string[] = []) {
+  private initDataCalls( date_start: Date, date_end: Date, time_start: Time, time_end: Time, gt: string[] = [], agences: string[] = [], threshold: number = 0.0) {
     console.log(time_start, time_end);
-    this.CallService.postNumberCall(this.getCookieCaisse(), date_start, date_end, time_start, time_end, gt, agences).subscribe(data => {
+    this.CallService.postNumberCall(this.getCookieCaisse(), date_start, date_end, time_start, time_end, gt, agences, threshold).subscribe(data => {
       console.log(data);
       this.nbCall = data.nbrAppel;
       this.averageCall = Math.round(data.moyenneTempsAttente);
@@ -174,9 +181,9 @@ export class HomeComponent implements OnInit, OnChanges {
     })
   }
 
-  private getDataCalls( date_start: Date, date_end: Date, time_start: Time, time_end: Time, gt: string[] = [], agences: string[] = []) {
+  private getDataCalls( date_start: Date, date_end: Date, time_start: Time, time_end: Time, gt: string[] = [], agences: string[] = [], threshold: number = 0.0) {
 
-    this.CallService.postNumberCall(this.getCookieCaisse(), date_start, date_end, time_start, time_end, gt, agences).subscribe(data => {
+    this.CallService.postNumberCall(this.getCookieCaisse(), date_start, date_end, time_start, time_end, gt, agences, threshold).subscribe(data => {
       console.log(data);
       this.nbCall = data.nbrAppel;
       this.averageCall = Math.round(data.moyenneTempsAttente);
@@ -231,7 +238,7 @@ export class HomeComponent implements OnInit, OnChanges {
   }
 
   applyDateTime() {
-    this.getDataCalls(this.start_date, this.end_date, this.start_time, this.end_time);
+    this.getDataCalls(this.start_date, this.end_date, this.start_time, this.end_time,[],[], this.threshold);
   }
 
 
@@ -341,5 +348,11 @@ export class HomeComponent implements OnInit, OnChanges {
 
   public getCookieCaisse() {
     return Number(this.cookieService.get("caisse"));
+  }
+
+  recupSeuil(value: string) {
+    this.threshold = Number(value);
+    this.cookieService.set("threshold", value.toString());
+    console.log(this.cookieService.get("threshold"));
   }
 }
