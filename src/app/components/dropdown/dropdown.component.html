@@ -6,12 +6,18 @@
       <ng-template #selectedOption>{{getSelectedLabel()}}</ng-template>
 
       <div *ngIf="isOpen; then thenBlock else elseBlock"></div>
-      <ng-template #thenBlock><caret-up></caret-up></ng-template>
-      <ng-template #elseBlock><caret-down></caret-down></ng-template>
+      <ng-template #thenBlock>
+        <caret-up></caret-up>
+      </ng-template>
+      <ng-template #elseBlock>
+        <caret-down></caret-down>
+      </ng-template>
     </div>
+    
     <div class='dropdown-content no-touch' *ngIf='isOpen'>
       <div class='dropdown-item no-touch' (click)="setSelected(-1)">Sélectionner une caisse</div>
-      <div class='dropdown-item no-touch' [ngClass]="{'selected': selected == caisse.id.toString()}" (click)="setSelected(caisse.id)" *ngFor='let caisse of getCaisses()'>
+      <div class='dropdown-item no-touch' [ngClass]="{'selected': selected == caisse.id.toString()}"
+           (click)="setSelected(caisse.id)" *ngFor='let caisse of getCaisses()'>
         {{caisse.label}}
       </div>
     </div>

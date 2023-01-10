@@ -1,53 +1,59 @@
 <div class="home-container">
-  <div class="filter-border" [ngClass]="{'hidden': getCookieCaisse() == -1}">
-    <div class="filter-container">
-      <div class="multi-select" id="groupe-appele">
-        <h2 class="multi-title">Groupes de trafic</h2>
-        <div class="select-deselect">
-          <span class="ms-all" (click)="setAllGt(true)">Cocher tout</span>
-          <span class="ms-all" (click)="setAllGt(false)">Décocher tout</span>
-        </div>
-        <span class="list-section">
-          <ul>
-              <li *ngFor="let subfiltre of filtreGt.subfiltres">
-                <mat-checkbox
-                  [(ngModel)]="subfiltre.completed"
-                  color="primary"
-                  (ngModelChange)="setGtSelected()">
-                  {{subfiltre.name}}
-                </mat-checkbox>
-              </li>
-            </ul>
-        </span>
-      </div>
-
-      <hr/>
-
-      <div class="multi-select" id="agences">
-        <h2 class="multi-title">Agences</h2>
-        <div class="select-deselect">
-          <span class="ms-all" (click)="setAllAgences(true)">Cocher tout</span>
-          <span class="ms-all" (click)="setAllAgences(false)">Décocher tout</span>
-        </div>
-        <span class="list-section">
-           <ul>
-             <li *ngFor="let subfiltre of filtreAgence.subfiltres">
-               <mat-checkbox
-                 [(ngModel)]="subfiltre.completed"
-                 color="primary"
-                 (ngModelChange)="setAgenceSelected()">
-                 {{subfiltre.name}}
-               </mat-checkbox>
-             </li>
-           </ul>
+  <div class="home-item">
+    <div class="filter-border" [ngClass]="{'hidden': getCookieCaisse() == -1}">
+      <div class="filter-container">
+        <div class="multi-select" id="groupe-appele">
+          <div class="multi-header">
+            <h2 class="multi-title">Groupes de trafic</h2>
+            <div class="select-deselect">
+              <span class="ms-all" (click)="setAllGt(true)">Cocher tout</span>
+              <span class="ms-all" (click)="setAllGt(false)">Décocher tout</span>
+            </div>
+          </div>
+          <span class="list-section">
+            <ul>
+                <li *ngFor="let subfiltre of filtreGt.subfiltres">
+                  <mat-checkbox
+                    [(ngModel)]="subfiltre.completed"
+                    color="primary"
+                    (ngModelChange)="setGtSelected()">
+                    {{subfiltre.name}}
+                  </mat-checkbox>
+                </li>
+              </ul>
           </span>
-      </div>
+        </div>
 
-      <button class="confirm-button" (click)="updateFiltres()">Appliquer</button>
+        <hr/>
+
+        <div class="multi-select" id="agences">
+          <div class="multi-header">
+            <h2 class="multi-title">Agences</h2>
+            <div class="select-deselect">
+              <span class="ms-all" (click)="setAllAgences(true)">Cocher tout</span>
+              <span class="ms-all" (click)="setAllAgences(false)">Décocher tout</span>
+            </div>
+          </div>
+          <span class="list-section">
+             <ul>
+               <li *ngFor="let subfiltre of filtreAgence.subfiltres">
+                 <mat-checkbox
+                   [(ngModel)]="subfiltre.completed"
+                   color="primary"
+                   (ngModelChange)="setAgenceSelected()">
+                   {{subfiltre.name}}
+                 </mat-checkbox>
+               </li>
+             </ul>
+            </span>
+        </div>
+
+        <button class="confirm-button" (click)="updateFiltres()">Appliquer</button>
+      </div>
     </div>
   </div>
 
-  <div class="main-container">
+  <div class="main">
     <!--    <div class="caisse-picker">-->
     <!--      <div class="test">-->
     <!--        <h2>Caisse :</h2>-->
@@ -60,17 +66,19 @@
     <!--        </mat-form-field>-->
     <!--      </div>-->
     <!--    </div>-->
-    <div class="main">
-      <div class="main-row">
-        <a class="card" routerLink="/call_hours">
-          <h2> Nombre d'appels</h2>
+    <div class="card-container">
+      <a class="card" routerLink="/call_hours">
+        <h2> Nombre d'appels</h2>
+        <div class="card-content">
           <h1 id="nb-appel">{{nbCall}}</h1>
-        </a>
-        <a class="card">
-          <h2>Temps d'attente moyen d'un appel</h2>
+        </div>
+      </a>
+      <a class="card">
+        <h2>Temps d'attente moyen d'un appel</h2>
+        <div class="card-content">
           <h1>{{averageCall}} s</h1>
-        </a>
-      </div>
+        </div>
+      </a>
       <!--      <div class="card-container" id="home">-->
       <!--        <a class="card" routerLink="/call_hours">-->
       <!--          <h2> Nombre d'appels par journée :</h2>-->
@@ -81,9 +89,9 @@
       <!--          <h1>{{averageCall}} s</h1>-->
       <!--        </a>-->
       <!--      </div>-->
-      <div class="main-row">
-        <a class="card" routerLink="/statut_appel">
-          <h2>Statut d'appel</h2>
+      <a class="card" routerLink="/statut_appel">
+        <h2>Statut d'appel</h2>
+        <div class="card-content">
           <div class="data-holder">
             <div class="diagram">
               <canvas baseChart
@@ -92,67 +100,55 @@
                       [options]="pieChartOptions">
               </canvas>
             </div>
-            <div>
-              <div class="data-card">
-                <h3>COM : </h3>
-                <h3>&nbsp;{{percentageCom}} %</h3>
-              </div>
-              <div class="data-card">
-                <h3>Autre : </h3>
-                <h3>&nbsp;{{percentageOther}} %</h3>
-              </div>
+            <div class="labels">
+              <span class="data-card">
+                <h3>COM :</h3>
+                <h3>&nbsp;{{percentageCom}}%</h3>
+              </span>
+              <span class="data-card">
+                <h3>Autre :</h3>
+                <h3>&nbsp;{{percentageOther}}%</h3>
+              </span>
             </div>
           </div>
-        </a>
-      </div>
+        </div>
+      </a>
     </div>
   </div>
 
-  <div class="filter-border">
-    <div class="filter-container">
-      <div class="date-container">
-        <div class="input-date">
-          <mat-calendar [selected]="selectedRangeValue" (selectedChange)="recupDate($event)"></mat-calendar>
-          <!-- <mat-form-field appearance="fill">                                                                    -->
-          <!--   <mat-label>Entrez une plage de Dates</mat-label>                                                    -->
-          <!--   <mat-date-range-input [formGroup]="range" [rangePicker]="picker">                                   -->
-          <!--     <input matStartDate formControlName="start" placeholder="Start date" (dateChange)="recupRange()"> -->
-          <!--     <input matEndDate formControlName="end" placeholder="End date" (dateChange)="recupRange()">       -->
-          <!--   </mat-date-range-input>                                                                             -->
-          <!--   <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>                                                        -->
-          <!--   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>                            -->
-          <!--   <mat-date-range-picker #picker></mat-date-range-picker>                                             -->
-          <!--   <mat-date-range-picker (selectionchange)="recupRange()"></mat-date-range-picker>                    -->
-          <!--   <mat-error>Plage de dates invalides</mat-error>                                                     -->
-          <!-- </mat-form-field>                                                                                     -->
+  <div class="home-item">
+    <div class="filter-border">
+      <div class="filter-container">
+        <div class="date-container">
+          <div class="input-date">
+            <mat-calendar [selected]="selectedRangeValue" (selectedChange)="recupDate($event)"></mat-calendar>
+          </div>
         </div>
-      </div>
-      <div class="time-container" [formGroup]="horaires">
-        <div class="input-time">
-          <!--            <h3>Heure début :</h3>-->
-          <input placeholder="Heure début"
-                 formControlName="start"
-                 [ngxTimepicker]="time_start"
-                 [format]="24"
-                 readonly>
-          <ngx-material-timepicker-toggle [for]="time_start"></ngx-material-timepicker-toggle>
-          <ngx-material-timepicker #time_start (closed)="recupHoraire()" [minutesGap]="15"
-                                   [defaultTime]="'00:00'"></ngx-material-timepicker>
+        <div class="time-container" [formGroup]="horaires">
+          <div class="input-time">
+            <input placeholder="Heure début"
+                   formControlName="start"
+                   [ngxTimepicker]="time_start"
+                   [format]="24"
+                   readonly>
+            <ngx-material-timepicker-toggle [for]="time_start"></ngx-material-timepicker-toggle>
+            <ngx-material-timepicker #time_start (closed)="recupHoraire()" [minutesGap]="15"
+                                     [defaultTime]="'00:00'"></ngx-material-timepicker>
+          </div>
+          <div class="input-time">
+            <input placeholder="Heure fin"
+                   formControlName="end"
+                   [ngxTimepicker]="time_end"
+                   [format]="24"
+                   readonly>
+            <ngx-material-timepicker-toggle [for]="time_end"></ngx-material-timepicker-toggle>
+            <ngx-material-timepicker #time_end (closed)="recupHoraire()" [minutesGap]="15"
+                                     [defaultTime]="'00:00'"></ngx-material-timepicker>
+          </div>
         </div>
-        <div class="input-time">
-          <!--            <h3>Heure fin : </h3>-->
-          <input placeholder="Heure fin"
-                 formControlName="end"
-                 [ngxTimepicker]="time_end"
-                 [format]="24"
-                 readonly>
-          <ngx-material-timepicker-toggle [for]="time_end"></ngx-material-timepicker-toggle>
-          <ngx-material-timepicker #time_end (closed)="recupHoraire()" [minutesGap]="15"
-                                   [defaultTime]="'00:00'"></ngx-material-timepicker>
-        </div>
-      </div>
 
-      <button class="confirm-button" (click)="applyDateTime()">Appliquer</button>
+        <button class="confirm-button" (click)="applyDateTime()">Appliquer</button>
+      </div>
     </div>
   </div>
 </div>

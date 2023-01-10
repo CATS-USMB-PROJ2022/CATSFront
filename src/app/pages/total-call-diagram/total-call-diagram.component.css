@@ -11,7 +11,7 @@
 
 .diagram h1 {
   /* Box model */
-  margin: 8px 0;
+  margin: var(--8-px) 0;
 
   /* Typography */
   text-align: center;

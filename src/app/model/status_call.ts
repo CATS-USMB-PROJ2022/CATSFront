@@ -1,4 +1,4 @@
-export interface StatusCall{
-    label: string[];
-    nbr: number[];
+export interface StatusCall {
+  label: string[];
+  nbr: number[];
 }

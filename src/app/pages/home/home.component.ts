@@ -27,7 +27,6 @@ const default_time_end: Time = {hours: 23, minutes: 59};
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit, OnChanges {
-
   @Input() selectedRangeValue: DateRange<Date> | undefined;
 
   public nbCall: number;
@@ -110,13 +109,13 @@ export class HomeComponent implements OnInit, OnChanges {
     };
 
 
-    this.data.current.subscribe(_ => this.initDataCalls( this.start_date, this.end_date, this.start_time, this.end_time));
+    this.data.current.subscribe(_ => this.initDataCalls(this.start_date, this.end_date, this.start_time, this.end_time));
     //this.data.currentCaisse.subscribe(caisse => this.getDataCalls(caisse, this.start_date, this.end_date, this.start_time, this.end_time));
   }
 
 
   ngOnInit(): void {
-    this.data.current.subscribe(_ => this.initDataCalls( this.start_date, this.end_date, this.start_time, this.end_time));
+    this.data.current.subscribe(_ => this.initDataCalls(this.start_date, this.end_date, this.start_time, this.end_time));
     //this.data.currentCaisse.subscribe(caisse => this.getDataCalls(caisse, this.start_date, this.end_date, this.start_time, this.end_time));
     this.initDataCalls(this.start_date, this.end_date, this.start_time, this.end_time);
     //this.getDataStatus();
@@ -148,7 +147,7 @@ export class HomeComponent implements OnInit, OnChanges {
     };
   }
 
-  private initDataCalls( date_start: Date, date_end: Date, time_start: Time, time_end: Time, gt: string[] = [], agences: string[] = []) {
+  private initDataCalls(date_start: Date, date_end: Date, time_start: Time, time_end: Time, gt: string[] = [], agences: string[] = []) {
     console.log(time_start, time_end);
     this.CallService.postNumberCall(this.getCookieCaisse(), date_start, date_end, time_start, time_end, gt, agences).subscribe(data => {
       console.log(data);
@@ -174,7 +173,7 @@ export class HomeComponent implements OnInit, OnChanges {
     })
   }
 
-  private getDataCalls( date_start: Date, date_end: Date, time_start: Time, time_end: Time, gt: string[] = [], agences: string[] = []) {
+  private getDataCalls(date_start: Date, date_end: Date, time_start: Time, time_end: Time, gt: string[] = [], agences: string[] = []) {
 
     this.CallService.postNumberCall(this.getCookieCaisse(), date_start, date_end, time_start, time_end, gt, agences).subscribe(data => {
       console.log(data);
@@ -275,7 +274,7 @@ export class HomeComponent implements OnInit, OnChanges {
     let agences: string[];
     agences = [];
 
-    for (let i = 0; i < filtresGt.length; i++){
+    for (let i = 0; i < filtresGt.length; i++) {
       let id = this.gtAppeleId[i];
       let {completed} = filtresGt[i];
       if (completed) {
@@ -295,7 +294,7 @@ export class HomeComponent implements OnInit, OnChanges {
     this.getDataCalls(this.start_date, this.end_date, this.start_time, this.end_time, gt, agences);
   }
 
-    setGtSelected() {
+  setGtSelected() {
     this.setAllAgences(false);
     // this.updateFiltres();
   }

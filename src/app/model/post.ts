@@ -13,7 +13,7 @@ export class Post {
     this.DATE_END = date_end;
     this.RUB_TYPENUM = rub;
     this.GT_APPELE_ID = gt;
-    this.TIME_START=time_start;
-    this.TIME_END=time_end;
+    this.TIME_START = time_start;
+    this.TIME_END = time_end;
   }
 }

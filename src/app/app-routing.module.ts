@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {EndCallDiagramComponent} from "./pages/end-call-diagram/end-call-diagram.component";
 import {StatusCallDiagramComponent} from "./pages/status-call-diagram/status-call-diagram.component";
 import {NotFoundComponent} from "./pages/not-found/not-found.component";
@@ -20,4 +20,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

@@ -5,9 +5,9 @@
   align-items: center;
 
   /* Box model */
-  margin: 82px auto 32px;
-  max-width: 960px;
-  padding: 0 16px;
+  margin: var(--82-px) auto var(--32-px);
+  max-width: var(--960-px);
+  padding: 0 var(--16-px);
 }
 
 .error-card {
@@ -17,9 +17,9 @@
   align-items: center;
 
   /* Box model */
-  margin-bottom: 8px;
-  border: 1px solid #eee;
-  border-radius: 5px;
-  max-width: 400px;
-  padding: 16px;
+  margin-bottom: var(--8-px);
+  border: var(--1-px) solid var(--grey-238);
+  border-radius: var(--5-px);
+  max-width: var(--400-px);
+  padding: var(--16-px);
 }

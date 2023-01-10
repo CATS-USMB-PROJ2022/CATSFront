@@ -17,7 +17,6 @@ const default_time_end: Time = {hours: 23, minutes: 59};
   styleUrls: ['./dropdown.component.css']
 })
 export class DropdownComponent implements OnInit {
-
   public rubIdCaisse: number[];
   public caisse: string[];
   public nbrCaisse: number;
@@ -26,7 +25,6 @@ export class DropdownComponent implements OnInit {
   public start_time: Time;
   public end_time: Time;
   selected = '-1';
-
 
   isOpen = false;
 
@@ -38,29 +36,28 @@ export class DropdownComponent implements OnInit {
     this.end_date = default_date_end;
     this.start_time = default_time_start;
     this.end_time = default_time_end;
-    if (this.cookieService.get("caisse").length == 0) {
+
+    if (this.cookieService.get("caisse").length == 0)
       this.cookieService.set("caisse", "-1");
-    }
     this.nbrCaisse = Number(this.cookieService.get("caisse"));
 
-    if (this.cookieService.get("start_date") == "") {
+    if (this.cookieService.get("start_date") == "")
       this.cookieService.set("start_date", this.start_date.toString())
-    }
     this.start_date = new Date(this.cookieService.get("start_date"));
 
-    if (this.cookieService.get("end_date") == "") {
+    if (this.cookieService.get("end_date") == "")
       this.cookieService.set("end_date", this.start_date.toString())
-    }
     this.end_date = new Date(this.cookieService.get("end_date"));
 
-    this.data.current.subscribe(_ => {});
+    this.data.current.subscribe(_ => {
+    });
   }
 
   ngOnInit(): void {
-    this.initDataCalls(/*this.nbrCaisse, */this.start_date, this.end_date, this.start_time, this.end_time);
+    this.initDataCalls(this.start_date, this.end_date, this.start_time, this.end_time);
   }
 
-  private initDataCalls(/*caisse: number, */date_start: Date, date_end: Date, time_start: Time, time_end: Time) {
+  private initDataCalls(date_start: Date, date_end: Date, time_start: Time, time_end: Time) {
     console.log(time_start, time_end);
     this.CallService.postNumberCall(Number(this.nbrCaisse), date_start, date_end, time_start, time_end, [], []).subscribe(data => {
       console.log(data);

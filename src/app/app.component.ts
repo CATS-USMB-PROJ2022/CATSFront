@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {UploadService} from "./service/upload.service";
 import {DataService} from "./service/data.service";
 import {CookieService} from "ngx-cookie-service";
@@ -17,7 +17,8 @@ export class AppComponent {
   file: File = new File([], "");
 
   constructor(private data: DataService, private cookieService: CookieService, private uploadService: UploadService) {
-    this.data.current.subscribe(_ => {});
+    this.data.current.subscribe(_ => {
+    });
   }
 
   isOverlayOpen = false;
