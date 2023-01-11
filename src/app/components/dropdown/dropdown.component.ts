@@ -25,6 +25,7 @@ export class DropdownComponent implements OnInit {
   public end_date: Date;
   public start_time: Time;
   public end_time: Time;
+  public threshold: number;
   selected = '-1';
 
 
@@ -38,6 +39,7 @@ export class DropdownComponent implements OnInit {
     this.end_date = default_date_end;
     this.start_time = default_time_start;
     this.end_time = default_time_end;
+    this.threshold= 0.0;
     if (this.cookieService.get("caisse").length == 0) {
       this.cookieService.set("caisse", "-1");
     }
@@ -57,12 +59,12 @@ export class DropdownComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.initDataCalls(/*this.nbrCaisse, */this.start_date, this.end_date, this.start_time, this.end_time);
+    this.initDataCalls(/*this.nbrCaisse, */this.start_date, this.end_date, this.start_time, this.end_time, this.threshold);
   }
 
-  private initDataCalls(/*caisse: number, */date_start: Date, date_end: Date, time_start: Time, time_end: Time) {
+  private initDataCalls(/*caisse: number, */date_start: Date, date_end: Date, time_start: Time, time_end: Time, threshold: number) {
     console.log(time_start, time_end);
-    this.CallService.postNumberCall(Number(this.nbrCaisse), date_start, date_end, time_start, time_end, [], []).subscribe(data => {
+    this.CallService.postNumberCall(Number(this.nbrCaisse), date_start, date_end, time_start, time_end, [], [], threshold).subscribe(data => {
       console.log(data);
       this.rubIdCaisse = data.rubIdCaisse;
       this.caisse = data.caisse;

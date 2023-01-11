@@ -169,7 +169,7 @@
                                    [defaultTime]="'00:00'"></ngx-material-timepicker>
         </div>
       </div>
-
+      <input #threshold type="number" placeholder="Seuil" (change)="recupSeuil(threshold.value)">
       <button class="confirm-button" (click)="applyDateTime()">Appliquer</button>
     </div>
   </div>

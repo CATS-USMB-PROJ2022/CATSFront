@@ -19,7 +19,7 @@ export class StatusCallService {
 
   constructor(private http: HttpClient) { }
 
-  public postStatusCall(caisse: number, date_start: Date, date_end: Date, time_start: Time, time_end: Time, gt: string[], agences: string[]): Observable<StatusCall> {
+  public postStatusCall(caisse: number, date_start: Date, date_end: Date, time_start: Time, time_end: Time, gt: string[], agences: string[], threshold: number): Observable<StatusCall> {
     let post: Post;
 
     if(time_end.minutes==0 && time_end.hours==0)
@@ -35,9 +35,10 @@ export class StatusCallService {
     else{
       var env_time_start=`${time_start}:00`
     }
+
     console.log("start : "+env_time_start);
     console.log("end : "+env_time_end);
-    post = new Post(caisse, date_start.toLocaleDateString(), date_end.toLocaleDateString(), env_time_start, env_time_end, agences, gt);
+    post = new Post(caisse, date_start.toLocaleDateString(), date_end.toLocaleDateString(), env_time_start, env_time_end, agences, gt, threshold);
     console.log(post);
     return this.http.post<StatusCall>(`${globalUrl}AppelStatut`, post);
   }
