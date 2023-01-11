@@ -176,8 +176,8 @@ export class HomeComponent implements OnInit, OnChanges {
     this.CallService.postNumberCall(this.getCookieCaisse(), date_start, date_end, time_start, time_end, gt, agences, threshold).subscribe(data => {
       console.log(data);
       this.nbCall = data.nbrAppel;
-      this.averageWorkingCall = Math.round(data.moyenneTempsAttente);
-      this.averageCall = Math.round(data.moyenneTempsTravail);
+      this.averageWorkingCall = Math.round(data.moyenneTempsTravail);
+      this.averageCall = Math.round(data.moyenneTempsAttente);
       this.gtAppeleId = data.gtAppeleId;
       this.gtAppele = data.gtAppele;
       this.rubTypeNum = data.rubTypenum;
