@@ -257,7 +257,9 @@ export class HomeComponent implements OnInit, OnChanges {
   }
 
   applyDateTime() {
-    this.getDataCalls(this.start_date, this.end_date, this.start_time, this.end_time,[],[], this.threshold);
+    let selectedGt = JSON.parse(this.cookieService.get("gt"));
+    let selectedAgences = JSON.parse(this.cookieService.get("agences"));
+    this.getDataCalls(this.start_date, this.end_date, this.start_time, this.end_time,selectedGt,selectedAgences, this.threshold);
   }
 
 
@@ -318,7 +320,7 @@ export class HomeComponent implements OnInit, OnChanges {
     this.cookieService.set("gt", JSON.stringify(gt));
     this.cookieService.set("agences", JSON.stringify(agences));
 
-    this.getDataCalls(this.start_date, this.end_date, this.start_time, this.end_time, gt, agences);
+    this.getDataCalls(this.start_date, this.end_date, this.start_time, this.end_time, gt, agences, this.threshold);
   }
 
   setGtSelected() {
@@ -391,5 +393,11 @@ export class HomeComponent implements OnInit, OnChanges {
     this.threshold = Number(value);
     this.cookieService.set("threshold", value.toString());
     console.log(this.cookieService.get("threshold"));
+  }
+
+  applyThreshold() {
+    let selectedGt = JSON.parse(this.cookieService.get("gt"));
+    let selectedAgences = JSON.parse(this.cookieService.get("agences"));
+    this.getDataCalls(this.start_date, this.end_date, this.start_time, this.end_time,selectedGt,selectedAgences, this.threshold);
   }
 }
