@@ -67,8 +67,9 @@ export class MotiveEndCallDiagramComponent implements OnInit, OnChanges {
 
     let gt: string[] = JSON.parse(this.cookieService.get("gt"));
     let agences: string[] = JSON.parse(this.cookieService.get("agences"));
+    let threshold: number = Number(this.cookieService.get("threshold"));
 
-    this.MotiveEndCallService.postMotiveEndCall(this.getCookieCaisse(), start_date, end_date, this.start_time, this.end_time, gt, agences).subscribe(data => {
+    this.MotiveEndCallService.postMotiveEndCall(this.getCookieCaisse(), start_date, end_date, this.start_time, this.end_time, gt, agences, threshold).subscribe(data => {
       this.label=data.label;
       this.motiveEndCall=data.nbr;
       this.ngOnChanges()
