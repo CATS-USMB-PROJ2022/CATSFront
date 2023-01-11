@@ -213,6 +213,7 @@ export class HomeComponent implements OnInit, OnChanges {
       this.valuesStatut = data.valuesStatut;
       this.labelsMotiveEndCall = data.labelsCauseFin;
       this.valuesMotiveEndCall = data.valuesCauseFin;
+      this.nbDebordement = data.nbDebordement;
 
       const numberCom = this.valuesStatut[0];
       const numberOther = this.valuesStatut[1];
