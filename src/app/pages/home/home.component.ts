@@ -41,6 +41,7 @@ export class HomeComponent implements OnInit, OnChanges {
   public rubTypeNum: string[];
   public labelsStatut: string[];
   public valuesStatut: number[];
+  public nbSupSeuil: number;
 
   public labelsMotiveEndCall: string[];
   public valuesMotiveEndCall: number[];
@@ -73,6 +74,7 @@ export class HomeComponent implements OnInit, OnChanges {
     this.start_time = default_time_start;
     this.end_time = default_time_end;
     this.threshold = 0.0;
+    this.nbSupSeuil = 0;
 
 
     if (this.cookieService.get("start_date") == "") {
@@ -186,6 +188,8 @@ export class HomeComponent implements OnInit, OnChanges {
       this.labelsMotiveEndCall = data.labelsCauseFin;
       this.valuesMotiveEndCall = data.valuesCauseFin;
       this.nbDebordement = data.nbDebordement;
+      this.nbSupSeuil = data.nbSupSeuil;
+      console.log(data.nbSupSeuil);
 
       const numberCom = this.valuesStatut[0];
       const numberOther = this.valuesStatut[1];
@@ -214,6 +218,7 @@ export class HomeComponent implements OnInit, OnChanges {
       this.labelsMotiveEndCall = data.labelsCauseFin;
       this.valuesMotiveEndCall = data.valuesCauseFin;
       this.nbDebordement = data.nbDebordement;
+      this.nbSupSeuil = data.nbSupSeuil;
 
       const numberCom = this.valuesStatut[0];
       const numberOther = this.valuesStatut[1];
@@ -225,6 +230,21 @@ export class HomeComponent implements OnInit, OnChanges {
       this.ngOnChanges();
     })
   }
+
+  private getSeuilCalls( date_start: Date, date_end: Date, time_start: Time, time_end: Time, threshold: number = 0.0) {
+    let gt = JSON.parse(this.cookieService.get("gt"));
+    let agences = JSON.parse(this.cookieService.get("agences"));
+    this.CallService.postNumberCall(this.getCookieCaisse(), date_start, date_end, time_start, time_end, gt, agences, threshold).subscribe(data => {
+      
+      
+      this.nbSupSeuil = data.nbSupSeuil;
+
+      console.log("ICIIIIIII"+this.nbSupSeuil);
+
+    })
+  }
+
+
 
   recupDate(m: Date) {
 
@@ -400,8 +420,6 @@ export class HomeComponent implements OnInit, OnChanges {
   }
 
   applyThreshold() {
-    let selectedGt = JSON.parse(this.cookieService.get("gt"));
-    let selectedAgences = JSON.parse(this.cookieService.get("agences"));
-    this.getDataCalls(this.start_date, this.end_date, this.start_time, this.end_time,selectedGt,selectedAgences, this.threshold);
+    this.getSeuilCalls(this.start_date, this.end_date, this.start_time, this.end_time, this.threshold);
   }
 }

@@ -12,4 +12,5 @@ export interface Call {
   labelsCauseFin: string[];
   valuesCauseFin: number[];
   nbDebordement: number;
+  nbSupSeuil: number;
 }
