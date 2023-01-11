@@ -13,12 +13,16 @@
   /* Box model */
   border-radius: var(--4-px);
   width: fit-content;
-  min-width: fit-content;
+  min-width: 100%;
   height: fit-content;
   padding: var(--2-px);
 
   /* Padding */
   background-color: var(--container-border);
+}
+
+.filter-border:not(:last-child) {
+  margin-bottom: 1em;
 }
 
 .filter-container {
@@ -158,12 +162,13 @@ hr {
   width: 100%;
 }
 
-.input-time {
+.input-value {
   /* Flexbox */
   display: flex;
 
   /* Box model */
   margin-bottom: 0.25em;
+  min-height: 2em;
   -webkit-box-shadow: inset 0 0 var(--2-px) 0 black;
   box-shadow: inset 0 0 var(--2-px) 0 black;
   border-radius: var(--4-px);
@@ -173,7 +178,7 @@ hr {
   background: white;
 }
 
-.input-time input {
+input {
   /* Box model */
   border: none;
   max-width: 8em;
@@ -182,8 +187,25 @@ hr {
   background: none;
 }
 
-.input-time input:focus {
+input:focus {
   outline: none;
+}
+
+.threshold-container {
+  /* Flexbox */
+  justify-content: start;
+
+  /* Box model */
+  width: 100%;
+}
+
+.threshold-container h2 {
+  margin-bottom: 0.5em;
+}
+
+.threshold input {
+  width: 100%;
+  max-width: unset;
 }
 
 /*************************************************************************************************/
@@ -202,7 +224,8 @@ hr {
 
 .home-item {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   flex-grow: 1;
 }
 
@@ -345,8 +368,10 @@ h1 {
 }
 
 .card-content {
+  min-width: 100%;
   height: 75%;
   display: flex;
+  justify-content: center;
   align-items: center;
 }
 
@@ -354,6 +379,11 @@ h1 {
   /* Flexbox */
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  min-width: 100%;
+  min-height: 100%;
 }
 
 .labels {
@@ -362,7 +392,7 @@ h1 {
 
   justify-content: center;
 
-  min-width: 100%;
+  min-width: fit-content;
 
   /* Box model */
   margin-left: 0.5em;
@@ -373,7 +403,7 @@ h1 {
   display: flex;
 }
 
-.data-card:first-child {
+.data-card:not(:last-child) {
   margin-bottom: 0.5em;
 }
 

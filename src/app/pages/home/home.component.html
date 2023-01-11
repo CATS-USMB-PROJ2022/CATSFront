@@ -111,6 +111,7 @@
               </span>
             </div>
           </div>
+        </div>
       </a>
       <a class="card">
         <h2>Temps de travail moyen d'un appel</h2>
@@ -118,13 +119,15 @@
       </a>
       <a class="card" routerLink="/motif-fin_appel">
         <h2>Motifs de fin d'appels</h2>
-        <div class="data-holder">
-          <div class="diagram">
-            <canvas baseChart
-                    [data]="pieChartDataMotiveEndCall"
-                    [type]="pieChartTypeMotiveEndCall"
-                    [options]="pieChartOptionsMotiveEndCall">
-            </canvas>
+        <div class="card-content">
+          <div class="data-holder">
+            <div class="diagram">
+              <canvas baseChart
+                      [data]="pieChartDataMotiveEndCall"
+                      [type]="pieChartTypeMotiveEndCall"
+                      [options]="pieChartOptionsMotiveEndCall">
+              </canvas>
+            </div>
           </div>
         </div>
       </a>
@@ -140,7 +143,7 @@
           </div>
         </div>
         <div class="time-container" [formGroup]="horaires">
-          <div class="input-time">
+          <div class="input-value">
             <input placeholder="Heure début"
                    formControlName="start"
                    [ngxTimepicker]="time_start"
@@ -150,7 +153,7 @@
             <ngx-material-timepicker #time_start (closed)="recupHoraire()" [minutesGap]="15"
                                      [defaultTime]="'00:00'"></ngx-material-timepicker>
           </div>
-          <div class="input-time">
+          <div class="input-value">
             <input placeholder="Heure fin"
                    formControlName="end"
                    [ngxTimepicker]="time_end"
@@ -161,19 +164,17 @@
                                      [defaultTime]="'00:00'"></ngx-material-timepicker>
           </div>
         </div>
-        <div class="input-time">
-          <!--            <h3>Heure fin : </h3>-->
-          <input placeholder="Heure fin"
-                 formControlName="end"
-                 [ngxTimepicker]="time_end"
-                 [format]="24"
-                 readonly>
-          <ngx-material-timepicker-toggle [for]="time_end"></ngx-material-timepicker-toggle>
-          <ngx-material-timepicker #time_end (closed)="recupHoraire()" [minutesGap]="15"
-                                   [defaultTime]="'00:00'"></ngx-material-timepicker>
-        </div>
+        <button class="confirm-button" (click)="applyDateTime()">Appliquer</button>
       </div>
-      <input #threshold type="number" placeholder="Seuil" (change)="recupSeuil(threshold.value)">
+    </div>
+    <div class="filter-border">
+      <div class="filter-container">
+        <div class="threshold-container">
+          <h2 class="multi-title">Seuils temporels</h2>
+          <div class="input-value threshold">
+            <input #threshold type="number" placeholder="Temps d'attente" (change)="recupSeuil(threshold.value)">
+          </div>
+        </div>
       <button class="confirm-button" (click)="applyDateTime()">Appliquer</button>
     </div>
   </div>
