@@ -11,4 +11,5 @@ export interface Call {
   valuesStatut: number[];
   labelsCauseFin: string[];
   valuesCauseFin: number[];
+  nbDebordement: number;
 }

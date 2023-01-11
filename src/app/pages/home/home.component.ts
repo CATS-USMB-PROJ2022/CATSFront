@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit, OnChanges {
   public nbCall: number;
   public averageWorkingCall: number;
   public averageCall: number;
+  public nbDebordement: number;
   private label: string[];
   public percentageCom: number;
   public percentageOther: number;
@@ -63,6 +64,7 @@ export class HomeComponent implements OnInit, OnChanges {
     this.nbCall = 0;
     this.averageWorkingCall = 0;
     this.averageCall = 0;
+    this.nbDebordement= 0;
     this.percentageCom = 0;
     this.percentageOther = 0;
     this.label = [""];
@@ -183,6 +185,7 @@ export class HomeComponent implements OnInit, OnChanges {
       this.valuesStatut = data.valuesStatut;
       this.labelsMotiveEndCall = data.labelsCauseFin;
       this.valuesMotiveEndCall = data.valuesCauseFin;
+      this.nbDebordement = data.nbDebordement;
 
       const numberCom = this.valuesStatut[0];
       const numberOther = this.valuesStatut[1];
