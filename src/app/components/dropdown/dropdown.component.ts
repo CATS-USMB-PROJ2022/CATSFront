@@ -17,7 +17,6 @@ const default_time_end: Time = {hours: 23, minutes: 59};
   styleUrls: ['./dropdown.component.css']
 })
 export class DropdownComponent implements OnInit {
-
   public rubIdCaisse: number[];
   public caisse: string[];
   public nbrCaisse: number;
@@ -27,7 +26,6 @@ export class DropdownComponent implements OnInit {
   public end_time: Time;
   public threshold: number;
   selected = '-1';
-
 
   isOpen = false;
 
@@ -40,22 +38,20 @@ export class DropdownComponent implements OnInit {
     this.start_time = default_time_start;
     this.end_time = default_time_end;
     this.threshold= 0.0;
-    if (this.cookieService.get("caisse").length == 0) {
+    if (this.cookieService.get("caisse").length == 0)
       this.cookieService.set("caisse", "-1");
-    }
     this.nbrCaisse = Number(this.cookieService.get("caisse"));
 
-    if (this.cookieService.get("start_date") == "") {
+    if (this.cookieService.get("start_date") == "")
       this.cookieService.set("start_date", this.start_date.toString())
-    }
     this.start_date = new Date(this.cookieService.get("start_date"));
 
-    if (this.cookieService.get("end_date") == "") {
+    if (this.cookieService.get("end_date") == "")
       this.cookieService.set("end_date", this.start_date.toString())
-    }
     this.end_date = new Date(this.cookieService.get("end_date"));
 
-    this.data.current.subscribe(_ => {});
+    this.data.current.subscribe(_ => {
+    });
   }
 
   ngOnInit(): void {

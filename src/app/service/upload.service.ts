@@ -12,8 +12,9 @@ export class UploadService {
 
   constructor(private http: HttpClient) {
   }
+
   //upload d'un fichier vers l'api
-  public postFileUpload(file: File):Observable<any>{
+  public postFileUpload(file: File): Observable<any> {
     console.log(file);
     const fileData = new FormData();
     fileData.append('file', file);

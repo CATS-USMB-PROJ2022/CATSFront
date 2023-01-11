@@ -4,8 +4,10 @@
       <h1>Importer un CSV</h1>
 
       <div class='upload-area'>
-        <input type="file" name="file" id="file" class="upload-input" (change)="onChange($event)" />
-        <label for="file">{{getFileName()}}<search></search></label>
+        <input type="file" name="file" id="file" class="upload-input" (change)="onChange($event)"/>
+        <label for="file">{{getFileName()}}
+          <search></search>
+        </label>
         <span class="error" [ngClass]="{'hidden': !error}">Veuillez sélectionner un fichier.</span>
       </div>
 
@@ -15,11 +17,11 @@
 </div>
 
 <div class="navbar">
-    <a routerLink="/">Home</a>
+  <a routerLink="/">Home</a>
 
-    <caisse-dropdown></caisse-dropdown>
+  <caisse-dropdown></caisse-dropdown>
 
-    <a routerLink="/" (click)="openOverlay()">Importer un CSV</a>
+  <a routerLink="/" (click)="openOverlay()">Importer un CSV</a>
 </div>
 
 <router-outlet></router-outlet>
