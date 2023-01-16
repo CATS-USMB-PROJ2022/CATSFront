@@ -114,8 +114,10 @@
         </div>
       </a>
       <a class="card">
-        <h2>Temps de travail moyen d'un appel</h2>
-        <h1>{{averageWorkingCall}} s</h1>
+        <h2>Temps de communication moyen d'un appel</h2>
+        <div class="card-content">
+          <h1>{{averageWorkingCall}} s</h1>
+        </div>
       </a>
       <a class="card" routerLink="/motif-fin_appel">
         <h2>Motifs de fin d'appels</h2>
@@ -187,7 +189,8 @@
             <input #threshold type="number" placeholder="Temps d'attente" (change)="recupSeuil(threshold.value)">
           </div>
         </div>
-      <button class="confirm-button" (click)="applyThreshold()">Appliquer</button>
+        <button class="confirm-button" (click)="applyThreshold()">Appliquer</button>
+      </div>
     </div>
   </div>
 </div>
