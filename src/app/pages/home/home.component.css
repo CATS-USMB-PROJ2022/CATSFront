@@ -198,17 +198,35 @@ input:focus {
 .threshold-container {
   /* Flexbox */
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
 
   /* Box model */
   width: 100%;
 }
 
-.threshold-container h2 {
+.input-title {
+  min-width: 100%;
+  height: 25%;
   margin-bottom: 0.5em;
+}
+
+.threshold-container h2 {
+  margin: 0 !important;
+  height: unset;
+}
+
+.first {
+  margin-bottom: 0.5em;
+}
+
+.second {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  max-height: fit-content;
 }
 
 .threshold input {

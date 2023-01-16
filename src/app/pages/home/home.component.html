@@ -138,13 +138,17 @@
         </div>
       </a>
       <a class="card">
-        <div class="threshold-container">
-          <h2 class="first">Temps d'attente supérieur à </h2>
-          <div class="threshold-value threshold">
-            <input #threshold type="number" placeholder="Seuil" (change)="recupSeuil(threshold.value)">
+        <div class="input-title">
+          <div class="threshold-container">
+            <h2 class="first">Temps d'attente supérieur à </h2>
+            <div class="second">
+              <div class="threshold-value threshold">
+                <input #threshold type="number" placeholder="Seuil" (change)="recupSeuil(threshold.value)">
+              </div>
+              <button class="threshold-button" (click)="applyThreshold()">✔</button>
+              <h2> secondes</h2>
+            </div>
           </div>
-          <button class="threshold-button" (click)="applyThreshold()">✔</button>
-          <h2> secondes</h2>
         </div>
         <div class="card-content">
           <h1>{{nbSupSeuil}} appels</h1>
