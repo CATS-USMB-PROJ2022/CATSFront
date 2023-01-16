@@ -9,22 +9,6 @@
 /*************************************************************************************************/
 /* Filter ****************************************************************************************/
 /*************************************************************************************************/
-.filter-border {
-  /* Box model */
-  border-radius: var(--4-px);
-  width: fit-content;
-  min-width: 100%;
-  height: fit-content;
-  padding: var(--2-px);
-
-  /* Padding */
-  background-color: var(--container-border);
-}
-
-.filter-border:not(:last-child) {
-  margin-bottom: 1em;
-}
-
 .filter-container {
   /* Flexbox */
   display: flex;
@@ -33,19 +17,22 @@
   align-items: center;
 
   /* Box model */
-  /*min-width: fit-content;*/
+  border: 2px solid var(--container-border);
+  width: 25em;
   height: fit-content;
   padding: 1.25em;
 
   /* Background */
   background-color: var(--container-fill);
+}
 
-  /*font-size: .65vmax;*/
+.filter-container:not(:last-child) {
+  margin-bottom: 1em;
 }
 
 .multi-select {
   /* Flexbox */
-  justify-content: start;
+  justify-content: flex-start;
 
   /* Box model */
   width: 100%;
@@ -113,6 +100,7 @@ hr {
   /* Box model */
   margin-top: var(--21-px);
   border: none;
+  min-width: fit-content;
   width: 50%;
   padding: var(--12-px);
 
@@ -178,6 +166,22 @@ hr {
   background: white;
 }
 
+.threshold-value {
+  /* Flexbox */
+  display: flex;
+
+  /* Box model */
+  width: 5em;
+  height: 1.5em;
+  -webkit-box-shadow: inset 0 0 var(--2-px) 0 black;
+  box-shadow: inset 0 0 var(--2-px) 0 black;
+  border-radius: var(--4-px) 0 0 var(--4-px);
+  padding: var(--6-px);
+
+  /* Background */
+  background: white;
+}
+
 input {
   /* Box model */
   border: none;
@@ -193,7 +197,11 @@ input:focus {
 
 .threshold-container {
   /* Flexbox */
-  justify-content: start;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 
   /* Box model */
   width: 100%;
@@ -206,6 +214,24 @@ input:focus {
 .threshold input {
   width: 100%;
   max-width: unset;
+}
+
+.threshold-button {
+  margin-right: 1em;
+  width: calc(1.5em + var(--6-px) * 2 + var(--2-px));
+  height: calc(1.5em + var(--6-px) * 2 + var(--2-px));
+  border: none;
+  border-radius: 0 var(--4-px) var(--4-px) 0;
+
+  /* Background */
+  background-color: var(--green-primary);
+  cursor: pointer;
+
+  /* Typography */
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
 }
 
 /*************************************************************************************************/
@@ -234,7 +260,7 @@ input:focus {
   display: flex;
   flex-grow: 2;
   justify-content: center;
-  align-items: start;
+  align-items: flex-start;
 
   /* Background */
   background-color: white;
