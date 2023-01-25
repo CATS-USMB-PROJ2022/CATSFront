@@ -1,4 +1,4 @@
-import {Component, /*Input,*/ OnChanges, OnInit} from '@angular/core';
+import {Component, Input, /*Input,*/ OnChanges, OnInit, Output} from '@angular/core';
 import {CallService} from '../../service/call.service';
 import {CookieService} from 'ngx-cookie-service';
 import {ChartConfiguration, ChartData, ChartType} from "chart.js";
@@ -53,11 +53,6 @@ export class HomeComponent implements OnInit, OnChanges {
     // this.end_time = default_time_end;
     this.threshold = 0.0;
     this.nbSupSeuil = 0;
-
-    if (this.cookieService.get("threshold") == "") {
-      this.cookieService.set("threshold", this.threshold.toString());
-    }
-    this.threshold = Number(this.cookieService.get("threshold"));
 
     // this.gtAppeleId = [""];
     // this.gtAppele = [""];
@@ -125,6 +120,13 @@ export class HomeComponent implements OnInit, OnChanges {
       this.nbDebordement = data.nbDebordement;
       this.nbSupSeuil = data.nbSupSeuil;
       console.log(data.nbSupSeuil);
+
+      if (this.cookieService.get("threshold") == "") {
+        this.cookieService.set("threshold", this.averageCall.toString());
+      }
+
+      this.threshold = Number(this.cookieService.get("threshold"));
+      this.applyThreshold(this.threshold.toString());
 
       this.calculatePercentages();
 
@@ -268,5 +270,10 @@ export class HomeComponent implements OnInit, OnChanges {
     console.log(this.cookieService.get("threshold"));
   }
 
-  applyThreshold() { this.getSeuilCalls(); }
+  applyThreshold(value: string) {
+    this.threshold = value ? Number(value) : this.averageCall;
+    this.cookieService.set("threshold", value.toString());
+    console.log(this.cookieService.get("threshold"));
+    this.getSeuilCalls();
+  }
 }

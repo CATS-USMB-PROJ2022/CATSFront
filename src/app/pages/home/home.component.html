@@ -73,9 +73,9 @@
           <h2 class="first">Temps d'attente supérieur à </h2>
           <div class="second">
             <div class="threshold-value threshold">
-              <input #threshold type="number" placeholder="Seuil" (change)="recupSeuil(threshold.value)">
+              <input #thresholdInput type="number" placeholder="Seuil" [value]="threshold" />
             </div>
-            <button class="threshold-button" (click)="applyThreshold()">✔</button>
+            <button class="threshold-button" (click)="applyThreshold(thresholdInput.value)">✔</button>
             <h2> secondes</h2>
           </div>
         </div>
