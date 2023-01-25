@@ -1,15 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CookieService} from "ngx-cookie-service";
 import {CallService} from "../../service/call.service";
-import {Time} from "@angular/common";
 import {DataService} from "../../service/data.service";
-
-const default_date_start = new Date(0);
-const default_date_end = new Date();
-default_date_end.setFullYear(2023);
-
-const default_time_start: Time = {hours: 0, minutes: 0};
-const default_time_end: Time = {hours: 23, minutes: 59};
 
 @Component({
   selector: 'caisse-dropdown',
@@ -20,11 +12,6 @@ export class DropdownComponent implements OnInit {
   public rubIdCaisse: number[];
   public caisse: string[];
   public nbrCaisse: number;
-  public start_date: Date;
-  public end_date: Date;
-  public start_time: Time;
-  public end_time: Time;
-  public threshold: number;
   selected = '-1';
 
   isOpen = false;
@@ -33,34 +20,20 @@ export class DropdownComponent implements OnInit {
     this.rubIdCaisse = [0];
     this.caisse = [""];
 
-    this.start_date = default_date_start;
-    this.end_date = default_date_end;
-    this.start_time = default_time_start;
-    this.end_time = default_time_end;
-    this.threshold= 0.0;
     if (this.cookieService.get("caisse").length == 0)
       this.cookieService.set("caisse", "-1");
     this.nbrCaisse = Number(this.cookieService.get("caisse"));
-
-    if (this.cookieService.get("start_date") == "")
-      this.cookieService.set("start_date", this.start_date.toString())
-    this.start_date = new Date(this.cookieService.get("start_date"));
-
-    if (this.cookieService.get("end_date") == "")
-      this.cookieService.set("end_date", this.start_date.toString())
-    this.end_date = new Date(this.cookieService.get("end_date"));
 
     this.data.current.subscribe(_ => {
     });
   }
 
   ngOnInit(): void {
-    this.initDataCalls(/*this.nbrCaisse, */this.start_date, this.end_date, this.start_time, this.end_time, this.threshold);
+    this.initDataCalls();
   }
 
-  private initDataCalls(/*caisse: number, */date_start: Date, date_end: Date, time_start: Time, time_end: Time, threshold: number) {
-    console.log(time_start, time_end);
-    this.CallService.postNumberCall(Number(this.nbrCaisse), date_start, date_end, time_start, time_end, [], [], threshold).subscribe(data => {
+  private initDataCalls() {
+    this.CallService.postNumberCall(Number(this.nbrCaisse)).subscribe(data => {
       console.log(data);
       this.rubIdCaisse = data.rubIdCaisse;
       this.caisse = data.caisse;
@@ -81,7 +54,6 @@ export class DropdownComponent implements OnInit {
     this.selected = selected.toString();
     this.cookieService.set("caisse", this.selected);
     this.data.setCaisse(selected);
-    // this.data.changeCaisse(selected);
     this.isOpen = false;
   }
 
