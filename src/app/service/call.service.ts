@@ -14,31 +14,8 @@ export class CallService {
   constructor(private http: HttpClient, private cookie: CookieService) {
   }
 
-  public postNumberCall(caisse: number): Observable<Call> {
-    // let env_time_start;
-    // let env_time_end;
+  public postNumberCall(caisse: number = this.getCookieCaisse()): Observable<Call> {
     let post: Post;
-
-    // if (time_end.minutes == 0 && time_end.hours == 0)
-    // {
-    //   env_time_end = "00:00:00";
-    // }
-    // else if (time_end.minutes == 59 && time_end.hours == 23) {
-    //   env_time_end = `${time_end.hours}:${time_end.minutes}:00`;
-    // } else {
-    //   env_time_end = `${time_end}:00`;
-    // }
-    //
-    // if (time_start.minutes == 0 && time_start.hours == 0)
-    // {
-    //   env_time_start = "00:00:00";
-    // }
-    // else {
-    //   env_time_start = `${time_start}:00`;
-    // }
-    //
-    // console.log("start : "+env_time_start);
-    // console.log("end : "+env_time_end);
 
     let start_date = new Date(this.cookie.get("start_date"));
     let end_date = new Date(this.cookie.get("end_date"));
@@ -64,5 +41,9 @@ export class CallService {
 
   public getNumberCallWithCaisse(caisse: number, start: Date, end: Date): Observable<Call> {
     return this.http.get<Call>(globalUrl + 'Home?RUB_ID_CAISSE=' + caisse + '&START=' + start.toISOString() + '&END=' + end.toISOString());
+  }
+
+  public getCookieCaisse() {
+    return Number(this.cookie.get("caisse"));
   }
 }

@@ -30,6 +30,8 @@ import {ClickOutsideDirective} from "./directives/click-outside/clicked_outside.
 import {CaretUpComponent} from "./components/icons/carets/caret_up.component";
 import {CaretDownComponent} from "./components/icons/carets/caret_down.component";
 import {SearchComponent} from "./components/icons/search.component";
+import {MultiSelectFilterComponent} from "./components/multi-select-filter/multi-select-filter.component";
+import {DateTimeFilterComponent} from "./components/date-time-filter/date-time-filter.component";
 
 @NgModule({
   declarations: [
@@ -47,6 +49,9 @@ import {SearchComponent} from "./components/icons/search.component";
     CaretDownComponent,
 
     SearchComponent,
+
+    MultiSelectFilterComponent,
+    DateTimeFilterComponent,
 
     ClickOutsideDirective,
   ],

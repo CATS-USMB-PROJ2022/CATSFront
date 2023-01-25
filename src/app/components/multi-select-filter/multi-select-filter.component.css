@@ -1,0 +1,120 @@
+/*************************************************************************************************/
+/* General use classes ***************************************************************************/
+/*************************************************************************************************/
+.hidden {
+  /* Display and visibility */
+  visibility: hidden;
+}
+
+/*************************************************************************************************/
+/* Filter ****************************************************************************************/
+/*************************************************************************************************/
+.filter-container {
+  /* Flexbox */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  /* Box model */
+  border: 2px solid var(--container-border);
+  width: 25em;
+  height: fit-content;
+  padding: 1.25em;
+
+  /* Background */
+  background-color: var(--container-fill);
+}
+
+.filter-container:not(:last-child) {
+  margin-bottom: 1em;
+}
+
+.multi-select {
+  /* Flexbox */
+  justify-content: flex-start;
+
+  /* Box model */
+  width: 100%;
+}
+
+.multi-title {
+  /* Box model */
+  margin: 0;
+
+  /* Typography */
+  font-weight: normal;
+  color: black;
+}
+
+.select-deselect {
+  /* Flexbox */
+  display: flex;
+  justify-content: flex-start;
+
+  /* Box model */
+  width: 100%;
+}
+
+.ms-all {
+  /* Background */
+  cursor: pointer;
+
+  /* Typography */
+  font-weight: 500;
+  color: var(--teal-secondary);
+}
+
+.ms-all:first-child {
+  margin-right: 1em;
+}
+
+.multi-header {
+  margin-bottom: 1em;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+mat-checkbox {
+  /* Box model */
+  margin-left: var(--21-px);
+
+  /* Typography */
+  color: black;
+}
+
+hr {
+  /* Box model */
+  margin: 1em 0;
+  border-top: none;
+  border-right: none;
+  border-bottom: var(--1-px) solid var(--container-border);
+  border-left: none;
+  width: 100%;
+}
+
+.confirm-button {
+  /* Box model */
+  margin-top: var(--21-px);
+  border: none;
+  min-width: fit-content;
+  width: 50%;
+  padding: var(--12-px);
+
+  /* Background */
+  background-color: var(--green-primary);
+  cursor: pointer;
+
+  /* Typography */
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+}
+
+.confirm-button:hover {
+  filter: brightness(125%);
+}
