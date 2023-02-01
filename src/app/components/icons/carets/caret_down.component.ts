@@ -12,6 +12,7 @@ import {Component} from "@angular/core";
 })
 export class CaretDownComponent {
   style = {
+    pointerEvents: 'all',
     height: '26px',
     padding: '7px 8px',
     color: 'black',

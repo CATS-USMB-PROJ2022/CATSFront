@@ -26,7 +26,6 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatNativeDateModule} from "@angular/material/core";
 import {UploadService} from "./service/upload.service";
 import {DropdownComponent} from "./components/dropdown/dropdown.component";
-import {ClickOutsideDirective} from "./directives/click-outside/clicked_outside.directive";
 import {CaretUpComponent} from "./components/icons/carets/caret_up.component";
 import {CaretDownComponent} from "./components/icons/carets/caret_down.component";
 import {SearchComponent} from "./components/icons/search.component";
@@ -52,8 +51,6 @@ import {DateTimeFilterComponent} from "./components/date-time-filter/date-time-f
 
     MultiSelectFilterComponent,
     DateTimeFilterComponent,
-
-    ClickOutsideDirective,
   ],
   imports: [
     BrowserModule,
@@ -69,8 +66,8 @@ import {DateTimeFilterComponent} from "./components/date-time-filter/date-time-f
     ReactiveFormsModule,
     MatNativeDateModule,
     MatCheckboxModule,
+    MatSelectModule,
     NgxMaterialTimepickerModule,
-    MatSelectModule
   ],
   providers: [
     CallService,
