@@ -31,6 +31,8 @@ import {CaretDownComponent} from "./components/icons/carets/caret_down.component
 import {SearchComponent} from "./components/icons/search.component";
 import {MultiSelectFilterComponent} from "./components/multi-select-filter/multi-select-filter.component";
 import {DateTimeFilterComponent} from "./components/date-time-filter/date-time-filter.component";
+import {UploadOverlayComponent} from "./components/upload-overlay/upload-overlay.component";
+import {ClickOutsideDirective} from "./directives/clicked-outside/clicked-outside.directive";
 
 @NgModule({
   declarations: [
@@ -47,10 +49,13 @@ import {DateTimeFilterComponent} from "./components/date-time-filter/date-time-f
     CaretUpComponent,
     CaretDownComponent,
 
+    UploadOverlayComponent,
     SearchComponent,
 
     MultiSelectFilterComponent,
     DateTimeFilterComponent,
+
+    ClickOutsideDirective,
   ],
   imports: [
     BrowserModule,
