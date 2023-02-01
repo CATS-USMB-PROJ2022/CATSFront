@@ -7,18 +7,20 @@
         <span class="ms-all" (click)="setAllGt(false)">Décocher tout</span>
       </div>
     </div>
-    <span class="list-section">
-            <ul>
-                <li *ngFor="let subfiltre of filtreGt.subfiltres">
-                  <mat-checkbox
-                    [(ngModel)]="subfiltre.completed"
-                    color="primary"
-                    (ngModelChange)="setGtSelected()">
-                    {{subfiltre.name}}
-                  </mat-checkbox>
-                </li>
-              </ul>
-          </span>
+    <search-field (search)="onSearchGt($event)"></search-field>
+
+    <div class="list-section">
+      <ul>
+        <li *ngFor="let gt of getFilteredGt()">
+          <mat-checkbox
+            [(ngModel)]="gt.completed"
+            color="primary"
+            (ngModelChange)="setGtSelected()">
+            {{gt.name}}
+          </mat-checkbox>
+        </li>
+      </ul>
+    </div>
   </div>
 
   <hr/>
@@ -31,18 +33,20 @@
         <span class="ms-all" (click)="setAllAgences(false)">Décocher tout</span>
       </div>
     </div>
-    <span class="list-section">
-             <ul>
-               <li *ngFor="let subfiltre of filtreAgence.subfiltres">
-                 <mat-checkbox
-                   [(ngModel)]="subfiltre.completed"
-                   color="primary"
-                   (ngModelChange)="setAgenceSelected()">
-                   {{subfiltre.name}}
-                 </mat-checkbox>
-               </li>
-             </ul>
-            </span>
+    <search-field (search)="onSearchAgence($event)"></search-field>
+
+    <div class="list-section">
+      <ul>
+        <li *ngFor="let agence of getFilteredAgence()">
+          <mat-checkbox
+            [(ngModel)]="agence.completed"
+            color="primary"
+            (ngModelChange)="setAgenceSelected()">
+            {{agence.name}}
+          </mat-checkbox>
+        </li>
+      </ul>
+    </div>
   </div>
 
   <button class="confirm-button" (click)="updateFiltres()">Appliquer</button>

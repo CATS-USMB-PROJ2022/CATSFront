@@ -7,7 +7,6 @@ import {DataService} from "../../service/data.service";
 export interface Filtre {
   name: string;
   completed: boolean;
-  subfiltres?: Filtre[];
 }
 
 @Component({
@@ -16,8 +15,14 @@ export interface Filtre {
   styleUrls: ['./multi-select-filter.component.css']
 })
 export class MultiSelectFilterComponent implements OnInit {
-  public filtreGt: Filtre;
-  public filtreAgence: Filtre;
+  public filtreGt: Filtre[];
+  public filteredGt: Filtre[];
+  searchGt: string;
+
+  public filtreAgence: Filtre[];
+  public filteredAgence: Filtre[];
+  searchAgence: string;
+
   public gtAppele: string[];
   public gtAppeleId: string[];
   public rubTypeNum: string[];
@@ -27,23 +32,38 @@ export class MultiSelectFilterComponent implements OnInit {
     this.gtAppeleId = [""];
     this.rubTypeNum = [""];
 
-    this.filtreGt = {
-      name: 'GT APPELE',
-      completed: true,
-      subfiltres: this.getGtAppele(),
-    };
+    this.filtreGt = this.getGtAppele();
+    this.filtreAgence = this.getAgences();
 
-    this.filtreAgence = {
-      name: 'AGENCE',
-      completed: true,
-      subfiltres: this.getAgences(),
-    };
+    this.filteredGt = this.filtreGt;
+    this.filteredAgence = this.filtreAgence;
+
+    this.searchGt = '';
+    this.searchAgence = '';
 
     this.data.current.subscribe(_ => this.initDataCalls());
   }
 
   ngOnInit(): void {
     this.initDataCalls();
+  }
+
+  onSearchGt(search: string) {
+    if (search) this.searchGt = search.toLowerCase();
+    else this.searchGt = '';
+  }
+
+  onSearchAgence(search: string) {
+    if (search) this.searchAgence = search.toLowerCase();
+    else this.searchAgence = '';
+  }
+
+  getFilteredGt() {
+    return this.filtreGt.filter(gt => gt.name.toLowerCase().includes(this.searchGt));
+  }
+
+  getFilteredAgence() {
+    return this.filtreAgence.filter(agence => agence.name.toLowerCase().includes(this.searchAgence));
   }
 
   getCurrentCaisse(): number {
@@ -91,15 +111,15 @@ export class MultiSelectFilterComponent implements OnInit {
   }
 
   setAllGt(completed: boolean) {
-    if (this.filtreGt.subfiltres == null) return;
+    if (this.filtreGt == null) return;
     if (completed) this.setAllAgences(false);
-    this.filtreGt.subfiltres.forEach(t => (t.completed = completed));
+    this.filtreGt.forEach(t => (t.completed = completed));
   }
 
   setAllAgences(completed: boolean) {
-    if (this.filtreAgence.subfiltres == null) return;
+    if (this.filtreAgence == null) return;
     if (completed) this.setAllGt(false);
-    this.filtreAgence.subfiltres.forEach(t => (t.completed = completed));
+    this.filtreAgence.forEach(t => (t.completed = completed));
   }
 
   setGtSelected() {
@@ -111,27 +131,19 @@ export class MultiSelectFilterComponent implements OnInit {
   }
 
   miseJourGtAppel() {
-    this.filtreGt = {
-      name: 'GT APPELE',
-      completed: true,
-      subfiltres: this.getGtAppele(),
-    };
+    this.filtreGt = this.getGtAppele();
   }
 
   miseJourAgences() {
-    this.filtreAgence = {
-      name: 'AGENCES',
-      completed: true,
-      subfiltres: this.getAgences(),
-    };
+    this.filtreAgence = this.getAgences();
   }
 
   public updateFiltres() {
-    let filtresGt = this.filtreGt.subfiltres ? this.filtreGt.subfiltres : [];
+    let filtresGt = this.filtreGt ? this.filtreGt : [];
     let gt: string[];
     gt = [];
 
-    let filtresAgence = this.filtreAgence.subfiltres ? this.filtreAgence.subfiltres : [];
+    let filtresAgence = this.filtreAgence ? this.filtreAgence : [];
     let agences: string[];
     agences = [];
 

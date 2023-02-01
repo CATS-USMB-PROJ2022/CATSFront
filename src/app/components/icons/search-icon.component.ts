@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 
 @Component({
-  selector: 'search',
+  selector: 'search-icon',
   template: `
     <svg xmlns="http://www.w3.org/2000/svg" style="{{style}}" viewBox="0 0 512 512">
       <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
@@ -10,7 +10,7 @@ import {Component} from "@angular/core";
     </svg>
   `
 })
-export class SearchComponent {
+export class SearchIconComponent {
   style = {
     height: '26px',
     padding: '7px 8px',

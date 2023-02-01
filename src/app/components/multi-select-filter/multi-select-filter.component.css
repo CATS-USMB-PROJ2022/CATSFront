@@ -76,6 +76,10 @@
 ul {
   list-style: none;
   padding: 0;
+
+  height: fit-content;
+  max-height: 23vh;
+  overflow-y: auto;
 }
 
 mat-checkbox {

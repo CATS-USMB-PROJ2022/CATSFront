@@ -8,7 +8,7 @@
     <div class='upload-area'>
       <input type="file" name="file" id="file" class="upload-input" accept=".xlsx" (change)="onChange($event)"/>
       <label for="file">{{getFileName()}}
-        <search></search>
+        <search-icon></search-icon>
       </label>
       <span class="error" [ngClass]="{'hidden': !error}">Veuillez sélectionner un fichier.</span>
     </div>

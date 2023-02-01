@@ -28,12 +28,14 @@ import {UploadService} from "./service/upload.service";
 import {DropdownComponent} from "./components/dropdown/dropdown.component";
 import {CaretUpComponent} from "./components/icons/carets/caret_up.component";
 import {CaretDownComponent} from "./components/icons/carets/caret_down.component";
-import {SearchComponent} from "./components/icons/search.component";
+import {SearchIconComponent} from "./components/icons/search-icon.component";
 import {MultiSelectFilterComponent} from "./components/multi-select-filter/multi-select-filter.component";
 import {DateTimeFilterComponent} from "./components/date-time-filter/date-time-filter.component";
 import {UploadOverlayComponent} from "./components/upload-overlay/upload-overlay.component";
 import {ClickOutsideDirective} from "./directives/clicked-outside/clicked-outside.directive";
 import {NonOpenFilterComponent} from "./components/non-open-filter/non-open-filter.component";
+import {SearchFieldComponent} from "./components/search-field/search-field.component";
+import {MatListModule} from "@angular/material/list";
 
 @NgModule({
   declarations: [
@@ -51,10 +53,12 @@ import {NonOpenFilterComponent} from "./components/non-open-filter/non-open-filt
     CaretDownComponent,
 
     UploadOverlayComponent,
-    SearchComponent,
+    SearchIconComponent,
 
     MultiSelectFilterComponent,
     DateTimeFilterComponent,
+
+    SearchFieldComponent,
 
     ClickOutsideDirective,
     NonOpenFilterComponent,
@@ -75,6 +79,7 @@ import {NonOpenFilterComponent} from "./components/non-open-filter/non-open-filt
     MatCheckboxModule,
     MatSelectModule,
     NgxMaterialTimepickerModule,
+    MatListModule,
   ],
   providers: [
     CallService,
