@@ -33,8 +33,9 @@ export class CallService {
     let agences = JSON.parse(this.cookie.get("agences"));
 
     let threshold = Number(this.cookie.get("threshold"));
+    let hno = Number(this.cookie.get("hno"));
 
-    post = new Post(caisse, start_date.toLocaleDateString(), end_date.toLocaleDateString(), start_time, end_time, agences, gt, threshold);
+    post = new Post(caisse, start_date.toLocaleDateString(), end_date.toLocaleDateString(), start_time, end_time, agences, gt, threshold, hno);
     console.log(post);
     return this.http.post<Call>(`${globalUrl}Home`, post);
   }

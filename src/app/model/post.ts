@@ -7,8 +7,9 @@ export class Post {
   TIME_START: string
   TIME_END: string
   SEUIL: number
+  OUVRE: number
 
-  constructor(caisse: number, date_start: string, date_end: string, time_start: string, time_end: string, rub: string[], gt: string[], threshold: number) {
+  constructor(caisse: number, date_start: string, date_end: string, time_start: string, time_end: string, rub: string[], gt: string[], threshold: number, hno: number) {
     this.RUB_ID_CAISSE = caisse;
     this.DATE_START = date_start;
     this.DATE_END = date_end;
@@ -17,5 +18,6 @@ export class Post {
     this.TIME_START=time_start;
     this.TIME_END=time_end;
     this.SEUIL=threshold;
+    this.OUVRE=hno;
   }
 }

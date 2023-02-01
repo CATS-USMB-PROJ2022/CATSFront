@@ -66,8 +66,9 @@ export class StatusCallDiagramComponent implements OnInit, OnChanges {
     let gt: string[] = JSON.parse(this.cookieService.get("gt"));
     let agences: string[] = JSON.parse(this.cookieService.get("agences"));
     let threshold: number = Number(this.cookieService.get("threshold"));
+    let hno: number = Number(this.cookieService.get("hno"));
 
-    this.StatusCallService.postStatusCall(this.getCookieCaisse(), start_date, end_date, this.start_time, this.end_time, gt, agences, threshold).subscribe(data => {
+    this.StatusCallService.postStatusCall(this.getCookieCaisse(), start_date, end_date, this.start_time, this.end_time, gt, agences, threshold, hno).subscribe(data => {
       this.label=data.label;
       this.statusCall=data.nbr;
       this.ngOnChanges()

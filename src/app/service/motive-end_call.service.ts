@@ -19,7 +19,7 @@ export class MotiveEndCallService {
 
   constructor(private http: HttpClient) { }
 
-  public postMotiveEndCall(caisse: number, date_start: Date, date_end: Date, time_start: Time, time_end: Time, gt: string[], agences: string[], threshold: number): Observable<MotiveEndCall> {
+  public postMotiveEndCall(caisse: number, date_start: Date, date_end: Date, time_start: Time, time_end: Time, gt: string[], agences: string[], threshold: number, hno: number): Observable<MotiveEndCall> {
     let post: Post;
 
     if(time_end.minutes==0 && time_end.hours==0)
@@ -37,7 +37,7 @@ export class MotiveEndCallService {
     }
     console.log("start : "+env_time_start);
     console.log("end : "+env_time_end);
-    post = new Post(caisse, date_start.toLocaleDateString(), date_end.toLocaleDateString(), env_time_start, env_time_end, agences, gt, threshold);
+    post = new Post(caisse, date_start.toLocaleDateString(), date_end.toLocaleDateString(), env_time_start, env_time_end, agences, gt, threshold, hno);
     console.log(post);
     return this.http.post<MotiveEndCall>(`${globalUrl}AppelCauseFin`, post);
   }

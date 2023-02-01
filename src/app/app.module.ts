@@ -33,6 +33,7 @@ import {MultiSelectFilterComponent} from "./components/multi-select-filter/multi
 import {DateTimeFilterComponent} from "./components/date-time-filter/date-time-filter.component";
 import {UploadOverlayComponent} from "./components/upload-overlay/upload-overlay.component";
 import {ClickOutsideDirective} from "./directives/clicked-outside/clicked-outside.directive";
+import {NonOpenFilterComponent} from "./components/non-open-filter/non-open-filter.component";
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import {ClickOutsideDirective} from "./directives/clicked-outside/clicked-outsid
     DateTimeFilterComponent,
 
     ClickOutsideDirective,
+    NonOpenFilterComponent,
   ],
   imports: [
     BrowserModule,
