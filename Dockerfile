@@ -22,7 +22,8 @@ RUN npm run build
 FROM nginx:latest
 
 # Copy the build output to replace the default nginx contents.
+COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /usr/local/app/dist/cats-front /usr/share/nginx/html
 
-# Expose port 80
-EXPOSE 80
+# Expose port 4200
+EXPOSE 4200
