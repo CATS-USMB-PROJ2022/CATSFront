@@ -41,12 +41,12 @@ export class NonOpenFilterComponent implements OnInit {
         this.nonOpenHours = true;
         break;
       case 0:
-        this.openHours = false;
-        this.nonOpenHours = true;
-        break;
-      case 1:
         this.openHours = true;
         this.nonOpenHours = false;
+        break;
+      case 1:
+        this.openHours = false;
+        this.nonOpenHours = true;
         break;
     }
   }
