@@ -1,4 +1,7 @@
 <div class='overlay' *ngIf="isOverlayOpen">
+  <div class='spinner-overlay' *ngIf="loading">
+    <div class="spinner"></div>
+  </div>
   <div class='upload-border' (clickOutside)="closeOverlay()">
     <div class='upload-container'>
       <h1>Importer un CSV</h1>
