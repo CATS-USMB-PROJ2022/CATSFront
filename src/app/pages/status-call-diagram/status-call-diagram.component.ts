@@ -4,6 +4,7 @@ import {StatusCallService} from 'src/app/service/status_call.service';
 import {CookieService} from 'ngx-cookie-service';
 import {Time} from "@angular/common";
 import {DataService} from "../../service/data.service";
+import {ValueService} from "../../service/value.service";
 
 const default_time_start: Time = {hours: 0, minutes: 0};
 const default_time_end: Time = {hours: 23, minutes: 59};
@@ -19,7 +20,7 @@ export class StatusCallDiagramComponent implements OnInit, OnChanges {
   public start_time: Time = default_time_start;
   public end_time: Time = default_time_end;
 
-  constructor(private data: DataService, private StatusCallService: StatusCallService, public cookieService: CookieService) {
+  constructor(private data: DataService, private StatusCallService: StatusCallService, private ValueService: ValueService, public cookieService: CookieService) {
 
     this.label = [""];
     this.statusCall = [0];
@@ -33,12 +34,13 @@ export class StatusCallDiagramComponent implements OnInit, OnChanges {
 
     if (this.cookieService.get("end_time") == "") {
       this.cookieService.set("end_time_hours", this.end_time.hours.toString());
-      this.cookieService.set("end_time_minutes", this.end_time.minutes.toString())
+      this.cookieService.set("end_time_minutes", this.end_time.minutes.toString());
     }
     this.end_time.hours = Number(this.cookieService.get("end_time_hours"));
     this.end_time.minutes = Number(this.cookieService.get("end_time_minutes"));
 
     this.data.current.subscribe(_ => this.getDataStatus());
+    this.ValueService.current.subscribe(_ => this.getDataStatus());
   }
 
   ngOnInit(): void {
