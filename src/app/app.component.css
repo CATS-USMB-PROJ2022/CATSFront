@@ -1,27 +1,52 @@
-.topnav {
-  background-color: #00643e;
-  overflow: hidden;
+/*************************************************************************************************/
+/* Navbar ****************************************************************************************/
+/*************************************************************************************************/
+.navbar {
+  /* Flexbox properties */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  /* Box model */
+  margin-bottom: var(--25-px);
+  -webkit-box-shadow: 0 var(--1-px) var(--5-px) var(--5-px) rgba(0, 0, 0, 0.5);
+  box-shadow: 0 var(--1-px) var(--5-px) var(--5-px) rgba(0, 0, 0, 0.5);
+  height: 50px;
+  padding: var(--5-px) var(--52-px);
+
+  /* Background */
+  background-color: var(--green-primary);
 }
 
-.topnav a {
-  float: left;
-  display: block;
+@media screen and (max-width: 768px) {
+  .navbar {
+    font-size: 0.85em;
+  }
+}
+
+.navbar a {
+  /* Flexbox properties */
+  display: flex;
+  align-items: center;
+
+  /* Box model */
+  height: 100%;
+  padding: var(--5-px) var(--26-px);
+
+  /* Typography */
+  font-size: var(--16-pt);
   color: white;
-  text-align: center;
-  padding: 1em;
-  font-size: 24px;
 }
 
-.topnav a:hover{
-  background-color: #00a666;
-  color: white;
+.navbar a:hover {
+  /* Animation */
+  transition: all 0.2s ease-in-out;
+
+  /* Background */
+  background-color: var(--green-accent);
 }
 
-.topnav a.active{
-  background-color: #04aa6d;
-  color: white;
-}
-
-.topnav a:link{
+.navbar a:link {
+  /* Typography */
   text-decoration: none;
 }

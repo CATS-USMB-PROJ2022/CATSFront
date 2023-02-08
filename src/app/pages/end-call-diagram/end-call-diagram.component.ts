@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ChartData, ChartType} from "chart.js";
 import data from '../../../assets/json/data.json';
 
@@ -8,14 +8,16 @@ import data from '../../../assets/json/data.json';
   styleUrls: ['./end-call-diagram.component.css']
 })
 export class EndCallDiagramComponent implements OnInit {
-  constructor() {}
+  constructor() {
+  }
+
   public pieChartData: ChartData<'pie', number[], string | string[]> = {
     labels: data.End_call_data.label,
     datasets: data.End_call_data.nb
   };
 
   public pieChartType: ChartType = 'pie';
+
   ngOnInit(): void {
   }
-
 }

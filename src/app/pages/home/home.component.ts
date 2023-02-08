@@ -1,223 +1,138 @@
 import {Component, OnChanges, OnInit} from '@angular/core';
-import {CallService} from './../../service/call.service';
-import {StatusCallService} from './../../service/status_call.service';
-import { CookieService } from 'ngx-cookie-service';
-import {FormControl, FormGroup} from "@angular/forms";
+import {CallService} from '../../service/call.service';
+import {CookieService} from 'ngx-cookie-service';
 import {ChartConfiguration, ChartData, ChartType} from "chart.js";
-
-export interface Filtre {
-  name: string;
-  completed: boolean;
-  subfiltres?: Filtre[];
-}
-const default_date_start = new Date(0);
-const default_date_end = new Date();
-default_date_end.setFullYear(2023);
+import {DataService} from "../../service/data.service";
+import {ValueService} from "../../service/value.service";
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, OnChanges{
+export class HomeComponent implements OnInit, OnChanges {
+  public nbCall: number;
+  public averageWorkingCall: number;
+  public averageCall: number;
+  public nbDebordement: number;
+  public percentageCom: number;
+  public percentageOther: number;
+  public labelsStatut: string[];
+  public valuesStatut: number[];
+  public nbSupSeuil: number;
 
-  public nbCall:number;
-  public averageCall:number;
-  private label:string[];
-  private statusCall:number[];
-  public percentageCom:number;
-  public percentageOther:number;
-  public caisses:number[];
-  selected = 'All';
-  nbrCaisse:number;
-  public gtAppele:string[];
-  public start_date:Date;
-  public end_date:Date;
-  range = new FormGroup({
-    start: new FormControl<Date | null>(null),
-    end: new FormControl<Date | null>(null),
-  });
-  public filtre:Filtre;
+  public labelsMotiveEndCall: string[];
+  public valuesMotiveEndCall: number[];
+  public threshold: number;
 
-
-  constructor(private CallService: CallService, private StatusCallService: StatusCallService, public cookieService:CookieService) {
+  constructor(private data: DataService, private values: ValueService, private CallService: CallService, public cookieService: CookieService) {
     this.nbCall = 0;
-    this.averageCall=0;
-    this.percentageCom=0;
-    this.percentageOther=0;
-    this.label=[""];
-    this.statusCall=[0];
-    this.caisses=[0];
-    this.start_date=default_date_start;
-    this.end_date=default_date_end;
-    if(this.cookieService.get("caisse").length==0 )
-      {
-        this.cookieService.set("caisse", "-1");
-      }
-    this.nbrCaisse=Number(this.cookieService.get("caisse"));
+    this.averageWorkingCall = 0;
+    this.averageCall = 0;
+    this.nbDebordement= 0;
+    this.percentageCom = 0;
+    this.percentageOther = 0;
+    this.threshold = 0.0;
+    this.nbSupSeuil = 0;
 
-    if(this.cookieService.get("start_date")==""){
-      this.cookieService.set("start_date",this.start_date.toString())
-    }
-    this.start_date=new Date(this.cookieService.get("start_date"));
+    this.labelsStatut = [""];
+    this.valuesStatut = [0];
+    this.labelsMotiveEndCall = [""];
+    this.valuesMotiveEndCall = [0];
 
-    if(this.cookieService.get("end_date")==""){
-      this.cookieService.set("end_date",this.start_date.toString())
-    }
-    this.end_date=new Date(this.cookieService.get("end_date"));
-
-    this.gtAppele=[""];
-    //Parties Filtres
-    this.filtre = {
-      name: 'GT APPELE',
-      completed: true,
-      subfiltres: this.getGtAppele(),
-    };
-
+    this.data.current.subscribe(value => this.initDataCalls());
+    this.values.current.subscribe(value => this.getDataCalls(value));
   }
 
 
   ngOnInit(): void {
-    this.getDataCalls(this.nbrCaisse, this.start_date, this.end_date);
-    this.getDataStatus();
+    this.data.current.subscribe(_ => this.initDataCalls());
+    this.initDataCalls();
   }
 
   ngOnChanges(): void {
     this.pieChartData = {
-      labels: this.label,
+      labels: this.labelsStatut,
       datasets: [{
-        data: this.statusCall
+        data: this.valuesStatut
       }]
-    }
+    };
 
+    this.pieChartDataMotiveEndCall = {
+      labels: this.labelsMotiveEndCall,
+      datasets: [{
+        data: this.valuesMotiveEndCall
+      }]
+    };
   }
 
-  miseJourGtAppel(){
-    //Parties Filtres
-      this.filtre = {
-        name: 'GT APPELE',
-        completed: true,
-        subfiltres: this.getGtAppele(),
-      };
-  }
-
-
-
-  private getDataCalls(caisse:number, start:Date, end:Date){
-    this.CallService.getNumberCallWithCaisse(caisse, start, end).subscribe(data => {
+  private initDataCalls() {
+    this.CallService.postNumberCall().subscribe(data => {
       console.log(data);
-        this.nbCall=data.nbrAppel;
-        this.averageCall=Math.round(data.moyenneTempsAttente);
-        this.caisses=data.caisses;
-        this.gtAppele=data.gtAppeleId;
-        this.miseJourGtAppel();
+      this.nbCall = data.nbrAppel;
+      this.averageWorkingCall = Math.round(data.moyenneTempsTravail);
+      this.averageCall = Math.round(data.moyenneTempsAttente);
+      this.labelsStatut = data.labelsStatut;
+      this.valuesStatut = data.valuesStatut;
+      this.labelsMotiveEndCall = data.labelsCauseFin;
+      this.valuesMotiveEndCall = data.valuesCauseFin;
+      this.nbDebordement = data.nbDebordement;
+      this.nbSupSeuil = data.nbSupSeuil;
+      console.log(data.nbSupSeuil);
+
+      if (this.cookieService.get("threshold") == "") {
+        this.cookieService.set("threshold", this.averageCall.toString());
+      }
+
+      this.threshold = Number(this.cookieService.get("threshold"));
+      this.applyThreshold(this.threshold.toString());
+
+      this.calculatePercentages();
+
+      this.ngOnChanges();
     })
   }
 
-  getDataStatus(){
-    this.StatusCallService.getStatusCall(this.nbrCaisse).subscribe(data => {
-      console.log(this.nbrCaisse);
-      this.label=data.label
-      this.statusCall=data.nbr
-      this.extractStatusData();
+  private getDataCalls(value: { nbrAppel: number, moyenneTempsAttente: number, moyenneTempsTravail: number,
+                                gtAppeleId: string[], gtAppele: string[], labelsStatut: string[], valuesStatut: number[],
+                                labelsCauseFin: string[], valuesCauseFin: number[], nbDebordement: number, nbSupSeuil: number }) {
+    console.table(value);
+    this.nbCall = value.nbrAppel;
+    this.averageCall = Math.round(value.moyenneTempsAttente);
+    this.averageWorkingCall = Math.round(value.moyenneTempsTravail);
+    this.labelsStatut = value.labelsStatut;
+    this.valuesStatut = value.valuesStatut;
+    this.labelsMotiveEndCall = value.labelsCauseFin;
+    this.valuesMotiveEndCall = value.valuesCauseFin;
+    this.nbDebordement = value.nbDebordement;
+    this.nbSupSeuil = value.nbSupSeuil;
 
-    })
+    this.calculatePercentages();
+
+    this.ngOnChanges();
   }
 
-  private extractStatusData(){
-    var totalcall = 0;
-    var numberCom = 0;
-    var numberOther = 0;
-    for (let index = 0; index < this.label.length; index++) {
-      const labelElement = this.label[index];
-      const statusCallElement = this.statusCall[index];
-      if (labelElement == "com") {
-        numberCom =statusCallElement;
-      }
-      else {
-        numberOther += statusCallElement;
-      }
-      totalcall +=statusCallElement;
-    }
-    if(totalcall==0){
-      totalcall=1;
-    }
-    this.percentageCom = Math.round((numberCom/totalcall)*100);
-    this.percentageOther = Math.round((numberOther/totalcall)*100);
-    this.ngOnChanges()
+  private calculatePercentages() {
+    const numberCom = this.valuesStatut[0];
+    const numberOther = this.valuesStatut[1];
+    const totalcall = numberCom + numberOther;
+
+    this.percentageCom = Math.round((numberCom / totalcall) * 100);
+    this.percentageOther = Math.round((numberOther / totalcall) * 100);
   }
 
-  public recupCaisse(){
-    this.cookieService.set("caisse", this.selected);
-    if(this.selected!="All"){
-      this.nbrCaisse=Number(this.selected);
-    }
-    else{
-      this.nbrCaisse=-1;
-    }
-    this.getDataCalls(this.nbrCaisse, this.start_date, this.end_date);
-    this.getDataStatus();
-  }
-
-  public recupRange(){
-
-    //@ts-ignore
-    this.cookieService.set("start_date", new Date(this.range.value.start).toString());
-    //@ts-ignore
-    this.cookieService.set("end_date", new Date(this.range.value.end).toString());
-    if((this.range.value.start!=default_date_start) && (this.range.value.end!=default_date_end)){
-      if(this.range.value.start==null ||this.range.value.end==null){
-        this.getDataCalls(this.nbrCaisse, default_date_start, default_date_end);
-      }else {
-        this.getDataCalls(this.nbrCaisse, this.range.value.start, this.range.value.end);
-        this.start_date=this.range.value.start;
-        this.end_date=this.range.value.end;
-      }
-    }else {
-      this.getDataCalls(this.nbrCaisse, default_date_start, default_date_end);
-    }
-  }
-
-
-
-
-
-  public getGtAppele():Filtre[] {
-    let filtres:Filtre[]=[];
-    console.log(this.gtAppele)
-
-    for(let index=0; index < this.gtAppele.length; index++){
-      let filtre:Filtre = {
-        name: this.gtAppele[index], completed:false
-      }
-      filtres[index]=filtre;
-    }
-    return filtres;
-  }
-  allComplete: boolean = false;
-
-  updateAllComplete() {
-    this.allComplete = this.filtre.subfiltres != null && this.filtre.subfiltres.every(t => t.completed);
-  }
-  someComplete(): boolean {
-    if (this.filtre.subfiltres == null) {
-      return false;
-    }
-    return this.filtre.subfiltres.filter(t => t.completed).length > 0 && !this.allComplete;
-  }
-  setAll(completed: boolean) {
-    this.allComplete = completed;
-    if (this.filtre.subfiltres == null) {
-      return;
-    }
-    this.filtre.subfiltres.forEach(t => (t.completed = completed));
+  private getSeuilCalls() {
+    this.CallService.postNumberCall().subscribe(data => {
+      console.table(data);
+      this.nbSupSeuil = data.nbSupSeuil;
+    });
   }
 
   public pieChartData: ChartData<'pie', number[], string | string[]> = {
     labels: ["label"],
-    datasets: [ {
+    datasets: [{
       data: [0]
-    } ]
+    }]
   };
 
   public pieChartType: ChartType = 'pie';
@@ -230,4 +145,29 @@ export class HomeComponent implements OnInit, OnChanges{
       },
     }
   };
+
+  public pieChartDataMotiveEndCall: ChartData<'pie', number[], string | string[]> = {
+    labels: ["label"],
+    datasets: [{
+      data: [0]
+    }]
+  };
+
+  public pieChartTypeMotiveEndCall: ChartType = 'pie';
+
+  public pieChartOptionsMotiveEndCall: ChartConfiguration['options'] = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+      },
+    }
+  };
+
+  applyThreshold(value: string) {
+    this.threshold = value ? Number(value) : this.averageCall;
+    this.cookieService.set("threshold", value.toString());
+    console.log(this.cookieService.get("threshold"));
+    this.getSeuilCalls();
+  }
 }

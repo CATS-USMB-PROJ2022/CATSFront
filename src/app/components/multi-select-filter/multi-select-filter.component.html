@@ -1,0 +1,53 @@
+<div class="filter-container" [ngClass]="{'hidden': getCurrentCaisse() == -1}">
+  <div class="multi-select" id="groupe-appele">
+    <div class="multi-header">
+      <h2 class="multi-title">Groupes de trafic</h2>
+      <div class="select-deselect">
+        <span class="ms-all" (click)="setAllGt(true)">Cocher tout</span>
+        <span class="ms-all" (click)="setAllGt(false)">Décocher tout</span>
+      </div>
+    </div>
+    <search-field (search)="onSearchGt($event)"></search-field>
+
+    <div class="list-section">
+      <ul>
+        <li *ngFor="let gt of getFilteredGt()">
+          <mat-checkbox
+            [(ngModel)]="gt.completed"
+            color="primary"
+            (ngModelChange)="setGtSelected()">
+            {{gt.name}}
+          </mat-checkbox>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <hr/>
+
+  <div class="multi-select" id="agences">
+    <div class="multi-header">
+      <h2 class="multi-title">Agences</h2>
+      <div class="select-deselect">
+        <span class="ms-all" (click)="setAllAgences(true)">Cocher tout</span>
+        <span class="ms-all" (click)="setAllAgences(false)">Décocher tout</span>
+      </div>
+    </div>
+    <search-field (search)="onSearchAgence($event)"></search-field>
+
+    <div class="list-section">
+      <ul>
+        <li *ngFor="let agence of getFilteredAgence()">
+          <mat-checkbox
+            [(ngModel)]="agence.completed"
+            color="primary"
+            (ngModelChange)="setAgenceSelected()">
+            {{agence.name}}
+          </mat-checkbox>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <button class="confirm-button" (click)="updateFiltres()">Appliquer</button>
+</div>

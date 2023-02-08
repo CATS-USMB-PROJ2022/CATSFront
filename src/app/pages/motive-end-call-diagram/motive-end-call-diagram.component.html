@@ -1,0 +1,22 @@
+<div class="home-container">
+  <div class="home-item">
+    <multi-select-filter></multi-select-filter>
+  </div>
+
+  <div class="main">
+      <div class="diagram">
+        <h1>Motifs de fin d'appels</h1>
+        <div class="chart">
+          <canvas baseChart
+                  [data]="pieChartData"
+                  [type]="pieChartType">
+          </canvas>
+        </div>
+      </div>
+  </div>
+
+  <div class="home-item">
+    <date-time-filter></date-time-filter>
+    <non-open-filter></non-open-filter>
+  </div>
+</div>

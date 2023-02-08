@@ -1,21 +1,11 @@
-  <div class="topnav">
-    <a routerLink="/" className="active">Home</a>
-  </div>
+<upload-overlay #upload></upload-overlay>
 
-  <router-outlet></router-outlet>
+<div class="navbar">
+  <a routerLink="/">Home</a>
 
+  <caisse-dropdown></caisse-dropdown>
 
+  <a routerLink="/" (click)="upload.openOverlay()">Importer un CSV</a>
+</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+<router-outlet></router-outlet>

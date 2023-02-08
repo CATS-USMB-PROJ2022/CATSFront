@@ -1,0 +1,29 @@
+.input-value {
+  /* Flexbox */
+  display: flex;
+
+  /* Box model */
+  margin-bottom: 0.25em;
+  width: 75%;
+  min-height: 2em;
+  -webkit-box-shadow: inset 0 0 var(--2-px) 0 black;
+  box-shadow: inset 0 0 var(--2-px) 0 black;
+  border-radius: var(--4-px);
+  padding: var(--6-px);
+
+  /* Background */
+  background: white;
+}
+
+input {
+  /* Box model */
+  border: none;
+  width: 100%;
+
+  /* Background */
+  background: none;
+}
+
+input:focus {
+  outline: none;
+}

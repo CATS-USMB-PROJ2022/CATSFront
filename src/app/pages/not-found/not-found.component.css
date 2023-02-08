@@ -1,18 +1,25 @@
 .error-grid {
+  /* Flexbox */
   display: flex;
-  margin: 82px auto 32px;
-  padding: 0 16px;
-  max-width: 960px;
   flex-direction: column;
   align-items: center;
+
+  /* Box model */
+  margin: var(--82-px) auto var(--32-px);
+  max-width: var(--960-px);
+  padding: 0 var(--16-px);
 }
+
 .error-card {
-  border-radius: 5px;
-  border: 1px solid #eee;
+  /* Flexbox */
   display: flex;
   flex-direction: row;
   align-items: center;
-  max-width: 400px;
-  margin-bottom: 8px;
-  padding: 16px;
+
+  /* Box model */
+  margin-bottom: var(--8-px);
+  border: var(--1-px) solid var(--grey-238);
+  border-radius: var(--5-px);
+  max-width: var(--400-px);
+  padding: var(--16-px);
 }
