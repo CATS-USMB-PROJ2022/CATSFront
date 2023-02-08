@@ -1,13 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StatusCallDiagramComponent } from './status-call-diagram.component';
+import {HttpClient, HttpHandler} from "@angular/common/http";
 describe('StatusCallDiagramComponent', () => {
   let component: StatusCallDiagramComponent;
   let fixture: ComponentFixture<StatusCallDiagramComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StatusCallDiagramComponent ]
+      declarations: [ StatusCallDiagramComponent ],
+        providers: [
+            HttpClient,
+            {provide: 'globalUrl', useValue: 'http://localhost:8080/'},
+            HttpHandler,
+            {provide: 'globalUrl', useValue: 'http://localhost:8080/'},
+        ],
     })
     .compileComponents();
 
