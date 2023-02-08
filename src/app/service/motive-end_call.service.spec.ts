@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MotiveEndService } from './motive-end_call.service';
+import {MotiveEndCallService} from './motive-end_call.service';
 
 describe('MotiveEndCallService', () => {
   let service: MotiveEndCallService;

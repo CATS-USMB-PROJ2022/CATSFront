@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StatusCallDiagramComponent } from './status-call-diagram.component';
+import { MotiveEndCallDiagramComponent } from './motive-end-call-diagram.component';
 
 describe('StatusCallDiagramComponent', () => {
-  let component: StatusCallDiagramComponent;
-  let fixture: ComponentFixture<StatusCallDiagramComponent>;
+  let component: MotiveEndCallDiagramComponent;
+  let fixture: ComponentFixture<MotiveEndCallDiagramComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StatusCallDiagramComponent ]
+      declarations: [ MotiveEndCallDiagramComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(StatusCallDiagramComponent);
+    fixture = TestBed.createComponent(MotiveEndCallDiagramComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
