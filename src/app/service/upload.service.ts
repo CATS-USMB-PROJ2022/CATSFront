@@ -14,11 +14,12 @@ export class UploadService {
   }
 
   //upload d'un fichier vers l'api
-  public postFileUpload(file: File): Observable<any> {
-    console.log(file);
+  public postFileUpload(files: File[]): Observable<any> {
+    console.log(files);
     const fileData = new FormData();
-    fileData.append('file', file);
-
+    for(const file of files) {
+      fileData.append("file", file);
+    }
     return this.http.post<any>(`${globalUrl}Upload`, fileData);
   }
 }

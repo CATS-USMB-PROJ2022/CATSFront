@@ -16,7 +16,8 @@ export class UploadOverlayComponent {
 
   // Initialisation sur un fichier vide
   file: File = new File([], "");
-
+  // Initialisation sur une liste de fichiers vide
+  files: File[] = [];
   isOverlayOpen = false;
   opening = false;
 
@@ -24,6 +25,7 @@ export class UploadOverlayComponent {
 
   constructor(private data: DataService, private cookieService: CookieService, private uploadService: UploadService) {
     this.data.current.subscribe(_ => {});
+    this.files = [this.file];
   }
 
   ////////////////////////////////////////////////////////////////////////
@@ -38,26 +40,34 @@ export class UploadOverlayComponent {
   ////////////////////////////////////////////////////////////////////////
   async openOverlay() {
     this.isOverlayOpen = true;
-
     this.opening = true;
     await new Promise(f => setTimeout(f, 1000));
     this.opening = false;
+  }
+
+  // Verifie si la liste de fichiers est vide
+  filesIsEmpty(): boolean {
+    return this.files.length == 0;
   }
 
   closeOverlay() {
     if (!this.opening) this.isOverlayOpen = false;
   }
 
+
   onChange(event: Event) {
     this.error = false;
     const target = event.target as HTMLInputElement;
 
-    if (target.files) this.file = target.files[0];
+    if (target.files && target.files.length > 0) {
+      this.files = Array.from(target.files);
+      this.file = this.files[0];
+    }
     else this.error = true;
   }
 
   upload() {
-    console.log(this.file);
+    console.log(this.files);
 
     if (!this.file) {
       this.error = true;
@@ -65,7 +75,7 @@ export class UploadOverlayComponent {
     }
 
     this.loading = true;
-    this.uploadService.postFileUpload(this.file).subscribe(
+    this.uploadService.postFileUpload(this.files).subscribe(
       (event: any) => {
         if (typeof (event) === 'object') {
           this.loading = false;
