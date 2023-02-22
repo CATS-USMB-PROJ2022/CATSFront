@@ -57,5 +57,6 @@ export class FiltreHorairesNonOuvresComponent implements OnInit {
   reinitialiserHorairesNonOuvres() {
     this.StocakgeCookie.reinitialiserHorairesNonOuvres();
     this.setValeur(this.StocakgeCookie.getHorairesNonOuvres());
+    this.appliquerHoraires();
   }
 }
