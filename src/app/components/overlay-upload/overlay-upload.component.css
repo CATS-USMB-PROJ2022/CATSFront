@@ -74,6 +74,37 @@
   color: black;
 }
 
+.fichiers-uploades {
+  width: 100%;
+  list-style-type: none;
+  padding: 0;
+  overflow: scroll;
+}
+
+.fichier-uploade {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em 1em;
+}
+
+.fichier-uploade:hover {
+  background-color: var(--container-fill-hover);
+}
+
+.fichier-uploade span {
+  font-size: 1.15em;
+  color: black;
+}
+
+.nom-fichier {
+
+}
+
+.bouton-supprimer {
+  cursor: pointer;
+}
+
 .zone-upload {
   /* Flexbox */
   display: flex;

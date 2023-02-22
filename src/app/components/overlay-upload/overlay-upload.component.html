@@ -2,12 +2,20 @@
   <div class='spinner-overlay' *ngIf="upload_en_cours">
     <div class="spinner"></div>
   </div>
-  <div class='conteneur-upload' (clickOutside)="fermerOverlay()">
+  <div class='conteneur-upload' [ngStyle]="isFichiersEmpty() ? {height: '20em'} : {height: '40em'}" (clickOutside)="fermerOverlay()">
     <h1>Importer un CSV</h1>
+
+    <ul class='fichiers-uploades' [hidden]="isFichiersEmpty()">
+      <li class='fichier-uploade' *ngFor="let fichier of fichiers">
+        <span class='nom-fichier'>{{fichier.name}}</span>
+        <span class='bouton-supprimer' (click)="supprimerFichier(fichier)">❌</span>
+      </li>
+    </ul>
 
     <div class='zone-upload'>
       <input type="file" name="fichiers" id="fichiers" class="input-upload" accept=".xlsx" (change)="onSelectionFichier($event)" multiple />
-      <label for="fichiers">{{getFileName()}}
+      <label for="fichiers">
+        {{getFileName()}}
         <recherche></recherche>
       </label>
       <span class="erreur" [ngClass]="{'invisible': !erreur}">Veuillez sélectionner un fichier.</span>

@@ -16,6 +16,7 @@
 
   --container-border: var(--grey-128);
   --container-fill: #80b29f;
+  --container-fill-hover: #a6c9bc;
 }
 
 html, body {

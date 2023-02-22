@@ -20,7 +20,7 @@ export class ClickOutsideDirective implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     this.onClicDocument = fromEvent(this.document, 'click')
-                                      .pipe(filter((event) => !this.isDansDocument(event.target as HTMLElement)))
+                                      .pipe(filter((event) => !this.isDansDocument((event as MouseEvent).clientX, (event as MouseEvent).clientY)))
                                       .subscribe(() => this.clickOutside.emit());
   }
 
@@ -29,5 +29,8 @@ export class ClickOutsideDirective implements AfterViewInit, OnDestroy {
   /////////////////////////////////////////////////////////////////////////////////////////////////
   // Méthodes /////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////
-  isDansDocument(element: HTMLElement): boolean { return element === this.element.nativeElement || this.element.nativeElement.contains(element); }
+  isDansDocument(mouseX: number, mouseY: number): boolean {
+    const { top, right, bottom, left } = this.element.nativeElement.getBoundingClientRect();
+    return (left <= mouseX && mouseX <= right) && (top <= mouseY && mouseY <= bottom);
+  }
 }

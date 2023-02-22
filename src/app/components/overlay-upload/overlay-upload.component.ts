@@ -18,7 +18,7 @@ export class OverlayUploadComponent {
   // Initialisation sur un fichier vide
   fichiers: File[] = [];
 
-  is_overlay_ouvert = false;
+  is_overlay_ouvert = true;
   ouverture_en_cours = false;
 
   erreur: boolean = false;
@@ -32,10 +32,7 @@ export class OverlayUploadComponent {
   //// Getters ///////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////
   getFileName(): string {
-    if (this.isFichiersEmpty()) return 'Parcourir...';
-    let name = '';
-    this.fichiers.forEach(fichier => name += fichier.name);
-    return name;
+    return this.isFichiersEmpty() ? 'Parcourir...' : `${this.fichiers.length} fichier${this.fichiers.length == 1 ? '' : 's'} sélectionné${this.fichiers.length == 1 ? '' : 's'}`;
   }
 
   ////////////////////////////////////////////////////////////////////////
@@ -59,17 +56,19 @@ export class OverlayUploadComponent {
     this.erreur = false;
     const target = event.target as HTMLInputElement;
 
-    if (target.files && target.files.length > 0) {
-      this.fichiers = Array.from(target.files);
-      // this.fichier = target.files[0];
-    }
+    if (target.files && target.files.length > 0) this.fichiers = this.fichiers.concat(Array.from(target.files));
     else this.erreur = true;
+  }
+
+  supprimerFichier(fichier: File) {
+    this.is_overlay_ouvert = true;
+    this.fichiers = this.fichiers.filter(f => f != fichier);
   }
 
   upload() {
     console.table(this.fichiers);
 
-    if (!this.fichiers) {
+    if (this.isFichiersEmpty()) {
       this.erreur = true;
       return;
     }
@@ -82,6 +81,7 @@ export class OverlayUploadComponent {
 
           console.log("Fin de l'upload du fichiers");
 
+          this.fichiers = [];
           this.fermerOverlay();
           this.CaisseRegionale.setCaisse(this.StockageCookie.getCaisseRegionale());
         }
