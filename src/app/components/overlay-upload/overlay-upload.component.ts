@@ -18,7 +18,7 @@ export class OverlayUploadComponent {
   // Initialisation sur un fichier vide
   fichiers: File[] = [];
 
-  is_overlay_ouvert = true;
+  is_overlay_ouvert = false;
   ouverture_en_cours = false;
 
   erreur: boolean = false;
