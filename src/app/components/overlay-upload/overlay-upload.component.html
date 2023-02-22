@@ -1,0 +1,18 @@
+<div class='overlay' *ngIf="is_overlay_ouvert">
+  <div class='spinner-overlay' *ngIf="upload_en_cours">
+    <div class="spinner"></div>
+  </div>
+  <div class='conteneur-upload' (clickOutside)="fermerOverlay()">
+    <h1>Importer un CSV</h1>
+
+    <div class='zone-upload'>
+      <input type="file" name="fichier" id="fichier" class="input-upload" accept=".xlsx" (change)="onSelectionFichier($event)"/>
+      <label for="fichier">{{getFileName()}}
+        <recherche></recherche>
+      </label>
+      <span class="erreur" [ngClass]="{'invisible': !erreur}">Veuillez sélectionner un fichier.</span>
+    </div>
+
+    <button class='bouton-upload' (click)="upload()">Importer</button>
+  </div>
+</div>
