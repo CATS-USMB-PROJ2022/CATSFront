@@ -7,7 +7,8 @@
     <div class="conteneur-cartes">
       <carte-indicateur titre="Nombre d'appels" typeCarte="valeur">{{nombreAppels}}</carte-indicateur>
 
-      <carte-indicateur titre="Temps d'attente moyen d'un appel" typeCarte="valeur">{{tempsAttenteMoyen}} s</carte-indicateur>
+
+      <carte-indicateur titre="Nombre d'appels débordés" typeCarte="valeur">{{nbDebordement}}</carte-indicateur>
 
       <carte-indicateur
         typeCarte="diagramme"
@@ -19,11 +20,8 @@
       >
       </carte-indicateur>
 
-      <carte-indicateur titre="Temps de communication moyen d'un appel" typeCarte="valeur">{{tempsCommunicationMoyen}}</carte-indicateur>
-
-      <carte-indicateur titre="Motifs de fin d'appel" routerLink="/motif-fin_appel" typeCarte="diagramme" [data]="donneesDiagrammeMotifFinAppel"></carte-indicateur>
-
-      <carte-indicateur titre="Nombre d'appels débordés" typeCarte="valeur">{{nbDebordement}}</carte-indicateur>
+      
+      <carte-indicateur titre="Temps d'attente moyen d'un appel" typeCarte="valeur">{{tempsAttenteMoyen}} s</carte-indicateur>
 
       <carte-indicateur
         typeCarte="valeur"
@@ -36,6 +34,15 @@
       >
         {{nbSupSeuil}} appels
       </carte-indicateur>
+      <carte-indicateur titre="Temps de communication moyen d'un appel" typeCarte="valeur">{{tempsCommunicationMoyen}}</carte-indicateur>
+
+      <carte-indicateur titre="Motifs de fin d'appel" routerLink="/motif-fin_appel" typeCarte="diagramme" [data]="donneesDiagrammeMotifFinAppel"></carte-indicateur>
+
+
+      
+
+      <carte-indicateur titre="Nombre de tentatives de Transferts" typeCarte="valeur">{{nbTransfert}}</carte-indicateur>
+      <carte-indicateur titre="Moyenne de tentatives de Transferts" typeCarte="valeur">{{moyenneTransfertTentatives}}</carte-indicateur>
     </div>
   </div>
 

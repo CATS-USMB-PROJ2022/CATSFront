@@ -21,6 +21,9 @@ export class HomeComponent implements OnInit, OnChanges {
   public labelsStatut: string[];
   public valuesStatut: number[];
 
+  public nbTransfert: number;
+  public moyenneTransfertTentatives: number;
+
   public labelsMotifFinAppel: string[];
   public valeursMotifFinAppel: number[];
 
@@ -58,6 +61,9 @@ export class HomeComponent implements OnInit, OnChanges {
     this.pourcentage_autres = 0;
     this.seuil = 0.0;
     this.nbSupSeuil = 0;
+
+    this.nbTransfert=0;
+    this.moyenneTransfertTentatives=0.0;
 
     this.labelsStatut = [""];
     this.valuesStatut = [0];
@@ -105,6 +111,8 @@ export class HomeComponent implements OnInit, OnChanges {
       this.valeursMotifFinAppel = data.valuesCauseFin;
       this.nbDebordement = data.nbDebordement;
       this.nbSupSeuil = data.nbSupSeuil;
+      this.nbTransfert=data.nbTransfert;
+      this.moyenneTransfertTentatives=data.moyenneTransfertTentatives;
 
       this.reinitialiserSeuil();
 

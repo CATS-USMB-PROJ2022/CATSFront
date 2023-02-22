@@ -9,6 +9,8 @@ export interface Appel {
   rubTypenum: string[];
   labelsStatut: string[];
   valuesStatut: number[];
+  nbTransfert: number;
+  moyenneTransfertTentatives: number;
   labelsCauseFin: string[];
   valuesCauseFin: number[];
   nbDebordement: number;
