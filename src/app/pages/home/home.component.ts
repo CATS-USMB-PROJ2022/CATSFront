@@ -124,7 +124,7 @@ export class HomeComponent implements OnInit, OnChanges {
 
   private updateDonneesAppels(value: { nombreAppels: number, tempsAttenteMoyen: number, tempsCommunicationMoyen: number,
     gtAppeleId: string[], gtAppele: string[], labelsStatut: string[], valuesStatut: number[],
-    labelsMotifFinAppel: string[], valeursMotifFinAppel: number[], nbDebordement: number, nbSupSeuil: number }) {
+    labelsMotifFinAppel: string[], valeursMotifFinAppel: number[], nbDebordement: number, nbSupSeuil: number, nbTransfert: number, moyenneTransfertTentatives: number }) {
     this.nombreAppels = value.nombreAppels;
     this.tempsAttenteMoyen = Math.round(value.tempsAttenteMoyen);
     this.tempsCommunicationMoyen = Math.round(value.tempsCommunicationMoyen);
@@ -134,6 +134,8 @@ export class HomeComponent implements OnInit, OnChanges {
     this.valeursMotifFinAppel = value.valeursMotifFinAppel;
     this.nbDebordement = value.nbDebordement;
     this.nbSupSeuil = value.nbSupSeuil;
+    this.nbTransfert = value.nbTransfert;
+    this.moyenneTransfertTentatives = value.moyenneTransfertTentatives;
 
     this.reinitialiserSeuil();
 
