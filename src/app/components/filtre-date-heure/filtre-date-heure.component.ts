@@ -74,7 +74,7 @@ export class FiltreDateHeureComponent implements OnInit {
       debut: new FormControl<Time | null>(null),
       fin: new FormControl<Time | null>(null)
     });
-    
+
     this.placeholder_debut = this.getHeureDebut();
     this.placeholder_fin = this.getHeureFin();
   }
@@ -82,6 +82,7 @@ export class FiltreDateHeureComponent implements OnInit {
   reinitialiserDateHeure() {
     this.StockageCookie.reinitialiserDateHeure();
     this.reinitialiserValeurs();
+    this.appliquerDateHeure();
   }
 
   changementDate(m: Date) {

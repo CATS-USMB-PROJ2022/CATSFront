@@ -118,6 +118,7 @@
   background-color: white;
 
   /* Typography */
+  text-overflow: ellipsis;
   font-size: 1.25em;
   font-weight: 300;
   color: var(--grey-128);

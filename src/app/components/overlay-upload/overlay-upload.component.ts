@@ -16,7 +16,6 @@ export class OverlayUploadComponent {
   upload_en_cours: boolean = false;
 
   // Initialisation sur un fichier vide
-  fichier: File = new File([], "");
   fichiers: File[] = [];
 
   is_overlay_ouvert = false;
@@ -27,12 +26,17 @@ export class OverlayUploadComponent {
   /////////////////////////////////////////////////////////////////////////////////////////////////
   // Constructeurs ////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////
-  constructor(private StockageCookie: StockageCookieService, private CaisseRegionale: CaisseRegionaleService, private Post: PostService) { this.fichiers = [this.fichier]; }
+  constructor(private StockageCookie: StockageCookieService, private CaisseRegionale: CaisseRegionaleService, private Post: PostService) { }
 
   ////////////////////////////////////////////////////////////////////////
   //// Getters ///////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////
-  getFileName(): string { return this.fichier.name != "" ? this.fichier.name : 'Parcourir...'; }
+  getFileName(): string {
+    if (this.isFichiersEmpty()) return 'Parcourir...';
+    let name = '';
+    this.fichiers.forEach(fichier => name += fichier.name);
+    return name;
+  }
 
   ////////////////////////////////////////////////////////////////////////
   //// Methods ///////////////////////////////////////////////////////////
@@ -57,7 +61,7 @@ export class OverlayUploadComponent {
 
     if (target.files && target.files.length > 0) {
       this.fichiers = Array.from(target.files);
-      this.fichier = target.files[0];
+      // this.fichier = target.files[0];
     }
     else this.erreur = true;
   }
@@ -65,7 +69,7 @@ export class OverlayUploadComponent {
   upload() {
     console.table(this.fichiers);
 
-    if (!this.fichier) {
+    if (!this.fichiers) {
       this.erreur = true;
       return;
     }
