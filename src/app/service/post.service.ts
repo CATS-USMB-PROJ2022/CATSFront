@@ -54,12 +54,11 @@ export class PostService {
 
   public postStatutsAppel(): Observable<StatutAppel> { return this.Http.post<StatutAppel>(`${this.localUrl}/AppelStatut`, this.getPost()); }
 
-  public postUploadFichier(fichier: File): Observable<any> {
-    console.log(fichier);
+  public postUploadFichiers(fichiers: File[]): Observable<any> {
+    console.table(fichiers);
 
     const fd = new FormData();
-    fd.append('file', fichier);
-
+    for (const fichier of fichiers) fd.append('file', fichier);
     return this.Http.post<any>(`${this.localUrl}/Upload`, fd);
   }
 }

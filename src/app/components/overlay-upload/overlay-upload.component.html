@@ -6,8 +6,8 @@
     <h1>Importer un CSV</h1>
 
     <div class='zone-upload'>
-      <input type="file" name="fichier" id="fichier" class="input-upload" accept=".xlsx" (change)="onSelectionFichier($event)"/>
-      <label for="fichier">{{getFileName()}}
+      <input type="file" name="fichiers" id="fichiers" class="input-upload" accept=".xlsx" (change)="onSelectionFichier($event)" multiple />
+      <label for="fichiers">{{getFileName()}}
         <recherche></recherche>
       </label>
       <span class="erreur" [ngClass]="{'invisible': !erreur}">Veuillez sélectionner un fichier.</span>

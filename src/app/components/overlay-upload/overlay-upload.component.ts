@@ -17,6 +17,7 @@ export class OverlayUploadComponent {
 
   // Initialisation sur un fichier vide
   fichier: File = new File([], "");
+  fichiers: File[] = [];
 
   is_overlay_ouvert = false;
   ouverture_en_cours = false;
@@ -26,7 +27,7 @@ export class OverlayUploadComponent {
   /////////////////////////////////////////////////////////////////////////////////////////////////
   // Constructeurs ////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////
-  constructor(private StockageCookie: StockageCookieService, private CaisseRegionale: CaisseRegionaleService, private Post: PostService) { }
+  constructor(private StockageCookie: StockageCookieService, private CaisseRegionale: CaisseRegionaleService, private Post: PostService) { this.fichiers = [this.fichier]; }
 
   ////////////////////////////////////////////////////////////////////////
   //// Getters ///////////////////////////////////////////////////////////
@@ -48,16 +49,21 @@ export class OverlayUploadComponent {
 
   fermerOverlay() { if (!this.ouverture_en_cours) this.is_overlay_ouvert = false; }
 
+  isFichiersEmpty(): boolean { return this.fichiers.length == 0; }
+
   onSelectionFichier(event: Event) {
     this.erreur = false;
     const target = event.target as HTMLInputElement;
 
-    if (target.files) this.fichier = target.files[0];
+    if (target.files && target.files.length > 0) {
+      this.fichiers = Array.from(target.files);
+      this.fichier = target.files[0];
+    }
     else this.erreur = true;
   }
 
   upload() {
-    console.log(this.fichier);
+    console.table(this.fichiers);
 
     if (!this.fichier) {
       this.erreur = true;
@@ -65,12 +71,12 @@ export class OverlayUploadComponent {
     }
 
     this.upload_en_cours = true;
-    this.Post.postUploadFichier(this.fichier).subscribe((event: any) => {
+    this.Post.postUploadFichiers(this.fichiers).subscribe((event: any) => {
         if (typeof (event) === 'object') {
           this.upload_en_cours = false;
           this.erreur = false;
 
-          console.log("Fin de l'upload du fichier");
+          console.log("Fin de l'upload du fichiers");
 
           this.fermerOverlay();
           this.CaisseRegionale.setCaisse(this.StockageCookie.getCaisseRegionale());
