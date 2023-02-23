@@ -16,36 +16,7 @@
 
   --container-border: var(--grey-128);
   --container-fill: #80b29f;
-
-  /* Paddings */
-  --1-px: calc(1em / 16);
-  --2-px: calc(2em / 16);
-  --4-px: calc(4em / 16);
-  --5-px: calc(5em / 16);
-  --6-px: calc(6em / 16);
-  --7-px: calc(7em / 16);
-  --8-px: calc(8em / 16);
-  --10-px: calc(10em / 16);
-  --12-px: calc(12em / 16);
-  --15-px: calc(15em / 16);
-  --16-px: calc(16em / 16);
-  --21-px: calc(21em / 16);
-  --24-px: calc(24em / 16);
-  --25-px: calc(25em / 16);
-  --26-px: calc(26em / 16);
-  --32-px: calc(32em / 16);
-  --40-px: calc(40em / 16);
-  --50-px: calc(50em / 16);
-  --52-px: calc(52em / 16);
-  --82-px: calc(82em / 16);
-  --100-px: calc(100em / 16);
-  --300-px: calc(300em / 16);
-  --320-px: calc(320em / 16);
-  --400-px: calc(400em / 16);
-  --480-px: calc(480em / 16);
-  --960-px: calc(960em / 16);
-
-  --16-pt: calc(21em / 16);
+  --container-fill-hover: #a6c9bc;
 }
 
 html, body {
@@ -67,7 +38,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   /* Box model */
-  margin: var(--8-px) 0;
+  margin: 0.5em 0;
 }
 
 p {

@@ -1,0 +1,50 @@
+<div class="conteneur-filtre" [ngClass]="{'invisible': getCaisseSelectionnee() == -1}">
+  <div class="conteneur-reset">
+    <span (click)="reinitialiserMultiSelection()">Réinitialiser</span>
+  </div>
+  <div class="multi-selection" id="groupe-appele">
+    <div class="multi-selection-en-tete">
+      <h2 class="multi-selection-titre">Groupes de trafic</h2>
+      <div class="cocher-decocher-tout">
+        <span (click)="setTousGroupesTrafic(true)">Cocher tout</span>
+        <span (click)="setTousGroupesTrafic(false)">Décocher tout</span>
+      </div>
+    </div>
+    <champ-recherche (recherche)="onRechercheGroupeTrafic($event)"></champ-recherche>
+
+    <div>
+      <ul>
+        <li *ngFor="let groupe_trafic of getGroupesTraficFiltres()">
+          <mat-checkbox [(ngModel)]="groupe_trafic.coche" (ngModelChange)="setGroupeTraficSelectionne()" color="primary">
+            {{groupe_trafic.nom}}
+          </mat-checkbox>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <hr/>
+
+  <div class="multi-selection" id="agences">
+    <div class="multi-selection-en-tete">
+      <h2 class="multi-selection-titre">Agences</h2>
+      <div class="cocher-decocher-tout">
+        <span (click)="setToutesAgences(true)">Cocher tout</span>
+        <span (click)="setToutesAgences(false)">Décocher tout</span>
+      </div>
+    </div>
+    <champ-recherche (recherche)="onRechercheAgence($event)"></champ-recherche>
+
+    <div>
+      <ul>
+        <li *ngFor="let agence of getAgencesFiltrees()">
+          <mat-checkbox [(ngModel)]="agence.coche" (ngModelChange)="setAgenceSelectionnee()" color="primary">
+            {{agence.nom}}
+          </mat-checkbox>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <button class="bouton-confirmer" (click)="appliquerFiltres()">Appliquer</button>
+</div>

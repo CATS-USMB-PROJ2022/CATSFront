@@ -1,0 +1,98 @@
+.conteneur-filtre {
+  /* Flexbox */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  /* Box model */
+  border: 2px solid var(--container-border);
+  width: 25em;
+  height: fit-content;
+  padding: 0 1.25em 1.25em 1.25em;
+
+  /* Background */
+  background-color: var(--container-fill);
+}
+
+@media screen and (max-width: 1600px) {
+  .conteneur-filtre {
+    width: 20em;
+  }
+}
+
+.invisible {
+  /* Display and visibility */
+  visibility: hidden;
+}
+
+.conteneur-reset {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.5em 0;
+}
+
+.conteneur-reset span {
+  color: var(--teal-secondary);
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+}
+
+.multi-selection {
+  /* Flexbox */
+  justify-content: flex-start;
+
+  /* Box model */
+  width: 100%;
+}
+
+.multi-selection-en-tete {
+  margin-bottom: 1em;
+}
+
+.multi-selection-titre {
+  /* Box model */
+  margin: 0;
+
+  /* Typography */
+  font-weight: normal;
+  color: black;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+mat-checkbox {
+  /* Box model */
+  margin-left: 1.3125em;
+
+  /* Typography */
+  color: black;
+}
+
+.bouton-confirmer {
+  /* Box model */
+  margin-top: 1.3em;
+  border: none;
+  min-width: fit-content;
+  width: 50%;
+  padding: 0.75em;
+
+  /* Background */
+  background-color: var(--green-primary);
+  cursor: pointer;
+
+  /* Typography */
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+}
+
+.bouton-confirmer:hover {
+  filter: brightness(125%);
+}

@@ -1,11 +1,11 @@
-<upload-overlay #upload></upload-overlay>
+<overlay-upload #upload></overlay-upload>
 
-<div class="navbar">
+<div class="barre-navigation">
   <a routerLink="/">Home</a>
 
-  <caisse-dropdown></caisse-dropdown>
+  <menu-deroulant></menu-deroulant>
 
-  <a routerLink="/" (click)="upload.openOverlay()">Importer un CSV</a>
+  <a routerLink="/" (click)="upload.ouvrirOverlay()">Importer un CSV</a>
 </div>
 
 <router-outlet></router-outlet>

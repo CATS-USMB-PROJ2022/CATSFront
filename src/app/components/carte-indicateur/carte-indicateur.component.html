@@ -1,0 +1,51 @@
+<a class="carte" [routerLink]="routerLink" draggable="false">
+  <div *ngIf="!seuil; then titreNormal else titreSeuil"></div>
+
+  <ng-template #titreNormal><h2>{{titre}}</h2></ng-template>
+
+  <ng-template #titreSeuil>
+    <div class="conteneur-reset">
+      <span (click)="reinitialiserSeuil()">Réinitialiser</span>
+    </div>
+    <div class="titre-seuil">
+      <div class="conteneur-seuil">
+        <h2 class="ligne-1">{{titre}}</h2>
+        <div class="ligne-2">
+          <div class="seuil">
+            <input #inputSeuil type="number" placeholder="Seuil" [value]="valeurSeuil" />
+          </div>
+
+          <button class="bouton-seuil" (click)="appliquerSeuil(inputSeuil.value)">✔</button>
+
+          <h2> {{labelSeuil}}</h2>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <div class="corps-carte">
+    <div *ngIf="typeCarte == 'valeur'; then valeur else diagramme"></div>
+
+    <ng-template #valeur>
+      <h1><ng-content></ng-content></h1>
+    </ng-template>
+
+    <ng-template #diagramme>
+      <div class="conteneur-diagramme">
+        <div class="diagramme">
+          <canvas baseChart
+                  [data]="data"
+                  [type]="'pie'"
+                  [options]="options">
+          </canvas>
+        </div>
+        <div class="labels" *ngIf="labels">
+          <span class="ligne-label" *ngFor="let ligne of legende">
+            <h3>{{ligne.label}}</h3>
+            <h3>&nbsp;{{ligne.valeur}}%</h3>
+          </span>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</a>

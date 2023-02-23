@@ -1,44 +1,44 @@
 /*************************************************************************************************/
 /* Navbar ****************************************************************************************/
 /*************************************************************************************************/
-.navbar {
+.barre-navigation {
   /* Flexbox properties */
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   /* Box model */
-  margin-bottom: var(--25-px);
-  -webkit-box-shadow: 0 var(--1-px) var(--5-px) var(--5-px) rgba(0, 0, 0, 0.5);
-  box-shadow: 0 var(--1-px) var(--5-px) var(--5-px) rgba(0, 0, 0, 0.5);
+  margin-bottom: 1.5625em;
+  -webkit-box-shadow: 0 0.0625em 0.3125em 0.3125em rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0.0625em 0.3125em 0.3125em rgba(0, 0, 0, 0.5);
   height: 50px;
-  padding: var(--5-px) var(--52-px);
+  padding: 0.3125em 3.25em;
 
   /* Background */
   background-color: var(--green-primary);
 }
 
 @media screen and (max-width: 768px) {
-  .navbar {
+  .barre-navigation {
     font-size: 0.85em;
   }
 }
 
-.navbar a {
+.barre-navigation a {
   /* Flexbox properties */
   display: flex;
   align-items: center;
 
   /* Box model */
   height: 100%;
-  padding: var(--5-px) var(--26-px);
+  padding: 0.3125em 1.625em;
 
   /* Typography */
-  font-size: var(--16-pt);
+  font-size: 1.3125em;
   color: white;
 }
 
-.navbar a:hover {
+.barre-navigation a:hover {
   /* Animation */
   transition: all 0.2s ease-in-out;
 
@@ -46,7 +46,7 @@
   background-color: var(--green-accent);
 }
 
-.navbar a:link {
+.barre-navigation a:link {
   /* Typography */
   text-decoration: none;
 }

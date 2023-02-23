@@ -1,111 +1,143 @@
 import {Component, OnChanges, OnInit} from '@angular/core';
-import {CallService} from '../../service/call.service';
-import {CookieService} from 'ngx-cookie-service';
-import {ChartConfiguration, ChartData, ChartType} from "chart.js";
-import {DataService} from "../../service/data.service";
-import {ValueService} from "../../service/value.service";
+import {ChartData} from "chart.js";
+import {CaisseRegionaleService} from "../../service/caisse-regionale.service";
+import {ValeursService} from "../../service/valeurs.service";
+import {PostService} from "../../service/post.service";
+import {StockageCookieService} from "../../service/stockage-cookie.service";
 
 @Component({
-  selector: 'app-home',
+  selector: 'home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit, OnChanges {
-  public nbCall: number;
-  public averageWorkingCall: number;
-  public averageCall: number;
-  public nbDebordement: number;
-  public percentageCom: number;
-  public percentageOther: number;
+  /////////////////////////////////////////////////////////////////////////////////////////////////
+  // Attributs ////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////
+  public nombreAppels: number;
+  public tempsAttenteMoyen: number;
+  public tempsCommunicationMoyen: number;
+
   public labelsStatut: string[];
   public valuesStatut: number[];
+
+  public nbTransfert: number;
+  public moyenneTransfertTentatives: number;
+
+  public labelsMotifFinAppel: string[];
+  public valeursMotifFinAppel: number[];
+
+  public nbDebordement: number;
   public nbSupSeuil: number;
 
-  public labelsMotiveEndCall: string[];
-  public valuesMotiveEndCall: number[];
-  public threshold: number;
+  public pourcentage_en_communication: number;
+  public pourcentage_autres: number;
 
-  constructor(private data: DataService, private values: ValueService, private CallService: CallService, public cookieService: CookieService) {
-    this.nbCall = 0;
-    this.averageWorkingCall = 0;
-    this.averageCall = 0;
+  public seuil: number;
+
+  public donneesDiagrammeStatut: ChartData<'pie', number[], string | string[]> = {
+    labels: ["label"],
+    datasets: [{
+      data: [0]
+    }]
+  };
+
+  public donneesDiagrammeMotifFinAppel: ChartData<'pie', number[], string | string[]> = {
+    labels: ["label"],
+    datasets: [{
+      data: [0]
+    }]
+  };
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////
+  // Constructeurs ////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////
+  constructor(private StockageCookie: StockageCookieService, private CaisseRegionale: CaisseRegionaleService, private Valeurs: ValeursService, private Post: PostService) {
+    this.nombreAppels = 0;
+    this.tempsCommunicationMoyen = 0;
+    this.tempsAttenteMoyen = 0;
     this.nbDebordement= 0;
-    this.percentageCom = 0;
-    this.percentageOther = 0;
-    this.threshold = 0.0;
+    this.pourcentage_en_communication = 0;
+    this.pourcentage_autres = 0;
+    this.seuil = 0.0;
     this.nbSupSeuil = 0;
+
+    this.nbTransfert=0;
+    this.moyenneTransfertTentatives=0.0;
 
     this.labelsStatut = [""];
     this.valuesStatut = [0];
-    this.labelsMotiveEndCall = [""];
-    this.valuesMotiveEndCall = [0];
+    this.labelsMotifFinAppel = [""];
+    this.valeursMotifFinAppel = [0];
 
-    this.data.current.subscribe(value => this.initDataCalls());
-    this.values.current.subscribe(value => this.getDataCalls(value));
+    this.CaisseRegionale.current.subscribe(_ => this.initialiserDonneesAppels());
+    this.Valeurs.current.subscribe(value => this.updateDonneesAppels(value));
   }
 
-
-  ngOnInit(): void {
-    this.data.current.subscribe(_ => this.initDataCalls());
-    this.initDataCalls();
-  }
+  ngOnInit(): void { this.initialiserDonneesAppels(); }
 
   ngOnChanges(): void {
-    this.pieChartData = {
+    this.donneesDiagrammeStatut = {
       labels: this.labelsStatut,
       datasets: [{
         data: this.valuesStatut
       }]
     };
 
-    this.pieChartDataMotiveEndCall = {
-      labels: this.labelsMotiveEndCall,
+    this.donneesDiagrammeMotifFinAppel = {
+      labels: this.labelsMotifFinAppel,
       datasets: [{
-        data: this.valuesMotiveEndCall
+        data: this.valeursMotifFinAppel
       }]
     };
   }
 
-  private initDataCalls() {
-    this.CallService.postNumberCall().subscribe(data => {
-      console.log(data);
-      this.nbCall = data.nbrAppel;
-      this.averageWorkingCall = Math.round(data.moyenneTempsTravail);
-      this.averageCall = Math.round(data.moyenneTempsAttente);
+  /////////////////////////////////////////////////////////////////////////////////////////////////
+  // Getters //////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////
+  private getSeuilCalls() { this.Post.postNombreAppels().subscribe(data => this.nbSupSeuil = data.nbSupSeuil) }
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////
+  // Méthodes /////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////
+  private initialiserDonneesAppels() {
+    this.Post.postNombreAppels().subscribe(data => {
+      this.nombreAppels = data.nbrAppel;
+      this.tempsCommunicationMoyen = Math.round(data.moyenneTempsTravail);
+      this.tempsAttenteMoyen = Math.round(data.moyenneTempsAttente);
       this.labelsStatut = data.labelsStatut;
       this.valuesStatut = data.valuesStatut;
-      this.labelsMotiveEndCall = data.labelsCauseFin;
-      this.valuesMotiveEndCall = data.valuesCauseFin;
+      this.labelsMotifFinAppel = data.labelsCauseFin;
+      this.valeursMotifFinAppel = data.valuesCauseFin;
       this.nbDebordement = data.nbDebordement;
       this.nbSupSeuil = data.nbSupSeuil;
-      console.log(data.nbSupSeuil);
+      this.nbTransfert=data.nbTransfert;
+      this.moyenneTransfertTentatives=data.moyenneTransfertTentatives;
 
-      if (this.cookieService.get("threshold") == "") {
-        this.cookieService.set("threshold", this.averageCall.toString());
-      }
-
-      this.threshold = Number(this.cookieService.get("threshold"));
-      this.applyThreshold(this.threshold.toString());
+      this.reinitialiserSeuil();
 
       this.calculatePercentages();
 
       this.ngOnChanges();
-    })
+    });
   }
 
-  private getDataCalls(value: { nbrAppel: number, moyenneTempsAttente: number, moyenneTempsTravail: number,
-                                gtAppeleId: string[], gtAppele: string[], labelsStatut: string[], valuesStatut: number[],
-                                labelsCauseFin: string[], valuesCauseFin: number[], nbDebordement: number, nbSupSeuil: number }) {
-    console.table(value);
-    this.nbCall = value.nbrAppel;
-    this.averageCall = Math.round(value.moyenneTempsAttente);
-    this.averageWorkingCall = Math.round(value.moyenneTempsTravail);
+  private updateDonneesAppels(value: { nombreAppels: number, tempsAttenteMoyen: number, tempsCommunicationMoyen: number,
+    gtAppeleId: string[], gtAppele: string[], labelsStatut: string[], valuesStatut: number[],
+    labelsMotifFinAppel: string[], valeursMotifFinAppel: number[], nbDebordement: number, nbSupSeuil: number, nbTransfert: number, moyenneTransfertTentatives: number }) {
+    this.nombreAppels = value.nombreAppels;
+    this.tempsAttenteMoyen = Math.round(value.tempsAttenteMoyen);
+    this.tempsCommunicationMoyen = Math.round(value.tempsCommunicationMoyen);
     this.labelsStatut = value.labelsStatut;
     this.valuesStatut = value.valuesStatut;
-    this.labelsMotiveEndCall = value.labelsCauseFin;
-    this.valuesMotiveEndCall = value.valuesCauseFin;
+    this.labelsMotifFinAppel = value.labelsMotifFinAppel;
+    this.valeursMotifFinAppel = value.valeursMotifFinAppel;
     this.nbDebordement = value.nbDebordement;
     this.nbSupSeuil = value.nbSupSeuil;
+    this.nbTransfert = value.nbTransfert;
+    this.moyenneTransfertTentatives = value.moyenneTransfertTentatives;
+
+    this.reinitialiserSeuil();
 
     this.calculatePercentages();
 
@@ -113,61 +145,19 @@ export class HomeComponent implements OnInit, OnChanges {
   }
 
   private calculatePercentages() {
-    const numberCom = this.valuesStatut[0];
-    const numberOther = this.valuesStatut[1];
-    const totalcall = numberCom + numberOther;
+    const en_communication = this.valuesStatut[0];
+    const autres = this.valuesStatut[1];
+    const total = en_communication + autres;
 
-    this.percentageCom = Math.round((numberCom / totalcall) * 100);
-    this.percentageOther = Math.round((numberOther / totalcall) * 100);
+    this.pourcentage_en_communication = Math.round((en_communication / total) * 100);
+    this.pourcentage_autres = Math.round((autres / total) * 100);
   }
 
-  private getSeuilCalls() {
-    this.CallService.postNumberCall().subscribe(data => {
-      console.table(data);
-      this.nbSupSeuil = data.nbSupSeuil;
-    });
-  }
-
-  public pieChartData: ChartData<'pie', number[], string | string[]> = {
-    labels: ["label"],
-    datasets: [{
-      data: [0]
-    }]
-  };
-
-  public pieChartType: ChartType = 'pie';
-
-  public pieChartOptions: ChartConfiguration['options'] = {
-    responsive: true,
-    plugins: {
-      legend: {
-        display: false,
-      },
-    }
-  };
-
-  public pieChartDataMotiveEndCall: ChartData<'pie', number[], string | string[]> = {
-    labels: ["label"],
-    datasets: [{
-      data: [0]
-    }]
-  };
-
-  public pieChartTypeMotiveEndCall: ChartType = 'pie';
-
-  public pieChartOptionsMotiveEndCall: ChartConfiguration['options'] = {
-    responsive: true,
-    plugins: {
-      legend: {
-        display: false,
-      },
-    }
-  };
-
-  applyThreshold(value: string) {
-    this.threshold = value ? Number(value) : this.averageCall;
-    this.cookieService.set("threshold", value.toString());
-    console.log(this.cookieService.get("threshold"));
+  appliquerSeuil(value: number) {
+    this.seuil = value;
+    this.StockageCookie.reinitialiserSeuil(value);
     this.getSeuilCalls();
   }
+
+  reinitialiserSeuil() { this.appliquerSeuil(this.tempsAttenteMoyen); }
 }
