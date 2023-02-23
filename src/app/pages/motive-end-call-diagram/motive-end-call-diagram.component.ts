@@ -4,6 +4,7 @@ import { MotiveEndCallService } from 'src/app/service/motive-end_call.service';
 import { CookieService } from 'ngx-cookie-service';
 import {Time} from "@angular/common";
 import {DataService} from "../../service/data.service";
+import {ValueService} from "../../service/value.service";
 
 
 const default_time_start: Time = {hours: 0, minutes: 0};
@@ -21,7 +22,7 @@ export class MotiveEndCallDiagramComponent implements OnInit, OnChanges {
   public start_time:Time=default_time_start;
   public end_time:Time=default_time_end;
 
-  constructor(private data: DataService, private MotiveEndCallService: MotiveEndCallService, public cookieService:CookieService) {
+  constructor(private data: DataService, private MotiveEndCallService: MotiveEndCallService, private ValueService: ValueService, public cookieService:CookieService) {
 
     this.label = [""];
     this.motiveEndCall = [0];
@@ -41,6 +42,7 @@ export class MotiveEndCallDiagramComponent implements OnInit, OnChanges {
     this.end_time.minutes = Number(this.cookieService.get("end_time_minutes"));
 
     this.data.current.subscribe(_ => this.getDataStatus());
+    this.ValueService.current.subscribe(_ => this.getDataStatus());
   }
 
   ngOnInit(): void {
