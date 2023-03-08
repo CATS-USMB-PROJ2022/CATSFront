@@ -111,4 +111,7 @@ export class FiltreDateHeureComponent {
 
     this.Post.postNombreAppels().subscribe(data => this.Value.setValues(data));
   }
+
+  reinitialiser = () => this.reinitialiserDateHeure();
+  appliquer = () => this.appliquerDateHeure();
 }

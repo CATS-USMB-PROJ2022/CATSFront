@@ -153,4 +153,7 @@ export class FiltreMultiSelectionComponent implements OnInit {
 
     this.getDataCalls();
   }
+
+  reinitialiser = () => this.reinitialiserMultiSelection();
+  appliquer = () => this.appliquerFiltres();
 }

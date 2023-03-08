@@ -57,4 +57,7 @@ export class FiltreHorairesNonOuvresComponent {
     this.setValeur(this.StocakgeCookie.getHorairesNonOuvres());
     this.appliquerHoraires();
   }
+
+  reinitialiser = () => this.reinitialiserHorairesNonOuvres();
+  appliquer = () => this.appliquerHoraires();
 }
