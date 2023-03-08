@@ -16,7 +16,7 @@
       <input type="file" name="fichiers" id="fichiers" class="input-upload" accept=".xlsx" (change)="onSelectionFichier($event)" multiple />
       <label for="fichiers">
         {{getFileName()}}
-        <recherche></recherche>
+        <recherche class="recherche"></recherche>
       </label>
       <span class="erreur" [ngClass]="{'invisible': !erreur}">Veuillez sélectionner un fichier.</span>
     </div>
