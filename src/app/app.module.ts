@@ -9,12 +9,9 @@ import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
 
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {EndCallDiagramComponent} from './pages/_deprecated/end-call-diagram/end-call-diagram.component';
 import {DiagrammeStatutAppelComponent} from './pages/diagramme-statut-appel/diagramme-statut-appel.component';
 import {DiagrammeMotifFinAppelComponent} from './pages/diagramme-motif-fin-appel/diagramme-motif-fin-appel.component';
 import {HomeComponent} from './pages/home/home.component';
-import {TotalCallDiagramComponent} from './pages/_deprecated/total-call-diagram/total-call-diagram.component';
-import {PartnairCallComponent} from './pages/_deprecated/partnair-call/partnair-call.component';
 import {CookieService} from 'ngx-cookie-service';
 import {HttpClientModule} from '@angular/common/http';
 import {MatCheckboxModule} from "@angular/material/checkbox";
@@ -46,12 +43,9 @@ import {FiltreComponent} from "./components/filtre/filtre.component";
   declarations: [
     AppComponent,
     NotFoundComponent,
-    EndCallDiagramComponent,
     DiagrammeStatutAppelComponent,
     DiagrammeMotifFinAppelComponent,
     HomeComponent,
-    TotalCallDiagramComponent,
-    PartnairCallComponent,
     DiagrammeRepartitionAppelComponent,
 
     MenuDeroulantComponent,

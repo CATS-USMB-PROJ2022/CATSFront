@@ -175,8 +175,8 @@ label {
   color: var(--grey-185);
 }
 
-.input-upload:focus + label search,
-.input-upload + label:hover search {
+.input-upload:focus + label recherche,
+.input-upload + label:hover recherche {
   filter: invert(56%) sepia(71%) saturate(6609%) hue-rotate(161deg) brightness(97%) contrast(101%);
 }
 
