@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit, OnChanges {
   public valuesStatut: number[];
 
   public nbTransfert: number;
+  public nbTransfertOk: number;
   public moyenneTransfertTentatives: number;
 
   public labelsMotifFinAppel: string[];
@@ -63,6 +64,7 @@ export class HomeComponent implements OnInit, OnChanges {
     this.nbSupSeuil = 0;
 
     this.nbTransfert=0;
+    this.nbTransfertOk=0;
     this.moyenneTransfertTentatives=0.0;
 
     this.labelsStatut = [""];
@@ -112,6 +114,7 @@ export class HomeComponent implements OnInit, OnChanges {
       this.nbDebordement = data.nbDebordement;
       this.nbSupSeuil = data.nbSupSeuil;
       this.nbTransfert=data.nbTransfert;
+      this.nbTransfertOk=data.nbTransfertOk;
       this.moyenneTransfertTentatives=data.moyenneTransfertTentatives;
 
       this.reinitialiserSeuil();
@@ -124,7 +127,7 @@ export class HomeComponent implements OnInit, OnChanges {
 
   private updateDonneesAppels(value: { nombreAppels: number, tempsAttenteMoyen: number, tempsCommunicationMoyen: number,
     gtAppeleId: string[], gtAppele: string[], labelsStatut: string[], valuesStatut: number[],
-    labelsMotifFinAppel: string[], valeursMotifFinAppel: number[], nbDebordement: number, nbSupSeuil: number, nbTransfert: number, moyenneTransfertTentatives: number }) {
+    labelsMotifFinAppel: string[], valeursMotifFinAppel: number[], nbDebordement: number, nbSupSeuil: number, nbTransfert: number, nbTransfertOk: number, moyenneTransfertTentatives: number }) {
     this.nombreAppels = value.nombreAppels;
     this.tempsAttenteMoyen = Math.round(value.tempsAttenteMoyen);
     this.tempsCommunicationMoyen = Math.round(value.tempsCommunicationMoyen);
@@ -135,6 +138,7 @@ export class HomeComponent implements OnInit, OnChanges {
     this.nbDebordement = value.nbDebordement;
     this.nbSupSeuil = value.nbSupSeuil;
     this.nbTransfert = value.nbTransfert;
+    this.nbTransfertOk = value.nbTransfertOk;
     this.moyenneTransfertTentatives = value.moyenneTransfertTentatives;
 
     this.reinitialiserSeuil();

@@ -10,6 +10,7 @@ export interface Appel {
   labelsStatut: string[];
   valuesStatut: number[];
   nbTransfert: number;
+  nbTransfertOk: number;
   moyenneTransfertTentatives: number;
   labelsCauseFin: string[];
   valuesCauseFin: number[];

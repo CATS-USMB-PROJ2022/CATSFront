@@ -20,7 +20,7 @@
       >
       </carte-indicateur>
 
-      
+
       <carte-indicateur titre="Temps d'attente moyen d'un appel" typeCarte="valeur">{{tempsAttenteMoyen}} s</carte-indicateur>
 
       <carte-indicateur
@@ -39,10 +39,10 @@
       <carte-indicateur titre="Motifs de fin d'appel" routerLink="/motif-fin_appel" typeCarte="diagramme" [data]="donneesDiagrammeMotifFinAppel"></carte-indicateur>
 
 
-      
 
-      <carte-indicateur titre="Nombre de tentatives de Transferts" typeCarte="valeur">{{nbTransfert}}</carte-indicateur>
-      <carte-indicateur titre="Moyenne de tentatives de Transferts" typeCarte="valeur">{{moyenneTransfertTentatives}}</carte-indicateur>
+
+      <carte-indicateur titre="Transferts (réussis/tentatives)" typeCarte="valeur">{{nbTransfertOk}} / {{nbTransfert}}</carte-indicateur>
+      <carte-indicateur titre="Moyenne de tentatives de Transferts par appel transféré" typeCarte="valeur">{{moyenneTransfertTentatives}}</carte-indicateur>
     </div>
   </div>
 
