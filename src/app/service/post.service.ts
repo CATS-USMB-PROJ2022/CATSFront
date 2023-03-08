@@ -6,6 +6,7 @@ import {Post} from "../model/post";
 import {MotifFinAppel} from "../model/motif-fin-appel";
 import {Appel} from "../model/appel";
 import {StockageCookieService} from "./stockage-cookie.service";
+import {RepartitionAppel} from "../model/repartition-appel";
 
 @Injectable({
   providedIn: 'root'
@@ -53,6 +54,8 @@ export class PostService {
   public postMotifsFinAppel(): Observable<MotifFinAppel> { return this.Http.post<MotifFinAppel>(`${this.localUrl}/AppelCauseFin`, this.getPost()); }
 
   public postStatutsAppel(): Observable<StatutAppel> { return this.Http.post<StatutAppel>(`${this.localUrl}/AppelStatut`, this.getPost()); }
+
+  public postRepartitionAppel(): Observable<RepartitionAppel> { return this.Http.post<RepartitionAppel>(`${this.localUrl}/AppelRepartition`, this.getPost()); }
 
   public postUploadFichiers(fichiers: File[]): Observable<any> {
     console.table(fichiers);

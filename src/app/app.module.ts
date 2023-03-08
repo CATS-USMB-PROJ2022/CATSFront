@@ -37,6 +37,10 @@ import {MatButtonModule} from "@angular/material/button";
 import {PostService} from "./service/post.service";
 import {CarteIndicateurComponent} from "./components/carte-indicateur/carte-indicateur.component";
 import {NotFoundComponent} from "./pages/not-found/not-found.component";
+import {
+  DiagrammeRepartitionAppelComponent
+} from "./pages/diagramme-repartition-appel/diagramme-repartition-appel.component";
+import {FiltreComponent} from "./components/filtre/filtre.component";
 
 @NgModule({
   declarations: [
@@ -48,6 +52,7 @@ import {NotFoundComponent} from "./pages/not-found/not-found.component";
     HomeComponent,
     TotalCallDiagramComponent,
     PartnairCallComponent,
+    DiagrammeRepartitionAppelComponent,
 
     MenuDeroulantComponent,
 
@@ -58,6 +63,7 @@ import {NotFoundComponent} from "./pages/not-found/not-found.component";
     OverlayUploadComponent,
 
     CarteIndicateurComponent,
+    FiltreComponent,
 
     FiltreMultiSelectionComponent,
     FiltreDateHeureComponent,

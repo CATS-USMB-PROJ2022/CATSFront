@@ -41,7 +41,8 @@
   width: var(--spinner-size);
   aspect-ratio: 1 / 1;
   border-radius: 50%;
-  background: radial-gradient(farthest-side, #de1300 94%, #0000) top / var(--spinner-thickness) var(--spinner-thickness) no-repeat, conic-gradient(#0000 30%, #de1300);
+  background: radial-gradient(farthest-side, var(--red-primary) 94%, #0000) top / var(--spinner-thickness) var(--spinner-thickness) no-repeat,
+              conic-gradient(#0000 30%, var(--red-primary));
   -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - (var(--spinner-size) * 14 / 88)), #000 0);
   animation: spinner-c7wet2 0.8s infinite linear;
 }
@@ -95,10 +96,6 @@
 .fichier-uploade span {
   font-size: 1.15em;
   color: black;
-}
-
-.nom-fichier {
-
 }
 
 .bouton-supprimer {

@@ -7,7 +7,7 @@
 
     <ul class='fichiers-uploades' [hidden]="isFichiersEmpty()">
       <li class='fichier-uploade' *ngFor="let fichier of fichiers">
-        <span class='nom-fichier'>{{fichier.name}}</span>
+        <span>{{fichier.name}}</span>
         <span class='bouton-supprimer' (click)="supprimerFichier(fichier)">❌</span>
       </li>
     </ul>

@@ -7,11 +7,13 @@ import {HomeComponent} from "./pages/home/home.component";
 import {TotalCallDiagramComponent} from "./pages/_deprecated/total-call-diagram/total-call-diagram.component";
 import {PartnairCallComponent} from "./pages/_deprecated/partnair-call/partnair-call.component";
 import {NotFoundComponent} from "./pages/not-found/not-found.component";
+import {DiagrammeRepartitionAppelComponent} from "./pages/diagramme-repartition-appel/diagramme-repartition-appel.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'statut_appel', component: DiagrammeStatutAppelComponent},
   {path: 'motif-fin_appel', component: DiagrammeMotifFinAppelComponent},
+  {path: 'repartition_appel', component: DiagrammeRepartitionAppelComponent},
   // {path: 'cause_fin_dappel', component: EndCallDiagramComponent},
   // {path: 'call_hours', component: TotalCallDiagramComponent},
   // {path: 'partnair_call', component: PartnairCallComponent},
