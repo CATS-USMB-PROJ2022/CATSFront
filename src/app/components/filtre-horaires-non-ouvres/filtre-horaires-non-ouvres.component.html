@@ -1,7 +1,4 @@
-<div class="conteneur-filtre">
-  <div class="conteneur-reset">
-    <span (click)="reinitialiserHorairesNonOuvres()">Réinitialiser</span>
-  </div>
+<filtre [onReinitialisation]="reinitialiserHorairesNonOuvres" [onConfirmation]="appliquerHoraires">
   <div class="multi-selection">
     <div class="multi-selection-en-tete">
       <h2 class="multi-selection-titre">Horaires</h2>
@@ -13,6 +10,4 @@
       </ul>
     </div>
   </div>
-
-  <button class="bouton-confirmer" (click)="appliquerHoraires()">Appliquer</button>
-</div>
+</filtre>

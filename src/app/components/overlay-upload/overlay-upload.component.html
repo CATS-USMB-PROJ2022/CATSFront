@@ -7,7 +7,7 @@
 
     <ul class='fichiers-uploades' [hidden]="isFichiersEmpty()">
       <li class='fichier-uploade' *ngFor="let fichier of fichiers">
-        <span class='nom-fichier'>{{fichier.name}}</span>
+        <span>{{fichier.name}}</span>
         <span class='bouton-supprimer' (click)="supprimerFichier(fichier)">❌</span>
       </li>
     </ul>
@@ -16,7 +16,7 @@
       <input type="file" name="fichiers" id="fichiers" class="input-upload" accept=".xlsx" (change)="onSelectionFichier($event)" multiple />
       <label for="fichiers">
         {{getFileName()}}
-        <recherche></recherche>
+        <recherche class="recherche"></recherche>
       </label>
       <span class="erreur" [ngClass]="{'invisible': !erreur}">Veuillez sélectionner un fichier.</span>
     </div>

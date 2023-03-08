@@ -1,7 +1,4 @@
-<div class="conteneur-filtre">
-  <div class="conteneur-reset">
-    <span (click)="reinitialiserDateHeure()">Réinitialiser</span>
-  </div>
+<filtre [onReinitialisation]="reinitialiserDateHeure" [onConfirmation]="appliquerDateHeure">
   <div class="conteneur-date">
     <div class="conteneur-input input-date">
       <mat-calendar [selected]="dates" (selectedChange)="changementDate($event)"></mat-calendar>
@@ -25,6 +22,4 @@
       <ngx-material-timepicker #heure_fin (closed)="fermetureInputHeureFin()" [minutesGap]="15"></ngx-material-timepicker>
     </div>
   </div>
-
-  <button class="bouton-confirmer" (click)="appliquerDateHeure()">Appliquer</button>
-</div>
+</filtre>

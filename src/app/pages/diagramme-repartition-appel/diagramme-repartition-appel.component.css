@@ -6,7 +6,7 @@
   justify-content: center;
 
   /* Box model */
-  margin: 5% 25% 5%;
+  margin: 5% 5% 5%;
 }
 
 .diagramme h1 {
@@ -19,5 +19,6 @@
 
 .diagramme .chart {
   /* Box model */
+  width: 60em;
   padding: 0 2em;
 }

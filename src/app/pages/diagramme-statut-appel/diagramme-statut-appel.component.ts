@@ -3,6 +3,7 @@ import {ChartData, ChartType} from "chart.js";
 import {CaisseRegionaleService} from "../../service/caisse-regionale.service";
 import {PostService} from "../../service/post.service";
 import {ValeursService} from "../../service/valeurs.service";
+import {getCouleurs} from "../../../utils";
 
 @Component({
   selector: 'diagramme-statut-appel',
@@ -43,7 +44,8 @@ export class DiagrammeStatutAppelComponent implements OnInit, OnChanges {
     this.pieChartData = {
       labels: this.label,
       datasets: [{
-        data: this.statusCall
+        data: this.statusCall,
+        backgroundColor: getCouleurs(this.statusCall.length, true),
       }]
     };
   }
