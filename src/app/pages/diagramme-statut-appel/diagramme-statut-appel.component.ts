@@ -1,5 +1,5 @@
 import {Component, OnInit, OnChanges} from '@angular/core';
-import {ChartData, ChartType} from "chart.js";
+import {ChartData} from "chart.js";
 import {CaisseRegionaleService} from "../../service/caisse-regionale.service";
 import {PostService} from "../../service/post.service";
 import {ValeursService} from "../../service/valeurs.service";
@@ -59,5 +59,17 @@ export class DiagrammeStatutAppelComponent implements OnInit, OnChanges {
       this.statusCall = data.nbr;
       this.ngOnChanges();
     });
+  }
+
+  getTotalAppels() {
+    let appels = 0;
+    this.statusCall.forEach(appel => appels += appel);
+    return appels;
+  }
+
+  getAppelPaires() {
+    let appels = [];
+    for (let i = 0; i < this.label.length; i++) appels.push({label: this.label[i], valeur: this.statusCall[i]});
+    return appels;
   }
 }
