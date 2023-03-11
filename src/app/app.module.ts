@@ -40,6 +40,7 @@ import {
   DiagrammeRepartitionAppelComponent
 } from "./pages/diagramme-repartition-appel/diagramme-repartition-appel.component";
 import {FiltreComponent} from "./components/filtre/filtre.component";
+import {DiagrammeCartesComponent} from "./pages/indicateurs/diagramme-cartes/diagramme-cartes.component";
 
 @NgModule({
   declarations: [
@@ -67,6 +68,8 @@ import {FiltreComponent} from "./components/filtre/filtre.component";
     FiltreHorairesNonOuvresComponent,
 
     ChampRechercheComponent,
+
+    DiagrammeCartesComponent,
 
     ClickOutsideDirective,
   ],

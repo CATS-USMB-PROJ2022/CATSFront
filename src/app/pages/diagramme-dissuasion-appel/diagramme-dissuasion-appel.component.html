@@ -1,25 +1,7 @@
-<div class="page-diagramme">
-  <h1>Cause de dissuasions</h1>
-  <div class="corps">
-    <div class="diagramme">
-      <canvas baseChart [data]="pieChartData" [type]="'pie'">
-      </canvas>
-    </div>
-
-    <div class="cartes">
-      <a class="carte carte-large" routerLink="/statut_appel">
-        <h2>Vue d'ensemble</h2>
-        <h1>{{getTotalAppels()}}</h1>
-      </a>
-
-      <div class="indicateurs">
-        <div class="carte" *ngFor="let appel of getAppelPaires()">
-          <h2>{{appel.label}}</h2>
-          <div class="corps-carte">
-            <h1>{{appel.valeur}}</h1>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<diagramme-cartes
+  titre="Causes de dissuasion"
+  lienParent="/statut_appel"
+  racine="/dissuasion_appel"
+  [getDonnees]="getDonnees"
+>
+</diagramme-cartes>
