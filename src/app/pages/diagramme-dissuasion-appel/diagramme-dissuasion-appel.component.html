@@ -1,5 +1,5 @@
 <div class="page-diagramme">
-  <h1>Statut des appels</h1>
+  <h1>Cause de dissuasions</h1>
   <div class="corps">
     <div class="diagramme">
       <canvas baseChart [data]="pieChartData" [type]="'pie'">
@@ -7,18 +7,18 @@
     </div>
 
     <div class="cartes">
-      <div class="carte carte-large">
+      <a class="carte carte-large" routerLink="/statut_appel">
         <h2>Vue d'ensemble</h2>
         <h1>{{getTotalAppels()}}</h1>
-      </div>
+      </a>
 
       <div class="indicateurs">
-        <a class="carte" *ngFor="let appel of getAppelPaires()" [routerLink]="isLabelDis(appel.label) ? '/dissuasion_appel' : '/statut_appel'">
+        <div class="carte" *ngFor="let appel of getAppelPaires()">
           <h2>{{appel.label}}</h2>
           <div class="corps-carte">
             <h1>{{appel.valeur}}</h1>
           </div>
-        </a>
+        </div>
       </div>
     </div>
   </div>

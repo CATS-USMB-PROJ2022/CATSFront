@@ -5,11 +5,11 @@ import {PostService} from "../../service/post.service";
 import {getCouleurs} from "../../../utils";
 
 @Component({
-  selector: 'diagramme-statut-appel',
-  templateUrl: './diagramme-statut-appel.component.html',
-  styleUrls: ['./diagramme-statut-appel.component.css']
+  selector: 'diagramme-dissuasion-appel',
+  templateUrl: './diagramme-dissuasion-appel.component.html',
+  styleUrls: ['./diagramme-dissuasion-appel.component.css']
 })
-export class DiagrammeStatutAppelComponent implements OnInit, OnChanges {
+export class DiagrammeDissuasionAppelComponent implements OnInit, OnChanges {
   /////////////////////////////////////////////////////////////////////////////////////////////////
   // Attributs ////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -49,7 +49,7 @@ export class DiagrammeStatutAppelComponent implements OnInit, OnChanges {
   // Getters //////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////
   private getDataStatus() {
-    this.PostService.postStatutsAppel().subscribe(data => {
+    this.PostService.postDissuasionAppel().subscribe(data => {
       this.label = data.label;
       this.statusCall = data.nbr;
       this.ngOnChanges();
@@ -67,9 +67,4 @@ export class DiagrammeStatutAppelComponent implements OnInit, OnChanges {
     for (let i = 0; i < this.label.length; i++) appels.push({label: this.label[i], valeur: this.statusCall[i]});
     return appels;
   }
-
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  // Méthodes /////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  isLabelDis(label: string) { return label === 'dis'; }
 }

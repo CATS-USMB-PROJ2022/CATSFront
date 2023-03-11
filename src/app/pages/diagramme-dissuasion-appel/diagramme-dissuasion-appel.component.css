@@ -23,14 +23,6 @@
   align-items: center;
 }
 
-.corps.cartes-gauche {
-  flex-direction: row-reverse;
-}
-
-.corps.cartes-droite {
-  flex-direction: row;
-}
-
 .diagramme {
   /* Box model */
   width: 40em;
