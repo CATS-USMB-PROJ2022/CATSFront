@@ -10,6 +10,8 @@ import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DiagrammeStatutAppelComponent} from './pages/diagramme-statut-appel/diagramme-statut-appel.component';
+import {DiagrammeDissuasionAppelComponent} from './pages/diagramme-dissuasion-appel/diagramme-dissuasion-appel.component';
+
 import {DiagrammeMotifFinAppelComponent} from './pages/diagramme-motif-fin-appel/diagramme-motif-fin-appel.component';
 import {HomeComponent} from './pages/home/home.component';
 import {CookieService} from 'ngx-cookie-service';
@@ -38,12 +40,14 @@ import {
   DiagrammeRepartitionAppelComponent
 } from "./pages/diagramme-repartition-appel/diagramme-repartition-appel.component";
 import {FiltreComponent} from "./components/filtre/filtre.component";
+import {DiagrammeCartesComponent} from "./pages/indicateurs/diagramme-cartes/diagramme-cartes.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
     DiagrammeStatutAppelComponent,
+    DiagrammeDissuasionAppelComponent,
     DiagrammeMotifFinAppelComponent,
     HomeComponent,
     DiagrammeRepartitionAppelComponent,
@@ -64,6 +68,8 @@ import {FiltreComponent} from "./components/filtre/filtre.component";
     FiltreHorairesNonOuvresComponent,
 
     ChampRechercheComponent,
+
+    DiagrammeCartesComponent,
 
     ClickOutsideDirective,
   ],

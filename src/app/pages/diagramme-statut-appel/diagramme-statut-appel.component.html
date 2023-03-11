@@ -1,9 +1,8 @@
-<div class="diagramme">
-  <h1>Statuts des appels</h1>
-  <div class="chart">
-    <canvas baseChart
-            [data]="pieChartData"
-            [type]="'pie'">
-    </canvas>
-  </div>
-</div>
+<diagramme-cartes
+  titre="Statut des appels"
+  lienParent="/statut_appel"
+  racine="/statut_appel"
+  [liens]="[{label: 'dis', lien: '/dissuasion_appel'}]"
+  [getDonnees]="getDonnees"
+>
+</diagramme-cartes>
