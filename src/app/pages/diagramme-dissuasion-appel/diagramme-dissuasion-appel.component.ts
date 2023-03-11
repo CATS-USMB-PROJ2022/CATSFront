@@ -3,8 +3,7 @@ import {PostService} from "../../service/post.service";
 
 @Component({
   selector: 'diagramme-dissuasion-appel',
-  templateUrl: './diagramme-dissuasion-appel.component.html',
-  styleUrls: ['./diagramme-dissuasion-appel.component.css']
+  templateUrl: './diagramme-dissuasion-appel.component.html'
 })
 export class DiagrammeDissuasionAppelComponent {
   /////////////////////////////////////////////////////////////////////////////////////////////////

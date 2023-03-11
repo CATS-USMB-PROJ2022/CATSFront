@@ -40,23 +40,6 @@
   width: 34.3em;
 }
 
-.diagramme {
-  /* Box model */
-  width: 40em;
-  padding: 0 2em;
-}
-
-.cartes {
-  width: 34.3em;
-}
-
-.indicateurs {
-  display: grid;
-  grid-template-columns: 50% 50%;
-
-  width: 34.3em;
-}
-
 .carte {
   /* Flexbox */
   display: flex;

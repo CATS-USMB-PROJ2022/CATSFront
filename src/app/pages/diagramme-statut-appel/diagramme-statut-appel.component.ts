@@ -3,8 +3,7 @@ import {PostService} from "../../service/post.service";
 
 @Component({
   selector: 'diagramme-statut-appel',
-  templateUrl: './diagramme-statut-appel.component.html',
-  styleUrls: ['./diagramme-statut-appel.component.css']
+  templateUrl: './diagramme-statut-appel.component.html'
 })
 export class DiagrammeStatutAppelComponent {
   /////////////////////////////////////////////////////////////////////////////////////////////////
