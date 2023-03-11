@@ -7,7 +7,7 @@ import {getCouleurs} from "../../../utils";
 @Component({
   selector: 'diagramme-dissuasion-appel',
   templateUrl: './diagramme-dissuasion-appel.component.html',
-  styleUrls: ['./diagramme-dissuasion-appel.component.css']
+  styleUrls: ['./diagramme-dissuasion-appel.component.css', '../styles-indicateurs/diagramme-cartes.component.css']
 })
 export class DiagrammeDissuasionAppelComponent implements OnInit, OnChanges {
   /////////////////////////////////////////////////////////////////////////////////////////////////

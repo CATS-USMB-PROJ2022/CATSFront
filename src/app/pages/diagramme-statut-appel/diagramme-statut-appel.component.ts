@@ -7,7 +7,7 @@ import {getCouleurs} from "../../../utils";
 @Component({
   selector: 'diagramme-statut-appel',
   templateUrl: './diagramme-statut-appel.component.html',
-  styleUrls: ['./diagramme-statut-appel.component.css']
+  styleUrls: ['./diagramme-statut-appel.component.css', '../styles-indicateurs/diagramme-cartes.component.css']
 })
 export class DiagrammeStatutAppelComponent implements OnInit, OnChanges {
   /////////////////////////////////////////////////////////////////////////////////////////////////
