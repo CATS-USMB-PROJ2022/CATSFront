@@ -1,22 +1,9 @@
-<div class="conteneur-home">
-  <div class="colonne-home">
-    <filtre-multi-selection></filtre-multi-selection>
-  </div>
-
-  <div class="corps">
-    <div class="diagramme">
-      <h1>Statuts des appels</h1>
-      <div class="chart">
-        <canvas baseChart
-                [data]="pieChartData"
-                [type]="'pie'">
-        </canvas>
-      </div>
-    </div>
-  </div>
-
-  <div class="colonne-home">
-    <filtre-date-heure></filtre-date-heure>
-    <filtre-horaires-non-ouvres></filtre-horaires-non-ouvres>
+<div class="diagramme">
+  <h1>Statuts des appels</h1>
+  <div class="chart">
+    <canvas baseChart
+            [data]="pieChartData"
+            [type]="'pie'">
+    </canvas>
   </div>
 </div>

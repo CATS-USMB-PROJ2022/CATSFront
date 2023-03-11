@@ -3,6 +3,7 @@ import {ChartData} from "chart.js";
 import {CaisseRegionaleService} from "../../service/caisse-regionale.service";
 import {PostService} from "../../service/post.service";
 import {ValeursService} from "../../service/valeurs.service";
+import {getCouleurs} from "../../../utils";
 
 @Component({
   selector: 'diagramme-motif-fin-appel',
@@ -42,7 +43,8 @@ export class DiagrammeMotifFinAppelComponent implements OnInit, OnChanges {
     this.pieChartData = {
       labels: this.label,
       datasets: [{
-        data: this.motifsFinAppel
+        data: this.motifsFinAppel,
+        backgroundColor: getCouleurs(this.motifsFinAppel.length),
       }]
     };
   }

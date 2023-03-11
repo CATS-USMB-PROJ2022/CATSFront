@@ -4,6 +4,7 @@ import {CaisseRegionaleService} from "../../service/caisse-regionale.service";
 import {ValeursService} from "../../service/valeurs.service";
 import {PostService} from "../../service/post.service";
 import {StockageCookieService} from "../../service/stockage-cookie.service";
+import {getCouleurs} from "../../../utils";
 
 @Component({
   selector: 'home',
@@ -82,14 +83,16 @@ export class HomeComponent implements OnInit, OnChanges {
     this.donneesDiagrammeStatut = {
       labels: this.labelsStatut,
       datasets: [{
-        data: this.valuesStatut
+        data: this.valuesStatut,
+        backgroundColor: getCouleurs(this.valuesStatut.length),
       }]
     };
 
     this.donneesDiagrammeMotifFinAppel = {
       labels: this.labelsMotifFinAppel,
       datasets: [{
-        data: this.valeursMotifFinAppel
+        data: this.valeursMotifFinAppel,
+        backgroundColor: getCouleurs(this.valeursMotifFinAppel.length),
       }]
     };
   }

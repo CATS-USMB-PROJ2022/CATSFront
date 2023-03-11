@@ -8,7 +8,7 @@ import {StockageCookieService} from "../../service/stockage-cookie.service";
   templateUrl: './filtre-horaires-non-ouvres.component.html',
   styleUrls: ['./filtre-horaires-non-ouvres.component.css']
 })
-export class FiltreHorairesNonOuvresComponent implements OnInit {
+export class FiltreHorairesNonOuvresComponent {
   /////////////////////////////////////////////////////////////////////////////////////////////////
   // Attributs ////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -23,8 +23,6 @@ export class FiltreHorairesNonOuvresComponent implements OnInit {
     this.horaires_non_ouvres = false;
     this.setValeur(this.StocakgeCookie.initialiserHorairesNonOuvres());
   }
-
-  ngOnInit(): void { }
 
   /////////////////////////////////////////////////////////////////////////////////////////////////
   // Setters //////////////////////////////////////////////////////////////////////////////////////
@@ -59,4 +57,7 @@ export class FiltreHorairesNonOuvresComponent implements OnInit {
     this.setValeur(this.StocakgeCookie.getHorairesNonOuvres());
     this.appliquerHoraires();
   }
+
+  reinitialiser = () => this.reinitialiserHorairesNonOuvres();
+  appliquer = () => this.appliquerHoraires();
 }

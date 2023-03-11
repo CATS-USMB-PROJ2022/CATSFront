@@ -23,10 +23,5 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void { this.initDataCalls(); }
 
-  private initDataCalls() {
-    this.Post.postNombreAppels().subscribe(data => {
-      console.table(data);
-      this.Valeurs.setValues(data);
-    });
-  }
+  private initDataCalls() { this.Post.postNombreAppels().subscribe(data => this.Valeurs.setValues(data)); }
 }

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {ValeursService} from "../../service/valeurs.service";
 import {DateRange} from "@angular/material/datepicker";
 import {Time} from "@angular/common";
@@ -11,7 +11,7 @@ import {StockageCookieService} from "../../service/stockage-cookie.service";
   templateUrl: './filtre-date-heure.component.html',
   styleUrls: ['./filtre-date-heure.component.css']
 })
-export class FiltreDateHeureComponent implements OnInit {
+export class FiltreDateHeureComponent {
   /////////////////////////////////////////////////////////////////////////////////////////////////
   // Attributs ////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -49,8 +49,6 @@ export class FiltreDateHeureComponent implements OnInit {
     this.placeholder_debut = this.getHeureDebut();
     this.placeholder_fin = this.getHeureFin();
   }
-
-  ngOnInit(): void { }
 
   /////////////////////////////////////////////////////////////////////////////////////////////////
   // Getters //////////////////////////////////////////////////////////////////////////////////////
@@ -113,4 +111,7 @@ export class FiltreDateHeureComponent implements OnInit {
 
     this.Post.postNombreAppels().subscribe(data => this.Value.setValues(data));
   }
+
+  reinitialiser = () => this.reinitialiserDateHeure();
+  appliquer = () => this.appliquerDateHeure();
 }
