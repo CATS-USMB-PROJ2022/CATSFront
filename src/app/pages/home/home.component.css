@@ -32,3 +32,8 @@
   justify-content: center;
   flex-wrap: wrap;
 }
+
+em {
+  font-style: normal;
+  font-size: 0.7em;
+}
