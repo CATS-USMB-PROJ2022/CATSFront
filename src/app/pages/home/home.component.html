@@ -1,54 +1,75 @@
-<div class="conteneur-home">
-  <div class="colonne-home">
-    <filtre-multi-selection></filtre-multi-selection>
-  </div>
-
-  <div class="corps">
-    <div class="conteneur-cartes">
-      <carte-indicateur titre="Nombre d'appels" typeCarte="valeur">{{nombreAppels}}</carte-indicateur>
-
-
-      <carte-indicateur titre="Nombre d'appels débordés" typeCarte="valeur">{{nbDebordement}}</carte-indicateur>
-
-      <carte-indicateur
-        typeCarte="diagramme"
-        titre="Statut d'appel"
-        routerLink="/statut_appel"
-        [data]="donneesDiagrammeStatut"
-        [labels]="true"
-        [legende]="[{ label: 'COM :', valeur: pourcentage_en_communication }, { label: 'Autres :', valeur: pourcentage_autres }]"
-      >
-      </carte-indicateur>
-
-      
-      <carte-indicateur titre="Temps d'attente moyen d'un appel" typeCarte="valeur">{{tempsAttenteMoyen}} s</carte-indicateur>
-
-      <carte-indicateur
-        typeCarte="valeur"
-        titre="Temps d'attente supérieur à"
-        labelSeuil="secondes"
-        [seuil]="true"
-        [valeurSeuil]="seuil"
-        (onModificationSeuil)="appliquerSeuil($event)"
-        (onReinitialisationSeuil)="reinitialiserSeuil()"
-      >
-        {{nbSupSeuil}} appels
-      </carte-indicateur>
-      <carte-indicateur titre="Temps de communication moyen d'un appel" typeCarte="valeur">{{tempsCommunicationMoyen}}</carte-indicateur>
-
-      <carte-indicateur titre="Motifs de fin d'appel" routerLink="/motif-fin_appel" typeCarte="diagramme" [data]="donneesDiagrammeMotifFinAppel"></carte-indicateur>
+<div class="conteneur-cartes">
+  <carte-indicateur
+    titre="Nombre d'appels"
+    typeCarte="valeur"
+  >
+    {{nombreAppels}}
+  </carte-indicateur>
 
 
-      
+  <carte-indicateur
+    typeCarte="diagramme"
+    titre="Statut d'appel"
+    routerLink="/statut_appel"
+    [data]="donneesDiagrammeStatut"
+    [labels]="true"
+    [legende]="[{ label: 'COM :', valeur: pourcentage_en_communication }, { label: 'Autres :', valeur: pourcentage_autres }]"
+  >
+  </carte-indicateur>
 
-      <carte-indicateur titre="Nombre de tentatives de Transferts" typeCarte="valeur">{{nbTransfert}}</carte-indicateur>
-      <carte-indicateur titre="Moyenne de tentatives de Transferts" typeCarte="valeur">{{moyenneTransfertTentatives}}</carte-indicateur>
-    </div>
-  </div>
+  <carte-indicateur
+    typeCarte="valeur"
+    titre="Nombre d'appels débordés"
+  >
+    {{nbDebordement}}
+  </carte-indicateur>
 
-  <div class="colonne-home">
-    <filtre-date-heure></filtre-date-heure>
-    <filtre-horaires-non-ouvres></filtre-horaires-non-ouvres>
-  </div>
+  <carte-indicateur
+    typeCarte="valeur"
+    titre="Temps d'attente moyen d'un appel"
+    routerLink="/repartition_appel"
+  >
+    {{tempsAttenteMoyen}} s
+  </carte-indicateur>
+
+  <carte-indicateur
+    typeCarte="valeur"
+    titre="Temps d'attente supérieur à"
+    labelSeuil="secondes"
+    [seuil]="true"
+    [valeurSeuil]="seuil"
+    (onModificationSeuil)="appliquerSeuil($event)"
+    (onReinitialisationSeuil)="reinitialiserSeuil()"
+  >
+    {{nbSupSeuil}} appels
+  </carte-indicateur>
+
+  <carte-indicateur
+    typeCarte="valeur"
+    titre="Temps de communication moyen d'un appel"
+  >
+    {{tempsCommunicationMoyen}} s
+  </carte-indicateur>
+
+  <carte-indicateur
+    typeCarte="diagramme"
+    titre="Motifs de fin d'appel"
+    routerLink="/motif-fin_appel"
+    [data]="donneesDiagrammeMotifFinAppel"
+  >
+  </carte-indicateur>
+
+  <carte-indicateur
+    typeCarte="valeur"
+    titre="Transferts (réussis &nbsp;/&nbsp; tentatives)"
+  >
+    {{nbTransfertOk}} <em>/</em> {{nbTransfert}}
+  </carte-indicateur>
+
+  <carte-indicateur
+    typeCarte="valeur"
+    titre="Moyenne de tentatives de Transferts"
+  >
+    {{moyenneTransfertTentatives}}
+  </carte-indicateur>
 </div>
-

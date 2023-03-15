@@ -1,0 +1,25 @@
+<div class="page-diagramme">
+  <h1>{{titre}}</h1>
+  <div class="corps">
+    <div class="diagramme">
+      <canvas baseChart [data]="pieChartData" [type]="'pie'">
+      </canvas>
+    </div>
+
+    <div class="cartes">
+      <a class="carte carte-large" [routerLink]="lienParent">
+        <h2>Vue d'ensemble</h2>
+        <h1>{{getTotalAppels()}}</h1>
+      </a>
+
+      <div class="indicateurs">
+        <a class="carte" *ngFor="let appel of getAppelPaires()" [routerLink]="getLienLabel(appel.label)">
+          <h2>{{appel.label}}</h2>
+          <div class="corps-carte">
+            <h1>{{appel.valeur}}</h1>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

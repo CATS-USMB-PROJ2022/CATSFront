@@ -9,12 +9,11 @@ import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
 
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {EndCallDiagramComponent} from './pages/_deprecated/end-call-diagram/end-call-diagram.component';
 import {DiagrammeStatutAppelComponent} from './pages/diagramme-statut-appel/diagramme-statut-appel.component';
+import {DiagrammeDissuasionAppelComponent} from './pages/diagramme-dissuasion-appel/diagramme-dissuasion-appel.component';
+
 import {DiagrammeMotifFinAppelComponent} from './pages/diagramme-motif-fin-appel/diagramme-motif-fin-appel.component';
 import {HomeComponent} from './pages/home/home.component';
-import {TotalCallDiagramComponent} from './pages/_deprecated/total-call-diagram/total-call-diagram.component';
-import {PartnairCallComponent} from './pages/_deprecated/partnair-call/partnair-call.component';
 import {CookieService} from 'ngx-cookie-service';
 import {HttpClientModule} from '@angular/common/http';
 import {MatCheckboxModule} from "@angular/material/checkbox";
@@ -37,17 +36,21 @@ import {MatButtonModule} from "@angular/material/button";
 import {PostService} from "./service/post.service";
 import {CarteIndicateurComponent} from "./components/carte-indicateur/carte-indicateur.component";
 import {NotFoundComponent} from "./pages/not-found/not-found.component";
+import {
+  DiagrammeRepartitionAppelComponent
+} from "./pages/diagramme-repartition-appel/diagramme-repartition-appel.component";
+import {FiltreComponent} from "./components/filtre/filtre.component";
+import {DiagrammeCartesComponent} from "./pages/indicateurs/diagramme-cartes/diagramme-cartes.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
-    EndCallDiagramComponent,
     DiagrammeStatutAppelComponent,
+    DiagrammeDissuasionAppelComponent,
     DiagrammeMotifFinAppelComponent,
     HomeComponent,
-    TotalCallDiagramComponent,
-    PartnairCallComponent,
+    DiagrammeRepartitionAppelComponent,
 
     MenuDeroulantComponent,
 
@@ -58,12 +61,15 @@ import {NotFoundComponent} from "./pages/not-found/not-found.component";
     OverlayUploadComponent,
 
     CarteIndicateurComponent,
+    FiltreComponent,
 
     FiltreMultiSelectionComponent,
     FiltreDateHeureComponent,
     FiltreHorairesNonOuvresComponent,
 
     ChampRechercheComponent,
+
+    DiagrammeCartesComponent,
 
     ClickOutsideDirective,
   ],

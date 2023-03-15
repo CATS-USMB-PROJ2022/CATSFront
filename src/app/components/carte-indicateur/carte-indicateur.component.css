@@ -14,7 +14,7 @@ h1 {
   transition: all 0.1s ease-in-out;
 
   /* Box model */
-  margin: 1em;
+  margin: 0.65em;
   border: 0.0625em solid var(--grey-238);
   border-radius: 0.625em;
   width: 20em;
@@ -33,8 +33,8 @@ h1 {
 
 .carte:hover {
   /* Box model */
-  -webkit-box-shadow: 0 0 0.9375em 0.3125em var(--teal-accent);
-  box-shadow: 0 0 0.9375em 0.3125em var(--teal-accent);
+  -webkit-box-shadow: 0 0 0.75em 0 var(--teal-accent-transparent);
+  box-shadow: 0 0 0.75em 0 var(--teal-accent-transparent);
 }
 
 .carte h2 {

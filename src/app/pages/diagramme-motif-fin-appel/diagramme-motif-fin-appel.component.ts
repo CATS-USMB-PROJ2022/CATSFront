@@ -2,7 +2,7 @@ import { Component, OnInit, OnChanges} from '@angular/core';
 import {ChartData} from "chart.js";
 import {CaisseRegionaleService} from "../../service/caisse-regionale.service";
 import {PostService} from "../../service/post.service";
-import {ValeursService} from "../../service/valeurs.service";
+import {getCouleurs} from "../../../utils";
 
 @Component({
   selector: 'diagramme-motif-fin-appel',
@@ -26,23 +26,20 @@ export class DiagrammeMotifFinAppelComponent implements OnInit, OnChanges {
   /////////////////////////////////////////////////////////////////////////////////////////////////
   // Constructeurs ////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////
-  constructor(private CaisseRegionale: CaisseRegionaleService, private Valeurs: ValeursService, private Post: PostService) {
+  constructor(private CaisseRegionale: CaisseRegionaleService, private Post: PostService) {
     this.label = [""];
     this.motifsFinAppel = [0];
     this.CaisseRegionale.current.subscribe(_ => this.getDataStatus());
-    this.Valeurs.current.subscribe(_ => this.getDataStatus());
   }
 
-  ngOnInit(): void {
-    this.CaisseRegionale.current.subscribe(_ => this.getDataStatus());
-    this.getDataStatus();
-  }
+  ngOnInit(): void { this.getDataStatus(); }
 
   ngOnChanges(): void {
     this.pieChartData = {
       labels: this.label,
       datasets: [{
-        data: this.motifsFinAppel
+        data: this.motifsFinAppel,
+        backgroundColor: getCouleurs(this.motifsFinAppel.length),
       }]
     };
   }

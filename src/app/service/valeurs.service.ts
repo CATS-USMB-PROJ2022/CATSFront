@@ -18,6 +18,7 @@ export class ValeursService {
     labelsStatut: [""],
     valuesStatut: [0],
     nbTransfert: 0,
+    nbTransfertOk: 0,
     moyenneTransfertTentatives: 0,
     labelsMotifFinAppel: [""],
     valeursMotifFinAppel: [0],
@@ -26,11 +27,6 @@ export class ValeursService {
   });
 
   current = this.source.asObservable();
-
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  // Constructeurs ////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  constructor() { }
 
   /////////////////////////////////////////////////////////////////////////////////////////////////
   // Setters //////////////////////////////////////////////////////////////////////////////////////
@@ -45,6 +41,7 @@ export class ValeursService {
       labelsStatut: data.labelsStatut,
       valuesStatut: data.valuesStatut,
       nbTransfert: data.nbTransfert,
+      nbTransfertOk: data.nbTransfertOk,
       moyenneTransfertTentatives: data.moyenneTransfertTentatives,
       labelsMotifFinAppel: data.labelsCauseFin,
       valeursMotifFinAppel: data.valuesCauseFin,

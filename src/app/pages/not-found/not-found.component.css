@@ -1,15 +1,3 @@
-.corps {
-  /* Flexbox */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  /* Box model */
-  margin: 5.125em auto 2em;
-  max-width: 60em;
-  padding: 0 1em;
-}
-
 .conteneur-erreur {
   /* Flexbox */
   display: flex;
