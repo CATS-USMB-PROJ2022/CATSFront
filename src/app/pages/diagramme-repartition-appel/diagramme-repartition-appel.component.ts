@@ -1,20 +1,23 @@
-import {Component, OnInit, OnChanges} from '@angular/core';
+import {Component, OnInit, OnChanges, OnDestroy} from '@angular/core';
 import {CaisseRegionaleService} from "../../service/caisse-regionale.service";
 import {PostService} from "../../service/post.service";
 import {ValeursService} from "../../service/valeurs.service";
 import {Rouge, Turquoise, Vert} from "../../../utils";
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'diagramme-repartition-appel',
   templateUrl: './diagramme-repartition-appel.component.html',
   styleUrls: ['./diagramme-repartition-appel.component.css']
 })
-export class DiagrammeRepartitionAppelComponent implements OnInit, OnChanges {
+export class DiagrammeRepartitionAppelComponent implements OnInit, OnChanges, OnDestroy {
   /////////////////////////////////////////////////////////////////////////////////////////////////
   // Attributs ////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////
   public labels: string[];
   public repartitionAppel: number[][];
+  public dataObservable: Subscription;
+  public valeurObservable: Subscription;
 
   public stackedBarChartData: any = {
     labels: ["label"],
@@ -55,12 +58,12 @@ export class DiagrammeRepartitionAppelComponent implements OnInit, OnChanges {
     this.labels = [""];
     this.repartitionAppel = [[0, 0, 0]];
 
-    this.data.current.subscribe(_ => this.getData());
-    this.value.current.subscribe(_ => this.getData());
+    
+    this.valeurObservable=this.value.current.subscribe(_ => this.getData());
+    this.dataObservable=this.data.current.subscribe(_ => this.getData());
   }
 
   ngOnInit(): void {
-    this.data.current.subscribe(_ => this.getData());
     this.getData();
   }
 
@@ -82,12 +85,18 @@ export class DiagrammeRepartitionAppelComponent implements OnInit, OnChanges {
       }]
     };
   }
+  ngOnDestroy(): void {
+   this.dataObservable.unsubscribe();
+   this.valeurObservable.unsubscribe();
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////////////
   // Getters //////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////
   private getData() {
+
     this.PostService.postRepartitionAppel().subscribe(data => {
+      if(!(data))return ;
       this.labels = data.labels;
       this.repartitionAppel = data.values;
       this.ngOnChanges();

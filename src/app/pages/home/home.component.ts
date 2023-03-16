@@ -1,17 +1,18 @@
-import {Component, OnChanges, OnInit} from '@angular/core';
+import {Component, OnChanges, OnInit, OnDestroy} from '@angular/core';
 import {ChartData} from "chart.js";
 import {CaisseRegionaleService} from "../../service/caisse-regionale.service";
 import {ValeursService} from "../../service/valeurs.service";
 import {PostService} from "../../service/post.service";
 import {StockageCookieService} from "../../service/stockage-cookie.service";
 import {getCouleurs} from "../../../utils";
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, OnChanges {
+export class HomeComponent implements OnInit, OnChanges, OnDestroy {
   /////////////////////////////////////////////////////////////////////////////////////////////////
   // Attributs ////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -36,6 +37,9 @@ export class HomeComponent implements OnInit, OnChanges {
   public pourcentage_autres: number;
 
   public seuil: number;
+
+  public dataObservable: Subscription;
+  public valeurObservable: Subscription;
 
   public donneesDiagrammeStatut: ChartData<'pie', number[], string | string[]> = {
     labels: ["label"],
@@ -73,8 +77,8 @@ export class HomeComponent implements OnInit, OnChanges {
     this.labelsMotifFinAppel = [""];
     this.valeursMotifFinAppel = [0];
 
-    this.CaisseRegionale.current.subscribe(_ => this.initialiserDonneesAppels());
-    this.Valeurs.current.subscribe(value => this.updateDonneesAppels(value));
+    this.dataObservable=this.CaisseRegionale.current.subscribe(_ => this.initialiserDonneesAppels());
+    this.valeurObservable=this.Valeurs.current.subscribe(value => this.updateDonneesAppels(value));
   }
 
   ngOnInit(): void { this.initialiserDonneesAppels(); }
@@ -95,6 +99,12 @@ export class HomeComponent implements OnInit, OnChanges {
         backgroundColor: getCouleurs(this.valeursMotifFinAppel.length),
       }]
     };
+  }
+
+  ngOnDestroy(): void {
+      
+   this.dataObservable.unsubscribe();
+   this.valeurObservable.unsubscribe();
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -131,6 +141,7 @@ export class HomeComponent implements OnInit, OnChanges {
   private updateDonneesAppels(value: { nombreAppels: number, tempsAttenteMoyen: number, tempsCommunicationMoyen: number,
     gtAppeleId: string[], gtAppele: string[], labelsStatut: string[], valuesStatut: number[],
     labelsMotifFinAppel: string[], valeursMotifFinAppel: number[], nbDebordement: number, nbSupSeuil: number, nbTransfert: number, nbTransfertOk: number, moyenneTransfertTentatives: number }) {
+      if(!(value))return ;
     this.nombreAppels = value.nombreAppels;
     this.tempsAttenteMoyen = Math.round(value.tempsAttenteMoyen);
     this.tempsCommunicationMoyen = Math.round(value.tempsCommunicationMoyen);
