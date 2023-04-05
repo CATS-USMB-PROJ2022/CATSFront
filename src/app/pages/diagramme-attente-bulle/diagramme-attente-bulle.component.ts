@@ -61,7 +61,6 @@ export class DiagrammeAttenteBulleComponent implements OnInit, OnDestroy, OnChan
 
   ngOnChanges(): void {
     let ChartDatasets = [];
-    let color;
     for(let i = 0; i < this.AttenteRepartition.length; i++){
       ChartDatasets.push({
         data: [

@@ -42,6 +42,7 @@ import {
 import {FiltreComponent} from "./components/filtre/filtre.component";
 import {DiagrammeCartesComponent} from "./pages/indicateurs/diagramme-cartes/diagramme-cartes.component";
 import { DiagrammeAttenteBulleComponent } from './pages/diagramme-attente-bulle/diagramme-attente-bulle.component';
+import { DiagrammeNombreAppelComponent } from './pages/diagramme-nombre-appel/diagramme-nombre-appel.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { DiagrammeAttenteBulleComponent } from './pages/diagramme-attente-bulle/
 
     ClickOutsideDirective,
       DiagrammeAttenteBulleComponent,
+      DiagrammeNombreAppelComponent,
   ],
   imports: [
     BrowserModule,
