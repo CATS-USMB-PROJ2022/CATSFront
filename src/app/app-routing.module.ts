@@ -8,6 +8,9 @@ import {DiagrammeRepartitionAppelComponent} from "./pages/diagramme-repartition-
 import {
   DiagrammeDissuasionAppelComponent
 } from "./pages/diagramme-dissuasion-appel/diagramme-dissuasion-appel.component";
+import {DiagrammeAttenteBulleComponent} from "./pages/diagramme-attente-bulle/diagramme-attente-bulle.component";
+import {DiagrammeNombreAppelComponent} from "./pages/diagramme-nombre-appel/diagramme-nombre-appel.component";
+import {DiagrammeComAgentComponent} from "./pages/diagramme-com-agent/diagramme-com-agent.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -15,6 +18,9 @@ const routes: Routes = [
   {path: 'dissuasion_appel', component: DiagrammeDissuasionAppelComponent},
   {path: 'motif-fin_appel', component: DiagrammeMotifFinAppelComponent},
   {path: 'repartition_appel', component: DiagrammeRepartitionAppelComponent},
+  {path: 'attente_probleme', component: DiagrammeAttenteBulleComponent},
+  {path: 'date_repartition_appel', component: DiagrammeNombreAppelComponent},
+  {path: 'com_agent', component: DiagrammeComAgentComponent},
   {path: '**', component: NotFoundComponent}
 ];
 
