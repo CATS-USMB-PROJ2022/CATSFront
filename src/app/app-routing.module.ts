@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: 'dissuasion_appel', component: DiagrammeDissuasionAppelComponent},
   {path: 'motif-fin_appel', component: DiagrammeMotifFinAppelComponent},
   {path: 'repartition_appel', component: DiagrammeRepartitionAppelComponent},
-  {path: 'attente_bulle', component: DiagrammeAttenteBulleComponent},
+  {path: 'attente_probleme', component: DiagrammeAttenteBulleComponent},
   {path: '**', component: NotFoundComponent}
 ];
 
