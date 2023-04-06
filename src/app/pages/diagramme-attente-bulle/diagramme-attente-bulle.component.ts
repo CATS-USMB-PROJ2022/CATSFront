@@ -29,15 +29,25 @@ export class DiagrammeAttenteBulleComponent implements OnInit, OnDestroy, OnChan
 
   public bubbleChartOptions: ChartConfiguration['options'] = {
     responsive: true,
+    maintainAspectRatio: false,
     scales: {
       x: {
         min: 0,
-        ticks: {}
+        ticks: {},
+        title: {
+          display: true,
+          text: 'Nombre d\'appels'
+        }
       },
       y: {
         min: 0,
-        ticks: {}
+        ticks: {},
+        title: {
+          display: true,
+          text: 'Temps d\'attente (en secondes)'
+        }
       },
+
     },
     plugins: {
       legend: {
