@@ -50,6 +50,10 @@ export class DiagrammeAttenteBulleComponent implements OnInit, OnDestroy, OnChan
 
     },
     plugins: {
+      title: {
+        display: true,
+        text: "Taille de la bulle : nombre d'appels debordés"
+      },
       legend: {
         display: false
       },

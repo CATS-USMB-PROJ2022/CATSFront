@@ -31,7 +31,7 @@ export class DiagrammeComAgentComponent implements OnInit, OnChanges, OnDestroy 
   public BubbleChartOptions: ChartConfiguration['options'] = {
     responsive: true,
     maintainAspectRatio: false,
-    backgroundColor: 'black',
+    backgroundColor: 'green',
     scales: {
       y: {
         min: 0,
@@ -95,6 +95,11 @@ export class DiagrammeComAgentComponent implements OnInit, OnChanges, OnDestroy 
             display: true,
             text: "Nombre d'appels"
           }
+        },
+      },
+      elements: {
+        point: {
+          radius: 5
         }
       },
       plugins: {
