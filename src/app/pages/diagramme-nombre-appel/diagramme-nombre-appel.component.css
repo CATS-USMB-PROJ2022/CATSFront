@@ -21,4 +21,5 @@
   /* Box model */
   width: 60em;
   padding: 0 2em;
+  min-height: 45em;
 }

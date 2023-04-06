@@ -3,6 +3,7 @@ import {Subscription} from "rxjs";
 import {CaisseRegionaleService} from "../../service/caisse-regionale.service";
 import {ValeursService} from "../../service/valeurs.service";
 import {PostService} from "../../service/post.service";
+import {ChartConfiguration} from "chart.js";
 
 @Component({
   selector: 'app-diagramme-nombre-appel',
@@ -20,9 +21,9 @@ export class DiagrammeNombreAppelComponent implements OnInit, OnDestroy, OnChang
     datasets: [{data: [0], label: "Nombre d'appel"}]
   };
 
-  public BarChartOptions: any = {
-    scaleShowVerticalLines: false,
+  public BarChartOptions: ChartConfiguration['options'] = {
     responsive: true,
+    maintainAspectRatio: false,
   }
 
   constructor(private data: CaisseRegionaleService, private value: ValeursService, private PostService: PostService) {
