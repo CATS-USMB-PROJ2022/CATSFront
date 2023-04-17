@@ -1,0 +1,61 @@
+.conteneur-date {
+  /* Flexbox */
+  display: flex;
+  justify-content: center;
+
+  /* Box model */
+  width: 100%;
+  padding-bottom: 1em;
+}
+
+.conteneur-input {
+  /* Box model */
+  -webkit-box-shadow: inset 0 0 0.125em 0 black;
+  box-shadow: inset 0 0 0.125em 0 black;
+}
+
+.input-date {
+  /* Box model */
+  border-radius: 0.625em;
+  width: 90%;
+
+  /* Background */
+  background: white;
+}
+
+.conteneur-heure {
+  /* Flexbox */
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+
+  /* Box model */
+  width: 100%;
+}
+
+.input-value {
+  /* Flexbox */
+  display: flex;
+
+  /* Box model */
+  margin-bottom: 0.25em;
+  min-height: 2em;
+  border-radius: 0.25em;
+  padding: 0.375em;
+
+  /* Background */
+  background: white;
+}
+
+input {
+  /* Box model */
+  border: none;
+  max-width: 8em;
+
+  /* Background */
+  background: none;
+}
+
+input:focus {
+  outline: none;
+}

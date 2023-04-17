@@ -1,0 +1,25 @@
+<filtre [onReinitialisation]="reinitialiser" [onConfirmation]="appliquer">
+  <div class="conteneur-date">
+    <div class="conteneur-input input-date">
+      <mat-calendar [selected]="dates" (selectedChange)="changementDate($event)"></mat-calendar>
+    </div>
+  </div>
+
+  <div class="conteneur-heure" [formGroup]="horaires">
+    <div class="conteneur-input input-value">
+      <input [placeholder]="placeholder_debut" formControlName="debut" [ngxTimepicker]="heure_debut" [format]="24" readonly>
+
+      <ngx-material-timepicker-toggle [for]="heure_debut"></ngx-material-timepicker-toggle>
+
+      <ngx-material-timepicker #heure_debut (closed)="fermetureInputHeureDepart()" [minutesGap]="15"></ngx-material-timepicker>
+    </div>
+
+    <div class="conteneur-input input-value">
+      <input [placeholder]="placeholder_fin" formControlName="fin" [ngxTimepicker]="heure_fin" [format]="24" readonly>
+
+      <ngx-material-timepicker-toggle [for]="heure_fin"></ngx-material-timepicker-toggle>
+
+      <ngx-material-timepicker #heure_fin (closed)="fermetureInputHeureFin()" [minutesGap]="15"></ngx-material-timepicker>
+    </div>
+  </div>
+</filtre>

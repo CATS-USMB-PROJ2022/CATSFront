@@ -1,0 +1,33 @@
+.multi-selection {
+  /* Flexbox */
+  justify-content: flex-start;
+
+  /* Box model */
+  width: 100%;
+}
+
+.multi-selection-en-tete {
+  margin-bottom: 1em;
+}
+
+.multi-selection-titre {
+  /* Box model */
+  margin: 0;
+
+  /* Typography */
+  font-weight: normal;
+  color: black;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+mat-checkbox {
+  /* Box model */
+  margin-left: 1.3125em;
+
+  /* Typography */
+  color: black;
+}

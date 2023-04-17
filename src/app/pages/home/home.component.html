@@ -1,100 +1,78 @@
-<div class="home-container">
-  <div class="home-item">
-    <multi-select-filter></multi-select-filter>
-  </div>
+<div class="conteneur-cartes">
+  <carte-indicateur
+    titre="Nombre d'appels"
+    typeCarte="valeur"
+    routerLink="/date_repartition_appel"
+  >
+    {{nombreAppels}}
+  </carte-indicateur>
 
-  <div class="main">
-    <div class="card-container">
-      <a class="card" routerLink="/call_hours">
-        <h2> Nombre d'appels</h2>
-        <div class="card-content">
-          <h1 id="nb-appel">{{nbCall}}</h1>
-        </div>
-      </a>
 
-      <a class="card">
-        <h2>Temps d'attente moyen d'un appel</h2>
-        <div class="card-content">
-          <h1>{{averageCall}} s</h1>
-        </div>
-      </a>
+  <carte-indicateur
+    typeCarte="diagramme"
+    titre="Statut d'appel"
+    routerLink="/statut_appel"
+    [data]="donneesDiagrammeStatut"
+    [labels]="true"
+    [legende]="[{ label: 'COM :', valeur: pourcentage_en_communication }, { label: 'Autres :', valeur: pourcentage_autres }]"
+  >
+  </carte-indicateur>
 
-      <a class="card" routerLink="/statut_appel">
-        <h2>Statut d'appel</h2>
-        <div class="card-content">
-          <div class="data-holder">
-            <div class="diagram">
-              <canvas baseChart
-                      [data]="pieChartData"
-                      [type]="pieChartType"
-                      [options]="pieChartOptions">
-              </canvas>
-            </div>
-            <div class="labels">
-                <span class="data-card">
-                  <h3>COM :</h3>
-                  <h3>&nbsp;{{percentageCom}}%</h3>
-                </span>
-              <span class="data-card">
-                  <h3>Autre :</h3>
-                  <h3>&nbsp;{{percentageOther}}%</h3>
-                </span>
-            </div>
-          </div>
-        </div>
-      </a>
+  <carte-indicateur
+    typeCarte="valeur"
+    titre="Nombre d'appels débordés"
+    routerLink="/attente_probleme"
+  >
+    {{nbDebordement}}
+  </carte-indicateur>
 
-      <a class="card">
-        <h2>Temps de communication moyen d'un appel</h2>
-        <div class="card-content">
-          <h1>{{averageWorkingCall}} s</h1>
-        </div>
-      </a>
-      <a class="card" routerLink="/motif-fin_appel">
-        <h2>Motifs de fin d'appels</h2>
-        <div class="card-content">
-          <div class="data-holder">
-            <div class="diagram">
-              <canvas baseChart
-                      [data]="pieChartDataMotiveEndCall"
-                      [type]="pieChartTypeMotiveEndCall"
-                      [options]="pieChartOptionsMotiveEndCall">
-              </canvas>
-            </div>
-          </div>
-        </div>
-      </a>
+  <carte-indicateur
+    typeCarte="valeur"
+    titre="Temps d'attente moyen d'un appel"
+    routerLink="/repartition_appel"
+  >
+    {{tempsAttenteMoyen}} s
+  </carte-indicateur>
 
-      <a class="card">
-        <h2>Nombre d'appels débordés</h2>
-        <div class="card-content">
-          <h1>{{nbDebordement}}</h1>
-        </div>
-      </a>
+  <carte-indicateur
+    typeCarte="valeur"
+    titre="Temps d'attente supérieur à"
+    labelSeuil="secondes"
+    [seuil]="true"
+    [valeurSeuil]="seuil"
+    (onModificationSeuil)="appliquerSeuil($event)"
+    (onReinitialisationSeuil)="reinitialiserSeuil()"
+  >
+    {{nbSupSeuil}} appels
+  </carte-indicateur>
 
-      <a class="card">
-        <div class="input-title">
-          <div class="threshold-container">
-            <h2 class="first">Temps d'attente supérieur à </h2>
-            <div class="second">
-              <div class="threshold-value threshold">
-                <input #thresholdInput type="number" placeholder="Seuil" [value]="threshold" />
-              </div>
-              <button class="threshold-button" (click)="applyThreshold(thresholdInput.value)">✔</button>
-              <h2> secondes</h2>
-            </div>
-          </div>
-        </div>
-        <div class="card-content">
-          <h1>{{nbSupSeuil}} appels</h1>
-        </div>
-      </a>
-    </div>
-  </div>
+  <carte-indicateur
+    typeCarte="valeur"
+    titre="Temps de communication moyen d'un appel"
+    routerLink="/com_agent"
+  >
+    {{tempsCommunicationMoyen}} s
+  </carte-indicateur>
 
-  <div class="home-item">
-    <date-time-filter></date-time-filter>
-    <non-open-filter></non-open-filter>
-  </div>
+  <carte-indicateur
+    typeCarte="diagramme"
+    titre="Motifs de fin d'appel"
+    routerLink="/motif-fin_appel"
+    [data]="donneesDiagrammeMotifFinAppel"
+  >
+  </carte-indicateur>
+
+  <carte-indicateur
+    typeCarte="valeur"
+    titre="Transferts (réussis &nbsp;/&nbsp; tentatives)"
+  >
+    {{nbTransfertOk}} <em>/</em> {{nbTransfert}}
+  </carte-indicateur>
+
+  <carte-indicateur
+    typeCarte="valeur"
+    titre="Moyenne de tentatives de Transferts"
+  >
+    {{moyenneTransfertTentatives}}
+  </carte-indicateur>
 </div>
-

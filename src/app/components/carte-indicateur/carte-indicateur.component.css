@@ -1,0 +1,205 @@
+h1 {
+  /* Typography */
+  font-size: 3em;
+}
+
+.carte {
+  /* Flexbox */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  /* Animation */
+  transition: all 0.1s ease-in-out;
+
+  /* Box model */
+  margin: 0.65em;
+  border: 0.0625em solid var(--grey-238);
+  border-radius: 0.625em;
+  width: 20em;
+  height: 15em;
+  padding: 1.5em;
+
+  /* Background */
+  background-color: var(--grey-233);
+  cursor: pointer;
+
+  /* Typography */
+  line-height: 1.5em;
+  text-decoration: none;
+  color: var(--teal-primary);
+}
+
+.carte:hover {
+  /* Box model */
+  -webkit-box-shadow: 0 0 0.75em 0 var(--teal-accent-transparent);
+  box-shadow: 0 0 0.75em 0 var(--teal-accent-transparent);
+}
+
+.carte h2 {
+  margin-top: 0.5em;
+  height: 25%;
+
+  /* Typography */
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.corps-carte {
+  min-width: 100%;
+  height: 75%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*************************************************************************************************/
+/* Avec seuil ************************************************************************************/
+/*************************************************************************************************/
+.conteneur-diagramme {
+  /* Flexbox */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.diagramme {
+  /* Box model */
+  width: 60%;
+  aspect-ratio: 1 / 1;
+}
+
+.labels {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+
+  min-width: fit-content;
+
+  /* Box model */
+  margin-left: 0.5em;
+}
+
+.ligne-label {
+  /* Flexbox */
+  display: flex;
+}
+
+.ligne-label:not(:last-child) {
+  margin-bottom: 0.5em;
+}
+
+.ligne-label h3 {
+  margin: 0;
+  padding: 0;
+  font-size: 1.25em;
+}
+
+/*************************************************************************************************/
+/* Avec seuil ************************************************************************************/
+/*************************************************************************************************/
+.conteneur-reset {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: -0.5em 0 0.5em;
+}
+
+.conteneur-reset span {
+  color: var(--teal-secondary);
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+}
+
+.titre-seuil {
+  min-width: 100%;
+  height: 25%;
+  margin-bottom: 0.5em;
+}
+
+.conteneur-seuil {
+  /* Flexbox */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  /* Box model */
+  width: 100%;
+}
+
+.conteneur-seuil h2 {
+  margin: 0 !important;
+  height: unset;
+}
+
+.ligne-1 {
+  margin-bottom: 0.5em;
+}
+
+.ligne-2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  max-height: fit-content;
+}
+
+.seuil {
+  /* Flexbox */
+  display: flex;
+
+  /* Box model */
+  width: 5em;
+  height: 1.5em;
+  -webkit-box-shadow: inset 0 0 0.125em 0 black;
+  box-shadow: inset 0 0 0.125em 0 black;
+  border-radius: 0.25em 0 0 0.25em;
+  padding: 0.375em;
+
+  /* Background */
+  background: white;
+}
+
+.seuil input {
+  width: 100%;
+  max-width: unset;
+}
+
+input {
+  /* Box model */
+  border: none;
+  max-width: 8em;
+
+  /* Background */
+  background: none;
+}
+
+input:focus {
+  outline: none;
+}
+
+.bouton-seuil {
+  margin-right: 1em;
+  width: 2.375em;
+  height: 2.375em;
+  border: none;
+  border-radius: 0 0.25em 0.25em 0;
+
+  /* Background */
+  background-color: var(--green-primary);
+  cursor: pointer;
+
+  /* Typography */
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+}

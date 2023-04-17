@@ -1,0 +1,25 @@
+<div class='conteneur-menu-deroulant'>
+  <div class='menu-deroulant intouchable' tabindex="-1" (focusout)="clicHorsMenu()">
+    <div class='menu-deroulant-label intouchable' (click)="bascule()">
+      <div *ngIf="caisse_selectionnee == -1; then optionDefaut else optionSelection"></div>
+      <ng-template #optionDefaut>Sélectionner une caisse</ng-template>
+      <ng-template #optionSelection>{{getLabelSelectionne()}}</ng-template>
+
+      <div *ngIf="isOuvert; then caretMenuOuvert else caretMenuFerme"></div>
+      <ng-template #caretMenuOuvert>
+        <caret-haut id="up"></caret-haut>
+      </ng-template>
+      <ng-template #caretMenuFerme>
+        <caret-bas id="down"></caret-bas>
+      </ng-template>
+    </div>
+
+    <div class='menu-deroulant-contenu intouchable' *ngIf='isOuvert'>
+      <div class='menu-deroulant-objet intouchable' (click)="setCaisse(-1)">Sélectionner une caisse</div>
+
+      <div class='menu-deroulant-objet intouchable' *ngFor='let caisse of getCaisses()' [ngClass]="{'selection': isCaisseSelectionnee(caisse.id)}" (click)="setCaisse(caisse.id)">
+        {{caisse.label}}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<filtre [onReinitialisation]="reinitialiser" [onConfirmation]="appliquer">
+  <div class="multi-selection">
+    <div class="multi-selection-en-tete">
+      <h2 class="multi-selection-titre">Horaires</h2>
+    </div>
+    <div>
+      <ul>
+        <li><mat-checkbox [(ngModel)]="horaires_ouvres" (ngModelChange)="setHorairesOuvres()" color="primary">Horaires ouvrés</mat-checkbox></li>
+        <li><mat-checkbox [(ngModel)]="horaires_non_ouvres" (ngModelChange)="setHorairesNonOuvres()" color="primary">Horaires non ouvrés</mat-checkbox></li>
+      </ul>
+    </div>
+  </div>
+</filtre>

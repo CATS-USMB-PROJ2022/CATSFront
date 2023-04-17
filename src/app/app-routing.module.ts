@@ -1,20 +1,26 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {EndCallDiagramComponent} from "./pages/end-call-diagram/end-call-diagram.component";
-import {StatusCallDiagramComponent} from "./pages/status-call-diagram/status-call-diagram.component";
-import {MotiveEndCallDiagramComponent} from "./pages/motive-end-call-diagram/motive-end-call-diagram.component";
-import {NotFoundComponent} from "./pages/not-found/not-found.component";
+import {DiagrammeStatutAppelComponent} from "./pages/diagramme-statut-appel/diagramme-statut-appel.component";
+import {DiagrammeMotifFinAppelComponent} from "./pages/diagramme-motif-fin-appel/diagramme-motif-fin-appel.component";
 import {HomeComponent} from "./pages/home/home.component";
-import {TotalCallDiagramComponent} from "./pages/total-call-diagram/total-call-diagram.component";
-import {PartnairCallComponent} from "./pages/partnair-call/partnair-call.component";
+import {NotFoundComponent} from "./pages/not-found/not-found.component";
+import {DiagrammeRepartitionAppelComponent} from "./pages/diagramme-repartition-appel/diagramme-repartition-appel.component";
+import {
+  DiagrammeDissuasionAppelComponent
+} from "./pages/diagramme-dissuasion-appel/diagramme-dissuasion-appel.component";
+import {DiagrammeAttenteBulleComponent} from "./pages/diagramme-attente-bulle/diagramme-attente-bulle.component";
+import {DiagrammeNombreAppelComponent} from "./pages/diagramme-nombre-appel/diagramme-nombre-appel.component";
+import {DiagrammeComAgentComponent} from "./pages/diagramme-com-agent/diagramme-com-agent.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'statut_appel', component: StatusCallDiagramComponent},
-  {path: 'motif-fin_appel', component: MotiveEndCallDiagramComponent},
-  {path: 'cause_fin_dappel', component: EndCallDiagramComponent},
-  {path: 'call_hours', component: TotalCallDiagramComponent},
-  {path: 'partnair_call', component: PartnairCallComponent},
+  {path: 'statut_appel', component: DiagrammeStatutAppelComponent},
+  {path: 'dissuasion_appel', component: DiagrammeDissuasionAppelComponent},
+  {path: 'motif-fin_appel', component: DiagrammeMotifFinAppelComponent},
+  {path: 'repartition_appel', component: DiagrammeRepartitionAppelComponent},
+  {path: 'attente_probleme', component: DiagrammeAttenteBulleComponent},
+  {path: 'date_repartition_appel', component: DiagrammeNombreAppelComponent},
+  {path: 'com_agent', component: DiagrammeComAgentComponent},
   {path: '**', component: NotFoundComponent}
 ];
 

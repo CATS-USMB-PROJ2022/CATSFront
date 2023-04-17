@@ -1,0 +1,89 @@
+.conteneur-menu-deroulant {
+  /* Box model */
+  width: 18.75em;
+  height: 2.5em;
+  padding: 0.3125em 0;
+}
+
+.menu-deroulant {
+  /* Position and layout */
+  position: relative;
+}
+
+.intouchable {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+
+.menu-deroulant-label {
+  /* Flexbox */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  /* Box model */
+  -webkit-box-shadow: inset 0 0 0.125em 0 black;
+  box-shadow: inset 0 0 0.125em 0 black;
+  border-radius: 0.25em;
+  height: 1.625em;
+  padding: 0.4375em 0.5em;
+
+  /* Background */
+  background: white;
+  cursor: pointer;
+
+  /* Typography */
+  font-weight: 300;
+  color: black;
+}
+
+.menu-deroulant-contenu {
+  /* Position and layout */
+  position: absolute;
+  z-index: 99;
+  top: 110%;
+  left: 0;
+
+  /* Box model */
+  -webkit-box-shadow: inset 0 0 0.125em 0 black;
+  box-shadow: inset 0 0 0.125em 0 black;
+  box-sizing: border-box;
+  width: 18.75em;
+
+  /* Background */
+  background: white;
+
+  /* Typography */
+  font-weight: 500;
+  color: black;
+}
+
+.menu-deroulant-objet {
+  /* Animation */
+  transition: all 0.2s;
+
+  /* Box model */
+  padding: 0.9375em 0.5em;
+
+  /* Background */
+  cursor: pointer;
+
+  /* Typography */
+  font-weight: 300;
+}
+
+.menu-deroulant-objet:hover {
+  /* Background */
+  background: var(--green-primary);
+
+  /* Typography */
+  color: white;
+}
+
+.menu-deroulant-objet.selection {
+  /* Typography */
+  font-weight: 500;
+}

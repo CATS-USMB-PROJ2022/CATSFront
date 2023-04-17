@@ -6,28 +6,31 @@ import {filter, fromEvent, Subscription} from "rxjs";
   selector: '[clickOutside]'
 })
 export class ClickOutsideDirective implements AfterViewInit, OnDestroy {
+  /////////////////////////////////////////////////////////////////////////////////////////////////
+  // Attributs ////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////
   @Output() clickOutside = new EventEmitter<void>;
 
-  documentClickSubscription: Subscription | undefined;
+  onClicDocument: Subscription | undefined;
 
-  constructor(private element: ElementRef, @Inject(DOCUMENT) private document: Document) {
-  }
+  /////////////////////////////////////////////////////////////////////////////////////////////////
+  // Constructeurs ////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////
+  constructor(private element: ElementRef, @Inject(DOCUMENT) private document: Document) { }
 
   ngAfterViewInit() {
-    this.documentClickSubscription = fromEvent(this.document, 'click').pipe(
-      filter((event) => {
-        return !this.isInside(event.target as HTMLElement);
-      })
-    ).subscribe(() => {
-      this.clickOutside.emit();
-    });
+    this.onClicDocument = fromEvent(this.document, 'click')
+                                      .pipe(filter((event) => !this.isDansDocument((event as MouseEvent).clientX, (event as MouseEvent).clientY)))
+                                      .subscribe(() => this.clickOutside.emit());
   }
 
-  ngOnDestroy() {
-    this.documentClickSubscription?.unsubscribe();
-  }
+  ngOnDestroy() { this.onClicDocument?.unsubscribe(); }
 
-  isInside(element: HTMLElement): boolean {
-    return element === this.element.nativeElement || this.element.nativeElement.contains(element);
+  /////////////////////////////////////////////////////////////////////////////////////////////////
+  // Méthodes /////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////
+  isDansDocument(mouseX: number, mouseY: number): boolean {
+    const { top, right, bottom, left } = this.element.nativeElement.getBoundingClientRect();
+    return (left <= mouseX && mouseX <= right) && (top <= mouseY && mouseY <= bottom);
   }
 }

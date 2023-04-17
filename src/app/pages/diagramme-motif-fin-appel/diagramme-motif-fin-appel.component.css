@@ -1,0 +1,24 @@
+.diagramme {
+  /* Flexbox */
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  /* Box model */
+  margin: 5% 5% 5%;
+}
+
+.diagramme h1 {
+  /* Box model */
+  margin: 0.5em 0;
+
+  /* Typography */
+  text-align: center;
+}
+
+.diagramme .chart {
+  /* Box model */
+  width: 40em;
+  padding: 0 2em;
+}

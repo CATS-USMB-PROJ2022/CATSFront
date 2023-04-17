@@ -1,11 +1,24 @@
-<upload-overlay #upload></upload-overlay>
+<overlay-upload #upload></overlay-upload>
 
-<div class="navbar">
+<div class="barre-navigation">
   <a routerLink="/">Home</a>
 
-  <caisse-dropdown></caisse-dropdown>
+  <menu-deroulant></menu-deroulant>
 
-  <a routerLink="/" (click)="upload.openOverlay()">Importer un CSV</a>
+  <a routerLink="/" (click)="upload.ouvrirOverlay()">Importer un CSV</a>
 </div>
 
-<router-outlet></router-outlet>
+<div class="conteneur-home">
+  <div class="colonne-home">
+    <filtre-multi-selection></filtre-multi-selection>
+  </div>
+
+  <div class='corps'>
+    <router-outlet></router-outlet>
+  </div>
+
+  <div class="colonne-home">
+    <filtre-date-heure></filtre-date-heure>
+    <filtre-horaires-non-ouvres></filtre-horaires-non-ouvres>
+  </div>
+</div>

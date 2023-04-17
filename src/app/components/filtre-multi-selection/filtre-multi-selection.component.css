@@ -1,0 +1,71 @@
+.invisible {
+  /* Display and visibility */
+  visibility: hidden;
+}
+
+.multi-selection {
+  /* Flexbox */
+  justify-content: flex-start;
+
+  /* Box model */
+  width: 100%;
+}
+
+.multi-selection-en-tete {
+  margin-bottom: 1em;
+}
+
+.multi-selection-titre {
+  /* Box model */
+  margin: 0;
+
+  /* Typography */
+  font-weight: normal;
+  color: black;
+}
+
+.cocher-decocher-tout {
+  /* Flexbox */
+  display: flex;
+  justify-content: flex-start;
+
+  /* Box model */
+  width: 100%;
+}
+
+.cocher-decocher-tout span {
+  /* Background */
+  cursor: pointer;
+
+  /* Typography */
+  font-weight: 500;
+  color: var(--teal-secondary);
+}
+
+.cocher-decocher-tout span:first-child {
+  margin-right: 1em;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+
+  height: fit-content;
+  max-height: 23vh;
+  overflow-y: auto;
+}
+
+mat-checkbox {
+  /* Typography */
+  color: black;
+}
+
+hr {
+  /* Box model */
+  margin: 1em 0;
+  border-top: none;
+  border-right: none;
+  border-bottom: 0.0625em solid var(--container-border);
+  border-left: none;
+  width: 100%;
+}

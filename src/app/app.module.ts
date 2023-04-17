@@ -9,14 +9,11 @@ import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
 
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {NotFoundComponent} from './pages/not-found/not-found.component';
-import {EndCallDiagramComponent} from './pages/end-call-diagram/end-call-diagram.component';
-import {StatusCallDiagramComponent} from './pages/status-call-diagram/status-call-diagram.component';
-import {MotiveEndCallDiagramComponent} from './pages/motive-end-call-diagram/motive-end-call-diagram.component';
+import {DiagrammeStatutAppelComponent} from './pages/diagramme-statut-appel/diagramme-statut-appel.component';
+import {DiagrammeDissuasionAppelComponent} from './pages/diagramme-dissuasion-appel/diagramme-dissuasion-appel.component';
+
+import {DiagrammeMotifFinAppelComponent} from './pages/diagramme-motif-fin-appel/diagramme-motif-fin-appel.component';
 import {HomeComponent} from './pages/home/home.component';
-import {TotalCallDiagramComponent} from './pages/total-call-diagram/total-call-diagram.component';
-import {PartnairCallComponent} from './pages/partnair-call/partnair-call.component';
-import {CallService} from './service/call.service';
 import {CookieService} from 'ngx-cookie-service';
 import {HttpClientModule} from '@angular/common/http';
 import {MatCheckboxModule} from "@angular/material/checkbox";
@@ -24,44 +21,63 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatNativeDateModule} from "@angular/material/core";
-import {UploadService} from "./service/upload.service";
-import {DropdownComponent} from "./components/dropdown/dropdown.component";
-import {CaretUpComponent} from "./components/icons/carets/caret_up.component";
-import {CaretDownComponent} from "./components/icons/carets/caret_down.component";
-import {SearchIconComponent} from "./components/icons/search-icon.component";
-import {MultiSelectFilterComponent} from "./components/multi-select-filter/multi-select-filter.component";
-import {DateTimeFilterComponent} from "./components/date-time-filter/date-time-filter.component";
-import {UploadOverlayComponent} from "./components/upload-overlay/upload-overlay.component";
+import {MenuDeroulantComponent} from "./components/menu-deroulant/menu-deroulant.component";
+import {CaretUpComponent} from "./components/icons/carets/caret_haut.component";
+import {CaretDownComponent} from "./components/icons/carets/caret_bas.component";
+import {RechercheComponent} from "./components/icons/recherche.component";
+import {FiltreMultiSelectionComponent} from "./components/filtre-multi-selection/filtre-multi-selection.component";
+import {FiltreDateHeureComponent} from "./components/filtre-date-heure/filtre-date-heure.component";
+import {OverlayUploadComponent} from "./components/overlay-upload/overlay-upload.component";
 import {ClickOutsideDirective} from "./directives/clicked-outside/clicked-outside.directive";
-import {NonOpenFilterComponent} from "./components/non-open-filter/non-open-filter.component";
-import {SearchFieldComponent} from "./components/search-field/search-field.component";
+import {FiltreHorairesNonOuvresComponent} from "./components/filtre-horaires-non-ouvres/filtre-horaires-non-ouvres.component";
+import {ChampRechercheComponent} from "./components/champ-recherche/champ-recherche.component";
 import {MatListModule} from "@angular/material/list";
+import {MatButtonModule} from "@angular/material/button";
+import {PostService} from "./service/post.service";
+import {CarteIndicateurComponent} from "./components/carte-indicateur/carte-indicateur.component";
+import {NotFoundComponent} from "./pages/not-found/not-found.component";
+import {
+  DiagrammeRepartitionAppelComponent
+} from "./pages/diagramme-repartition-appel/diagramme-repartition-appel.component";
+import {FiltreComponent} from "./components/filtre/filtre.component";
+import {DiagrammeCartesComponent} from "./pages/indicateurs/diagramme-cartes/diagramme-cartes.component";
+import { DiagrammeAttenteBulleComponent } from './pages/diagramme-attente-bulle/diagramme-attente-bulle.component';
+import { DiagrammeNombreAppelComponent } from './pages/diagramme-nombre-appel/diagramme-nombre-appel.component';
+import { DiagrammeComAgentComponent } from './pages/diagramme-com-agent/diagramme-com-agent.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
-    EndCallDiagramComponent,
-    StatusCallDiagramComponent,
-    MotiveEndCallDiagramComponent,
+    DiagrammeStatutAppelComponent,
+    DiagrammeDissuasionAppelComponent,
+    DiagrammeMotifFinAppelComponent,
     HomeComponent,
-    TotalCallDiagramComponent,
-    PartnairCallComponent,
+    DiagrammeRepartitionAppelComponent,
 
-    DropdownComponent,
+    MenuDeroulantComponent,
+
     CaretUpComponent,
     CaretDownComponent,
+    RechercheComponent,
 
-    UploadOverlayComponent,
-    SearchIconComponent,
+    OverlayUploadComponent,
 
-    MultiSelectFilterComponent,
-    DateTimeFilterComponent,
+    CarteIndicateurComponent,
+    FiltreComponent,
 
-    SearchFieldComponent,
+    FiltreMultiSelectionComponent,
+    FiltreDateHeureComponent,
+    FiltreHorairesNonOuvresComponent,
+
+    ChampRechercheComponent,
+
+    DiagrammeCartesComponent,
 
     ClickOutsideDirective,
-    NonOpenFilterComponent,
+      DiagrammeAttenteBulleComponent,
+      DiagrammeNombreAppelComponent,
+      DiagrammeComAgentComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,11 +96,11 @@ import {MatListModule} from "@angular/material/list";
     MatSelectModule,
     NgxMaterialTimepickerModule,
     MatListModule,
+    MatButtonModule,
   ],
   providers: [
-    CallService,
-    CookieService,
-    UploadService
+    PostService,
+    CookieService
   ],
   bootstrap: [AppComponent]
 })
