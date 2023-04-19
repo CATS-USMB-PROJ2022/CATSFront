@@ -68,6 +68,7 @@ export class PostService {
   public postDateRepartitionAppel(): Observable<DateRepartitionAppel> { return this.Http.post<DateRepartitionAppel>(`${this.localUrl}/AppelDateRepartition`, this.getPost()); }
 
   public postComAgent(): Observable<ComAgent>{ return this.Http.post<ComAgent>(`${this.localUrl}/ComAgent`, this.getPost()); }
+  
   public postUploadFichiers(fichiers: File[]): Observable<any> {
     console.table(fichiers);
 
