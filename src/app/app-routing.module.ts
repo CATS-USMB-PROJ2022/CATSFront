@@ -11,6 +11,9 @@ import {
 import {DiagrammeAttenteBulleComponent} from "./pages/diagramme-attente-bulle/diagramme-attente-bulle.component";
 import {DiagrammeNombreAppelComponent} from "./pages/diagramme-nombre-appel/diagramme-nombre-appel.component";
 import {DiagrammeComAgentComponent} from "./pages/diagramme-com-agent/diagramme-com-agent.component";
+import {
+  DiagrammeRepartitionAbdAppelComponent
+} from "./pages/diagramme-repartition-abd-appel/diagramme-repartition-abd-appel.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -21,6 +24,7 @@ const routes: Routes = [
   {path: 'attente_probleme', component: DiagrammeAttenteBulleComponent},
   {path: 'date_repartition_appel', component: DiagrammeNombreAppelComponent},
   {path: 'com_agent', component: DiagrammeComAgentComponent},
+  {path: 'abandon_repartition_appel', component: DiagrammeRepartitionAbdAppelComponent},
   {path: '**', component: NotFoundComponent}
 ];
 
