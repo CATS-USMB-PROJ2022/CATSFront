@@ -71,6 +71,7 @@ export class PostService {
   public postComAgent(): Observable<ComAgent>{ return this.Http.post<ComAgent>(`${this.localUrl}/ComAgent`, this.getPost()); }
 
   public postRepartitionAbandonAppel(): Observable<RepartitionAbandonAppel>{ return this.Http.post<RepartitionAbandonAppel>(`${this.localUrl}/AppelAbandonRepartition`, this.getPost()); }
+
   public postUploadFichiers(fichiers: File[]): Observable<any> {
     console.table(fichiers);
 

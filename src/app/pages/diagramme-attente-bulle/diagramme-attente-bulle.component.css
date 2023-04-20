@@ -11,10 +11,15 @@
 
 .diagramme h1 {
   /* Box model */
-  margin: 0.5em 0;
+  margin: 0.5em 0 0.1em;
 
   /* Typography */
   text-align: center;
+}
+
+.diagramme h2 {
+  text-align: center;
+  font-weight: 400;
 }
 
 .diagramme .chart {

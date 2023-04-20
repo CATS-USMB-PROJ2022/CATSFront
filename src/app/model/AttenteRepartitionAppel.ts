@@ -1,4 +1,5 @@
 export interface AttenteRepartitionAppel {
-    labels: string[];
-    values: number[][];
+  labels: string[];
+  values: number[][];
+  attenteMoyenneAvantAbandon: number;
 }
