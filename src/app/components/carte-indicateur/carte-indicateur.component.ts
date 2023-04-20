@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ChartData} from "chart.js";
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 @Component({
   selector: 'carte-indicateur[typeCarte][titre]',
@@ -25,12 +26,15 @@ export class CarteIndicateurComponent {
   @Output() onModificationSeuil = new EventEmitter<number>();
   @Output() onReinitialisationSeuil = new EventEmitter();
 
+  ChartPlugins = [ChartDataLabels];
+
   options = {
     responsive: true,
     plugins: {
       legend: {
         display: false,
       },
+
     }
   }
 

@@ -1,5 +1,6 @@
 import {Component, OnChanges, OnDestroy, OnInit} from '@angular/core';
 import {ChartConfiguration, ChartData, ChartType} from "chart.js";
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 import {Subscription} from "rxjs";
 import {CaisseRegionaleService} from "../../service/caisse-regionale.service";
 import {ValeursService} from "../../service/valeurs.service";
@@ -16,6 +17,8 @@ export class DiagrammeAttenteBulleComponent implements OnInit, OnDestroy, OnChan
   public AttenteRepartition: number[][];
   public dataObservable: Subscription;
   public valeurObservable: Subscription;
+
+  public bubbleChartPlugins = [ChartDataLabels];
   public bubbleChartType: ChartType = 'bubble';
   public bubbleChartData: ChartData<'bubble'> = {
     labels: [],
@@ -30,6 +33,7 @@ export class DiagrammeAttenteBulleComponent implements OnInit, OnDestroy, OnChan
   public bubbleChartOptions: ChartConfiguration['options'] = {
     responsive: true,
     maintainAspectRatio: false,
+    clip: 10,
     scales: {
       x: {
         min: 0,
@@ -50,15 +54,33 @@ export class DiagrammeAttenteBulleComponent implements OnInit, OnDestroy, OnChan
 
     },
     plugins: {
+      datalabels: {
+        color: 'black',
+        font: {
+          weight: 'bold',
+          size: 14,
+        },
+      },
       title: {
         display: true,
         text: "Taille de la bulle : nombre d'appels debordés"
       },
       legend: {
         display: false
-      },
-
+      }
     },
+    elements: {
+      point: {
+        backgroundColor: getRandomColor,
+        radius: function(context) {
+          var value = context.dataset.data[context.dataIndex];
+          var size = context.chart.width;
+          // @ts-ignore
+          var base = Math.abs(value.v) / 100;
+          return (size / 24) * base;
+        }
+      }
+    }
   }
 
   constructor(private data: CaisseRegionaleService, private value: ValeursService, private PostService: PostService) {
@@ -67,6 +89,7 @@ export class DiagrammeAttenteBulleComponent implements OnInit, OnDestroy, OnChan
 
     this.dataObservable = this.value.current.subscribe(_ => this.getData());
     this.valeurObservable = this.data.current.subscribe(_ => this.getData());
+
   }
 
   ngOnInit(): void {
@@ -104,4 +127,11 @@ export class DiagrammeAttenteBulleComponent implements OnInit, OnDestroy, OnChan
       }
     )
   }
+}
+
+function getRandomColor() {
+  const r = Math.floor(Math.random() * 256);
+  const g = Math.floor(Math.random() * 256);
+  const b = Math.floor(Math.random() * 256);
+  return `rgba(${r},${g},${b},0.5)`;
 }
