@@ -4,6 +4,7 @@ import {ChartConfiguration} from "chart.js";
 import {CaisseRegionaleService} from "../../service/caisse-regionale.service";
 import {ValeursService} from "../../service/valeurs.service";
 import {PostService} from "../../service/post.service";
+import ChartDataLabels from "chartjs-plugin-datalabels";
 
 @Component({
   selector: 'app-diagramme-repartition-abd-appel',
@@ -25,9 +26,14 @@ export class DiagrammeRepartitionAbdAppelComponent implements OnInit, OnDestroy,
       {data: [0], label: "Nombre d'abandon"}]
   };
 
-  public BarChartOptions: ChartConfiguration['options'] = {
+  public BarChartOptions: any = {
     responsive: true,
     maintainAspectRatio: false,
+    plugins: {
+      datalabels: {
+        show: false
+      }
+    }
   }
 
   constructor(private data: CaisseRegionaleService, private value: ValeursService, private PostService: PostService) {
