@@ -58,7 +58,7 @@ export class DiagrammeAttenteBulleComponent implements OnInit, OnDestroy, OnChan
         color: 'black',
         font: {
           weight: 'bold',
-          size: 14,
+          size: 16
         },
       },
       title: {
@@ -73,10 +73,10 @@ export class DiagrammeAttenteBulleComponent implements OnInit, OnDestroy, OnChan
       point: {
         backgroundColor: getRandomColor,
         radius: function(context) {
-          var value = context.dataset.data[context.dataIndex];
-          var size = context.chart.width;
+          const value = context.dataset.data[context.dataIndex];
+          const size = context.chart.width;
           // @ts-ignore
-          var base = Math.abs(value.v) / 100;
+          const base = Math.abs(value.v) / 100;
           return (size / 24) * base;
         }
       }

@@ -47,6 +47,15 @@ export class DiagrammeRepartitionAbdAppelComponent implements OnInit, OnDestroy,
 
   ngOnInit(): void {
     this.getData();
+    this.BarChartOptions = {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        datalabels: {
+          show: false
+        }
+      }
+    }
   }
 
   ngOnDestroy(): void{
@@ -60,6 +69,15 @@ export class DiagrammeRepartitionAbdAppelComponent implements OnInit, OnDestroy,
       datasets: [
         {data: this.nbAppel, label: "Nombre d'appel"},
         {data: this.nbAbd, label: "Nombre d'abandon"}]
+    }
+    this.BarChartOptions = {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        datalabels: {
+          show: false
+        }
+      }
     }
   }
 
