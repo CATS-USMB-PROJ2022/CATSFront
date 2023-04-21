@@ -34,7 +34,9 @@ export class CarteIndicateurComponent {
       legend: {
         display: false,
       },
-
+      datalabels: {
+        display: false,
+      },
     }
   }
 

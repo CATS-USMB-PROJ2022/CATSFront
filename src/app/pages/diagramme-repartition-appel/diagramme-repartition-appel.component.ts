@@ -51,7 +51,7 @@ export class DiagrammeRepartitionAppelComponent implements OnInit, OnChanges, On
     },
     plugins: {
       datalabels: {
-        show:false
+        display: false
       }
     }
   }
