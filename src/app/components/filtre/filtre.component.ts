@@ -1,7 +1,7 @@
 import {Component, Input} from "@angular/core";
 
 @Component({
-  selector: 'filtre[onReinitialisation][onConfirmation]',
+  selector: 'filtre[reinitialisation][confirmation]',
   templateUrl: './filtre.component.html',
   styleUrls: ['./filtre.component.css']
 })
@@ -9,6 +9,6 @@ export class FiltreComponent {
   /////////////////////////////////////////////////////////////////////////////////////////////////
   // Attributs ////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////
-  @Input() onReinitialisation: any = () => {};
-  @Input() onConfirmation: any = () => {};
+  @Input() public reinitialisation: any = () => {};
+  @Input() public confirmation: any = () => {};
 }

@@ -10,12 +10,6 @@ describe('DiagrammeCartesComponent', () => {
       declarations: [
         DiagrammeCartesComponent
       ],
-      providers: [
-        HttpClient,
-        {provide: 'globalUrl', useValue: 'http://localhost:8080/'},
-        HttpHandler,
-        {provide: 'globalUrl', useValue: 'http://localhost:8080/'}
-      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(DiagrammeCartesComponent);
