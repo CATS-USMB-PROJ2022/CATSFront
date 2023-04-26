@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DiagrammeMotifFinAppelComponent } from './diagramme-motif-fin-appel.component';
+import {HttpClient, HttpHandler} from "@angular/common/http";
 
 describe('MotiveEndCallDiagramComponent', () => {
   let component: DiagrammeMotifFinAppelComponent;
@@ -8,7 +9,13 @@ describe('MotiveEndCallDiagramComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DiagrammeMotifFinAppelComponent ]
+      declarations: [ DiagrammeMotifFinAppelComponent ],
+      providers: [
+        HttpClient,
+        {provide: 'globalUrl', useValue: 'http://localhost:8080/'},
+        HttpHandler,
+        {provide: 'globalUrl', useValue: 'http://localhost:8080/'},
+      ],
     })
     .compileComponents();
 

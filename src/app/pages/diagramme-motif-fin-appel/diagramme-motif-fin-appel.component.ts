@@ -3,7 +3,7 @@ import {ChartData} from "chart.js";
 import {CaisseRegionaleService} from "../../service/caisse-regionale.service";
 import {PostService} from "../../service/post.service";
 import {getCouleurs} from "../../../utils";
-import { ValeursService } from 'src/app/service/valeurs.service';
+import { ValeursService } from '../../service/valeurs.service';
 import { Subscription } from 'rxjs';
 
 @Component({
