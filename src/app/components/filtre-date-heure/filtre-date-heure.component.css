@@ -42,8 +42,7 @@
 .conteneur-heure {
   /* Flexbox */
   display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
+  justify-content: flex-start;
 
   /* Box model */
   width: 100%;
@@ -54,7 +53,9 @@
   display: flex;
 
   /* Box model */
+  margin-left: 1.25em;
   margin-bottom: 0.25em;
+  width: 45%;
   min-height: 2em;
   border-radius: 0.25em;
   padding: 0.375em;
@@ -66,7 +67,7 @@
 input {
   /* Box model */
   border: none;
-  max-width: 8em;
+  min-width: 4em;
 
   /* Background */
   background: none;
