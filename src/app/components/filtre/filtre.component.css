@@ -7,18 +7,13 @@
 
   /* Box model */
   border: 2px solid var(--container-border);
-  width: 17.75vw;
+  width: calc(20vw - 3em);
+  margin: 0 1.5em;
   height: fit-content;
   padding: 0 1.25em 1.25em 1.25em;
 
   /* Background */
   background-color: var(--container-fill);
-}
-
-@media screen and (max-width: 1600px) {
-  .conteneur-filtre {
-    width: 20em;
-  }
 }
 
 .conteneur-reset {

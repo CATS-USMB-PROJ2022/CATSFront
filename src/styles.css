@@ -19,10 +19,13 @@
   --container-border: var(--grey-128);
   --container-fill: #80b29f;
   --container-fill-hover: #a6c9bc;
+
+  box-sizing: border-box;
 }
 
 html, body {
   /* Box model */
+  width: 100%;
   height: 100%;
 }
 

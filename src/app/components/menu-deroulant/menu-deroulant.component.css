@@ -1,7 +1,7 @@
 .conteneur-menu-deroulant {
   /* Box model */
   width: 18.75em;
-  height: 2.5em;
+  height: 100%;
   padding: 0.3125em 0;
 }
 
@@ -28,7 +28,7 @@
   -webkit-box-shadow: inset 0 0 0.125em 0 black;
   box-shadow: inset 0 0 0.125em 0 black;
   border-radius: 0.25em;
-  height: 1.625em;
+  height: 4vh;
   padding: 0.4375em 0.5em;
 
   /* Background */
