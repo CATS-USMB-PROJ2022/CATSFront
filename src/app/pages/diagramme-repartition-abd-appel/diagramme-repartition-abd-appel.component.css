@@ -1,0 +1,56 @@
+.button-container {
+  /* Box model */
+  margin: 1em 0 1em 0;
+  display: flex;
+  justify-content: space-around;
+
+}
+
+.button {
+  /* Box model */
+  /* Box model */
+  margin-top: 1.3em;
+  border: none;
+  padding: 1em;
+
+  /* Background */
+  background-color: var(--green-primary);
+  cursor: pointer;
+
+  /* Typography */
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+  text-decoration: none;
+}
+
+.button:hover {
+  filter: brightness(125%);
+}
+
+.diagramme {
+  /* Flexbox */
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  /* Box model */
+  margin: 5% 5% 5%;
+}
+
+.diagramme h1 {
+  /* Box model */
+  margin: 0.5em 0;
+
+  /* Typography */
+  text-align: center;
+}
+
+.diagramme .chart {
+  /* Box model */
+  width: 60em;
+  padding: 0 2em;
+  min-height: 45em;
+}

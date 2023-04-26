@@ -36,7 +36,9 @@
           <canvas baseChart
                   [data]="data"
                   [type]="'pie'"
-                  [options]="options">
+                  [options]="options"
+                  [plugins]="ChartPlugins"
+          >
           </canvas>
         </div>
         <div class="labels" *ngIf="labels">

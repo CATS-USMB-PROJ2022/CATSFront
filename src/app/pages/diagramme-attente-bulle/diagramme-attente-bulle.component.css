@@ -1,0 +1,30 @@
+.diagramme {
+  /* Flexbox */
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  /* Box model */
+  margin: 5% 5% 5%;
+}
+
+.diagramme h1 {
+  /* Box model */
+  margin: 0.5em 0 0.1em;
+
+  /* Typography */
+  text-align: center;
+}
+
+.diagramme h2 {
+  text-align: center;
+  font-weight: 400;
+}
+
+.diagramme .chart {
+  /* Box model */
+  width: 60em;
+  padding: 0 2em;
+  min-height: 45em;
+}

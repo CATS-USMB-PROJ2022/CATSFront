@@ -17,7 +17,7 @@ export class DiagrammeMotifFinAppelComponent implements OnInit, OnChanges, OnDes
   /////////////////////////////////////////////////////////////////////////////////////////////////
   public label: string[];
   public motifsFinAppel: number[];
-  
+
   public dataObservable: Subscription;
   public valeurObservable: Subscription;
 
@@ -27,6 +27,14 @@ export class DiagrammeMotifFinAppelComponent implements OnInit, OnChanges, OnDes
       data: [0]
     } ]
   };
+
+  public pieChartOptions = {
+    plugins: {
+      datalabels: {
+        show:false
+      }
+    }
+  }
 
   /////////////////////////////////////////////////////////////////////////////////////////////////
   // Constructeurs ////////////////////////////////////////////////////////////////////////////////

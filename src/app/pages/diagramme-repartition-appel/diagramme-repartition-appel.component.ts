@@ -48,6 +48,11 @@ export class DiagrammeRepartitionAppelComponent implements OnInit, OnChanges, On
         max: 100,
         stacked: true
       }
+    },
+    plugins: {
+      datalabels: {
+        display: false
+      }
     }
   }
 
@@ -58,7 +63,7 @@ export class DiagrammeRepartitionAppelComponent implements OnInit, OnChanges, On
     this.labels = [""];
     this.repartitionAppel = [[0, 0, 0]];
 
-    
+
     this.valeurObservable=this.value.current.subscribe(_ => this.getData());
     this.dataObservable=this.data.current.subscribe(_ => this.getData());
   }

@@ -8,6 +8,10 @@ import {Appel} from "../model/appel";
 import {StockageCookieService} from "./stockage-cookie.service";
 import {RepartitionAppel} from "../model/repartition-appel";
 import {DissuasionAppel} from "../model/dissuasion-appel";
+import {AttenteRepartitionAppel} from "../model/AttenteRepartitionAppel";
+import {DateRepartitionAppel} from "../model/date-repartition-appel";
+import {ComAgent} from "../model/com-agent";
+import {RepartitionAbandonAppel} from "../model/RepartitionAbandonAppel";
 
 @Injectable({
   providedIn: 'root'
@@ -59,6 +63,14 @@ export class PostService {
   public postRepartitionAppel(): Observable<RepartitionAppel> { return this.Http.post<RepartitionAppel>(`${this.localUrl}/AppelRepartition`, this.getPost()); }
 
   public postDissuasionAppel(): Observable<DissuasionAppel> { return this.Http.post<DissuasionAppel>(`${this.localUrl}/AppelCauseDissuasion`, this.getPost()); }
+
+  public postAttenteRepartitionAppel(): Observable<AttenteRepartitionAppel> { return this.Http.post<AttenteRepartitionAppel>(`${this.localUrl}/AppelAttente`, this.getPost()); }
+
+  public postDateRepartitionAppel(): Observable<DateRepartitionAppel> { return this.Http.post<DateRepartitionAppel>(`${this.localUrl}/AppelDateRepartition`, this.getPost()); }
+
+  public postComAgent(): Observable<ComAgent>{ return this.Http.post<ComAgent>(`${this.localUrl}/ComAgent`, this.getPost()); }
+
+  public postRepartitionAbandonAppel(): Observable<RepartitionAbandonAppel>{ return this.Http.post<RepartitionAbandonAppel>(`${this.localUrl}/AppelAbandonRepartition`, this.getPost()); }
 
   public postUploadFichiers(fichiers: File[]): Observable<any> {
     console.table(fichiers);

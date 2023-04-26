@@ -102,7 +102,7 @@ export class HomeComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnDestroy(): void {
-      
+
    this.dataObservable.unsubscribe();
    this.valeurObservable.unsubscribe();
   }
