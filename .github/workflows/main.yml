@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - master
+      - main
       - develop
 name: Test Workflow
 jobs:
