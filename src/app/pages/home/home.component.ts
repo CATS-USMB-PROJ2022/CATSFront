@@ -128,7 +128,7 @@ export class HomeComponent implements OnInit, OnChanges, OnDestroy {
       this.nbSupSeuil = data.nbSupSeuil;
       this.nbTransfert=data.nbTransfert;
       this.nbTransfertOk=data.nbTransfertOk;
-      this.moyenneTransfertTentatives=data.moyenneTransfertTentatives;
+      this.moyenneTransfertTentatives=Number(data.moyenneTransfertTentatives.toFixed(2));
 
       this.reinitialiserSeuil();
 
@@ -153,7 +153,7 @@ export class HomeComponent implements OnInit, OnChanges, OnDestroy {
     this.nbSupSeuil = value.nbSupSeuil;
     this.nbTransfert = value.nbTransfert;
     this.nbTransfertOk = value.nbTransfertOk;
-    this.moyenneTransfertTentatives = value.moyenneTransfertTentatives;
+    this.moyenneTransfertTentatives = Number(value.moyenneTransfertTentatives.toFixed(2));
 
     this.reinitialiserSeuil();
 
