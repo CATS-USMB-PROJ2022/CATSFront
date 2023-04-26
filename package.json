@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test --watch=true",
+    "test": "jest",
     "lint": "ng lint"
   },
   "private": true,
@@ -52,16 +52,23 @@
     "@types/d3-dispatch": "^3.0.1",
     "@types/d3-drag": "^3.0.1",
     "@types/d3-timer": "^3.0.0",
-    "@types/jasmine": "~4.0.0",
+    "@types/jest": "^29.5.0",
     "@typescript-eslint/eslint-plugin": "5.37.0",
     "@typescript-eslint/parser": "5.37.0",
     "eslint": "^8.23.1",
-    "jasmine-core": "~4.3.0",
-    "karma": "~6.4.0",
-    "karma-chrome-launcher": "~3.1.0",
-    "karma-coverage": "~2.2.0",
-    "karma-jasmine": "~5.1.0",
-    "karma-jasmine-html-reporter": "~2.0.0",
+    "jest": "^29.5.0",
+    "jest-preset-angular": "^13.0.1",
     "typescript": "~4.7.2"
+  },
+  "jest": {
+    "preset": "jest-preset-angular",
+    "testEnvironment": "jsdom",
+    "setupFilesAfterEnv": ["<rootDir>/setup-jest.ts"],
+    "collectCoverageFrom": [
+      "src/app/**/*.{js,ts,tsx}",
+      "!**/node_modules/**",
+      "!**/vendor/**"
+    ],
+    "collectCoverage": true
   }
 }

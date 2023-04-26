@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DiagrammeAttenteBulleComponent } from './diagramme-attente-bulle.component';
+import {HttpClient, HttpHandler} from "@angular/common/http";
 
 describe('DiagrammeAttenteBulleComponent', () => {
   let component: DiagrammeAttenteBulleComponent;
@@ -8,7 +9,13 @@ describe('DiagrammeAttenteBulleComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DiagrammeAttenteBulleComponent ]
+      declarations: [ DiagrammeAttenteBulleComponent ],
+      providers: [
+        HttpClient,
+        {provide: 'globalUrl', useValue: 'http://localhost:8080/'},
+        HttpHandler,
+        {provide: 'globalUrl', useValue: 'http://localhost:8080/'},
+      ],
     })
     .compileComponents();
 
