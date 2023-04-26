@@ -69,6 +69,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+}
+
+@media screen and (height > 100vh) {
+  .colonne-home {
+    justify-content: flex-start;
+  }
+
+  .colonne-home *:first-child {
+    margin-bottom: 0.75em;
+  }
 }
 
 .corps {
@@ -76,8 +87,6 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-
-  padding-bottom: 1.5em;
 
   /* Background */
   background-color: white;

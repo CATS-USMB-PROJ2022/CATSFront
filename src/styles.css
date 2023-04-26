@@ -47,3 +47,13 @@ p {
   /* Box model */
   margin: 0;
 }
+
+hr {
+  /* Box model */
+  margin: 1em 0;
+  border-top: none;
+  border-right: none;
+  border-bottom: 0.0625em solid var(--container-border);
+  border-left: none;
+  width: 100%;
+}

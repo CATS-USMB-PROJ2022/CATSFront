@@ -1,3 +1,19 @@
+.date-heure-en-tete {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.date-heure-titre {
+  /* Box model */
+  margin: 0;
+
+  /* Typography */
+  font-weight: normal;
+  color: black;
+}
+
 .conteneur-date {
   /* Flexbox */
   display: flex;
