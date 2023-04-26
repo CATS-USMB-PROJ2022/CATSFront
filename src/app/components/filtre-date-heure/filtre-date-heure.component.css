@@ -42,7 +42,7 @@
 .conteneur-heure {
   /* Flexbox */
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
 
   /* Box model */
   width: 100%;
@@ -53,7 +53,6 @@
   display: flex;
 
   /* Box model */
-  margin-left: 1.25em;
   margin-bottom: 0.25em;
   width: 45%;
   min-height: 2em;
