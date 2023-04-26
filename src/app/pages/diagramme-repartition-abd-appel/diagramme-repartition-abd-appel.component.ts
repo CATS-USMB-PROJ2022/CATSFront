@@ -1,10 +1,8 @@
 import {Component, OnChanges, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
-import {ChartConfiguration} from "chart.js";
 import {CaisseRegionaleService} from "../../service/caisse-regionale.service";
 import {ValeursService} from "../../service/valeurs.service";
 import {PostService} from "../../service/post.service";
-import ChartDataLabels from "chartjs-plugin-datalabels";
 
 @Component({
   selector: 'app-diagramme-repartition-abd-appel',

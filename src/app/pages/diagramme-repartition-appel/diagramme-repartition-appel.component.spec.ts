@@ -1,7 +1,6 @@
 import {ComponentFixture, TestBed} from "@angular/core/testing";
 import {DiagrammeRepartitionAppelComponent} from "./diagramme-repartition-appel.component";
 import {HttpClient, HttpHandler} from "@angular/common/http";
-import {DiagrammeMotifFinAppelComponent} from "../diagramme-motif-fin-appel/diagramme-motif-fin-appel.component";
 
 describe('DiagrammeRepartitionAppelComponent', () => {
   let component: DiagrammeRepartitionAppelComponent;
