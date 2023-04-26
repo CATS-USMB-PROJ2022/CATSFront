@@ -1,4 +1,4 @@
-<filtre [onReinitialisation]="reinitialiser" [onConfirmation]="appliquer">
+<filtre [reinitialisation]="reinitialiser" [confirmation]="appliquer">
   <div class="conteneur-date">
     <div class="conteneur-input input-date">
       <mat-calendar [selected]="dates" (selectedChange)="changementDate($event)"></mat-calendar>
