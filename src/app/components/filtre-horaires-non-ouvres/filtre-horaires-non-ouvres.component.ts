@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {ValeursService} from "../../service/valeurs.service";
 import {PostService} from "../../service/post.service";
 import {StockageCookieService} from "../../service/stockage-cookie.service";

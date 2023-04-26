@@ -1,8 +1,10 @@
-import { TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 import { OverlayUploadComponent } from './overlay-upload.component';
 import {HttpClient, HttpHandler} from "@angular/common/http";
 
 describe('OverlayUploadComponent', () => {
+  let component: OverlayUploadComponent;
+  let fixture: ComponentFixture<OverlayUploadComponent>;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       providers: [
@@ -15,11 +17,13 @@ describe('OverlayUploadComponent', () => {
         OverlayUploadComponent
       ],
     }).compileComponents();
+
+    fixture = TestBed.createComponent(OverlayUploadComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
   it('should create the component', () => {
-    const fixture = TestBed.createComponent(OverlayUploadComponent);
-    const comp = fixture.componentInstance;
-    expect(comp).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 });
