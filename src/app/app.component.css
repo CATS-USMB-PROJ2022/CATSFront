@@ -50,29 +50,35 @@
 /*************************************************************************************************/
 .conteneur-home {
   /* Display and visibility */
-  display: flex;
+  display: grid;
 
-  justify-content: space-between;
+  grid-template-columns: repeat(5, 20vw);
+  grid-template-areas:
+    "a b b b c"
+    "a b b b c"
+    "a b b b d";
 
   width: 100vw;
+  justify-items: center;
 }
 
-.colonne-home {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  width: 20vw;
+.filtre-gauche {
+  grid-area: a;
 }
 
 .corps {
-  /* Flexbox */
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-
-  width: 60vw;
+  grid-area: b;
 
   /* Background */
   background-color: white;
+}
+
+.filtre-droite-haut {
+  grid-area: c;
+  align-self: start;
+}
+
+.filtre-droite-bas {
+  grid-area: d;
+  align-self: end;
 }

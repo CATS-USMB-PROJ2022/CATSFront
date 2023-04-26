@@ -7,8 +7,8 @@
 
   /* Box model */
   border: 2px solid var(--container-border);
-  width: calc(20vw - 3em);
-  margin: 0 1.5em;
+  width: 20vw;
+  min-height: 100%;
   height: fit-content;
   padding: 0 1.25em 1.25em 1.25em;
 

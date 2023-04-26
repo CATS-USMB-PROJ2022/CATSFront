@@ -18,7 +18,7 @@ h1 {
   border: 0.0625em solid var(--grey-238);
   border-radius: 0.625em;
   width: calc(20vw - 1.3em);
-  height: calc(29vh - 1.3em);
+  height: calc(30vh - 1.3em);
   padding: 2vh 1vw;
 
   /* Background */
