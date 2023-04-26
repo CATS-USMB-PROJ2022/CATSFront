@@ -7,13 +7,13 @@
     </div>
 
     <div class="cartes">
-      <a class="carte carte-large" [routerLink]="lienParent">
+      <a class="carte carte-large" [ngClass]="{ lien: lienParent !== racine }" [routerLink]="lienParent">
         <h2>Vue d'ensemble</h2>
         <h1>{{getTotalAppels()}}</h1>
       </a>
 
       <div class="indicateurs">
-        <a class="carte" *ngFor="let appel of getAppelPaires()" [routerLink]="getLienLabel(appel.label)">
+        <a class="carte" [ngClass]="{ lien: getLienLabel(appel.label) !== racine }" *ngFor="let appel of getAppelPaires()" [routerLink]="getLienLabel(appel.label)">
           <h2>{{appel.label}}</h2>
           <div class="corps-carte">
             <h1>{{appel.valeur}}</h1>

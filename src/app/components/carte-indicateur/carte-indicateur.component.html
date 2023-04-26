@@ -1,4 +1,4 @@
-<a class="carte" [routerLink]="routerLink" draggable="false">
+<a class="carte" [ngClass]="{ lien: routerLink !== '/' }" [routerLink]="routerLink" draggable="false">
   <div *ngIf="!seuil; then titreNormal else titreSeuil"></div>
 
   <ng-template #titreNormal><h2>{{titre}}</h2></ng-template>

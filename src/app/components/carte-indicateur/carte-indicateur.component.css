@@ -37,6 +37,12 @@ h1 {
   box-shadow: 0 0 0.75em 0 var(--teal-accent-transparent);
 }
 
+.carte.lien:hover {
+  /* Box model */
+  -webkit-box-shadow: 0 0 0.75em 0 var(--green-accent-transparent);
+  box-shadow: 0 0 0.75em 0 var(--green-accent-transparent);
+}
+
 .carte h2 {
   margin-top: 0.5em;
   height: 25%;

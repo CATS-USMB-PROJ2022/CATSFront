@@ -33,6 +33,9 @@ export class DiagrammeAttenteBulleComponent implements OnInit, OnDestroy, OnChan
   public bubbleChartOptions: ChartConfiguration['options'] = {
     responsive: true,
     maintainAspectRatio: false,
+    layout: {
+      autoPadding: false,
+    },
     clip: 10,
     scales: {
       x: {
