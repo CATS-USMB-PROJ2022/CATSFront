@@ -1,10 +1,16 @@
 <filtre [reinitialisation]="reinitialiser" [confirmation]="appliquer">
+  <div class="date-heure-en-tete">
+    <h2 class="date-heure-titre">Plage de dates</h2>
+  </div>
   <div class="conteneur-date">
     <div class="conteneur-input input-date">
       <mat-calendar [selected]="dates" (selectedChange)="changementDate($event)"></mat-calendar>
     </div>
   </div>
 
+  <div class="date-heure-en-tete">
+    <h2 class="date-heure-titre">Plage horaires</h2>
+  </div>
   <div class="conteneur-heure" [formGroup]="horaires">
     <div class="conteneur-input input-value">
       <input [placeholder]="placeholder_debut" formControlName="debut" [ngxTimepicker]="heure_debut" [format]="24" readonly>

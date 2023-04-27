@@ -128,6 +128,9 @@
   /* Box model */
   width: 0.1px;
   height: 0.1px;
+
+  /* Background */
+  cursor: pointer;
 }
 
 .input-upload + label {
@@ -162,11 +165,6 @@
 label {
   /* Box model */
   width: calc(100% - 2em);
-}
-
-.input-upload + label {
-  /* Background */
-  cursor: pointer;
 }
 
 .input-upload:focus + label,

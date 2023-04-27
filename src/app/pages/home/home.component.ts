@@ -27,8 +27,8 @@ export class HomeComponent implements OnInit, OnChanges, OnDestroy {
   public nbTransfertOk: number;
   public moyenneTransfertTentatives: number;
 
-  public labelsMotifFinAppel: string[];
-  public valeursMotifFinAppel: number[];
+  public labelsCauseFin: string[];
+  public valuesCauseFin: number[];
 
   public nbDebordement: number;
   public nbSupSeuil: number;
@@ -62,23 +62,23 @@ export class HomeComponent implements OnInit, OnChanges, OnDestroy {
     this.nombreAppels = 0;
     this.tempsCommunicationMoyen = 0;
     this.tempsAttenteMoyen = 0;
-    this.nbDebordement= 0;
+    this.nbDebordement = 0;
     this.pourcentage_en_communication = 0;
     this.pourcentage_autres = 0;
     this.seuil = 0.0;
     this.nbSupSeuil = 0;
 
-    this.nbTransfert=0;
-    this.nbTransfertOk=0;
-    this.moyenneTransfertTentatives=0.0;
+    this.nbTransfert = 0;
+    this.nbTransfertOk = 0;
+    this.moyenneTransfertTentatives = 0.0;
 
     this.labelsStatut = [""];
     this.valuesStatut = [0];
-    this.labelsMotifFinAppel = [""];
-    this.valeursMotifFinAppel = [0];
+    this.labelsCauseFin = [""];
+    this.valuesCauseFin = [0];
 
-    this.dataObservable=this.CaisseRegionale.current.subscribe(_ => this.initialiserDonneesAppels());
-    this.valeurObservable=this.Valeurs.current.subscribe(value => this.updateDonneesAppels(value));
+    this.dataObservable = this.CaisseRegionale.current.subscribe(_ => this.initialiserDonneesAppels());
+    this.valeurObservable = this.Valeurs.current.subscribe(value => this.updateDonneesAppels(value));
   }
 
   ngOnInit(): void { this.initialiserDonneesAppels(); }
@@ -93,24 +93,23 @@ export class HomeComponent implements OnInit, OnChanges, OnDestroy {
     };
 
     this.donneesDiagrammeMotifFinAppel = {
-      labels: this.labelsMotifFinAppel,
+      labels: this.labelsCauseFin,
       datasets: [{
-        data: this.valeursMotifFinAppel,
-        backgroundColor: getCouleurs(this.valeursMotifFinAppel.length),
+        data: this.valuesCauseFin,
+        backgroundColor: getCouleurs(this.valuesCauseFin.length),
       }]
     };
   }
 
   ngOnDestroy(): void {
-
-   this.dataObservable.unsubscribe();
-   this.valeurObservable.unsubscribe();
+    this.dataObservable.unsubscribe();
+    this.valeurObservable.unsubscribe();
   }
 
   /////////////////////////////////////////////////////////////////////////////////////////////////
   // Getters //////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////
-  private getSeuilCalls() { this.Post.postNombreAppels().subscribe(data => this.nbSupSeuil = data.nbSupSeuil) }
+  private getSeuilCalls() { this.Post.postSeuil().subscribe(data => this.nbSupSeuil = data.nbSupSeuil); }
 
   /////////////////////////////////////////////////////////////////////////////////////////////////
   // Méthodes /////////////////////////////////////////////////////////////////////////////////////
@@ -122,13 +121,13 @@ export class HomeComponent implements OnInit, OnChanges, OnDestroy {
       this.tempsAttenteMoyen = Math.round(data.moyenneTempsAttente);
       this.labelsStatut = data.labelsStatut;
       this.valuesStatut = data.valuesStatut;
-      this.labelsMotifFinAppel = data.labelsCauseFin;
-      this.valeursMotifFinAppel = data.valuesCauseFin;
+      this.labelsCauseFin = data.labelsCauseFin;
+      this.valuesCauseFin = data.valuesCauseFin;
       this.nbDebordement = data.nbDebordement;
-      this.nbSupSeuil = data.nbSupSeuil;
-      this.nbTransfert=data.nbTransfert;
-      this.nbTransfertOk=data.nbTransfertOk;
-      this.moyenneTransfertTentatives=data.moyenneTransfertTentatives;
+
+      this.nbTransfert = data.nbTransfert;
+      this.nbTransfertOk = data.nbTransfertOk;
+      this.moyenneTransfertTentatives = Number(data.moyenneTransfertTentatives.toFixed(2));
 
       this.reinitialiserSeuil();
 
@@ -138,22 +137,24 @@ export class HomeComponent implements OnInit, OnChanges, OnDestroy {
     });
   }
 
-  private updateDonneesAppels(value: { nombreAppels: number, tempsAttenteMoyen: number, tempsCommunicationMoyen: number,
+  private updateDonneesAppels(value: {
+    nombreAppels: number, tempsAttenteMoyen: number, tempsCommunicationMoyen: number,
     gtAppeleId: string[], gtAppele: string[], labelsStatut: string[], valuesStatut: number[],
-    labelsMotifFinAppel: string[], valeursMotifFinAppel: number[], nbDebordement: number, nbSupSeuil: number, nbTransfert: number, nbTransfertOk: number, moyenneTransfertTentatives: number }) {
+    labelsCauseFin: string[], valuesCauseFin: number[], nbDebordement: number, nbTransfert: number, nbTransfertOk: number, moyenneTransfertTentatives: number
+  }) {
       if(!(value))return ;
     this.nombreAppels = value.nombreAppels;
     this.tempsAttenteMoyen = Math.round(value.tempsAttenteMoyen);
     this.tempsCommunicationMoyen = Math.round(value.tempsCommunicationMoyen);
     this.labelsStatut = value.labelsStatut;
     this.valuesStatut = value.valuesStatut;
-    this.labelsMotifFinAppel = value.labelsMotifFinAppel;
-    this.valeursMotifFinAppel = value.valeursMotifFinAppel;
+    console.log(value.labelsCauseFin, value.valuesCauseFin);
+    this.labelsCauseFin = value.labelsCauseFin;
+    this.valuesCauseFin = value.valuesCauseFin;
     this.nbDebordement = value.nbDebordement;
-    this.nbSupSeuil = value.nbSupSeuil;
     this.nbTransfert = value.nbTransfert;
     this.nbTransfertOk = value.nbTransfertOk;
-    this.moyenneTransfertTentatives = value.moyenneTransfertTentatives;
+    this.moyenneTransfertTentatives = Number(value.moyenneTransfertTentatives.toFixed(2));
 
     this.reinitialiserSeuil();
 

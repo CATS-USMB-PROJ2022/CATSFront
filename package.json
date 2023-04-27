@@ -70,6 +70,7 @@
     ],
     "collectCoverageFrom": [
       "src/app/**/*.{js,ts,tsx}",
+      "!src/app/**/*.spec.ts",
       "!**/node_modules/**",
       "!**/vendor/**"
     ],

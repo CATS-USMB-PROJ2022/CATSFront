@@ -1,3 +1,19 @@
+.date-heure-en-tete {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.date-heure-titre {
+  /* Box model */
+  margin: 0;
+
+  /* Typography */
+  font-weight: normal;
+  color: black;
+}
+
 .conteneur-date {
   /* Flexbox */
   display: flex;
@@ -26,8 +42,7 @@
 .conteneur-heure {
   /* Flexbox */
   display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
+  justify-content: space-between;
 
   /* Box model */
   width: 100%;
@@ -39,6 +54,7 @@
 
   /* Box model */
   margin-bottom: 0.25em;
+  width: 45%;
   min-height: 2em;
   border-radius: 0.25em;
   padding: 0.375em;
@@ -50,7 +66,7 @@
 input {
   /* Box model */
   border: none;
-  max-width: 8em;
+  min-width: 4em;
 
   /* Background */
   background: none;

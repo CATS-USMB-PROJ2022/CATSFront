@@ -7,6 +7,7 @@
   --teal-secondary: #006166;
   --teal-accent: #009aa9;
 
+  --green-accent-transparent: rgba(0, 83, 51, 0.6);
   --teal-accent-transparent: rgba(0, 96, 120, 0.6);
 
   --red-primary: #de1300;
@@ -19,10 +20,13 @@
   --container-border: var(--grey-128);
   --container-fill: #80b29f;
   --container-fill-hover: #a6c9bc;
+
+  box-sizing: border-box;
 }
 
 html, body {
   /* Box model */
+  width: 100%;
   height: 100%;
 }
 
@@ -46,4 +50,14 @@ h1, h2, h3, h4, h5, h6 {
 p {
   /* Box model */
   margin: 0;
+}
+
+hr {
+  /* Box model */
+  margin: 1em 0;
+  border-top: none;
+  border-right: none;
+  border-bottom: 0.0625em solid var(--container-border);
+  border-left: none;
+  width: 100%;
 }

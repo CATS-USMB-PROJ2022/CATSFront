@@ -20,10 +20,9 @@ export class ValeursService {
     nbTransfert: 0,
     nbTransfertOk: 0,
     moyenneTransfertTentatives: 0,
-    labelsMotifFinAppel: [""],
-    valeursMotifFinAppel: [0],
-    nbDebordement: 0,
-    nbSupSeuil: 0
+    labelsCauseFin: [""],
+    valuesCauseFin: [0],
+    nbDebordement: 0
   });
 
   current = this.source.asObservable();
@@ -43,10 +42,9 @@ export class ValeursService {
       nbTransfert: data.nbTransfert,
       nbTransfertOk: data.nbTransfertOk,
       moyenneTransfertTentatives: data.moyenneTransfertTentatives,
-      labelsMotifFinAppel: data.labelsCauseFin,
-      valeursMotifFinAppel: data.valuesCauseFin,
-      nbDebordement: data.nbDebordement,
-      nbSupSeuil: data.nbSupSeuil
+      labelsCauseFin: data.labelsCauseFin,
+      valuesCauseFin: data.valuesCauseFin,
+      nbDebordement: data.nbDebordement
     });
   }
 }

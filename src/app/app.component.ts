@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {CaisseRegionaleService} from "./service/caisse-regionale.service";
 import {ValeursService} from "./service/valeurs.service";
 import {PostService} from "./service/post.service";
-import {Chart} from "chart.js";
 
 @Component({
   selector: 'app-root',

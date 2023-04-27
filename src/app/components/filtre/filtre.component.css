@@ -2,24 +2,18 @@
   /* Flexbox */
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
 
   /* Box model */
-  margin-bottom: 0.75em;
   border: 2px solid var(--container-border);
-  width: 25em;
+  width: 18vw;
+  min-height: 100%;
   height: fit-content;
   padding: 0 1.25em 1.25em 1.25em;
 
   /* Background */
   background-color: var(--container-fill);
-}
-
-@media screen and (max-width: 1600px) {
-  .conteneur-filtre {
-    width: 20em;
-  }
 }
 
 .conteneur-reset {
@@ -38,7 +32,7 @@
 
 .bouton-confirmer {
   /* Box model */
-  margin-top: 1.3em;
+  margin-top: 1em;
   border: none;
   min-width: fit-content;
   width: 50%;

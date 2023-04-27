@@ -1,9 +1,9 @@
 <div class="conteneur-filtre">
   <div class="conteneur-reset">
-    <span (click)="reinitialisation()">Réinitialiser</span>
+    <span id="button-reinit" (click)="reinitialisation()">Réinitialiser</span>
   </div>
 
   <ng-content></ng-content>
 
-  <button class="bouton-confirmer" (click)="confirmation()">Appliquer</button>
+  <button id="button-conf" class="bouton-confirmer" (click)="confirmation()">Appliquer</button>
 </div>

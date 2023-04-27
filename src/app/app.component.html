@@ -9,16 +9,12 @@
 </div>
 
 <div class="conteneur-home">
-  <div class="colonne-home">
-    <filtre-multi-selection></filtre-multi-selection>
-  </div>
+  <filtre-multi-selection class="filtre-gauche"></filtre-multi-selection>
 
-  <div class='corps'>
+  <div class="corps">
     <router-outlet></router-outlet>
   </div>
 
-  <div class="colonne-home">
-    <filtre-date-heure></filtre-date-heure>
-    <filtre-horaires-non-ouvres></filtre-horaires-non-ouvres>
-  </div>
+  <filtre-date-heure class="filtre-droite-haut"></filtre-date-heure>
+  <filtre-horaires-non-ouvres class="filtre-droite-bas"></filtre-horaires-non-ouvres>
 </div>

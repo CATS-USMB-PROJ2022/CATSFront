@@ -1,5 +1,4 @@
 import {ComponentFixture, TestBed} from "@angular/core/testing";
-import {HttpClient, HttpHandler} from "@angular/common/http";
 import {DiagrammeCartesComponent} from "./diagramme-cartes.component";
 
 describe('DiagrammeCartesComponent', () => {

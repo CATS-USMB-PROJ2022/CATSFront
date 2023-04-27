@@ -39,8 +39,8 @@ export class FiltreHorairesNonOuvresComponent {
   // Getters //////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////
   getValeurCoches(): number {
-    if (this.horaires_ouvres && !this.horaires_non_ouvres) return 0;
-    else if (!this.horaires_ouvres && this.horaires_non_ouvres) return 1;
+    if (this.horaires_ouvres && !this.horaires_non_ouvres) return 1;
+    else if (!this.horaires_ouvres && this.horaires_non_ouvres) return 0;
     else return -1;
   }
 
