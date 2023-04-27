@@ -4,6 +4,7 @@ import {CaisseRegionaleService} from "../../service/caisse-regionale.service";
 import {ValeursService} from "../../service/valeurs.service";
 import {PostService} from "../../service/post.service";
 import {ChartConfiguration, ChartType} from "chart.js";
+import {getCouleurs} from "../../../utils";
 
 interface Agent {
   agent: string;
@@ -24,14 +25,13 @@ export class DiagrammeComAgentComponent implements OnInit, OnChanges, OnDestroy 
   public valeurObservable: Subscription;
 
   public BubbleChartData: any = {
-    labels: [],
+    labels: [""],
     datasets: [],
   };
 
   public BubbleChartOptions: ChartConfiguration['options'] = {
     responsive: true,
     maintainAspectRatio: false,
-    backgroundColor: 'green',
     scales: {
       y: {
         min: 0,
@@ -41,10 +41,18 @@ export class DiagrammeComAgentComponent implements OnInit, OnChanges, OnDestroy 
         }
       }
     },
+    elements: {
+      point: {
+        radius: 5
+      }
+    },
     plugins: {
       legend: {
         display: false
       },
+      datalabels: {
+        display: false
+      }
     },
   }
   bubbleChartType:ChartType = 'bubble';
@@ -66,22 +74,25 @@ export class DiagrammeComAgentComponent implements OnInit, OnChanges, OnDestroy 
     //conversion des données pour le diagramme
     //TODO : trouver une solution plus propre
     let chartdata = [];
+
     for(const element of this.dataAgent) {
       let i = 0;
       let data = [];
+
       while(this.labels[i] != element.label && i < this.labels.length) {
         data.push(null);
         i++;
       }
+
       data.push(element.nbr);
+
       chartdata.push({
-        data: data,
-        label: element.agent
+        data: data
       });
     }
 
-    this.BubbleChartData.labels = this.labels;
     this.BubbleChartData.datasets = chartdata;
+    this.BubbleChartData.datasets.backgroundColor = getCouleurs(chartdata.length);
 
     this.BubbleChartOptions = {
       scales: {
@@ -89,24 +100,12 @@ export class DiagrammeComAgentComponent implements OnInit, OnChanges, OnDestroy 
           type: 'category',
           labels: this.labels,
         },
-        y: {
-          min: 0,
-          title: {
-            display: true,
-            text: "Nombre d'appels"
-          }
-        },
-      },
-      elements: {
-        point: {
-          radius: 5
-        }
       },
       plugins: {
         legend: {
           display: false
-        },
-      },
+        }
+      }
     }
   }
 
@@ -116,23 +115,20 @@ export class DiagrammeComAgentComponent implements OnInit, OnChanges, OnDestroy 
   }
 
   getData(){
-    //TODO : cleaner code
     this.PostService.postComAgent().subscribe((data: any) => {
       if(data == null) return;
-      let content = data;
-      this.agents = [];
-      this.labels = [];
+
+      this.agents = [""];
+      this.labels = [""];
       this.dataAgent = [];
-      for(const element of content) {
-        let stat: Agent;
-        stat = {
-          agent: element.agent,
-          nbr: element.nbr,
-          label: element.label
-        }
+
+      for (const element of data) {
+        const stat: Agent = element;
+
         this.dataAgent.push(stat);
-        if(!this.labels.includes(element.label)) {
-          this.labels.push(element.label);
+
+        if (!this.labels.includes(stat.label)) {
+          this.labels.push(stat.label);
         }
       }
       this.ngOnChanges()
