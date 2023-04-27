@@ -13,6 +13,7 @@ import {AttenteRepartitionAppel} from "../model/AttenteRepartitionAppel";
 import {DateRepartitionAppel} from "../model/date-repartition-appel";
 import {ComAgent} from "../model/com-agent";
 import {RepartitionAbandonAppel} from "../model/RepartitionAbandonAppel";
+import {CheminAppel} from "../model/chemin-appel";
 
 @Injectable({
   providedIn: 'root'
@@ -76,6 +77,8 @@ export class PostService {
   public postComAgent(): Observable<ComAgent>{ return this.Http.post<ComAgent>(this.getUrl('ComAgent'), this.getPost()); }
 
   public postRepartitionAbandonAppel(): Observable<RepartitionAbandonAppel>{ return this.Http.post<RepartitionAbandonAppel>(this.getUrl('AppelAbandonRepartition'), this.getPost()); }
+
+  public postCheminementAppel(): Observable<CheminAppel> { return this.Http.post<CheminAppel>(this.getUrl('Cheminement'), this.getPost()); }
 
   public postUploadFichiers(fichiers: File[]): Observable<any> {
     console.table(fichiers);
