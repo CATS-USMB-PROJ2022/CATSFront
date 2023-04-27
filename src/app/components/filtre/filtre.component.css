@@ -8,8 +8,8 @@
   /* Box model */
   border: 2px solid var(--container-border);
   width: 18vw;
-  min-height: 100%;
-  height: fit-content;
+  height: 100%;
+  max-height: fit-content;
   padding: 0 1.25em 1.25em 1.25em;
 
   /* Background */
@@ -43,6 +43,7 @@
   cursor: pointer;
 
   /* Typography */
+  font-size: 0.75em;
   font-weight: bold;
   text-align: center;
   text-transform: uppercase;

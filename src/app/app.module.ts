@@ -44,7 +44,6 @@ import {DiagrammeCartesComponent} from "./pages/indicateurs/diagramme-cartes/dia
 import { DiagrammeAttenteBulleComponent } from './pages/diagramme-attente-bulle/diagramme-attente-bulle.component';
 import { DiagrammeNombreAppelComponent } from './pages/diagramme-nombre-appel/diagramme-nombre-appel.component';
 import { DiagrammeComAgentComponent } from './pages/diagramme-com-agent/diagramme-com-agent.component';
-import { DiagrammeRepartitionAbdAppelComponent } from './pages/diagramme-repartition-abd-appel/diagramme-repartition-abd-appel.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +78,6 @@ import { DiagrammeRepartitionAbdAppelComponent } from './pages/diagramme-reparti
       DiagrammeAttenteBulleComponent,
       DiagrammeNombreAppelComponent,
       DiagrammeComAgentComponent,
-      DiagrammeRepartitionAbdAppelComponent,
   ],
   imports: [
     BrowserModule,
