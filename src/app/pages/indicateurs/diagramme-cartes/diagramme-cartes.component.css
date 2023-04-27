@@ -17,27 +17,25 @@
 }
 
 .corps {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
   align-items: center;
 }
 
 .diagramme {
   /* Box model */
-  width: 40em;
+  max-height: 100%;
   padding: 0 2em;
 }
 
 .cartes {
-  width: 34.3em;
+  width: 100%;
 }
 
 .indicateurs {
   display: grid;
   grid-template-columns: 50% 50%;
-
-  width: 34.3em;
 }
 
 .carte {
@@ -98,7 +96,6 @@
   align-items: center;
 
   /* Box model */
-  min-width: 30em;
   height: fit-content;
 }
 

@@ -69,7 +69,7 @@
 .corps {
   grid-area: b;
 
-  z-index: -1;
+  width: 60vw;
 
   /* Background */
   background-color: white;
