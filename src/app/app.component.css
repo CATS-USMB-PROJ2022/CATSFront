@@ -69,6 +69,8 @@
 .corps {
   grid-area: b;
 
+  z-index: -1;
+
   /* Background */
   background-color: white;
 }
