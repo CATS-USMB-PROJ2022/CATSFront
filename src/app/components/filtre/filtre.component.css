@@ -2,12 +2,12 @@
   /* Flexbox */
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
 
   /* Box model */
   border: 2px solid var(--container-border);
-  width: 20vw;
+  width: 18vw;
   min-height: 100%;
   height: fit-content;
   padding: 0 1.25em 1.25em 1.25em;

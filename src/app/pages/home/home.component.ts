@@ -27,8 +27,8 @@ export class HomeComponent implements OnInit, OnChanges, OnDestroy {
   public nbTransfertOk: number;
   public moyenneTransfertTentatives: number;
 
-  public labelsMotifFinAppel: string[];
-  public valeursMotifFinAppel: number[];
+  public labelsCauseFin: string[];
+  public valuesCauseFin: number[];
 
   public nbDebordement: number;
   public nbSupSeuil: number;
@@ -74,8 +74,8 @@ export class HomeComponent implements OnInit, OnChanges, OnDestroy {
 
     this.labelsStatut = [""];
     this.valuesStatut = [0];
-    this.labelsMotifFinAppel = [""];
-    this.valeursMotifFinAppel = [0];
+    this.labelsCauseFin = [""];
+    this.valuesCauseFin = [0];
 
     this.dataObservable = this.CaisseRegionale.current.subscribe(_ => this.initialiserDonneesAppels());
     this.valeurObservable = this.Valeurs.current.subscribe(value => this.updateDonneesAppels(value));
@@ -93,10 +93,10 @@ export class HomeComponent implements OnInit, OnChanges, OnDestroy {
     };
 
     this.donneesDiagrammeMotifFinAppel = {
-      labels: this.labelsMotifFinAppel,
+      labels: this.labelsCauseFin,
       datasets: [{
-        data: this.valeursMotifFinAppel,
-        backgroundColor: getCouleurs(this.valeursMotifFinAppel.length),
+        data: this.valuesCauseFin,
+        backgroundColor: getCouleurs(this.valuesCauseFin.length),
       }]
     };
   }
@@ -121,8 +121,8 @@ export class HomeComponent implements OnInit, OnChanges, OnDestroy {
       this.tempsAttenteMoyen = Math.round(data.moyenneTempsAttente);
       this.labelsStatut = data.labelsStatut;
       this.valuesStatut = data.valuesStatut;
-      this.labelsMotifFinAppel = data.labelsCauseFin;
-      this.valeursMotifFinAppel = data.valuesCauseFin;
+      this.labelsCauseFin = data.labelsCauseFin;
+      this.valuesCauseFin = data.valuesCauseFin;
       this.nbDebordement = data.nbDebordement;
 
       this.nbTransfert = data.nbTransfert;
@@ -140,7 +140,7 @@ export class HomeComponent implements OnInit, OnChanges, OnDestroy {
   private updateDonneesAppels(value: {
     nombreAppels: number, tempsAttenteMoyen: number, tempsCommunicationMoyen: number,
     gtAppeleId: string[], gtAppele: string[], labelsStatut: string[], valuesStatut: number[],
-    labelsMotifFinAppel: string[], valeursMotifFinAppel: number[], nbDebordement: number, nbTransfert: number, nbTransfertOk: number, moyenneTransfertTentatives: number
+    labelsCauseFin: string[], valuesCauseFin: number[], nbDebordement: number, nbTransfert: number, nbTransfertOk: number, moyenneTransfertTentatives: number
   }) {
       if(!(value))return ;
     this.nombreAppels = value.nombreAppels;
@@ -148,8 +148,9 @@ export class HomeComponent implements OnInit, OnChanges, OnDestroy {
     this.tempsCommunicationMoyen = Math.round(value.tempsCommunicationMoyen);
     this.labelsStatut = value.labelsStatut;
     this.valuesStatut = value.valuesStatut;
-    this.labelsMotifFinAppel = value.labelsMotifFinAppel;
-    this.valeursMotifFinAppel = value.valeursMotifFinAppel;
+    console.log(value.labelsCauseFin, value.valuesCauseFin);
+    this.labelsCauseFin = value.labelsCauseFin;
+    this.valuesCauseFin = value.valuesCauseFin;
     this.nbDebordement = value.nbDebordement;
     this.nbTransfert = value.nbTransfert;
     this.nbTransfertOk = value.nbTransfertOk;
