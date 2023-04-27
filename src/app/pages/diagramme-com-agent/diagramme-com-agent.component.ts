@@ -104,6 +104,9 @@ export class DiagrammeComAgentComponent implements OnInit, OnChanges, OnDestroy 
       plugins: {
         legend: {
           display: false
+        },
+        datalabels:{
+          display:false
         }
       }
     }
