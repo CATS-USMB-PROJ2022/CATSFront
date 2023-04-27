@@ -28,7 +28,7 @@ export class DiagrammeMotifFinAppelComponent implements OnInit, OnChanges, OnDes
     } ]
   };
 
-  public pieChartOptions = {
+  public pieChartOptions: any = {
     plugins: {
       datalabels: {
         show:false
