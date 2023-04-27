@@ -108,12 +108,13 @@
 
 .carte:hover {
   /* Box model */
-  -webkit-box-shadow: 0 0 0.75em 0 var(--teal-accent-transparent);
-  box-shadow: 0 0 0.75em 0 var(--teal-accent-transparent);
+  -webkit-box-shadow: 0 0 0.75em 0 var(--green-accent-transparent);
+  box-shadow: 0 0 0.75em 0 var(--green-accent-transparent);
 }
 
 .carte.lien:hover {
   /* Box model */
-  -webkit-box-shadow: 0 0 0.75em 0 var(--green-accent-transparent);
-  box-shadow: 0 0 0.75em 0 var(--green-accent-transparent);
+  background-color: var(--grey-245);
+  -webkit-box-shadow: 0 0 0.75em 0 var(--teal-accent-transparent);
+  box-shadow: 0 0 0.75em 0 var(--teal-accent-transparent);
 }

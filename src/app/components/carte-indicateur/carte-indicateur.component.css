@@ -39,7 +39,7 @@ h1 {
 
 .carte.lien:hover {
   /* Box model */
-  background-color: var(--grey-238);
+  background-color: var(--grey-245);
   -webkit-box-shadow: 0 0 0.75em 0 var(--teal-accent-transparent);
   box-shadow: 0 0 0.75em 0 var(--teal-accent-transparent);
 }
@@ -77,8 +77,7 @@ h1 {
 
 .diagramme {
   /* Box model */
-  width: 60%;
-  aspect-ratio: 1 / 1;
+  width: 7.5vw;
 }
 
 .labels {

@@ -20,7 +20,7 @@
   margin: 0;
 
   /* Typography */
-  font-size: 1em;
+  font-size: 1.1em;
   font-weight: normal;
   color: black;
 }
@@ -39,7 +39,7 @@
   cursor: pointer;
 
   /* Typography */
-  font-weight: 500;
+  font-weight: 400;
   color: var(--teal-secondary);
 }
 
@@ -51,8 +51,7 @@ ul {
   list-style: none;
   padding: 0;
 
-  height: fit-content;
-  max-height: 20vh;
+  max-height: 25vh;
   overflow-y: auto;
 }
 
