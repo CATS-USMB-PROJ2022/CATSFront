@@ -47,7 +47,9 @@ export class FiltreMultiSelectionComponent implements OnInit {
     this.recherche_groupe_traffic = '';
     this.recherche_agence = '';
 
-    this.CaisseRegionale.current.subscribe(_ => this.initialiserDonneesAppels());
+    this.CaisseRegionale.current.subscribe(_ => {
+      this.initialiserDonneesAppels()
+    });
   }
 
   ngOnInit(): void { this.initialiserDonneesAppels(); }
@@ -105,7 +107,7 @@ export class FiltreMultiSelectionComponent implements OnInit {
   // Méthodes /////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////
   private initialiserDonneesAppels() {
-    this.reinitialiserMultiSelection();
+    //this.reinitialiserMultiSelection();
     this.Post.postNombreAppels().subscribe(data => {
       this.gtAppeleId = data.gtAppeleId;
       this.gtAppele = data.gtAppele;
