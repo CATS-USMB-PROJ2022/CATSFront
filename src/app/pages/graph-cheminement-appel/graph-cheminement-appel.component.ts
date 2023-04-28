@@ -151,24 +151,10 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
 
   getData() {
     this.PostService.postCheminementAppel().subscribe(data => {
-      this.arbre = data.arbre;
-      this.labels = this.exctractLabels(this.arbre);
+      this.arbre = data.edges;
+      this.labels = data.nodes;
       this.ngOnChanges();
     });
-  }
-
-  exctractLabels(arbre: string[][] ): string[] {
-    let labels: string[] = [];
-    for(let element of arbre) {
-      if(!labels.includes(element[0])) {
-        labels.push(element[0]);
-      }
-      if(!labels.includes(element[1])) {
-        labels.push(element[1]);
-      }
-    }
-    return labels;
-
   }
 
   getIdNode(label: string): number {

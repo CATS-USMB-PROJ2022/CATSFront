@@ -1,3 +1,4 @@
 export interface CheminAppel {
-  arbre : string[][];
+  edges : string[][];
+  nodes : string[];
 }
