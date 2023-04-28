@@ -2,10 +2,7 @@
   /* Flexbox */
   display: flex;
   flex-direction: column;
-  justify-content: center;
-
-  /* Box model */
-  margin: 5% 5% 5%;
+  align-items: center;
 }
 
 .page-diagramme h1 {
@@ -25,6 +22,7 @@
 
 .diagramme {
   /* Box model */
+  width: 100%;
   max-height: 100%;
   padding: 0 2em;
 }
