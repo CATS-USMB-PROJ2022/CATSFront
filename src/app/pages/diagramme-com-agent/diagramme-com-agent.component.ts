@@ -49,9 +49,6 @@ export class DiagrammeComAgentComponent implements OnInit, OnChanges, OnDestroy 
     plugins: {
       legend: {
         display: false
-      },
-      datalabels: {
-        display: false
       }
     },
   }
@@ -87,7 +84,8 @@ export class DiagrammeComAgentComponent implements OnInit, OnChanges, OnDestroy 
       data.push(element.nbr);
 
       chartdata.push({
-        data: data
+        data: data,
+        label: element.agent
       });
     }
 
@@ -104,9 +102,6 @@ export class DiagrammeComAgentComponent implements OnInit, OnChanges, OnDestroy 
       plugins: {
         legend: {
           display: false
-        },
-        datalabels:{
-          display:false
         }
       }
     }
@@ -126,7 +121,11 @@ export class DiagrammeComAgentComponent implements OnInit, OnChanges, OnDestroy 
       this.dataAgent = [];
 
       for (const element of data) {
-        const stat: Agent = element;
+        const stat: Agent = {
+          agent: element.agent,
+          nbr: element.nbr,
+          label: element.label
+        };
 
         this.dataAgent.push(stat);
 
@@ -134,6 +133,7 @@ export class DiagrammeComAgentComponent implements OnInit, OnChanges, OnDestroy 
           this.labels.push(stat.label);
         }
       }
+      console.log(this.dataAgent);
       this.ngOnChanges()
     });
 
