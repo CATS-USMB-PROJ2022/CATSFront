@@ -59,6 +59,7 @@
     "a b b b d";
 
   width: 100vw;
+  height: 80vh;
   justify-items: center;
 }
 
@@ -70,6 +71,7 @@
   grid-area: b;
 
   width: 60vw;
+  height: 80vh;
 
   /* Background */
   background-color: white;

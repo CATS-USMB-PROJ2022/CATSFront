@@ -4,9 +4,6 @@
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
-
-  /* Box model */
-  margin: 5% 5% 5%;
 }
 
 .diagramme h1 {
@@ -19,7 +16,7 @@
 
 .diagramme .chart {
   /* Box model */
-  width: 60em;
+  width: 100%;
   padding: 0 2em;
   min-height: 45em;
 }
