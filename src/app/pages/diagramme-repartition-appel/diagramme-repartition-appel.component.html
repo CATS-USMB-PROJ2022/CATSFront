@@ -1,5 +1,14 @@
 <div class="diagramme">
   <h1>Partition moyenne d'un appel par agence</h1>
+<!--  <h2>Ordonnée : secondes&nbsp; <mat-slide-toggle (click)="togglePourcentages()" [color]="'warn'">pourcentages</mat-slide-toggle></h2>-->
+  <div class="sous-titre">
+    <h2>Ordonnée</h2>
+    <mat-select [(value)]="unite" (selectionChange)="setUnite($event)">
+      <mat-option [value]="'pourcentages'">Pourcentages</mat-option>
+      <mat-option [value]="'secondes'">Secondes</mat-option>
+      <mat-option [value]="'minutes'">Minutes</mat-option>
+    </mat-select>
+  </div>
   <div class="chart">
     <canvas baseChart
             [data]="stackedBarChartData"

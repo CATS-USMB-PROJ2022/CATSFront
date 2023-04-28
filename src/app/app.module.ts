@@ -45,6 +45,7 @@ import { DiagrammeAttenteBulleComponent } from './pages/diagramme-attente-bulle/
 import { DiagrammeNombreAppelComponent } from './pages/diagramme-nombre-appel/diagramme-nombre-appel.component';
 import { DiagrammeComAgentComponent } from './pages/diagramme-com-agent/diagramme-com-agent.component';
 import {VoirPlusComponent} from "./components/icons/voir-plus.component";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 
 @NgModule({
     declarations: [
