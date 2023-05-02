@@ -10,7 +10,7 @@ export class Post {
   TIME_START: string
   TIME_END: string
   SEUIL: number
-  OUVREE: number
+  OUVRE: number
 
   /////////////////////////////////////////////////////////////////////////////////////////////////
   // Constructeurs ////////////////////////////////////////////////////////////////////////////////
@@ -24,6 +24,6 @@ export class Post {
     this.TIME_START = time_start;
     this.TIME_END = time_end;
     this.SEUIL = threshold;
-    this.OUVREE = hno;
+    this.OUVRE = hno;
   }
 }
