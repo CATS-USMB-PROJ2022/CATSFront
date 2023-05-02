@@ -36,6 +36,7 @@ export class MenuDeroulantComponent implements OnInit {
   setCaisse(caisse_selectionnee: number) {
     this.caisse_selectionnee = caisse_selectionnee;
     this.StockageCookie.setCaisseRegionale(caisse_selectionnee);
+    this.StockageCookie.reinitialiserMultiSelection();
     this.CaisseRegionale.setCaisse(caisse_selectionnee);
     this.isOuvert = false;
   }
