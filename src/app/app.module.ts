@@ -44,41 +44,43 @@ import {DiagrammeCartesComponent} from "./pages/indicateurs/diagramme-cartes/dia
 import { DiagrammeAttenteBulleComponent } from './pages/diagramme-attente-bulle/diagramme-attente-bulle.component';
 import { DiagrammeNombreAppelComponent } from './pages/diagramme-nombre-appel/diagramme-nombre-appel.component';
 import { DiagrammeComAgentComponent } from './pages/diagramme-com-agent/diagramme-com-agent.component';
+import {VoirPlusComponent} from "./components/icons/voir-plus.component";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NotFoundComponent,
-    DiagrammeStatutAppelComponent,
-    DiagrammeDissuasionAppelComponent,
-    DiagrammeMotifFinAppelComponent,
-    HomeComponent,
-    DiagrammeRepartitionAppelComponent,
+    declarations: [
+        AppComponent,
+        NotFoundComponent,
+        DiagrammeStatutAppelComponent,
+        DiagrammeDissuasionAppelComponent,
+        DiagrammeMotifFinAppelComponent,
+        HomeComponent,
+        DiagrammeRepartitionAppelComponent,
 
-    MenuDeroulantComponent,
+        MenuDeroulantComponent,
 
-    CaretUpComponent,
-    CaretDownComponent,
-    RechercheComponent,
+        CaretUpComponent,
+        CaretDownComponent,
+        RechercheComponent,
 
-    OverlayUploadComponent,
+        OverlayUploadComponent,
 
-    CarteIndicateurComponent,
-    FiltreComponent,
+        CarteIndicateurComponent,
+        FiltreComponent,
 
-    FiltreMultiSelectionComponent,
-    FiltreDateHeureComponent,
-    FiltreHorairesNonOuvresComponent,
+        FiltreMultiSelectionComponent,
+        FiltreDateHeureComponent,
+        FiltreHorairesNonOuvresComponent,
 
-    ChampRechercheComponent,
+        ChampRechercheComponent,
 
-    DiagrammeCartesComponent,
+        DiagrammeCartesComponent,
 
-    ClickOutsideDirective,
-      DiagrammeAttenteBulleComponent,
-      DiagrammeNombreAppelComponent,
-      DiagrammeComAgentComponent,
-  ],
+        ClickOutsideDirective,
+        DiagrammeAttenteBulleComponent,
+        DiagrammeNombreAppelComponent,
+        DiagrammeComAgentComponent,
+        VoirPlusComponent,
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
