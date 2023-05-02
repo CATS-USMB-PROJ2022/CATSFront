@@ -3,10 +3,7 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  justify-content: center;
-
-  /* Box model */
-  margin: 5% 5% 5%;
+  align-items: center;
 }
 
 .diagramme h1 {
@@ -19,6 +16,6 @@
 
 .diagramme .chart {
   /* Box model */
-  width: 40em;
+  width: 70%;
   padding: 0 2em;
 }
