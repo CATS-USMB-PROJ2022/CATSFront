@@ -107,7 +107,6 @@ export class FiltreMultiSelectionComponent implements OnInit {
   // Méthodes /////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////
   private initialiserDonneesAppels() {
-    //this.reinitialiserMultiSelection();
     this.Post.postNombreAppels().subscribe(data => {
       this.gtAppeleId = data.gtAppeleId;
       this.gtAppele = data.gtAppele;
