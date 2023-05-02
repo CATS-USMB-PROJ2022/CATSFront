@@ -44,6 +44,16 @@ h1 {
   box-shadow: 0 0 0.75em 0 var(--teal-accent-transparent);
 }
 
+.carte > span {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.corps-carte.contient-lien {
+  margin-top: 44px;
+}
+
 .carte h2 {
   margin-top: 0.5em;
   height: 25%;

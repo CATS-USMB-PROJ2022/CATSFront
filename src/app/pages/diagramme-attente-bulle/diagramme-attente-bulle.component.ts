@@ -13,6 +13,7 @@ import {PostService} from "../../service/post.service";
 })
 export class DiagrammeAttenteBulleComponent implements OnInit, OnDestroy, OnChanges {
   public attenteMoyenneAvantAbandon: number;
+  public appelsDebordesAbandonnes: number;
   public labels: string[];
   public AttenteRepartition: number[][];
   public dataObservable: Subscription;
@@ -90,6 +91,7 @@ export class DiagrammeAttenteBulleComponent implements OnInit, OnDestroy, OnChan
     this.labels = [""];
     this.AttenteRepartition = [[0, 0, 0]];
     this.attenteMoyenneAvantAbandon = 0.0;
+    this.appelsDebordesAbandonnes = 0.0;
 
     this.dataObservable = this.value.current.subscribe(_ => this.getData());
     this.valeurObservable = this.data.current.subscribe(_ => this.getData());
@@ -128,6 +130,8 @@ export class DiagrammeAttenteBulleComponent implements OnInit, OnDestroy, OnChan
         this.labels = data.labels ?? [""];
         this.AttenteRepartition = data.values ?? [[0, 0, 0]];
         this.attenteMoyenneAvantAbandon = data.attenteMoyenneAvantAbandon;
+        console.warn(data.appelsDebordesAbandonnes);
+        this.appelsDebordesAbandonnes = data.appelsDebordesAbandonnes;
         this.ngOnChanges();
       }
     )

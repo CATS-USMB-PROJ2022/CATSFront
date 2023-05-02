@@ -12,7 +12,7 @@
         <h2 class="ligne-1">{{titre}}</h2>
         <div class="ligne-2">
           <div class="seuil">
-            <input #inputSeuil type="number" placeholder="Seuil" [value]="valeurSeuil" />
+            <input #inputSeuil type="number" placeholder="Seuil" [value]="valeurSeuil"/>
           </div>
 
           <button class="bouton-seuil" (click)="appliquerSeuil(inputSeuil.value)">✔</button>
@@ -23,11 +23,13 @@
     </div>
   </ng-template>
 
-  <div class="corps-carte">
+  <div class="corps-carte" [ngClass]="{'contient-lien': routerLink !== '/' && typeCarte == 'valeur' }">
     <div *ngIf="typeCarte == 'valeur'; then valeur else diagramme"></div>
 
     <ng-template #valeur>
-      <h1><ng-content></ng-content></h1>
+      <h1>
+        <ng-content></ng-content>
+      </h1>
     </ng-template>
 
     <ng-template #diagramme>
@@ -49,5 +51,10 @@
         </div>
       </div>
     </ng-template>
+
   </div>
+
+  <span class="voir-plus">
+    <voir-plus *ngIf="routerLink !== '/'"></voir-plus>
+  </span>
 </a>
