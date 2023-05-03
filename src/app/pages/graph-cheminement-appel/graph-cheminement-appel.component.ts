@@ -4,6 +4,7 @@ import {ValeursService} from "../../service/valeurs.service";
 import {PostService} from "../../service/post.service";
 import {Subscription} from "rxjs";
 import * as d3 from "d3";
+import { Selection, SimulationNodeDatum } from 'd3';
 import {Vert} from "../../../utils";
 
 
@@ -79,12 +80,16 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
       .attr("fill", Vert);
 
     // define the simulation and its forces
-    d3.forceSimulation<GraphNode>(this.nodes)
+    const simulation = d3.forceSimulation<GraphNode>(this.nodes)
       .nodes(this.nodes)
       .force('link', d3.forceLink<GraphNode, GraphLink>(this.links)
         .id((d) => d.id)
-        .distance(70) // set the distance between nodes to 60
+        .distance(80) // set the distance between nodes to 60
         .strength(0.2)
+      )
+      .force('link-distance', d3.forceLink<GraphNode, GraphLink>(this.links)
+        .id((d) => d.id)
+        .links(this.links)
       )
       .force('charge', d3.forceManyBody())
       .force('center', d3.forceCenter(this.width/2, this.height/2)) // center the graph in the middle of the screen
@@ -126,6 +131,27 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
         .attr('transform', d => `translate(${d.x},${d.y})`); // set the position of the group
     });
 
+    // drag behavior handler
+    function dragStarted(event: any, d: SimulationNodeDatum) {
+      if (!event.active) simulation.alphaTarget(0.3).restart();
+      d.fx = d.x;
+      d.fy = d.y;
+    }
+    function dragged(event: any, d: SimulationNodeDatum) {
+      d.fx = event.x;
+      d.fy = event.y;
+    }
+    function dragEnded(event: any, d: SimulationNodeDatum) {
+      if (!event.active) simulation.alphaTarget(0);
+      d.fx = null;
+      d.fy = null;
+    }
+
+    const drag = (<any>d3).drag()
+      .on("start", dragStarted)
+      .on("drag", dragged)
+      .on("end", dragEnded);
+
     // create the links
     const link = svg.selectAll('.link')
       .data(this.links)
@@ -145,9 +171,9 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
     const node = svg.selectAll('.nodes')
       .data(this.nodes)
       .enter()
-      .append('g') ;
-
-    node.append('circle')
+      .append('g')
+      .call(drag);
+      node.append('circle')
       .attr('r', circle_size)
       .attr('fill', '#e6e6e6')
       .attr('stroke', "black");
