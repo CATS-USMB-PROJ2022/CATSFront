@@ -93,4 +93,30 @@ describe('GraphCheminementAppelComponent', () => {
     },
     ]);
   });
+
+  it('should return the correct node ID', () => {
+    spyOn(postService, 'postCheminementAppel').mockReturnValue(of({
+      edges: [
+        ["AG", "APL", "123"],
+        ["APL", "AG", "456"]
+      ],
+      nodes: ["AG", "APL"]
+    }));
+    component.getData();
+    expect(component.getIdNode("AG")).toEqual(0);
+    expect(component.getIdNode("APL")).toEqual(1);
+    expect(component.getIdNode("LABEL INEXISTANT")).toEqual(-1);
+  });
+
+  it('should return the max number of appel', () => {
+    spyOn(postService, 'postCheminementAppel').mockReturnValue(of({
+      edges: [
+        ["AG", "APL", "123"],
+        ["APL", "AG", "456"]
+      ],
+      nodes: ["AG", "APL"]
+    }));
+    component.getData();
+    expect(component.getNbAppelMax()).toEqual(456);
+  });
 });

@@ -1,9 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
+  <file path="D:\Linux file\github repo\CATSFront\src\app\pages\diagramme-repartition-appel\diagramme-repartition-appel.component.spec.ts">
+    <testCase name="DiagrammeRepartitionAppelComponent should create" duration="206"/>
+  </file>
+  <file path="D:\Linux file\github repo\CATSFront\src\app\pages\indicateurs\diagramme-cartes\diagramme-cartes.component.spec.ts">
+    <testCase name="DiagrammeCartesComponent should create the component" duration="199"/>
+    <testCase name="DiagrammeCartesComponent should initialize data on init" duration="22"/>
+  </file>
+  <file path="D:\Linux file\github repo\CATSFront\src\app\pages\diagramme-statut-appel\diagramme-statut-appel.component.spec.ts">
+    <testCase name="StatusCallDiagramComponent should create" duration="127"/>
+  </file>
+  <file path="D:\Linux file\github repo\CATSFront\src\app\app.component.spec.ts">
+    <testCase name="AppComponent should create the app" duration="180"/>
+    <testCase name="AppComponent should have as title &apos;ReC&apos;Appel&apos;" duration="17"/>
+  </file>
+  <file path="D:\Linux file\github repo\CATSFront\src\app\components\filtre-date-heure\filtre-date-heure.component.spec.ts">
+    <testCase name="FiltreDateHeureComponent should create the component" duration="134"/>
+  </file>
+  <file path="D:\Linux file\github repo\CATSFront\src\app\pages\home\home.component.spec.ts">
+    <testCase name="HomeComponent should create" duration="289"/>
+    <testCase name="HomeComponent should initialize data on init" duration="37"/>
+    <testCase name="HomeComponent should call postNombreAppels on data initialization" duration="39"/>
+  </file>
+  <file path="D:\Linux file\github repo\CATSFront\src\app\components\filtre-multi-selection\filtre-multi-selection.component.spec.ts">
+    <testCase name="FiltreMultiSelectionComponent should create the component" duration="282"/>
+  </file>
+  <file path="D:\Linux file\github repo\CATSFront\src\app\pages\diagramme-attente-bulle\diagramme-attente-bulle.component.spec.ts">
+    <testCase name="DiagrammeAttenteBulleComponent should create" duration="108"/>
+  </file>
+  <file path="D:\Linux file\github repo\CATSFront\src\app\components\overlay-upload\overlay-upload.component.spec.ts">
+    <testCase name="OverlayUploadComponent should create the component" duration="145"/>
+  </file>
+  <file path="D:\Linux file\github repo\CATSFront\src\app\components\filtre-horaires-non-ouvres\filtre-horaires-non-ouvres.component.spec.ts">
+    <testCase name="FiltreHorairesNonOuvresComponent should create the component" duration="152"/>
+  </file>
+  <file path="D:\Linux file\github repo\CATSFront\src\app\pages\diagramme-motif-fin-appel\diagramme-motif-fin-appel.component.spec.ts">
+    <testCase name="MotiveEndCallDiagramComponent should create" duration="140"/>
+  </file>
+  <file path="D:\Linux file\github repo\CATSFront\src\app\components\champ-recherche\champ-recherche.component.spec.ts">
+    <testCase name="ChampRechercheComponent should create the component" duration="94"/>
+  </file>
+  <file path="D:\Linux file\github repo\CATSFront\src\app\components\menu-deroulant\menu-deroulant.component.spec.ts">
+    <testCase name="DropdownComponent should create" duration="143"/>
+  </file>
+  <file path="D:\Linux file\github repo\CATSFront\src\app\pages\diagramme-dissuasion-appel\diagramme-dissuasion-appel.component.spec.ts">
+    <testCase name="StatusCallDiagramComponent should create" duration="68"/>
+  </file>
+  <file path="D:\Linux file\github repo\CATSFront\src\app\components\filtre\filtre.component.spec.ts">
+    <testCase name="FiltreComponent should create the component" duration="147"/>
+    <testCase name="FiltreComponent should have inputs" duration="18"/>
+    <testCase name="FiltreComponent should call the reinitialisation function on reset button click" duration="18"/>
+    <testCase name="FiltreComponent should call the confirmation function on confirm button click" duration="20"/>
+    <testCase name="FiltreComponent should display the transcluded content" duration="24"/>
+  </file>
+  <file path="D:\Linux file\github repo\CATSFront\src\app\components\carte-indicateur\carte-indicateur.component.spec.ts">
+    <testCase name="CarteIndicateurComponent should create the component" duration="173"/>
+  </file>
+  <file path="D:\Linux file\github repo\CATSFront\src\app\pages\not-found\not-found.component.spec.ts">
+    <testCase name="NotFoundComponent should create" duration="90"/>
+    <testCase name="NotFoundComponent should have a title" duration="16"/>
+    <testCase name="NotFoundComponent should have a message" duration="11"/>
+    <testCase name="NotFoundComponent should have a link to the home page" duration="26"/>
+  </file>
   <file path="D:\Linux file\github repo\CATSFront\src\app\pages\graph-cheminement-appel\graph-cheminement-appel.component.spec.ts">
-    <testCase name="GraphCheminementAppelComponent should create" duration="84"/>
-    <testCase name="GraphCheminementAppelComponent should initialize data on init" duration="17"/>
-    <testCase name="GraphCheminementAppelComponent should call postCheminementAppel on data initialization" duration="14"/>
-    <testCase name="GraphCheminementAppelComponent should call ngOnChange on data initialization" duration="15"/>
+    <testCase name="GraphCheminementAppelComponent should create" duration="263"/>
+    <testCase name="GraphCheminementAppelComponent should initialize data on init" duration="52"/>
+    <testCase name="GraphCheminementAppelComponent should call postCheminementAppel on data initialization" duration="33"/>
+    <testCase name="GraphCheminementAppelComponent should call ngOnChange on data initialization" duration="61"/>
+    <testCase name="GraphCheminementAppelComponent should return the correct node ID" duration="29"/>
+    <testCase name="GraphCheminementAppelComponent should return the max number of appel" duration="34"/>
+  </file>
+  <file path="D:\Linux file\github repo\CATSFront\src\app\pages\diagramme-nombre-appel\diagramme-nombre-appel.component.spec.ts">
+  </file>
+  <file path="D:\Linux file\github repo\CATSFront\src\app\pages\diagramme-com-agent\diagramme-com-agent.component.spec.ts">
   </file>
 </testExecutions>
