@@ -10,10 +10,14 @@
       <a class="carte carte-large" [ngClass]="{ lien: lienParent !== racine }" [routerLink]="lienParent">
         <h2>Vue d'ensemble</h2>
         <h1>{{getTotalAppels()}}</h1>
+        <span class="voir-plus">
+          <voir-plus *ngIf="lienParent !== racine"></voir-plus>
+        </span>
       </a>
 
       <div class="indicateurs">
-        <a class="carte" [ngClass]="{ lien: getLienLabel(appel.label) !== racine }" *ngFor="let appel of getAppelPaires()" [routerLink]="getLienLabel(appel.label)">
+        <a class="carte" [ngClass]="{ lien: getLienLabel(appel.label) !== racine }"
+           *ngFor="let appel of getAppelPaires()" [routerLink]="getLienLabel(appel.label)">
           <h2>{{appel.label}}</h2>
           <div class="corps-carte" [ngClass]="{ 'contient-lien': getLienLabel(appel.label) !== racine }">
             <h1>{{appel.valeur}}</h1>

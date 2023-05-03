@@ -130,7 +130,6 @@ export class DiagrammeAttenteBulleComponent implements OnInit, OnDestroy, OnChan
         this.labels = data.labels ?? [""];
         this.AttenteRepartition = data.values ?? [[0, 0, 0]];
         this.attenteMoyenneAvantAbandon = data.attenteMoyenneAvantAbandon;
-        console.warn(data.appelsDebordesAbandonnes);
         this.appelsDebordesAbandonnes = data.appelsDebordesAbandonnes;
         this.ngOnChanges();
       }
