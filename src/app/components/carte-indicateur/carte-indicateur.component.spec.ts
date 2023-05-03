@@ -19,4 +19,13 @@ describe('CarteIndicateurComponent', () => {
   it('should create the component', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should display the title', () => {
+    component.titre = 'Test titre';
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h2').textContent).toContain('Test titre');
+  });
+
+
 });
