@@ -56,7 +56,6 @@
 
   /* Background */
   background-color: var(--grey-233);
-  cursor: pointer;
 
   /* Typography */
   line-height: 1.5em;
@@ -107,9 +106,26 @@
   box-shadow: 0 0 0.75em 0 var(--green-accent-transparent);
 }
 
+.carte > span {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.carte > span {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
 .carte.lien:hover {
   /* Box model */
   background-color: var(--grey-245);
   -webkit-box-shadow: 0 0 0.75em 0 var(--teal-accent-transparent);
   box-shadow: 0 0 0.75em 0 var(--teal-accent-transparent);
+  cursor: pointer;
+}
+
+.corps-carte.contient-lien {
+  margin-top: 44px;
 }

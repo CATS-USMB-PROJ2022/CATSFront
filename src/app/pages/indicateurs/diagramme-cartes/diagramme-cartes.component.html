@@ -15,9 +15,12 @@
       <div class="indicateurs">
         <a class="carte" [ngClass]="{ lien: getLienLabel(appel.label) !== racine }" *ngFor="let appel of getAppelPaires()" [routerLink]="getLienLabel(appel.label)">
           <h2>{{appel.label}}</h2>
-          <div class="corps-carte">
+          <div class="corps-carte" [ngClass]="{ 'contient-lien': getLienLabel(appel.label) !== racine }">
             <h1>{{appel.valeur}}</h1>
           </div>
+          <span class="voir-plus">
+            <voir-plus *ngIf="getLienLabel(appel.label) !== racine"></voir-plus>
+          </span>
         </a>
       </div>
     </div>
