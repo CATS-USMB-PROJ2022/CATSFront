@@ -52,7 +52,7 @@ describe('HomeComponent', () => {
     expect(component.initialiserDonneesAppels).toHaveBeenCalled();
   });
 
-  it ('should call postNombreAppels on data init', () => {
+  it ('should call postNombreAppels on data initialization', () => {
     spyOn(postService, 'postNombreAppels').mockReturnValue(
       of({
         nbrAppel: 120,

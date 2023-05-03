@@ -63,7 +63,7 @@ export class DiagrammeCartesComponent implements OnInit, OnChanges, OnDestroy {
     this.valeurObservable.unsubscribe();
   }
 
-  private getDataStatus() {
+  getDataStatus() {
     this.getDonnees().subscribe(data => {
       if (!(data)) return;
       this.label = data.label;
