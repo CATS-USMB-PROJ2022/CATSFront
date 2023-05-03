@@ -1,6 +1,5 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { DiagrammeMotifFinAppelComponent } from './diagramme-motif-fin-appel.component';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {DiagrammeMotifFinAppelComponent} from './diagramme-motif-fin-appel.component';
 import {HttpClient, HttpHandler} from "@angular/common/http";
 
 describe('MotiveEndCallDiagramComponent', () => {
@@ -9,7 +8,7 @@ describe('MotiveEndCallDiagramComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DiagrammeMotifFinAppelComponent ],
+      declarations: [DiagrammeMotifFinAppelComponent],
       providers: [
         HttpClient,
         {provide: 'globalUrl', useValue: 'http://localhost:8080/'},
@@ -17,7 +16,7 @@ describe('MotiveEndCallDiagramComponent', () => {
         {provide: 'globalUrl', useValue: 'http://localhost:8080/'},
       ],
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(DiagrammeMotifFinAppelComponent);
     component = fixture.componentInstance;

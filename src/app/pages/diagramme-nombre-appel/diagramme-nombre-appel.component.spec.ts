@@ -1,6 +1,5 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { DiagrammeNombreAppelComponent } from './diagramme-nombre-appel.component';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {DiagrammeNombreAppelComponent} from './diagramme-nombre-appel.component';
 import {HttpClient, HttpHandler} from "@angular/common/http";
 
 describe('DiagrammeNombreAppelComponent', () => {
@@ -9,7 +8,7 @@ describe('DiagrammeNombreAppelComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DiagrammeNombreAppelComponent ],
+      declarations: [DiagrammeNombreAppelComponent],
       providers: [
         HttpClient,
         {provide: 'globalUrl', useValue: 'http://localhost:8080/'},
@@ -17,7 +16,7 @@ describe('DiagrammeNombreAppelComponent', () => {
         {provide: 'globalUrl', useValue: 'http://localhost:8080/'},
       ],
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(DiagrammeNombreAppelComponent);
     component = fixture.componentInstance;

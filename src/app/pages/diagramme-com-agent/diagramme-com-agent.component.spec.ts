@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { DiagrammeComAgentComponent } from './diagramme-com-agent.component';
+import {DiagrammeComAgentComponent} from './diagramme-com-agent.component';
 import {HttpClient, HttpHandler} from "@angular/common/http";
 
 describe('DiagrammeComAgentComponent', () => {
@@ -9,7 +9,7 @@ describe('DiagrammeComAgentComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DiagrammeComAgentComponent ],
+      declarations: [DiagrammeComAgentComponent],
       providers: [
         HttpClient,
         {provide: 'globalUrl', useValue: 'http://localhost:8080/'},
@@ -17,7 +17,7 @@ describe('DiagrammeComAgentComponent', () => {
         {provide: 'globalUrl', useValue: 'http://localhost:8080/'},
       ],
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(DiagrammeComAgentComponent);
     component = fixture.componentInstance;

@@ -15,9 +15,6 @@ export interface Filtre {
   styleUrls: ['./filtre-multi-selection.component.css']
 })
 export class FiltreMultiSelectionComponent implements OnInit {
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  // Attributs ////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////
   public groupes_trafic: Filtre[];
   public groupes_trafic_filtres: Filtre[];
   recherche_groupe_traffic: string;
@@ -30,9 +27,6 @@ export class FiltreMultiSelectionComponent implements OnInit {
   public gtAppeleId: string[];
   public rubTypeNum: string[];
 
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  // Constructeurs ////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////
   constructor(private StockageCookie: StockageCookieService, private CaisseRegionale: CaisseRegionaleService, private Value: ValeursService, private Post: PostService) {
     this.gtAppele = [""];
     this.gtAppeleId = [""];
@@ -52,13 +46,17 @@ export class FiltreMultiSelectionComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void { this.initialiserDonneesAppels(); }
+  ngOnInit(): void {
+    this.initialiserDonneesAppels();
+  }
 
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  // Setters //////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  setGroupeTraficSelectionne() { this.setToutesAgences(false); }
-  setAgenceSelectionnee() { this.setTousGroupesTrafic(false); }
+  setGroupeTraficSelectionne() {
+    this.setToutesAgences(false);
+  }
+
+  setAgenceSelectionnee() {
+    this.setTousGroupesTrafic(false);
+  }
 
   setTousGroupesTrafic(cocher_tout: boolean) {
     if (this.groupes_trafic == null) return;
@@ -72,27 +70,41 @@ export class FiltreMultiSelectionComponent implements OnInit {
     this.agences.forEach(t => (t.coche = cocher_tout));
   }
 
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  // Getters //////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  getCaisseSelectionnee(): number { return this.StockageCookie.getCaisseRegionale(); }
+  getCaisseSelectionnee(): number {
+    return this.StockageCookie.getCaisseRegionale();
+  }
 
   public getGtAppele(): Filtre[] {
     let gt_selectionnes = this.StockageCookie.initialiserGroupesTrafic();
     let filtres: Filtre[] = [];
-    for (let i = 0; i < this.gtAppele.length; i++) filtres[i] = { nom: this.gtAppele[i], coche: gt_selectionnes.includes(this.gtAppeleId[i]) };
+
+    for (let i = 0; i < this.gtAppele.length; i++) filtres[i] = {
+      nom: this.gtAppele[i],
+      coche: gt_selectionnes.includes(this.gtAppeleId[i])
+    };
+
     return filtres;
   }
 
   public getAgences(): Filtre[] {
     let agences_selectionnees = this.StockageCookie.initialiserAgences();
     let filtres: Filtre[] = [];
-    for (let i = 0; i < this.rubTypeNum.length; i++) filtres[i] = { nom: this.rubTypeNum[i], coche: agences_selectionnees.includes(this.rubTypeNum[i]) };
+
+    for (let i = 0; i < this.rubTypeNum.length; i++) filtres[i] = {
+      nom: this.rubTypeNum[i],
+      coche: agences_selectionnees.includes(this.rubTypeNum[i])
+    };
+
     return filtres;
   }
 
-  getGroupesTraficFiltres() { return this.groupes_trafic.filter(groupe_trafic => groupe_trafic.nom.toLowerCase().includes(this.recherche_groupe_traffic)); }
-  getAgencesFiltrees() { return this.agences.filter(agence => agence.nom.toLowerCase().includes(this.recherche_agence)); }
+  getGroupesTraficFiltres() {
+    return this.groupes_trafic.filter(groupe_trafic => groupe_trafic.nom.toLowerCase().includes(this.recherche_groupe_traffic));
+  }
+
+  getAgencesFiltrees() {
+    return this.agences.filter(agence => agence.nom.toLowerCase().includes(this.recherche_agence));
+  }
 
   private getDataCalls() {
     this.Post.postNombreAppels().subscribe(data => {
@@ -103,9 +115,6 @@ export class FiltreMultiSelectionComponent implements OnInit {
     });
   }
 
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  // Méthodes /////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////
   private initialiserDonneesAppels() {
     this.Post.postNombreAppels().subscribe(data => {
       this.gtAppeleId = data.gtAppeleId;
@@ -117,12 +126,21 @@ export class FiltreMultiSelectionComponent implements OnInit {
     });
   }
 
-  onRechercheGroupeTrafic(recherche: string) { this.recherche_groupe_traffic = recherche ? recherche.toLowerCase() : ''; }
-  onRechercheAgence(recherche: string) { this.recherche_agence = recherche ? recherche.toLowerCase() : ''; }
+  onRechercheGroupeTrafic(recherche: string) {
+    this.recherche_groupe_traffic = recherche ? recherche.toLowerCase() : '';
+  }
 
-  updateGroupesTrafic() { this.groupes_trafic = this.getGtAppele(); }
+  onRechercheAgence(recherche: string) {
+    this.recherche_agence = recherche ? recherche.toLowerCase() : '';
+  }
 
-  updateAgences() { this.agences = this.getAgences(); }
+  updateGroupesTrafic() {
+    this.groupes_trafic = this.getGtAppele();
+  }
+
+  updateAgences() {
+    this.agences = this.getAgences();
+  }
 
   appliquerFiltres() {
     let groupes_trafic: Filtre[] = this.groupes_trafic ? this.groupes_trafic : [];
@@ -133,7 +151,7 @@ export class FiltreMultiSelectionComponent implements OnInit {
     let agences: Filtre[] = this.agences ? this.agences : [];
     let agences_selectionnees: string[] = [];
 
-    for (let { nom, coche } of agences) if (coche) agences_selectionnees.push(nom);
+    for (let {nom, coche} of agences) if (coche) agences_selectionnees.push(nom);
 
     this.StockageCookie.setGroupesTrafic(groupes_trafic_selectionnes);
     this.StockageCookie.setAgences(agences_selectionnees);

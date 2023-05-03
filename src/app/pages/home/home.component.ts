@@ -5,7 +5,7 @@ import {ValeursService} from "../../service/valeurs.service";
 import {PostService} from "../../service/post.service";
 import {StockageCookieService} from "../../service/stockage-cookie.service";
 import {getCouleurs} from "../../../utils";
-import { Subscription } from 'rxjs';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'home',
@@ -13,9 +13,6 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit, OnChanges, OnDestroy {
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  // Attributs ////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////
   public nombreAppels: number;
   public tempsAttenteMoyen: number;
   public tempsCommunicationMoyen: number;
@@ -55,9 +52,6 @@ export class HomeComponent implements OnInit, OnChanges, OnDestroy {
     }]
   };
 
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  // Constructeurs ////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////
   constructor(private StockageCookie: StockageCookieService, private CaisseRegionale: CaisseRegionaleService, private Valeurs: ValeursService, private Post: PostService) {
     this.nombreAppels = 0;
     this.tempsCommunicationMoyen = 0;
@@ -81,7 +75,9 @@ export class HomeComponent implements OnInit, OnChanges, OnDestroy {
     this.valeurObservable = this.Valeurs.current.subscribe(value => this.updateDonneesAppels(value));
   }
 
-  ngOnInit(): void { this.initialiserDonneesAppels(); }
+  ngOnInit(): void {
+    this.initialiserDonneesAppels();
+  }
 
   ngOnChanges(): void {
     this.donneesDiagrammeStatut = {
@@ -106,14 +102,10 @@ export class HomeComponent implements OnInit, OnChanges, OnDestroy {
     this.valeurObservable.unsubscribe();
   }
 
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  // Getters //////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  private getSeuilCalls() { this.Post.postSeuil().subscribe(data => this.nbSupSeuil = data.nbSupSeuil); }
+  private getSeuilCalls() {
+    this.Post.postSeuil().subscribe(data => this.nbSupSeuil = data.nbSupSeuil);
+  }
 
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  // Méthodes /////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////
   private initialiserDonneesAppels() {
     this.Post.postNombreAppels().subscribe(data => {
       this.nombreAppels = data.nbrAppel;
@@ -138,17 +130,26 @@ export class HomeComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   private updateDonneesAppels(value: {
-    nombreAppels: number, tempsAttenteMoyen: number, tempsCommunicationMoyen: number,
-    gtAppeleId: string[], gtAppele: string[], labelsStatut: string[], valuesStatut: number[],
-    labelsCauseFin: string[], valuesCauseFin: number[], nbDebordement: number, nbTransfert: number, nbTransfertOk: number, moyenneTransfertTentatives: number
+    nombreAppels: number,
+    tempsAttenteMoyen: number,
+    tempsCommunicationMoyen: number,
+    gtAppeleId: string[],
+    gtAppele: string[],
+    labelsStatut: string[],
+    valuesStatut: number[],
+    labelsCauseFin: string[],
+    valuesCauseFin: number[],
+    nbDebordement: number,
+    nbTransfert: number,
+    nbTransfertOk: number,
+    moyenneTransfertTentatives: number
   }) {
-      if(!(value))return ;
+    if (!(value)) return;
     this.nombreAppels = value.nombreAppels;
     this.tempsAttenteMoyen = Math.round(value.tempsAttenteMoyen);
     this.tempsCommunicationMoyen = Math.round(value.tempsCommunicationMoyen);
     this.labelsStatut = value.labelsStatut;
     this.valuesStatut = value.valuesStatut;
-    console.log(value.labelsCauseFin, value.valuesCauseFin);
     this.labelsCauseFin = value.labelsCauseFin;
     this.valuesCauseFin = value.valuesCauseFin;
     this.nbDebordement = value.nbDebordement;
@@ -178,5 +179,7 @@ export class HomeComponent implements OnInit, OnChanges, OnDestroy {
     this.getSeuilCalls();
   }
 
-  reinitialiserSeuil() { this.appliquerSeuil(this.tempsAttenteMoyen); }
+  reinitialiserSeuil() {
+    this.appliquerSeuil(this.tempsAttenteMoyen);
+  }
 }

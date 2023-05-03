@@ -18,8 +18,8 @@ interface Agent {
   styleUrls: ['./diagramme-com-agent.component.css']
 })
 export class DiagrammeComAgentComponent implements OnInit, OnChanges, OnDestroy {
-  public labels:string[];
-  public agents:string[];
+  public labels: string[];
+  public agents: string[];
   public dataAgent: Agent[];
   public dataObservable: Subscription;
   public valeurObservable: Subscription;
@@ -55,15 +55,15 @@ export class DiagrammeComAgentComponent implements OnInit, OnChanges, OnDestroy 
       }
     },
   }
-  bubbleChartType:ChartType = 'bubble';
+  bubbleChartType: ChartType = 'bubble';
 
 
   constructor(private data: CaisseRegionaleService, private value: ValeursService, private PostService: PostService) {
     this.labels = [""];
     this.agents = [""];
     this.dataAgent = [];
-    this.valeurObservable=this.value.current.subscribe(_ => this.getData());
-    this.dataObservable=this.data.current.subscribe(_ => this.getData());
+    this.valeurObservable = this.value.current.subscribe(_ => this.getData());
+    this.dataObservable = this.data.current.subscribe(_ => this.getData());
   }
 
   ngOnInit(): void {
@@ -72,14 +72,14 @@ export class DiagrammeComAgentComponent implements OnInit, OnChanges, OnDestroy 
 
   ngOnChanges(): void {
     //conversion des données pour le diagramme
-    //TODO : trouver une solution plus propre
+    //TODO : optimiser
     let chartdata = [];
 
-    for(const element of this.dataAgent) {
+    for (const element of this.dataAgent) {
       let i = 0;
       let data = [];
 
-      while(this.labels[i] != element.label && i < this.labels.length) {
+      while (this.labels[i] != element.label && i < this.labels.length) {
         data.push(null);
         i++;
       }
@@ -118,9 +118,9 @@ export class DiagrammeComAgentComponent implements OnInit, OnChanges, OnDestroy 
     this.valeurObservable.unsubscribe();
   }
 
-  getData(){
+  getData() {
     this.PostService.postComAgent().subscribe((data: any) => {
-      if(data == null) return;
+      if (data == null) return;
 
       this.agents = [""];
       this.labels = [""];
@@ -139,7 +139,7 @@ export class DiagrammeComAgentComponent implements OnInit, OnChanges, OnDestroy 
           this.labels.push(stat.label);
         }
       }
-      console.log(this.dataAgent);
+
       this.ngOnChanges()
     });
 

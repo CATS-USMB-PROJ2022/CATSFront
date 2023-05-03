@@ -6,31 +6,25 @@ import {filter, fromEvent, Subscription} from "rxjs";
   selector: '[clickOutside]'
 })
 export class ClickOutsideDirective implements AfterViewInit, OnDestroy {
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  // Attributs ////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////
   @Output() clickOutside = new EventEmitter<void>;
 
   onClicDocument: Subscription | undefined;
 
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  // Constructeurs ////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  constructor(private element: ElementRef, @Inject(DOCUMENT) private document: Document) { }
+  constructor(private element: ElementRef, @Inject(DOCUMENT) private document: Document) {
+  }
 
   ngAfterViewInit() {
     this.onClicDocument = fromEvent(this.document, 'click')
-                                      .pipe(filter((event) => !this.isDansDocument((event as MouseEvent).clientX, (event as MouseEvent).clientY)))
-                                      .subscribe(() => this.clickOutside.emit());
+      .pipe(filter((event) => !this.isDansDocument((event as MouseEvent).clientX, (event as MouseEvent).clientY)))
+      .subscribe(() => this.clickOutside.emit());
   }
 
-  ngOnDestroy() { this.onClicDocument?.unsubscribe(); }
+  ngOnDestroy() {
+    this.onClicDocument?.unsubscribe();
+  }
 
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  // Méthodes /////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////
   isDansDocument(mouseX: number, mouseY: number): boolean {
-    const { top, right, bottom, left } = this.element.nativeElement.getBoundingClientRect();
+    const {top, right, bottom, left} = this.element.nativeElement.getBoundingClientRect();
     return (left <= mouseX && mouseX <= right) && (top <= mouseY && mouseY <= bottom);
   }
 }

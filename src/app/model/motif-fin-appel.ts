@@ -1,4 +1,4 @@
 export interface MotifFinAppel {
-    label: string[];
-    nbr: number[];
+  label: string[];
+  nbr: number[];
 }

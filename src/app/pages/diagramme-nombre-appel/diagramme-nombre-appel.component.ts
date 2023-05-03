@@ -13,9 +13,9 @@ import {Rouge, Vert} from "../../../utils";
 })
 export class DiagrammeNombreAppelComponent implements OnInit, OnDestroy, OnChanges {
   public plage: string;
-  public labels:string[];
-  public nbAppel:number[];
-  public nbAbd:number[];
+  public labels: string[];
+  public nbAppel: number[];
+  public nbAbd: number[];
   public dataObservable: Subscription;
   public valeurObservable: Subscription;
   public BarChartData: any = {
@@ -41,19 +41,20 @@ export class DiagrammeNombreAppelComponent implements OnInit, OnDestroy, OnChang
     this.labels = [""];
     this.nbAppel = [0];
     this.nbAbd = [0];
-    this.valeurObservable=this.value.current.subscribe(_ => this.getData());
-    this.dataObservable=this.data.current.subscribe(_ => this.getData());
+    this.valeurObservable = this.value.current.subscribe(_ => this.getData());
+    this.dataObservable = this.data.current.subscribe(_ => this.getData());
   }
 
   ngOnInit(): void {
     this.getData();
   }
+
   ngOnChanges(): void {
     this.BarChartData = {
       labels: this.labels,
       datasets: [
-        { data: this.nbAppel, label: "Nombre d'appels", backgroundColor: Vert },
-        { data: this.nbAbd, label: "Nombre d'abandons", backgroundColor: Rouge },
+        {data: this.nbAppel, label: "Nombre d'appels", backgroundColor: Vert},
+        {data: this.nbAbd, label: "Nombre d'abandons", backgroundColor: Rouge},
       ]
     }
   }
@@ -62,7 +63,8 @@ export class DiagrammeNombreAppelComponent implements OnInit, OnDestroy, OnChang
     this.dataObservable.unsubscribe();
     this.valeurObservable.unsubscribe();
   }
-  private getData(){
+
+  private getData() {
     this.PostService.postRepartitionAbandonAppel().subscribe((data: any) => {
       if (!(data)) return;
       this.plage = data.plage;

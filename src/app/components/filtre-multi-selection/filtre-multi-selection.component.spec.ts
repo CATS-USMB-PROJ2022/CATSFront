@@ -1,5 +1,5 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-import { FiltreMultiSelectionComponent} from "./filtre-multi-selection.component";
+import {FiltreMultiSelectionComponent} from "./filtre-multi-selection.component";
 import {HttpClient, HttpHandler} from "@angular/common/http";
 
 describe('FiltreMultiSelectionComponent', () => {

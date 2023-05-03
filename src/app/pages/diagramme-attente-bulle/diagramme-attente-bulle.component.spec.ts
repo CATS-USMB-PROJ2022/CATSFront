@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { DiagrammeAttenteBulleComponent } from './diagramme-attente-bulle.component';
+import {DiagrammeAttenteBulleComponent} from './diagramme-attente-bulle.component';
 import {HttpClient, HttpHandler} from "@angular/common/http";
 
 describe('DiagrammeAttenteBulleComponent', () => {
@@ -9,7 +9,7 @@ describe('DiagrammeAttenteBulleComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DiagrammeAttenteBulleComponent ],
+      declarations: [DiagrammeAttenteBulleComponent],
       providers: [
         HttpClient,
         {provide: 'globalUrl', useValue: 'http://localhost:8080/'},
@@ -17,7 +17,7 @@ describe('DiagrammeAttenteBulleComponent', () => {
         {provide: 'globalUrl', useValue: 'http://localhost:8080/'},
       ],
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(DiagrammeAttenteBulleComponent);
     component = fixture.componentInstance;

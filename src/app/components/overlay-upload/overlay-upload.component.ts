@@ -9,9 +9,6 @@ import {PostService} from "../../service/post.service";
   styleUrls: ['./overlay-upload.component.css']
 })
 export class OverlayUploadComponent {
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  // Attributs ////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////
   // Boolean pour indiquer si l'upload est encore en cours
   upload_en_cours: boolean = false;
 
@@ -23,21 +20,13 @@ export class OverlayUploadComponent {
 
   erreur: boolean = false;
 
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  // Constructeurs ////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  constructor(private StockageCookie: StockageCookieService, private CaisseRegionale: CaisseRegionaleService, private Post: PostService) { }
+  constructor(private StockageCookie: StockageCookieService, private CaisseRegionale: CaisseRegionaleService, private Post: PostService) {
+  }
 
-  ////////////////////////////////////////////////////////////////////////
-  //// Getters ///////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////
   getFileName(): string {
     return this.isFichiersEmpty() ? 'Parcourir...' : `${this.fichiers.length} fichier${this.fichiers.length == 1 ? '' : 's'} sélectionné${this.fichiers.length == 1 ? '' : 's'}`;
   }
 
-  ////////////////////////////////////////////////////////////////////////
-  //// Methods ///////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////
   async ouvrirOverlay() {
     this.is_overlay_ouvert = true;
     this.ouverture_en_cours = true;
@@ -48,9 +37,13 @@ export class OverlayUploadComponent {
     this.ouverture_en_cours = false;
   }
 
-  fermerOverlay() { if (!this.ouverture_en_cours) this.is_overlay_ouvert = false; }
+  fermerOverlay() {
+    if (!this.ouverture_en_cours) this.is_overlay_ouvert = false;
+  }
 
-  isFichiersEmpty(): boolean { return this.fichiers.length == 0; }
+  isFichiersEmpty(): boolean {
+    return this.fichiers.length == 0;
+  }
 
   onSelectionFichier(event: Event) {
     this.erreur = false;
@@ -66,8 +59,6 @@ export class OverlayUploadComponent {
   }
 
   upload() {
-    console.table(this.fichiers);
-
     if (this.isFichiersEmpty()) {
       this.erreur = true;
       return;
@@ -78,8 +69,6 @@ export class OverlayUploadComponent {
         if (typeof (event) === 'object') {
           this.upload_en_cours = false;
           this.erreur = false;
-
-          console.log("Fin de l'upload du fichiers");
 
           this.fichiers = [];
           this.fermerOverlay();

@@ -1,5 +1,5 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-import { ChampRechercheComponent } from './champ-recherche.component';
+import {ChampRechercheComponent} from './champ-recherche.component';
 
 describe('ChampRechercheComponent', () => {
   let component: ChampRechercheComponent;

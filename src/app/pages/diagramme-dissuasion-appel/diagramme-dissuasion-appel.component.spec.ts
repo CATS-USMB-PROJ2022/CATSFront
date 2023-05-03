@@ -1,8 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {HttpClient, HttpHandler} from "@angular/common/http";
-import { DiagrammeDissuasionAppelComponent } from './diagramme-dissuasion-appel.component';
+import {DiagrammeDissuasionAppelComponent} from './diagramme-dissuasion-appel.component';
 
 describe('StatusCallDiagramComponent', () => {
   let component: DiagrammeDissuasionAppelComponent;
@@ -11,15 +9,15 @@ describe('StatusCallDiagramComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
 
-        providers: [
-            HttpClient,
-            {provide: 'globalUrl', useValue: 'http://localhost:8080/'},
-            HttpHandler,
-            {provide: 'globalUrl', useValue: 'http://localhost:8080/'},
-        ],
-      declarations: [ DiagrammeDissuasionAppelComponent ]
+      providers: [
+        HttpClient,
+        {provide: 'globalUrl', useValue: 'http://localhost:8080/'},
+        HttpHandler,
+        {provide: 'globalUrl', useValue: 'http://localhost:8080/'},
+      ],
+      declarations: [DiagrammeDissuasionAppelComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(DiagrammeDissuasionAppelComponent);
     component = fixture.componentInstance;

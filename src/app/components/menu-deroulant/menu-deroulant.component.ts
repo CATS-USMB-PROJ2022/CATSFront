@@ -9,9 +9,6 @@ import {StockageCookieService} from "../../service/stockage-cookie.service";
   styleUrls: ['./menu-deroulant.component.css']
 })
 export class MenuDeroulantComponent implements OnInit {
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  // Attributs ////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////
   public rubIdCaisse: number[];
   public caisse: string[];
   public nbrCaisse: number;
@@ -19,20 +16,16 @@ export class MenuDeroulantComponent implements OnInit {
 
   isOuvert = false;
 
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  // Constructeurs ////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////
   constructor(private StockageCookie: StockageCookieService, private CaisseRegionale: CaisseRegionaleService, private Post: PostService) {
     this.rubIdCaisse = [0];
     this.caisse = [""];
     this.nbrCaisse = this.StockageCookie.initialiserCaisseRegionale();
   }
 
-  ngOnInit(): void { this.initialiserDonneesAppels(); }
+  ngOnInit(): void {
+    this.initialiserDonneesAppels();
+  }
 
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  // Setters //////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////
   setCaisse(caisse_selectionnee: number) {
     this.caisse_selectionnee = caisse_selectionnee;
     this.StockageCookie.setCaisseRegionale(caisse_selectionnee);
@@ -41,10 +34,9 @@ export class MenuDeroulantComponent implements OnInit {
     this.isOuvert = false;
   }
 
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  // Getters //////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  getLabelSelectionne() { return this.getCaisses().find(caisse => caisse.id == this.caisse_selectionnee)?.label; }
+  getLabelSelectionne() {
+    return this.getCaisses().find(caisse => caisse.id == this.caisse_selectionnee)?.label;
+  }
 
   getCaisses() {
     let caisses = [];
@@ -52,9 +44,6 @@ export class MenuDeroulantComponent implements OnInit {
     return caisses;
   }
 
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  // Méthodes /////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////
   private initialiserDonneesAppels() {
     this.Post.postNombreAppels(this.nbrCaisse).subscribe(data => {
       this.rubIdCaisse = data.rubIdCaisse;
@@ -63,9 +52,15 @@ export class MenuDeroulantComponent implements OnInit {
     });
   }
 
-  bascule() { this.isOuvert = !this.isOuvert; }
+  bascule() {
+    this.isOuvert = !this.isOuvert;
+  }
 
-  clicHorsMenu() { this.isOuvert = false; }
+  clicHorsMenu() {
+    this.isOuvert = false;
+  }
 
-  isCaisseSelectionnee(caisse: number): boolean { return this.caisse_selectionnee === Number(caisse); }
+  isCaisseSelectionnee(caisse: number): boolean {
+    return this.caisse_selectionnee === Number(caisse);
+  }
 }

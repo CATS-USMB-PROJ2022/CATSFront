@@ -1,5 +1,5 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-import { OverlayUploadComponent } from './overlay-upload.component';
+import {OverlayUploadComponent} from './overlay-upload.component';
 import {HttpClient, HttpHandler} from "@angular/common/http";
 
 describe('OverlayUploadComponent', () => {

@@ -17,7 +17,8 @@
     <div class='menu-deroulant-contenu intouchable' *ngIf='isOuvert'>
       <div class='menu-deroulant-objet intouchable' (click)="setCaisse(-1)">Sélectionner une caisse</div>
 
-      <div class='menu-deroulant-objet intouchable' *ngFor='let caisse of getCaisses()' [ngClass]="{'selection': isCaisseSelectionnee(caisse.id)}" (click)="setCaisse(caisse.id)">
+      <div class='menu-deroulant-objet intouchable' *ngFor='let caisse of getCaisses()'
+           [ngClass]="{'selection': isCaisseSelectionnee(caisse.id)}" (click)="setCaisse(caisse.id)">
         {{caisse.label}}
       </div>
     </div>
