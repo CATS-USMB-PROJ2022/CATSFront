@@ -32,6 +32,8 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
   width: number = 1000;
   height: number = 1000;
 
+  nbMaxAppel: number = 0;
+
   nodes: GraphNode[] = [{id:"1"}];
   links: GraphLink[] = [{source: this.nodes[0], target: this.nodes[0], nb: 1}];
 
@@ -160,7 +162,7 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
       .attr('class', 'links')
       .attr('stroke', Vert)
       .attr('stroke-opacity', 0.6)
-      .attr('stroke-width', (d) => d.nb/150 +2)
+      .attr('stroke-width', (d) => (Math.round(d.nb/this.nbMaxAppel))*15+1)
       .attr('stroke-linecap', 'round')
       .attr("marker-end", (d) => "url(#arrowhead)");
 
@@ -216,6 +218,7 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
     this.PostService.postCheminementAppel().subscribe(data => {
       this.arbre = data.edges;
       this.labels = data.nodes;
+      this.nbMaxAppel = this.getNbAppelMax();
       this.ngOnChanges();
     });
   }
@@ -227,6 +230,16 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
       }
     }
     return -1;
+  }
+
+  getNbAppelMax(): number {
+     let max = 0;
+      for(const element of this.arbre) {
+        if(parseInt(element[2]) > max) {
+          max = parseInt(element[2]);
+        }
+      }
+      return max;
   }
 }
 
