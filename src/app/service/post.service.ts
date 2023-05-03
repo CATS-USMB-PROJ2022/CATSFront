@@ -69,7 +69,7 @@ export class PostService {
 
   public postDissuasionAppel(): Observable<DissuasionAppel> { return this.Http.post<DissuasionAppel>(this.getUrl('cause-dissuasion'), this.getPost()); }
 
-  public postAttenteRepartitionAppel(): Observable<AttenteRepartitionAppel> { return this.Http.post<AttenteRepartitionAppel>(this.getUrl('appel-attente'), this.getPost()); }
+  public postAttenteRepartitionAppel(): Observable<AttenteRepartitionAppel> { return this.Http.post<AttenteRepartitionAppel>(this.getUrl('attente'), this.getPost()); }
 
   public postComAgent(): Observable<ComAgent>{ return this.Http.post<ComAgent>(this.getUrl('com-agent'), this.getPost()); }
 

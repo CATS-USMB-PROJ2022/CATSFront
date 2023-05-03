@@ -112,12 +112,6 @@
   justify-content: flex-end;
 }
 
-.carte > span {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-}
-
 .carte.lien:hover {
   /* Box model */
   background-color: var(--grey-245);
