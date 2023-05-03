@@ -2,3 +2,11 @@ div {
     width: 90%;
     height: 90%;
 }
+
+h1 {
+  /* Box model */
+  margin: 0.5em 0;
+
+  /* Typography */
+  text-align: center;
+}

@@ -85,10 +85,10 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
       )
       .force('charge', d3.forceManyBody())
       .force('center', d3.forceCenter(this.width/2, this.height/2)) // center the graph in the middle of the screen
-      .force('collision', d3.forceCollide().radius(70)) // avoid collision between nodes
+      .force('collision', d3.forceCollide().radius(60)) // avoid collision between nodes
       // force the graph to stay within its boundaries
-      .force('x', d3.forceX(this.width / 2).strength(0.1))
-      .force('y', d3.forceY(this.height / 2).strength(0.1))
+      .force('x', d3.forceX(this.width / 2).strength(0.3))
+      .force('y', d3.forceY(this.height / 2).strength(0.3))
       .on('tick', () => {
         link
         .attr('x1', (d) => {
@@ -119,13 +119,13 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
       .attr('class', 'links')
       .attr('stroke', Vert)
       .attr('stroke-opacity', 0.6)
-      .attr('stroke-width', (d) => d.nb/150 +3)
+      .attr('stroke-width', (d) => d.nb/150 +2)
       .attr('stroke-linecap', 'round')
       .attr("marker-end", (d) => "url(#arrowhead)");
 
     link.append("title")
       .text((d) => d.nb);
-    
+
     // create the nodes
     const node = svg.selectAll('.nodes')
       .data(this.nodes)
