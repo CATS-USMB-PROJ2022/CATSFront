@@ -52,6 +52,8 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
       this.height = container.clientHeight;
     }
 
+    const circle_size : number = 35;
+
     // delete previous generated graph
     d3.select('#graph').selectAll('svg').remove();
 
@@ -67,7 +69,7 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
     svg.append("defs").append("marker")
       .attr("id", "arrowhead")
       .attr("viewBox", "0 0 5 5")
-      .attr("refX", 5)
+      .attr("refX", 2.5)
       .attr("refY", 2.5)
       .attr("markerWidth", 3)
       .attr("markerHeight", 3)
@@ -82,6 +84,7 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
       .force('link', d3.forceLink<GraphNode, GraphLink>(this.links)
         .id((d) => d.id)
         .distance(70) // set the distance between nodes to 60
+        .strength(0.2)
       )
       .force('charge', d3.forceManyBody())
       .force('center', d3.forceCenter(this.width/2, this.height/2)) // center the graph in the middle of the screen
@@ -101,11 +104,23 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
         })
           .attr('x2', (d) => {
             // @ts-ignore
-            return d.target.x - 35 * Math.cos(Math.atan2(d.target.y - d.source.y, d.target.x - d.source.x)).toString();
+            const dx = d.target.x - d.source.x;
+            // @ts-ignore
+            const dy = d.target.y - d.source.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            const unitDx = dx / distance;
+            // @ts-ignore
+            return d.target.x - unitDx * (circle_size+5+d.nb/150);
           })
           .attr('y2', (d) => {
             // @ts-ignore
-            return d.target.y - 35 * Math.sin(Math.atan2(d.target.y - d.source.y, d.target.x - d.source.x)).toString();
+            const dx = d.target.x - d.source.x;
+            // @ts-ignore
+            const dy = d.target.y - d.source.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            const unitDy = dy / distance;
+            // @ts-ignore
+            return d.target.y - unitDy * (circle_size+5+d.nb/150);
           })
       node
         .attr('transform', d => `translate(${d.x},${d.y})`); // set the position of the group
@@ -133,7 +148,7 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
       .append('g') ;
 
     node.append('circle')
-      .attr('r', 35)
+      .attr('r', circle_size)
       .attr('fill', '#e6e6e6')
       .attr('stroke', "black");
 
