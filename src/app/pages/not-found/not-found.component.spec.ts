@@ -19,4 +19,19 @@ describe('NotFoundComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it ('should have a title', () => {
+    const title = fixture.nativeElement.querySelector('h2');
+    expect(title.textContent).toEqual('Erreur 404');
+  });
+
+  it ('should have a message', () => {
+    const message = fixture.nativeElement.querySelector('span');
+    expect(message.textContent).toEqual('La page que vous demandez n\'existe pas.');
+  });
+
+  it ('should have a link to the home page', () => {
+    const link = fixture.nativeElement.querySelector('button');
+    expect(link.getAttribute('routerLink')).toEqual("");
+  });
 });

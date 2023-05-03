@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
-  <file path="D:\Linux file\github repo\CATSFront\src\app\pages\indicateurs\diagramme-cartes\diagramme-cartes.component.spec.ts">
-    <testCase name="DiagrammeCartesComponent should create the component" duration="376"/>
-    <testCase name="DiagrammeCartesComponent should initialize data on init" duration="36"/>
+  <file path="D:\Linux file\github repo\CATSFront\src\app\pages\not-found\not-found.component.spec.ts">
+    <testCase name="NotFoundComponent should create" duration="310"/>
+    <testCase name="NotFoundComponent should have a title" duration="16"/>
+    <testCase name="NotFoundComponent should have a message" duration="15"/>
+    <testCase name="NotFoundComponent should have a link to the home page" duration="13"/>
   </file>
 </testExecutions>
