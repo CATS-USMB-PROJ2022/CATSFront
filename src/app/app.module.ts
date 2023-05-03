@@ -50,6 +50,7 @@ import {DiagrammeNombreAppelComponent} from './pages/diagramme-nombre-appel/diag
 import {DiagrammeComAgentComponent} from './pages/diagramme-com-agent/diagramme-com-agent.component';
 import {VoirPlusComponent} from "./components/icons/voir-plus.component";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import { GraphCheminementAppelComponent } from './pages/graph-cheminement-appel/graph-cheminement-appel.component';
 
 @NgModule({
   declarations: [
@@ -75,16 +76,14 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
     FiltreMultiSelectionComponent,
     FiltreDateHeureComponent,
     FiltreHorairesNonOuvresComponent,
-
     ChampRechercheComponent,
-
     DiagrammeCartesComponent,
-
     ClickOutsideDirective,
     DiagrammeAttenteBulleComponent,
     DiagrammeNombreAppelComponent,
     DiagrammeComAgentComponent,
     VoirPlusComponent,
+    GraphCheminementAppelComponent,
   ],
   imports: [
     BrowserModule,
