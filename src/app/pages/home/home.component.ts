@@ -106,7 +106,7 @@ export class HomeComponent implements OnInit, OnChanges, OnDestroy {
     this.Post.postSeuil().subscribe(data => this.nbSupSeuil = data.nbSupSeuil);
   }
 
-  private initialiserDonneesAppels() {
+  initialiserDonneesAppels() {
     this.Post.postNombreAppels().subscribe(data => {
       this.nombreAppels = data.nbrAppel;
       this.tempsCommunicationMoyen = Math.round(data.moyenneTempsTravail);
@@ -129,7 +129,7 @@ export class HomeComponent implements OnInit, OnChanges, OnDestroy {
     });
   }
 
-  private updateDonneesAppels(value: {
+  updateDonneesAppels(value: {
     nombreAppels: number,
     tempsAttenteMoyen: number,
     tempsCommunicationMoyen: number,
