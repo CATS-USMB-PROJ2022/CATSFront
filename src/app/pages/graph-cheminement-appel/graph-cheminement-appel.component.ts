@@ -4,7 +4,7 @@ import {ValeursService} from "../../service/valeurs.service";
 import {PostService} from "../../service/post.service";
 import {Subscription} from "rxjs";
 import * as d3 from "d3";
-import { Selection, SimulationNodeDatum } from 'd3';
+import { SimulationNodeDatum } from 'd3';
 import {Vert} from "../../../utils";
 
 
@@ -95,7 +95,7 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
       )
       .force('charge', d3.forceManyBody())
       .force('center', d3.forceCenter(this.width/2, this.height/2)) // center the graph in the middle of the screen
-      .force('collision', d3.forceCollide().radius(60)) // avoid collision between nodes
+      .force('collision', d3.forceCollide().radius(70)) // avoid collision between nodes
       // force the graph to stay within its boundaries
       .force('x', d3.forceX(this.width / 2).strength(0.3))
       .force('y', d3.forceY(this.height / 2).strength(0.3))
@@ -117,7 +117,7 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
             const distance = Math.sqrt(dx * dx + dy * dy);
             const unitDx = dx / distance;
             // @ts-ignore
-            return d.target.x - unitDx * (circle_size+5+d.nb/150);
+            return d.target.x - unitDx * (circle_size+5+d.nb/100);
           })
           .attr('y2', (d) => {
             // @ts-ignore
@@ -127,7 +127,7 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
             const distance = Math.sqrt(dx * dx + dy * dy);
             const unitDy = dy / distance;
             // @ts-ignore
-            return d.target.y - unitDy * (circle_size+5+d.nb/150);
+            return d.target.y - unitDy * (circle_size+5+d.nb/100);
           })
       node
         .attr('transform', d => `translate(${d.x},${d.y})`); // set the position of the group
@@ -162,7 +162,7 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
       .attr('class', 'links')
       .attr('stroke', Vert)
       .attr('stroke-opacity', 0.6)
-      .attr('stroke-width', (d) => (Math.round(d.nb/this.nbMaxAppel))*15+1)
+      .attr('stroke-width', (d) => (Math.round(d.nb/this.nbMaxAppel))*15+2)
       .attr('stroke-linecap', 'round')
       .attr("marker-end", (d) => "url(#arrowhead)");
 

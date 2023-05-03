@@ -84,7 +84,7 @@ export class PostService {
     return this.Http.post<RepartitionAbandonAppel>(this.getUrl('abandon-repartition'), this.getPost());
   }
 
-  public postCheminementAppel(): Observable<CheminAppel> { return this.Http.post<CheminAppel>(this.getUrl('Cheminement'), this.getPost()); }
+  public postCheminementAppel(): Observable<CheminAppel> { return this.Http.post<CheminAppel>(this.getUrl('cheminement'), this.getPost()); }
 
   public postUploadFichiers(fichiers: File[]): Observable<any> {
     const fd = new FormData();
