@@ -2,8 +2,9 @@
   <div class='spinner-overlay' *ngIf="upload_en_cours">
     <div class="spinner"></div>
   </div>
-  <div class='conteneur-upload' [ngStyle]="isFichiersEmpty() ? {height: '20em'} : {height: '40em'}"
+  <div class='conteneur-upload'
        (clickOutside)="fermerOverlay()">
+  <!--[ngStyle]="isFichiersEmpty() ? {height: '20em'} : {height: '40em'}"-->
     <h1>Importer un CSV</h1>
 
     <ul class='fichiers-uploades' [hidden]="isFichiersEmpty()">
@@ -13,16 +14,18 @@
       </li>
     </ul>
 
-    <div class='zone-upload'>
-      <input type="file" name="fichiers" id="fichiers" class="input-upload" accept=".xlsx,.csv"
-             (change)="onSelectionFichier($event)" multiple/>
-      <label for="fichiers">
-        {{getFileName()}}
-        <recherche class="recherche"></recherche>
-      </label>
-      <span class="erreur" [ngClass]="{'invisible': !erreur}">{{messageErreur}}</span>
-    </div>
+    <div class="upload">
+      <div class='zone-upload'>
+        <input type="file" name="fichiers" id="fichiers" class="input-upload" accept=".xlsx,.csv"
+               (change)="onSelectionFichier($event)" multiple/>
+        <label for="fichiers">
+          {{getFileName()}}
+          <recherche class="recherche"></recherche>
+        </label>
+        <span class="erreur" [ngClass]="{'invisible': !erreur}">{{messageErreur}}</span>
+      </div>
 
-    <button class='bouton-upload' (click)="upload()">Importer</button>
+      <button class='bouton-upload' (click)="upload()">Importer</button>
+    </div>
   </div>
 </div>

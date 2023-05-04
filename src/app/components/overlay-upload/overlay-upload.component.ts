@@ -68,8 +68,9 @@ export class OverlayUploadComponent {
 
     this.upload_en_cours = true;
 
-    // try {
-      this.Post.postUploadFichiers(this.fichiers).subscribe((event: any) => {
+    this.Post
+      .postUploadFichiers(this.fichiers)
+      .subscribe((event: any) => {
           if (typeof (event) === 'object') {
 
             this.upload_en_cours = false;
@@ -81,15 +82,13 @@ export class OverlayUploadComponent {
             this.CaisseRegionale.setCaisse(this.StockageCookie.getCaisseRegionale());
           }
         }
-      );
-    // } catch (e: ) {
-    //   const {status, statusText} = e;
-    //
-    //   if (status === 500) {
-    //     this.erreur = true;
-    //     this.messageErreur = statusText;
-    //     return;
-    //   }
-    // }
+        , (error) => {
+          const {status} = error;
+
+          this.upload_en_cours = false;
+          this.erreur = true;
+          this.messageErreur = status === 500 ? 'Internal Server Error' : status === 400 ? 'Bad Request' : 'Something went wrong';
+          return;
+        }, () => {});
   }
 }

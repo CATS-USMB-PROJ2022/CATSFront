@@ -63,7 +63,8 @@
   /* Box model */
   border: 2px solid var(--container-border);
   width: 30em;
-  height: 20em;
+  min-height: 20em;
+  max-height: 40em;
   padding: 1.3em;
 
   /* Background */
@@ -77,6 +78,7 @@
 
 .fichiers-uploades {
   width: 100%;
+  height: 100%;
   list-style-type: none;
   padding: 0;
   overflow: scroll;
@@ -100,6 +102,13 @@
 
 .bouton-supprimer {
   cursor: pointer;
+}
+
+.upload {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .zone-upload {
