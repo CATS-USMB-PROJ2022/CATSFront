@@ -10,7 +10,9 @@ import {NgxMaterialTimepickerModule} from "ngx-material-timepicker";
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DiagrammeStatutAppelComponent} from './pages/diagramme-statut-appel/diagramme-statut-appel.component';
-import {DiagrammeDissuasionAppelComponent} from './pages/diagramme-dissuasion-appel/diagramme-dissuasion-appel.component';
+import {
+  DiagrammeDissuasionAppelComponent
+} from './pages/diagramme-dissuasion-appel/diagramme-dissuasion-appel.component';
 
 import {DiagrammeMotifFinAppelComponent} from './pages/diagramme-motif-fin-appel/diagramme-motif-fin-appel.component';
 import {HomeComponent} from './pages/home/home.component';
@@ -29,7 +31,9 @@ import {FiltreMultiSelectionComponent} from "./components/filtre-multi-selection
 import {FiltreDateHeureComponent} from "./components/filtre-date-heure/filtre-date-heure.component";
 import {OverlayUploadComponent} from "./components/overlay-upload/overlay-upload.component";
 import {ClickOutsideDirective} from "./directives/clicked-outside/clicked-outside.directive";
-import {FiltreHorairesNonOuvresComponent} from "./components/filtre-horaires-non-ouvres/filtre-horaires-non-ouvres.component";
+import {
+  FiltreHorairesNonOuvresComponent
+} from "./components/filtre-horaires-non-ouvres/filtre-horaires-non-ouvres.component";
 import {ChampRechercheComponent} from "./components/champ-recherche/champ-recherche.component";
 import {MatListModule} from "@angular/material/list";
 import {MatButtonModule} from "@angular/material/button";
@@ -41,9 +45,12 @@ import {
 } from "./pages/diagramme-repartition-appel/diagramme-repartition-appel.component";
 import {FiltreComponent} from "./components/filtre/filtre.component";
 import {DiagrammeCartesComponent} from "./pages/indicateurs/diagramme-cartes/diagramme-cartes.component";
-import { DiagrammeAttenteBulleComponent } from './pages/diagramme-attente-bulle/diagramme-attente-bulle.component';
-import { DiagrammeNombreAppelComponent } from './pages/diagramme-nombre-appel/diagramme-nombre-appel.component';
-import { DiagrammeComAgentComponent } from './pages/diagramme-com-agent/diagramme-com-agent.component';
+import {DiagrammeAttenteBulleComponent} from './pages/diagramme-attente-bulle/diagramme-attente-bulle.component';
+import {DiagrammeNombreAppelComponent} from './pages/diagramme-nombre-appel/diagramme-nombre-appel.component';
+import {DiagrammeComAgentComponent} from './pages/diagramme-com-agent/diagramme-com-agent.component';
+import {VoirPlusComponent} from "./components/icons/voir-plus.component";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import { GraphCheminementAppelComponent } from './pages/graph-cheminement-appel/graph-cheminement-appel.component';
 
 @NgModule({
   declarations: [
@@ -69,15 +76,14 @@ import { DiagrammeComAgentComponent } from './pages/diagramme-com-agent/diagramm
     FiltreMultiSelectionComponent,
     FiltreDateHeureComponent,
     FiltreHorairesNonOuvresComponent,
-
     ChampRechercheComponent,
-
     DiagrammeCartesComponent,
-
     ClickOutsideDirective,
-      DiagrammeAttenteBulleComponent,
-      DiagrammeNombreAppelComponent,
-      DiagrammeComAgentComponent,
+    DiagrammeAttenteBulleComponent,
+    DiagrammeNombreAppelComponent,
+    DiagrammeComAgentComponent,
+    VoirPlusComponent,
+    GraphCheminementAppelComponent,
   ],
   imports: [
     BrowserModule,
@@ -97,6 +103,7 @@ import { DiagrammeComAgentComponent } from './pages/diagramme-com-agent/diagramm
     NgxMaterialTimepickerModule,
     MatListModule,
     MatButtonModule,
+    MatSlideToggleModule,
   ],
   providers: [
     PostService,

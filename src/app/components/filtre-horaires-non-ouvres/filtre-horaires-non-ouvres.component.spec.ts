@@ -1,5 +1,5 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-import { FiltreHorairesNonOuvresComponent} from "./filtre-horaires-non-ouvres.component";
+import {FiltreHorairesNonOuvresComponent} from "./filtre-horaires-non-ouvres.component";
 import {HttpClient, HttpHandler} from "@angular/common/http";
 
 describe('FiltreHorairesNonOuvresComponent', () => {

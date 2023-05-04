@@ -3,7 +3,7 @@ import {ChartData} from "chart.js";
 import {CaisseRegionaleService} from "../../../service/caisse-regionale.service";
 import {getCouleurs} from "../../../../utils";
 import {Observable, Subscription} from "rxjs";
-import { ValeursService } from "../../../service/valeurs.service";
+import {ValeursService} from "../../../service/valeurs.service";
 
 @Component({
   selector: 'diagramme-cartes[titre][lienParent][racine][getDonnees]',
@@ -11,9 +11,6 @@ import { ValeursService } from "../../../service/valeurs.service";
   styleUrls: ['./diagramme-cartes.component.css']
 })
 export class DiagrammeCartesComponent implements OnInit, OnChanges, OnDestroy {
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  // Attributs ////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////
   @Input() titre: string = 'Graphe';
   @Input() lienParent: string = '/';
   @Input() racine: string = '/';
@@ -40,17 +37,16 @@ export class DiagrammeCartesComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  // Constructeurs ////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////
   constructor(private data: CaisseRegionaleService, private valeur: ValeursService) {
     this.label = [""];
     this.valeurs = [0];
-    this.dataObservable=this.data.current.subscribe(_ => this.getDataStatus());
-    this.valeurObservable=this.valeur.current.subscribe(_=> this.getDataStatus());
+    this.dataObservable = this.data.current.subscribe(_ => this.getDataStatus());
+    this.valeurObservable = this.valeur.current.subscribe(_ => this.getDataStatus());
   }
 
-  ngOnInit(): void { this.getDataStatus(); }
+  ngOnInit(): void {
+    this.getDataStatus();
+  }
 
   ngOnChanges(): void {
     this.pieChartData = {
@@ -65,14 +61,11 @@ export class DiagrammeCartesComponent implements OnInit, OnChanges, OnDestroy {
   ngOnDestroy(): void {
     this.dataObservable.unsubscribe();
     this.valeurObservable.unsubscribe();
-   }
+  }
 
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  // Getters //////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  private getDataStatus() {
+  getDataStatus() {
     this.getDonnees().subscribe(data => {
-      if(!(data))return ;
+      if (!(data)) return;
       this.label = data.label;
       this.valeurs = data.nbr;
       this.ngOnChanges();
@@ -85,15 +78,12 @@ export class DiagrammeCartesComponent implements OnInit, OnChanges, OnDestroy {
     return appels;
   }
 
-  getAppelPaires(): {label: string, valeur: number}[] {
+  getAppelPaires(): { label: string, valeur: number }[] {
     let appels = [];
     for (let i = 0; i < this.label.length; i++) appels.push({label: this.label[i], valeur: this.valeurs[i]});
     return appels;
   }
 
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  // Méthodes /////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////
   getLienLabel(label: string): string {
     for (const l of this.liens) if (l.label === label) return l.lien;
     return this.racine;

@@ -1,12 +1,13 @@
 <div class="diagramme">
-  <h1>Statistiques appels par agences</h1>
+  <h1>Statistiques des appels débordés</h1>
   <h2>Temps d'attente moyen avant abandon : {{attenteMoyenneAvantAbandon.toFixed(2)}}s</h2>
+  <h2>{{appelsDebordesAbandonnes.toFixed(2)}}% d'appels débordés ont été abandonnés</h2>
   <div class="chart">
     <canvas baseChart
             [data]="bubbleChartData"
-            [type]="bubbleChartType"
+            [type]="'bubble'"
             [options]="bubbleChartOptions"
-    [plugins]="bubbleChartPlugins">
+            [plugins]="bubbleChartPlugins">
     </canvas>
   </div>
 </div>

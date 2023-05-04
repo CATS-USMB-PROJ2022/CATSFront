@@ -9,9 +9,6 @@ import {PostService} from "../../service/post.service";
   styleUrls: ['./overlay-upload.component.css']
 })
 export class OverlayUploadComponent {
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  // Attributs ////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////
   // Boolean pour indiquer si l'upload est encore en cours
   upload_en_cours: boolean = false;
 
@@ -22,22 +19,15 @@ export class OverlayUploadComponent {
   ouverture_en_cours = false;
 
   erreur: boolean = false;
+  messageErreur: string = 'Veuillez sélectionner un fichier.';
 
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  // Constructeurs ////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  constructor(private StockageCookie: StockageCookieService, private CaisseRegionale: CaisseRegionaleService, private Post: PostService) { }
+  constructor(private StockageCookie: StockageCookieService, private CaisseRegionale: CaisseRegionaleService, private Post: PostService) {
+  }
 
-  ////////////////////////////////////////////////////////////////////////
-  //// Getters ///////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////
   getFileName(): string {
     return this.isFichiersEmpty() ? 'Parcourir...' : `${this.fichiers.length} fichier${this.fichiers.length == 1 ? '' : 's'} sélectionné${this.fichiers.length == 1 ? '' : 's'}`;
   }
 
-  ////////////////////////////////////////////////////////////////////////
-  //// Methods ///////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////
   async ouvrirOverlay() {
     this.is_overlay_ouvert = true;
     this.ouverture_en_cours = true;
@@ -48,9 +38,13 @@ export class OverlayUploadComponent {
     this.ouverture_en_cours = false;
   }
 
-  fermerOverlay() { if (!this.ouverture_en_cours) this.is_overlay_ouvert = false; }
+  fermerOverlay() {
+    if (!this.ouverture_en_cours) this.is_overlay_ouvert = false;
+  }
 
-  isFichiersEmpty(): boolean { return this.fichiers.length == 0; }
+  isFichiersEmpty(): boolean {
+    return this.fichiers.length == 0;
+  }
 
   onSelectionFichier(event: Event) {
     this.erreur = false;
@@ -66,26 +60,35 @@ export class OverlayUploadComponent {
   }
 
   upload() {
-    console.table(this.fichiers);
-
     if (this.isFichiersEmpty()) {
       this.erreur = true;
+      this.messageErreur = 'Veuillez sélectionner un fichier.';
       return;
     }
 
     this.upload_en_cours = true;
-    this.Post.postUploadFichiers(this.fichiers).subscribe((event: any) => {
-        if (typeof (event) === 'object') {
-          this.upload_en_cours = false;
-          this.erreur = false;
 
-          console.log("Fin de l'upload du fichiers");
+    this.Post
+      .postUploadFichiers(this.fichiers)
+      .subscribe((event: any) => {
+          if (typeof (event) === 'object') {
 
-          this.fichiers = [];
-          this.fermerOverlay();
-          this.CaisseRegionale.setCaisse(this.StockageCookie.getCaisseRegionale());
+            this.upload_en_cours = false;
+
+            this.erreur = false;
+
+            this.fichiers = [];
+            this.fermerOverlay();
+            this.CaisseRegionale.setCaisse(this.StockageCookie.getCaisseRegionale());
+          }
         }
-      }
-    );
+        , (error) => {
+          const {status} = error;
+
+          this.upload_en_cours = false;
+          this.erreur = true;
+          this.messageErreur = status === 500 ? 'Internal Server Error' : status === 400 ? 'Bad Request' : 'Something went wrong';
+          return;
+        }, () => {});
   }
 }

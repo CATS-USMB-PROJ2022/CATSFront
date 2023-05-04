@@ -10,28 +10,20 @@ import {RepartitionAppel} from "../model/repartition-appel";
 import {DissuasionAppel} from "../model/dissuasion-appel";
 import {AppelSeuil} from "../model/appel-seuil";
 import {AttenteRepartitionAppel} from "../model/AttenteRepartitionAppel";
-import {DateRepartitionAppel} from "../model/date-repartition-appel";
 import {ComAgent} from "../model/com-agent";
 import {RepartitionAbandonAppel} from "../model/RepartitionAbandonAppel";
+import {CheminAppel} from "../model/chemin-appel";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  // Constants ////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////
   readonly localUrl = "http://localhost:8080";
   readonly onlineUrl = "http://141.95.151.1:8080";
 
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  // Constructors /////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  constructor(private Http: HttpClient, private StockageCookie: StockageCookieService) { }
+  constructor(private Http: HttpClient, private StockageCookie: StockageCookieService) {
+  }
 
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  // Getters //////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////
   /**
    * Construit un Post avec les attributs nécessaires
    * @param c Caisse régionale interrogée
@@ -52,36 +44,51 @@ export class PostService {
     return new Post(c, date_debut, date_fin, heure_debut, heure_fin, agences, groupes_trafic, seuil, horaires_non_ouvres);
   }
 
-  private getUrl(page: string): string { return `${this.localUrl}/${page}`; }
+  private getUrl(page: string): string {
+    return `${this.localUrl}/${page}`;
+  }
 
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  // Methods //////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  public postNombreAppels(c: number = this.StockageCookie.getCaisseRegionale()): Observable<Appel> { return this.Http.post<Appel>(this.getUrl('Home'), this.getPost(c)); }
+  public postNombreAppels(c: number = this.StockageCookie.getCaisseRegionale()): Observable<Appel> {
+    return this.Http.post<Appel>(this.getUrl('home'), this.getPost(c));
+  }
 
-  public postSeuil(): Observable<AppelSeuil> { return this.Http.post<AppelSeuil>(this.getUrl('Seuil'), this.getPost()); }
+  public postSeuil(): Observable<AppelSeuil> {
+    return this.Http.post<AppelSeuil>(this.getUrl('seuil'), this.getPost());
+  }
 
-  public postMotifsFinAppel(): Observable<MotifFinAppel> { return this.Http.post<MotifFinAppel>(this.getUrl('AppelCauseFin'), this.getPost()); }
+  public postMotifsFinAppel(): Observable<MotifFinAppel> {
+    return this.Http.post<MotifFinAppel>(this.getUrl('cause-fin'), this.getPost());
+  }
 
-  public postStatutsAppel(): Observable<StatutAppel> { return this.Http.post<StatutAppel>(this.getUrl('AppelStatut'), this.getPost()); }
+  public postStatutsAppel(): Observable<StatutAppel> {
+    return this.Http.post<StatutAppel>(this.getUrl('statut'), this.getPost());
+  }
 
-  public postRepartitionAppel(): Observable<RepartitionAppel> { return this.Http.post<RepartitionAppel>(this.getUrl('AppelRepartition'), this.getPost()); }
+  public postRepartitionAppel(): Observable<RepartitionAppel> {
+    return this.Http.post<RepartitionAppel>(this.getUrl('repartition'), this.getPost());
+  }
 
-  public postDissuasionAppel(): Observable<DissuasionAppel> { return this.Http.post<DissuasionAppel>(this.getUrl('AppelCauseDissuasion'), this.getPost()); }
+  public postDissuasionAppel(): Observable<DissuasionAppel> {
+    return this.Http.post<DissuasionAppel>(this.getUrl('cause-dissuasion'), this.getPost());
+  }
 
-  public postAttenteRepartitionAppel(): Observable<AttenteRepartitionAppel> { return this.Http.post<AttenteRepartitionAppel>(this.getUrl('AppelAttente'), this.getPost()); }
+  public postAttenteRepartitionAppel(): Observable<AttenteRepartitionAppel> {
+    return this.Http.post<AttenteRepartitionAppel>(this.getUrl('attente'), this.getPost());
+  }
 
-  public postDateRepartitionAppel(): Observable<DateRepartitionAppel> { return this.Http.post<DateRepartitionAppel>(this.getUrl('AppelDateRepartition'), this.getPost()); }
+  public postComAgent(): Observable<ComAgent> {
+    return this.Http.post<ComAgent>(this.getUrl('com-agent'), this.getPost());
+  }
 
-  public postComAgent(): Observable<ComAgent>{ return this.Http.post<ComAgent>(this.getUrl('ComAgent'), this.getPost()); }
+  public postRepartitionAbandonAppel(): Observable<RepartitionAbandonAppel> {
+    return this.Http.post<RepartitionAbandonAppel>(this.getUrl('abandon-repartition'), this.getPost());
+  }
 
-  public postRepartitionAbandonAppel(): Observable<RepartitionAbandonAppel>{ return this.Http.post<RepartitionAbandonAppel>(this.getUrl('AppelAbandonRepartition'), this.getPost()); }
+  public postCheminementAppel(): Observable<CheminAppel> { return this.Http.post<CheminAppel>(this.getUrl('cheminement'), this.getPost()); }
 
   public postUploadFichiers(fichiers: File[]): Observable<any> {
-    console.table(fichiers);
-
     const fd = new FormData();
     for (const fichier of fichiers) fd.append('file', fichier);
-    return this.Http.post<any>(this.getUrl('Upload'), fd);
+    return this.Http.post<any>(this.getUrl('upload'), fd);
   }
 }

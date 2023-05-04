@@ -42,7 +42,7 @@
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   background: radial-gradient(farthest-side, var(--red-primary) 94%, #0000) top / var(--spinner-thickness) var(--spinner-thickness) no-repeat,
-              conic-gradient(#0000 30%, var(--red-primary));
+  conic-gradient(#0000 30%, var(--red-primary));
   -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - (var(--spinner-size) * 14 / 88)), #000 0);
   animation: spinner-c7wet2 0.8s infinite linear;
 }
@@ -63,7 +63,8 @@
   /* Box model */
   border: 2px solid var(--container-border);
   width: 30em;
-  height: 20em;
+  min-height: 20em;
+  max-height: 40em;
   padding: 1.3em;
 
   /* Background */
@@ -77,6 +78,7 @@
 
 .fichiers-uploades {
   width: 100%;
+  height: 100%;
   list-style-type: none;
   padding: 0;
   overflow: scroll;
@@ -102,11 +104,18 @@
   cursor: pointer;
 }
 
+.upload {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .zone-upload {
   /* Flexbox */
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
 
   /* Box model */
   width: 100%;
@@ -165,6 +174,7 @@
 label {
   /* Box model */
   width: calc(100% - 2em);
+  cursor: pointer;
 }
 
 .input-upload:focus + label,
@@ -182,6 +192,7 @@ label {
   /* Box model */
   margin-top: .25em;
   margin-left: 1em;
+  width: 85%;
 
   /* Typography */
   font-size: small;

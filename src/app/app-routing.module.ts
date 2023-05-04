@@ -4,13 +4,16 @@ import {DiagrammeStatutAppelComponent} from "./pages/diagramme-statut-appel/diag
 import {DiagrammeMotifFinAppelComponent} from "./pages/diagramme-motif-fin-appel/diagramme-motif-fin-appel.component";
 import {HomeComponent} from "./pages/home/home.component";
 import {NotFoundComponent} from "./pages/not-found/not-found.component";
-import {DiagrammeRepartitionAppelComponent} from "./pages/diagramme-repartition-appel/diagramme-repartition-appel.component";
+import {
+  DiagrammeRepartitionAppelComponent
+} from "./pages/diagramme-repartition-appel/diagramme-repartition-appel.component";
 import {
   DiagrammeDissuasionAppelComponent
 } from "./pages/diagramme-dissuasion-appel/diagramme-dissuasion-appel.component";
 import {DiagrammeAttenteBulleComponent} from "./pages/diagramme-attente-bulle/diagramme-attente-bulle.component";
 import {DiagrammeNombreAppelComponent} from "./pages/diagramme-nombre-appel/diagramme-nombre-appel.component";
 import {DiagrammeComAgentComponent} from "./pages/diagramme-com-agent/diagramme-com-agent.component";
+import {GraphCheminementAppelComponent} from "./pages/graph-cheminement-appel/graph-cheminement-appel.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -21,6 +24,7 @@ const routes: Routes = [
   {path: 'attente_probleme', component: DiagrammeAttenteBulleComponent},
   {path: 'date_repartition_appel', component: DiagrammeNombreAppelComponent},
   {path: 'com_agent', component: DiagrammeComAgentComponent},
+  {path: 'cheminement_appel', component: GraphCheminementAppelComponent},
   {path: '**', component: NotFoundComponent}
 ];
 

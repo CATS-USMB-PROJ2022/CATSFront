@@ -1,5 +1,5 @@
 import {Component, OnChanges, OnDestroy, OnInit} from '@angular/core';
-import {ChartConfiguration, ChartData, ChartType} from "chart.js";
+import {ChartData} from "chart.js";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import {Subscription} from "rxjs";
 import {CaisseRegionaleService} from "../../service/caisse-regionale.service";
@@ -13,24 +13,24 @@ import {PostService} from "../../service/post.service";
 })
 export class DiagrammeAttenteBulleComponent implements OnInit, OnDestroy, OnChanges {
   public attenteMoyenneAvantAbandon: number;
+  public appelsDebordesAbandonnes: number;
   public labels: string[];
   public AttenteRepartition: number[][];
   public dataObservable: Subscription;
   public valeurObservable: Subscription;
 
   public bubbleChartPlugins = [ChartDataLabels];
-  public bubbleChartType: ChartType = 'bubble';
   public bubbleChartData: ChartData<'bubble'> = {
     labels: [],
-    datasets: [ {
+    datasets: [{
       data: [
-        { x: 0, y: 0, r: 0 },
+        {x: 0, y: 0, r: 0},
       ],
       label: '',
-    } ]
+    }]
   };
 
-  public bubbleChartOptions: ChartConfiguration['options'] = {
+  public bubbleChartOptions: any = {
     responsive: true,
     maintainAspectRatio: false,
     layout: {
@@ -75,7 +75,7 @@ export class DiagrammeAttenteBulleComponent implements OnInit, OnDestroy, OnChan
     elements: {
       point: {
         backgroundColor: getRandomColor,
-        radius: function(context) {
+        radius: function (context: any) {
           const value = context.dataset.data[context.dataIndex];
           const size = context.chart.width;
           // @ts-ignore
@@ -90,6 +90,7 @@ export class DiagrammeAttenteBulleComponent implements OnInit, OnDestroy, OnChan
     this.labels = [""];
     this.AttenteRepartition = [[0, 0, 0]];
     this.attenteMoyenneAvantAbandon = 0.0;
+    this.appelsDebordesAbandonnes = 0.0;
 
     this.dataObservable = this.value.current.subscribe(_ => this.getData());
     this.valeurObservable = this.data.current.subscribe(_ => this.getData());
@@ -102,10 +103,10 @@ export class DiagrammeAttenteBulleComponent implements OnInit, OnDestroy, OnChan
 
   ngOnChanges(): void {
     let ChartDatasets = [];
-    for(let i = 0; i < this.AttenteRepartition.length; i++){
+    for (let i = 0; i < this.AttenteRepartition.length; i++) {
       ChartDatasets.push({
         data: [
-          { x: this.AttenteRepartition[i][0], y: this.AttenteRepartition[i][1], r: this.AttenteRepartition[i][2] },
+          {x: this.AttenteRepartition[i][0], y: this.AttenteRepartition[i][1], r: this.AttenteRepartition[i][2]},
         ],
         label: this.labels[i],
 
@@ -121,18 +122,20 @@ export class DiagrammeAttenteBulleComponent implements OnInit, OnDestroy, OnChan
     this.valeurObservable.unsubscribe();
   }
 
-  private getData(){
+  getData() {
     this.PostService.postAttenteRepartitionAppel().subscribe(
       (data) => {
-        if(!data) return;
+        if (!data) return;
         this.labels = data.labels ?? [""];
         this.AttenteRepartition = data.values ?? [[0, 0, 0]];
-        this.attenteMoyenneAvantAbandon = data.attenteMoyenneAvantAbandon;
+        this.attenteMoyenneAvantAbandon = isNaN(data.attenteMoyenneAvantAbandon) ? 0 : data.attenteMoyenneAvantAbandon;
+        this.appelsDebordesAbandonnes = isNaN(data.appelsDebordesAbandonnes) ? 0 : data.appelsDebordesAbandonnes;
         this.ngOnChanges();
       }
     )
   }
 }
+
 
 function getRandomColor() {
   const r = Math.floor(Math.random() * 256);

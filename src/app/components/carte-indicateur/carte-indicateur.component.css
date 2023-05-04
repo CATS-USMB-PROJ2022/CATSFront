@@ -23,7 +23,6 @@ h1 {
 
   /* Background */
   background-color: var(--grey-233);
-  cursor: pointer;
 
   /* Typography */
   line-height: 1.5em;
@@ -42,6 +41,17 @@ h1 {
   background-color: var(--grey-245);
   -webkit-box-shadow: 0 0 0.75em 0 var(--teal-accent-transparent);
   box-shadow: 0 0 0.75em 0 var(--teal-accent-transparent);
+  cursor: pointer;
+}
+
+.carte > span {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.corps-carte.contient-lien {
+  margin-top: 44px;
 }
 
 .carte h2 {
@@ -61,9 +71,6 @@ h1 {
   align-items: center;
 }
 
-/*************************************************************************************************/
-/* Avec seuil ************************************************************************************/
-/*************************************************************************************************/
 .conteneur-diagramme {
   /* Flexbox */
   display: flex;
@@ -107,9 +114,6 @@ h1 {
   font-size: 1.25em;
 }
 
-/*************************************************************************************************/
-/* Avec seuil ************************************************************************************/
-/*************************************************************************************************/
 .conteneur-reset {
   width: 100%;
   display: flex;

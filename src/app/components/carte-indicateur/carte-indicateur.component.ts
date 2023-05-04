@@ -8,9 +8,6 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
   styleUrls: ['./carte-indicateur.component.css']
 })
 export class CarteIndicateurComponent {
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  // Attributs ////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////
   @Input() typeCarte: 'valeur' | 'diagramme' = "valeur";
   @Input() titre: string = "INDICATEUR";
   @Input() routerLink: string = "/";
@@ -19,7 +16,7 @@ export class CarteIndicateurComponent {
   @Input() labelSeuil: string = "";
   @Input() valeurSeuil: number = 0;
 
-  @Input() data: ChartData<'pie', number[], string | string[]> = { datasets: [] };
+  @Input() data: ChartData<'pie', number[], string | string[]> = {datasets: []};
   @Input() labels: boolean = false;
   @Input() legende: { label: string, valeur: number }[] = [];
 
@@ -40,15 +37,15 @@ export class CarteIndicateurComponent {
     }
   }
 
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  // Constructeurs ////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  constructor() { if (this.seuil) this.onModificationSeuil.emit(this.valeurSeuil); }
+  constructor() {
+    if (this.seuil) this.onModificationSeuil.emit(this.valeurSeuil);
+  }
 
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  // Méthodes /////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////
-  appliquerSeuil(seuil: string) { this.onModificationSeuil.emit(Number(seuil)); }
+  appliquerSeuil(seuil: string) {
+    this.onModificationSeuil.emit(Number(seuil));
+  }
 
-  reinitialiserSeuil() { this.onReinitialisationSeuil.emit(); }
+  reinitialiserSeuil() {
+    this.onReinitialisationSeuil.emit();
+  }
 }
