@@ -12,7 +12,7 @@ import {Component} from "@angular/core";
 })
 export class RechercheComponent {
   style = {
-    height: '26px',
+    height: '36px',
     padding: '7px 8px',
     borderRadius: '4px',
     display: 'flex',

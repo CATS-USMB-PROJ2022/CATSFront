@@ -1,12 +1,19 @@
-div {
-    width: 90%;
-    height: 90%;
+.diagramme {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-h1 {
+.diagramme h1 {
   /* Box model */
   margin: 0.5em 0;
 
   /* Typography */
   text-align: center;
+}
+
+.diagramme .chart {
+  width: 100%;
+  height: 80vh;
+  box-shadow: inset 0 0 5px 0 rgba(0, 0, 0, 0.4);
 }

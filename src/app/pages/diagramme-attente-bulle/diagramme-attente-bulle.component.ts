@@ -128,13 +128,14 @@ export class DiagrammeAttenteBulleComponent implements OnInit, OnDestroy, OnChan
         if (!data) return;
         this.labels = data.labels ?? [""];
         this.AttenteRepartition = data.values ?? [[0, 0, 0]];
-        this.attenteMoyenneAvantAbandon = data.attenteMoyenneAvantAbandon;
-        this.appelsDebordesAbandonnes = data.appelsDebordesAbandonnes;
+        this.attenteMoyenneAvantAbandon = isNaN(data.attenteMoyenneAvantAbandon) ? 0 : data.attenteMoyenneAvantAbandon;
+        this.appelsDebordesAbandonnes = isNaN(data.appelsDebordesAbandonnes) ? 0 : data.appelsDebordesAbandonnes;
         this.ngOnChanges();
       }
     )
   }
 }
+
 
 function getRandomColor() {
   const r = Math.floor(Math.random() * 256);

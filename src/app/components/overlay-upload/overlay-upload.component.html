@@ -14,13 +14,13 @@
     </ul>
 
     <div class='zone-upload'>
-      <input type="file" name="fichiers" id="fichiers" class="input-upload" accept=".xlsx"
+      <input type="file" name="fichiers" id="fichiers" class="input-upload" accept=".xlsx,.csv"
              (change)="onSelectionFichier($event)" multiple/>
       <label for="fichiers">
         {{getFileName()}}
         <recherche class="recherche"></recherche>
       </label>
-      <span class="erreur" [ngClass]="{'invisible': !erreur}">Veuillez sélectionner un fichier.</span>
+      <span class="erreur" [ngClass]="{'invisible': !erreur}">{{messageErreur}}</span>
     </div>
 
     <button class='bouton-upload' (click)="upload()">Importer</button>

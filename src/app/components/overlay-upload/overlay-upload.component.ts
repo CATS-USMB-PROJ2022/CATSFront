@@ -19,6 +19,7 @@ export class OverlayUploadComponent {
   ouverture_en_cours = false;
 
   erreur: boolean = false;
+  messageErreur: string = 'Veuillez sélectionner un fichier.';
 
   constructor(private StockageCookie: StockageCookieService, private CaisseRegionale: CaisseRegionaleService, private Post: PostService) {
   }
@@ -61,20 +62,34 @@ export class OverlayUploadComponent {
   upload() {
     if (this.isFichiersEmpty()) {
       this.erreur = true;
+      this.messageErreur = 'Veuillez sélectionner un fichier.';
       return;
     }
 
     this.upload_en_cours = true;
-    this.Post.postUploadFichiers(this.fichiers).subscribe((event: any) => {
-        if (typeof (event) === 'object') {
-          this.upload_en_cours = false;
-          this.erreur = false;
 
-          this.fichiers = [];
-          this.fermerOverlay();
-          this.CaisseRegionale.setCaisse(this.StockageCookie.getCaisseRegionale());
+    // try {
+      this.Post.postUploadFichiers(this.fichiers).subscribe((event: any) => {
+          if (typeof (event) === 'object') {
+
+            this.upload_en_cours = false;
+
+            this.erreur = false;
+
+            this.fichiers = [];
+            this.fermerOverlay();
+            this.CaisseRegionale.setCaisse(this.StockageCookie.getCaisseRegionale());
+          }
         }
-      }
-    );
+      );
+    // } catch (e: ) {
+    //   const {status, statusText} = e;
+    //
+    //   if (status === 500) {
+    //     this.erreur = true;
+    //     this.messageErreur = statusText;
+    //     return;
+    //   }
+    // }
   }
 }
