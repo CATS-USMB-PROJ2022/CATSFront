@@ -192,6 +192,7 @@ label {
   /* Box model */
   margin-top: .25em;
   margin-left: 1em;
+  width: 85%;
 
   /* Typography */
   font-size: small;
