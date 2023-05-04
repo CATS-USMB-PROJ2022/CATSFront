@@ -1,26 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
-  <file path="D:\Linux file\github repo\CATSFront\src\app\components\carte-indicateur\carte-indicateur.component.spec.ts">
-    <testCase name="CarteIndicateurComponent should create the component" duration="240"/>
-    <testCase name="CarteIndicateurComponent should display the title" duration="15"/>
-    <testCase name="CarteIndicateurComponent should display the label" duration="20">
-      <failure message="TypeError: Cannot read properties of null (reading &apos;textContent&apos;)"><![CDATA[TypeError: Cannot read properties of null (reading 'textContent')
-    at D:\Linux file\github repo\CATSFront\src\app\components\carte-indicateur\carte-indicateur.component.spec.ts:34:48
-    at _ZoneDelegate.Object.<anonymous>._ZoneDelegate.invoke (D:\Linux file\github repo\CATSFront\node_modules\zone.js\bundles\zone-testing-bundle.umd.js:409:30)
-    at ProxyZoneSpec.Object.<anonymous>.ProxyZoneSpec.onInvoke (D:\Linux file\github repo\CATSFront\node_modules\zone.js\bundles\zone-testing-bundle.umd.js:3830:43)
-    at _ZoneDelegate.Object.<anonymous>._ZoneDelegate.invoke (D:\Linux file\github repo\CATSFront\node_modules\zone.js\bundles\zone-testing-bundle.umd.js:408:56)
-    at Zone.Object.<anonymous>.Zone.run (D:\Linux file\github repo\CATSFront\node_modules\zone.js\bundles\zone-testing-bundle.umd.js:169:47)
-    at Object.wrappedFunc (D:\Linux file\github repo\CATSFront\node_modules\zone.js\bundles\zone-testing-bundle.umd.js:4330:34)
-    at Promise.then.completed (D:\Linux file\github repo\CATSFront\node_modules\jest-circus\build\utils.js:293:28)
-    at new Promise (<anonymous>)
-    at callAsyncCircusFn (D:\Linux file\github repo\CATSFront\node_modules\jest-circus\build\utils.js:226:10)
-    at _callCircusTest (D:\Linux file\github repo\CATSFront\node_modules\jest-circus\build\run.js:297:40)
-    at processTicksAndRejections (node:internal/process/task_queues:95:5)
-    at _runTest (D:\Linux file\github repo\CATSFront\node_modules\jest-circus\build\run.js:233:3)
-    at _runTestsForDescribeBlock (D:\Linux file\github repo\CATSFront\node_modules\jest-circus\build\run.js:135:9)
-    at _runTestsForDescribeBlock (D:\Linux file\github repo\CATSFront\node_modules\jest-circus\build\run.js:130:9)
-    at run (D:\Linux file\github repo\CATSFront\node_modules\jest-circus\build\run.js:68:3)
-    at runAndTransformResultsToJestFormat (D:\Linux file\github repo\CATSFront\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:122:21)]]></failure>
-    </testCase>
+  <file path="D:\Linux file\github repo\CATSFront\src\app\components\filtre-date-heure\filtre-date-heure.component.spec.ts">
+    <testCase name="FiltreDateHeureComponent should create the component" duration="420"/>
+    <testCase name="FiltreDateHeureComponent should correctly init" duration="109"/>
   </file>
 </testExecutions>

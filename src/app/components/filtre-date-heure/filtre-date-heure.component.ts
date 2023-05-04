@@ -22,11 +22,11 @@ export class FiltreDateHeureComponent {
     fin: new FormControl<Time | null>(null),
   });
 
-  private temp_date_debut: Date;
-  private temp_date_fin: Date;
+  temp_date_debut: Date;
+  temp_date_fin: Date;
 
-  private temp_heure_debut: string;
-  private temp_heure_fin: string;
+  temp_heure_debut: string;
+  temp_heure_fin: string;
 
   constructor(private StockageCookie: StockageCookieService, private Value: ValeursService, private Post: PostService) {
     this.temp_date_debut = this.StockageCookie.initialiserDateDebut();
