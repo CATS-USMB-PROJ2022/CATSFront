@@ -4,7 +4,7 @@ import {ValeursService} from "../../service/valeurs.service";
 import {PostService} from "../../service/post.service";
 import {Subscription} from "rxjs";
 import * as d3 from "d3";
-import { SimulationNodeDatum } from 'd3';
+import {SimulationNodeDatum, text} from 'd3';
 import {Vert} from "../../../utils";
 
 
@@ -55,7 +55,7 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
       this.height = container.clientHeight;
     }
 
-    const circle_size : number = 35;
+    const circle_size : number = this.getTailleIdNode()*5;
 
     // delete previous generated graph
     d3.select('#graph').selectAll('svg').remove();
@@ -167,7 +167,7 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
       .attr("marker-end", (d) => "url(#arrowhead)");
 
     link.append("title")
-      .text((d) => d.nb);
+      .text((d)=> d.nb + " appel(s) de " + d.source.id + " à " + d.target.id + " : " + ((d.nb/this.nbMaxAppel)*100).toFixed(2) + "%");
 
     // create the nodes
     const node = svg.selectAll('.nodes')
@@ -240,6 +240,16 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
         }
       }
       return max;
+  }
+
+  getTailleIdNode(): number {
+    let max:string = "";
+    for(const element of this.nodes) {
+      if(element.id.length > max.length) {
+        max = element.id;
+      }
+    }
+    return max.length;
   }
 }
 
