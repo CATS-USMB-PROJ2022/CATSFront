@@ -22,7 +22,7 @@ describe('DiagrammeRepartitionAppelComponent', () => {
         {provide: 'globalUrl', useValue: 'http://localhost:8080/'},
         CaisseRegionaleService,
         PostService,
-        valeursService
+        ValeursService
       ],
       declarations: [
         DiagrammeRepartitionAppelComponent
