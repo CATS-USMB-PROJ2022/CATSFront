@@ -117,7 +117,7 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
             const distance = Math.sqrt(dx * dx + dy * dy);
             const unitDx = dx / distance;
             // @ts-ignore
-            return d.target.x - unitDx * (circle_size + 5 + d.nb / 100);
+            return d.target.x - unitDx * (circle_size + 10);
           })
           .attr('y2', (d) => {
             // @ts-ignore
@@ -127,7 +127,7 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
             const distance = Math.sqrt(dx * dx + dy * dy);
             const unitDy = dy / distance;
             // @ts-ignore
-            return d.target.y - unitDy * (circle_size + 5 + d.nb / 100);
+            return d.target.y - unitDy * (circle_size + 10);
           })
         node
           .attr('transform', d => `translate(${d.x},${d.y})`); // set the position of the group
