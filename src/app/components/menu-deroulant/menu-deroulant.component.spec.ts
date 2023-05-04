@@ -70,4 +70,40 @@ describe('DropdownComponent', () => {
     expect(component.caisse).toEqual(["Savoie", "Ile de france"]);
     expect(component.caisse_selectionnee).toEqual(-1);
   });
+
+  it('should set caisse with correct data', () => {
+    spyOn(stockageCookieService, 'setCaisseRegionale');
+    spyOn(stockageCookieService, 'reinitialiserMultiSelection');
+    spyOn(caisseRegionaleService, 'setCaisse');
+    component.setCaisse(88100);
+    expect(stockageCookieService.setCaisseRegionale).toHaveBeenCalledWith(88100);
+    expect(stockageCookieService.reinitialiserMultiSelection).toHaveBeenCalled();
+    expect(caisseRegionaleService.setCaisse).toHaveBeenCalledWith(88100);
+  });
+
+  it('should return caisses with correct data', () => {
+    component.caisse_selectionnee = 88100;
+    component.rubIdCaisse = [88100, 88200];
+    component.caisse = ["Savoie", "Ile de france"];
+    expect(component.getCaisses()).toEqual([{id: 88100, label:"Savoie"}, {id:88200, label:"Ile de france"}]);
+  });
+
+  it('should invert ouvree parameter', () => {
+    component.isOuvert = true;
+    component.bascule();
+    expect(component.isOuvert).toEqual(false);
+
+    //in the other way
+    component.isOuvert = false;
+    component.bascule();
+    expect(component.isOuvert).toEqual(true);
+  });
+
+  it('should set ouvree parameter on false', () => {
+    component.isOuvert = true;
+    component.clicHorsMenu();
+    expect(component.isOuvert).toEqual(false);
+  });
+
+
 });
