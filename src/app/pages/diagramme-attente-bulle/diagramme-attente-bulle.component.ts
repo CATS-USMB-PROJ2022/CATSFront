@@ -122,7 +122,7 @@ export class DiagrammeAttenteBulleComponent implements OnInit, OnDestroy, OnChan
     this.valeurObservable.unsubscribe();
   }
 
-  private getData() {
+  getData() {
     this.PostService.postAttenteRepartitionAppel().subscribe(
       (data) => {
         if (!data) return;
