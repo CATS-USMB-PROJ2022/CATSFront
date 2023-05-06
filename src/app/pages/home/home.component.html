@@ -64,16 +64,16 @@
 
   <carte-indicateur
     typeCarte="valeur"
-    titre="Transferts (réussis&nbsp;/&nbsp;tentatives)"
+    titre="Transferts (réussis&nbsp;/&nbsp;tentatives&nbsp;/&nbsp;moyenne)"
   >
-    {{nbTransfertOk}} <em>/</em> {{nbTransfert}}
+    {{nbTransfertOk}} <em>/</em> {{nbTransfert}}<br /><span>{{moyenneTransfertTentatives}}</span>
   </carte-indicateur>
 
   <carte-indicateur
     typeCarte="valeur"
-    titre="Moyenne de tentatives de transferts"
+    titre="Appels débordés abandonnés"
     routerLink="/cheminement_appel"
   >
-    {{moyenneTransfertTentatives}}
+    {{nbAppelsDebordesAbandonnes}}
   </carte-indicateur>
 </div>

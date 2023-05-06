@@ -19,7 +19,8 @@ export class ValeursService {
     moyenneTransfertTentatives: 0,
     labelsCauseFin: [""],
     valuesCauseFin: [0],
-    nbDebordement: 0
+    nbDebordement: 0,
+    nbAppelsDebordesAbandonnes: 0
   });
 
   current = this.source.asObservable();
@@ -38,7 +39,8 @@ export class ValeursService {
       moyenneTransfertTentatives: data.moyenneTransfertTentatives,
       labelsCauseFin: data.labelsCauseFin,
       valuesCauseFin: data.valuesCauseFin,
-      nbDebordement: data.nbDebordement
+      nbDebordement: data.nbDebordement,
+      nbAppelsDebordesAbandonnes: data.nbAppelsDebordesAbandonnes
     });
   }
 }

@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit, OnChanges, OnDestroy {
 
   public nbDebordement: number;
   public nbSupSeuil: number;
+  public nbAppelsDebordesAbandonnes: number;
 
   public pourcentage_en_communication: number;
   public pourcentage_autres: number;
@@ -61,6 +62,7 @@ export class HomeComponent implements OnInit, OnChanges, OnDestroy {
     this.pourcentage_autres = 0;
     this.seuil = 0.0;
     this.nbSupSeuil = 0;
+    this.nbAppelsDebordesAbandonnes = 0;
 
     this.nbTransfert = 0;
     this.nbTransfertOk = 0;
@@ -116,6 +118,7 @@ export class HomeComponent implements OnInit, OnChanges, OnDestroy {
       this.labelsCauseFin = data.labelsCauseFin;
       this.valuesCauseFin = data.valuesCauseFin;
       this.nbDebordement = data.nbDebordement;
+      this.nbAppelsDebordesAbandonnes = data.nbAppelsDebordesAbandonnes;
 
       this.nbTransfert = data.nbTransfert;
       this.nbTransfertOk = data.nbTransfertOk;
@@ -142,7 +145,8 @@ export class HomeComponent implements OnInit, OnChanges, OnDestroy {
     nbDebordement: number,
     nbTransfert: number,
     nbTransfertOk: number,
-    moyenneTransfertTentatives: number
+    moyenneTransfertTentatives: number,
+    nbAppelsDebordesAbandonnes: number
   }) {
     if (!(value)) return;
     this.nombreAppels = value.nombreAppels;
@@ -153,6 +157,7 @@ export class HomeComponent implements OnInit, OnChanges, OnDestroy {
     this.labelsCauseFin = value.labelsCauseFin;
     this.valuesCauseFin = value.valuesCauseFin;
     this.nbDebordement = value.nbDebordement;
+    this.nbAppelsDebordesAbandonnes = value.nbAppelsDebordesAbandonnes;
     this.nbTransfert = value.nbTransfert;
     this.nbTransfertOk = value.nbTransfertOk;
     this.moyenneTransfertTentatives = Number(value.moyenneTransfertTentatives.toFixed(2));

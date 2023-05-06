@@ -63,6 +63,11 @@ h1 {
   font-size: 1.5em;
 }
 
+.carte h1 {
+  text-align: center;
+  line-height: 1.25em;
+}
+
 .corps-carte {
   max-width: 100%;
   height: 75%;
