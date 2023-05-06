@@ -1,3 +1,36 @@
+.boutons {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: end;
+}
+
+.bouton-lien {
+  background-color: var(--teal-primary);
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-size: 1.2em;
+  font-weight: 300;
+  height: fit-content;
+  border-radius: 0.5em 0.5em 0 0;
+  padding: 0.5em 1em;
+  transition: padding 0.2s;
+  text-decoration: none;
+}
+
+.bouton-lien:not(.desactive):hover {
+  font-weight: 400;
+  padding: calc(2em / 3) 1em;
+  cursor: pointer;
+}
+
+.desactive {
+  background-color: var(--green-primary);
+  font-weight: 500;
+  padding: 0.75em 1em;
+}
+
 .diagramme {
   display: flex;
   flex-direction: column;
@@ -14,6 +47,6 @@
 
 .diagramme .chart {
   width: 100%;
-  height: 80vh;
+  height: 77.5vh;
   box-shadow: inset 0 0 5px 0 rgba(0, 0, 0, 0.4);
 }
