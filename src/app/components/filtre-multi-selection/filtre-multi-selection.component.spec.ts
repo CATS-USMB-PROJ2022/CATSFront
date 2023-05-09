@@ -64,7 +64,9 @@ describe('FiltreMultiSelectionComponent', () => {
         moyenneTransfertTentatives: 1.05,
         labelsCauseFin: ["cause1","cause2"],
         valuesCauseFin: [12,45],
-        nbDebordement: 12}
+        nbDebordement: 12,
+        nbAppelsDebordesAbandonnes: 12,
+      }
     ));
     component.ngOnInit();
     component.agences = [{nom: "rubtypenum1", coche: false}, {nom: "rubtypenum2", coche: false}, {nom: "rubtypenum3", coche: false}];

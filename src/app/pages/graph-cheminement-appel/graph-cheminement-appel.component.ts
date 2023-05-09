@@ -59,7 +59,6 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
 
     // delete previous generated graph
     d3.select('#graph').selectAll('svg').remove();
-
     // create svg
     const svg = d3.select('#graph')
       .append('svg')
@@ -67,6 +66,7 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
       .attr('height', this.height)
       .append('g')
       .attr('transform', 'translate(0,0)');
+
 
     // Define marker arrow
     svg.append("defs").append("marker")
@@ -86,7 +86,7 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
       .nodes(this.nodes)
       .force('link', d3.forceLink<GraphNode, GraphLink>(this.links)
         .id((d) => d.id)
-        .distance(80) // set the distance between nodes to 60
+        .distance(circle_size*2) // set the distance between nodes to 60
         .strength(0.2)
       )
       .force('link-distance', d3.forceLink<GraphNode, GraphLink>(this.links)
@@ -95,11 +95,15 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
       )
       .force('charge', d3.forceManyBody())
       .force('center', d3.forceCenter(this.width / 2, this.height / 2)) // center the graph in the middle of the screen
-      .force('collision', d3.forceCollide().radius(70)) // avoid collision between nodes
+      .force('collision', d3.forceCollide().radius(circle_size *2)) // avoid collision between nodes
       // force the graph to stay within its boundaries
       .force('x', d3.forceX(this.width / 2).strength(0.3))
       .force('y', d3.forceY(this.height / 2).strength(0.3))
       .on('tick', () => {
+        node
+          .attr('cx', (d) => Math.max(circle_size, Math.min(this.width - circle_size, d.x as number)))
+          .attr('cy', (d) => Math.max(circle_size, Math.min(this.height - circle_size, d.y as number)))
+          .attr('transform', d => `translate(${d.x},${d.y})`) // set the position of the group;
         link
           .attr('x1', (d) => {
             // @ts-ignore
@@ -129,9 +133,8 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
             // @ts-ignore
             return d.target.y - unitDy * (circle_size + 5 + (d.nb/this.nbMaxAppel)*15);
           })
-        node
-          .attr('transform', d => `translate(${d.x},${d.y})`); // set the position of the group
       });
+
 
     // drag behavior handler
     function dragStarted(event: any, d: SimulationNodeDatum) {
@@ -189,6 +192,21 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
       .attr('text-anchor', 'middle')
       .attr('dy', 5)// to correctly center the text
       .text((d) => d.id);
+
+    // Define the fixed node's position
+    const fixedNodeX = circle_size + 10; // Adjust the values as needed
+    const fixedNodeY = circle_size + 10; // Adjust the values as needed
+
+// Find the node you want to fix
+    const fixedNode = this.nodes.find((node) => node.id === 'IDTL');
+
+// If the fixed node is found, set its position and disable the forces
+    if (fixedNode) {
+      fixedNode.fx = fixedNodeX;
+      fixedNode.fy = fixedNodeY;
+      fixedNode.vx = 0;
+      fixedNode.vy = 0;
+    }
   }
 
   ngOnInit(): void {
