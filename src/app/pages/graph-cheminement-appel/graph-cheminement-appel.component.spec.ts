@@ -77,19 +77,19 @@ describe('GraphCheminementAppelComponent', () => {
     expect(postService.postCheminementAppel).toHaveBeenCalled();
     expect(component.ngOnChanges).toHaveBeenCalled();
     expect(component.nodes).toEqual([
-      {id: "AG", index: 0, nb: 10, vx: 0, vy: 0, x: 7.0710678118654755, y: 0,},
+      {id: "AG", index: 0, nb: 10, fx : 25, fy : 25, vx: 0, vy: 0, x: 7.0710678118654755, y: 0},
       {id: "APL", index: 1, nb: 5, vx: 0, vy: 0, x: -9.03088751750192, y: 8.273032735715967}
     ]);
     expect(component.links).toEqual([{
       index: 0, nb: 123, source:  {
-        id: "AG", index: 0, nb:10, vx: 0, vy: 0, x: 7.0710678118654755, y: 0,},
+        id: "AG", index: 0, nb:10, fx : 25, fy : 25, vx: 0, vy: 0, x: 7.0710678118654755, y: 0,},
       target:  {
       id: "APL", index: 1, nb: 5, vx: 0, vy: 0, x: -9.03088751750192, y: 8.273032735715967,},
     },{
       index: 1, nb: 456, source: {
         id: "APL", index: 1, nb:5, vx: 0, vy: 0, x: -9.03088751750192, y: 8.273032735715967,},
       target:  {
-        id: "AG", index: 0, nb: 10, vx: 0, vy: 0, x: 7.0710678118654755, y: 0,},
+        id: "AG", index: 0, nb: 10, fx : 25, fy : 25, vx: 0, vy: 0, x: 7.0710678118654755, y: 0,},
     },
     ]);
   });

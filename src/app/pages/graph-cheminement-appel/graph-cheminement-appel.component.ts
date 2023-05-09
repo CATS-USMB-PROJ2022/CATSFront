@@ -43,7 +43,7 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
 
   constructor(private data: CaisseRegionaleService, private value: ValeursService, private PostService: PostService) {
     this.arbre = [];
-    this.labels = [];
+    this.labels = [["", 0]];
 
     this.valeurObservable = this.value.current.subscribe(_ => this.getData());
     this.dataObservable = this.data.current.subscribe(_ => this.getData());
