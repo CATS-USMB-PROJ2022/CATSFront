@@ -70,7 +70,8 @@ describe('HomeComponent', () => {
         moyenneTransfertTentatives: 1.08,
         labelsCauseFin: ["cause1","cause2"],
         valuesCauseFin: [40,20],
-        nbDebordement: 11
+        nbDebordement: 11,
+        nbAppelsDebordesAbandonnes: 10
       })
     );
     component.initialiserDonneesAppels();
