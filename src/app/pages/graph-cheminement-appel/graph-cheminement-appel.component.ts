@@ -166,7 +166,7 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
       .enter()
       .append('line')
       .attr('class', 'links')
-      .attr('stroke', (d) => { if(d.nb/d.source.nb > 0.5) return Vert; else return Rouge; })
+      .attr('stroke', (d) => { if(d.nb/this.nbMaxAppel > 0.5) return Vert; else return Rouge; })
       .attr('stroke-opacity', 0.6)
       .attr('stroke-width', (d) => ((d.nb / d.source.nb)*15 +2))
       .attr('stroke-linecap', 'round')
