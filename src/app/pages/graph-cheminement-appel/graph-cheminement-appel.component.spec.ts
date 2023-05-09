@@ -54,7 +54,7 @@ describe('GraphCheminementAppelComponent', () => {
         ["AG","APL","123"],
         ["APL","AG","456"]
       ],
-      nodes: ["AG","APL"]
+      nodes: [["AG", 10],["APL", 5]]
     }));
     component.getData();
     expect(postService.postCheminementAppel).toHaveBeenCalled();
@@ -62,7 +62,7 @@ describe('GraphCheminementAppelComponent', () => {
       ["AG", "APL", "123"],
       ["APL", "AG", "456"]
     ]);
-    expect(component.labels).toEqual(["AG", "APL"]);
+    expect(component.labels).toEqual([["AG", 10],["APL", 5]]);
   });
   it('should call ngOnChange on data initialization', () => {
     spyOn(postService, 'postCheminementAppel').mockReturnValue(of({
@@ -70,26 +70,26 @@ describe('GraphCheminementAppelComponent', () => {
         ["AG", "APL", "123"],
         ["APL", "AG", "456"]
       ],
-      nodes: ["AG", "APL"]
+      nodes: [["AG", 10],["APL", 5]]
     }));
     spyOn(component, 'ngOnChanges');
     component.getData();
     expect(postService.postCheminementAppel).toHaveBeenCalled();
     expect(component.ngOnChanges).toHaveBeenCalled();
     expect(component.nodes).toEqual([
-      {id: "AG", index: 0, vx: 0, vy: 0, x: 7.0710678118654755, y: 0,},
-      {id: "APL", index: 1, vx: 0, vy: 0, x: -9.03088751750192, y: 8.273032735715967}
+      {id: "AG", index: 0, nb: 10, vx: 0, vy: 0, x: 7.0710678118654755, y: 0,},
+      {id: "APL", index: 1, nb: 5, vx: 0, vy: 0, x: -9.03088751750192, y: 8.273032735715967}
     ]);
     expect(component.links).toEqual([{
       index: 0, nb: 123, source:  {
-        id: "AG", index: 0, vx: 0, vy: 0, x: 7.0710678118654755, y: 0,},
+        id: "AG", index: 0, nb:10, vx: 0, vy: 0, x: 7.0710678118654755, y: 0,},
       target:  {
-      id: "APL", index: 1, vx: 0, vy: 0, x: -9.03088751750192, y: 8.273032735715967,},
+      id: "APL", index: 1, nb: 5, vx: 0, vy: 0, x: -9.03088751750192, y: 8.273032735715967,},
     },{
       index: 1, nb: 456, source: {
-        id: "APL", index: 1, vx: 0, vy: 0, x: -9.03088751750192, y: 8.273032735715967,},
+        id: "APL", index: 1, nb:5, vx: 0, vy: 0, x: -9.03088751750192, y: 8.273032735715967,},
       target:  {
-        id: "AG", index: 0, vx: 0, vy: 0, x: 7.0710678118654755, y: 0,},
+        id: "AG", index: 0, nb: 10, vx: 0, vy: 0, x: 7.0710678118654755, y: 0,},
     },
     ]);
   });
@@ -100,7 +100,7 @@ describe('GraphCheminementAppelComponent', () => {
         ["AG", "APL", "123"],
         ["APL", "AG", "456"]
       ],
-      nodes: ["AG", "APL"]
+      nodes: [["AG", 10], ["APL", 5]]
     }));
     component.getData();
     expect(component.getIdNode("AG")).toEqual(0);
