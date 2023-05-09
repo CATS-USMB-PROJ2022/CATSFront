@@ -72,15 +72,16 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
     // Define marker arrow
     svg.append("defs").append("marker")
       .attr("id", "arrowhead")
-      .attr("viewBox", "0 0 5 5")
-      .attr("refX", 2.5)
-      .attr("refY", 2.5)
-      .attr("markerWidth", 3)
-      .attr("markerHeight", 3)
+      .attr("viewBox", "0 0 1000 1000")
+      .attr("refX", 500)
+      .attr("refY", 500)
+      .attr("markerWidth", 4)
+      .attr("markerHeight", 4)
       .attr("orient", "auto")
       .append("path")
-      .attr("d", "M 0 0 L 5 2.5 L 0 5 z") // define the shape of the marker
-      .attr("fill", "black");
+      .attr("d", "M220.7 500c0-17.6 6.7-35.1 20.1-48.5L662.2 30.1c26.8-26.8 70.3-26.8 97.1 0c26.8 26.8 26.8 70.2 0 97.1L386.4 500l372.8 372.9c26.8 26.8 26.8 70.3 0 97c-26.8 26.8-70.2 26.8-97 0L240.8 548.5C227.4 535.1 220.7 517.6 220.7 500z") // define the shape of the marker
+      .attr("fill", "black")
+      .attr("transform", "rotate(180, 500, 500)");
 
     // define the simulation and its forces
     const simulation = d3.forceSimulation<GraphNode>(this.nodes)
@@ -122,7 +123,7 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
             const distance = Math.sqrt(dx * dx + dy * dy);
             const unitDx = dx / distance;
             // @ts-ignore
-            return d.target.x - unitDx * (circle_size + 10 + (d.nb/this.nbMaxAppel)*15);
+            return d.target.x - unitDx * (circle_size  + 5 + (d.nb/this.nbMaxAppel)*15);
           })
           .attr('y2', (d) => {
             // @ts-ignore
@@ -168,7 +169,7 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
       .attr('class', 'links')
       .attr('stroke', (d) => { if(d.nb/this.nbMaxAppel > 0.5) return Vert; else return Rouge; })
       .attr('stroke-opacity', 0.6)
-      .attr('stroke-width', (d) => ((d.nb / d.source.nb)*15 +2))
+      .attr('stroke-width', (d) => ((d.nb / this.nbMaxAppel)*15 +3))
       .attr('stroke-linecap', 'round')
       .attr("marker-end", (d) => "url(#arrowhead)");
 
