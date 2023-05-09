@@ -20,11 +20,11 @@ export class DiagrammeAttenteBulleComponent implements OnInit, OnDestroy, OnChan
   public valeurObservable: Subscription;
 
   public bubbleChartPlugins = [ChartDataLabels];
-  public bubbleChartData: ChartData<'bubble'> = {
+  public bubbleChartData: any = {
     labels: [],
     datasets: [{
       data: [
-        {x: 0, y: 0, r: 0},
+        {x: 0, y: 0, _r: 0},
       ],
       label: '',
     }]
@@ -58,11 +58,22 @@ export class DiagrammeAttenteBulleComponent implements OnInit, OnDestroy, OnChan
     },
     plugins: {
       datalabels: {
-        color: 'black',
         font: {
           weight: 'bold',
-          size: 16
+          size: 20,
+          borderColor: 
+            "rgba(255, 255, 255)"
         },
+        formatter: function(value: any, context: any) {
+          return context.dataset.data[context.dataIndex]._r;
+      },
+      labels: {
+        value: {},
+        title: {
+          color: 'white'
+        }
+      },
+        
       },
       title: {
         display: true,
@@ -74,13 +85,16 @@ export class DiagrammeAttenteBulleComponent implements OnInit, OnDestroy, OnChan
     },
     elements: {
       point: {
-        backgroundColor: getRandomColor,
-        radius: function (context: any) {
+        backgroundColor: function (context: any) {
           const value = context.dataset.data[context.dataIndex];
-          const size = context.chart.width;
           // @ts-ignore
-          const base = Math.abs(value.v) / 100;
-          return (size / 24) * base;
+          const r = 0;
+          const g = 255-Math.floor(value._r/ value.x*255);
+          const b = 0;
+          return `rgba(${r},${g},${b},1)`;
+        },
+        radius: (context: any) => {
+          return 20;
         }
       }
     }
@@ -102,18 +116,17 @@ export class DiagrammeAttenteBulleComponent implements OnInit, OnDestroy, OnChan
   }
 
   ngOnChanges(): void {
-    let ChartDatasets = [];
+    let ChartDatasets: any[] = [];
     for (let i = 0; i < this.AttenteRepartition.length; i++) {
       ChartDatasets.push({
         data: [
-          {x: this.AttenteRepartition[i][0], y: this.AttenteRepartition[i][1], r: this.AttenteRepartition[i][2]},
+          {x: this.AttenteRepartition[i][0], y: this.AttenteRepartition[i][1], _r: this.AttenteRepartition[i][2]},
         ],
-        label: this.labels[i],
-
+        label: this.labels[i]+"NB débordement "+this.AttenteRepartition[i][2]
       })
     }
     this.bubbleChartData = {
-      datasets: ChartDatasets
+      datasets: ChartDatasets,
     };
   }
 
