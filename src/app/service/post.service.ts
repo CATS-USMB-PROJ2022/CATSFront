@@ -9,9 +9,9 @@ import {StockageCookieService} from "./stockage-cookie.service";
 import {RepartitionAppel} from "../model/repartition-appel";
 import {DissuasionAppel} from "../model/dissuasion-appel";
 import {AppelSeuil} from "../model/appel-seuil";
-import {AttenteRepartitionAppel} from "../model/AttenteRepartitionAppel";
+import {DebordementAppel} from "../model/debordement-appel";
 import {ComAgent} from "../model/com-agent";
-import {RepartitionAbandonAppel} from "../model/RepartitionAbandonAppel";
+import {NombreAppel} from "../model/nombre-appel";
 import {CheminAppel} from "../model/chemin-appel";
 
 @Injectable({
@@ -76,16 +76,16 @@ export class PostService {
     return this.Http.post<DissuasionAppel>(this.getUrl('cause-dissuasion'), this.getPost(), { headers: this.headers });
   }
 
-  public postAttenteRepartitionAppel(): Observable<AttenteRepartitionAppel> {
-    return this.Http.post<AttenteRepartitionAppel>(this.getUrl('attente'), this.getPost(), { headers: this.headers });
+  public postAttenteRepartitionAppel(): Observable<DebordementAppel> {
+    return this.Http.post<DebordementAppel>(this.getUrl('attente'), this.getPost(), { headers: this.headers });
   }
 
   public postComAgent(): Observable<ComAgent> {
     return this.Http.post<ComAgent>(this.getUrl('com-agent'), this.getPost(), { headers: this.headers });
   }
 
-  public postRepartitionAbandonAppel(): Observable<RepartitionAbandonAppel> {
-    return this.Http.post<RepartitionAbandonAppel>(this.getUrl('abandon-repartition'), this.getPost(), { headers: this.headers });
+  public postRepartitionAbandonAppel(): Observable<NombreAppel> {
+    return this.Http.post<NombreAppel>(this.getUrl('abandon-repartition'), this.getPost(), { headers: this.headers });
   }
 
   public postCheminementAppel(): Observable<CheminAppel> { return this.Http.post<CheminAppel>(this.getUrl('cheminement'), this.getPost(), { headers: this.headers }); }

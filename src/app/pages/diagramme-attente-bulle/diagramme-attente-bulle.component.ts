@@ -88,8 +88,8 @@ export class DiagrammeAttenteBulleComponent implements OnInit, OnDestroy, OnChan
         backgroundColor: function (context: any) {
           const value = context.dataset.data[context.dataIndex];
           // @ts-ignore
-          const r = 0;
-          const g = 255-Math.floor(value._r/ value.x*255);
+          const r = 255-Math.floor(value._r/ value.x*255);
+          const g = 0;
           const b = 0;
           return `rgba(${r},${g},${b},1)`;
         },

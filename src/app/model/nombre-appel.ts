@@ -1,4 +1,4 @@
-export interface RepartitionAbandonAppel {
+export interface NombreAppel {
   plage: string;
   labels: string[];
   nbAppel: number[];
