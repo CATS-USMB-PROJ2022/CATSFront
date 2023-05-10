@@ -27,7 +27,7 @@ export class FiltreHorairesNonOuvresComponent {
   }
 
   setValeur(v: number) {
-    this.horaires_ouvres = v == 1;
+    this.horaires_ouvres = v != 0;
     this.horaires_non_ouvres = v < 1;
   }
 
