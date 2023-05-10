@@ -24,6 +24,9 @@ export class StockageCookieService {
   private readonly seuil_defaut: number = 0;
   private readonly seuil: string = "seuil"
 
+  // -1 = Ouvré ET Non-ouvré
+  //  0 = NON Ouvré ET Non-ouvré
+  //  1 = Ouvré ET NON Non-ouvré
   private readonly horaires_non_ouvres_defaut: number = 1;
   private readonly horaires_non_ouvres: string = "horaires_non_ouvres";
 
