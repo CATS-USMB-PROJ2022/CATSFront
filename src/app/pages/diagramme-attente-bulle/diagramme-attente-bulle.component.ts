@@ -77,7 +77,7 @@ export class DiagrammeAttenteBulleComponent implements OnInit, OnDestroy, OnChan
       },
       title: {
         display: true,
-        text: "Taille de la bulle : nombre d'appels debordés"
+        text: "Couleur de la bulle : intensité proportionnelle au nombre de débordements par rapport au total d'appel"
       },
       legend: {
         display: false
