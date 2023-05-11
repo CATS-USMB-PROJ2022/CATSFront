@@ -1,4 +1,4 @@
-export interface AttenteRepartitionAppel {
+export interface DebordementAppel {
   labels: string[];
   values: number[][];
   attenteMoyenneAvantAbandon: number;

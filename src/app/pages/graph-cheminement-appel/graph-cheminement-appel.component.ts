@@ -5,11 +5,12 @@ import {PostService} from "../../service/post.service";
 import {Subscription} from "rxjs";
 import * as d3 from "d3";
 import {SimulationNodeDatum, text} from 'd3';
-import {Vert} from "../../../utils";
+import {Rouge, Vert} from "../../../utils";
 
 
 interface GraphNode extends d3.SimulationNodeDatum {
   id: string;
+  nb: number;
 }
 
 interface GraphLink extends d3.SimulationLinkDatum<GraphNode> {
@@ -27,14 +28,14 @@ interface GraphLink extends d3.SimulationLinkDatum<GraphNode> {
 export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit {
 
   arbre: string[][];
-  labels: string[];
+  labels: any[];
 
   width: number = 1000;
   height: number = 1000;
 
   nbMaxAppel: number = 0;
 
-  nodes: GraphNode[] = [{id: "1"}];
+  nodes: GraphNode[] = [{id: "1", nb: 1}];
   links: GraphLink[] = [{source: this.nodes[0], target: this.nodes[0], nb: 1}];
 
   public dataObservable: Subscription;
@@ -42,7 +43,7 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
 
   constructor(private data: CaisseRegionaleService, private value: ValeursService, private PostService: PostService) {
     this.arbre = [];
-    this.labels = [];
+    this.labels = [["", 0]];
 
     this.valeurObservable = this.value.current.subscribe(_ => this.getData());
     this.dataObservable = this.data.current.subscribe(_ => this.getData());
@@ -59,7 +60,6 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
 
     // delete previous generated graph
     d3.select('#graph').selectAll('svg').remove();
-
     // create svg
     const svg = d3.select('#graph')
       .append('svg')
@@ -68,25 +68,27 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
       .append('g')
       .attr('transform', 'translate(0,0)');
 
+
     // Define marker arrow
     svg.append("defs").append("marker")
       .attr("id", "arrowhead")
-      .attr("viewBox", "0 0 5 5")
-      .attr("refX", 2.5)
-      .attr("refY", 2.5)
-      .attr("markerWidth", 3)
-      .attr("markerHeight", 3)
+      .attr("viewBox", "0 0 1000 1000")
+      .attr("refX", 500)
+      .attr("refY", 500)
+      .attr("markerWidth", 4)
+      .attr("markerHeight", 4)
       .attr("orient", "auto")
       .append("path")
-      .attr("d", "M 0 0 L 5 2.5 L 0 5 z") // define the shape of the marker
-      .attr("fill", Vert);
+      .attr("d", "M220.7 500c0-17.6 6.7-35.1 20.1-48.5L662.2 30.1c26.8-26.8 70.3-26.8 97.1 0c26.8 26.8 26.8 70.2 0 97.1L386.4 500l372.8 372.9c26.8 26.8 26.8 70.3 0 97c-26.8 26.8-70.2 26.8-97 0L240.8 548.5C227.4 535.1 220.7 517.6 220.7 500z") // define the shape of the marker
+      .attr("fill", "black")
+      .attr("transform", "rotate(180, 500, 500)");
 
     // define the simulation and its forces
     const simulation = d3.forceSimulation<GraphNode>(this.nodes)
       .nodes(this.nodes)
       .force('link', d3.forceLink<GraphNode, GraphLink>(this.links)
         .id((d) => d.id)
-        .distance(80) // set the distance between nodes to 60
+        .distance(circle_size*2) // set the distance between nodes to 60
         .strength(0.2)
       )
       .force('link-distance', d3.forceLink<GraphNode, GraphLink>(this.links)
@@ -95,11 +97,15 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
       )
       .force('charge', d3.forceManyBody())
       .force('center', d3.forceCenter(this.width / 2, this.height / 2)) // center the graph in the middle of the screen
-      .force('collision', d3.forceCollide().radius(70)) // avoid collision between nodes
+      .force('collision', d3.forceCollide().radius(circle_size *2)) // avoid collision between nodes
       // force the graph to stay within its boundaries
       .force('x', d3.forceX(this.width / 2).strength(0.3))
       .force('y', d3.forceY(this.height / 2).strength(0.3))
       .on('tick', () => {
+        node
+          .attr('cx', (d) => Math.max(circle_size, Math.min(this.width - circle_size, d.x as number)))
+          .attr('cy', (d) => Math.max(circle_size, Math.min(this.height - circle_size, d.y as number)))
+          .attr('transform', d => `translate(${d.x},${d.y})`) // set the position of the group;
         link
           .attr('x1', (d) => {
             // @ts-ignore
@@ -117,7 +123,7 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
             const distance = Math.sqrt(dx * dx + dy * dy);
             const unitDx = dx / distance;
             // @ts-ignore
-            return d.target.x - unitDx * (circle_size + 10 + (d.nb/this.nbMaxAppel)*15);
+            return d.target.x - unitDx * (circle_size  + 5 + (d.nb/this.nbMaxAppel)*15);
           })
           .attr('y2', (d) => {
             // @ts-ignore
@@ -129,9 +135,8 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
             // @ts-ignore
             return d.target.y - unitDy * (circle_size + 5 + (d.nb/this.nbMaxAppel)*15);
           })
-        node
-          .attr('transform', d => `translate(${d.x},${d.y})`); // set the position of the group
       });
+
 
     // drag behavior handler
     function dragStarted(event: any, d: SimulationNodeDatum) {
@@ -162,14 +167,14 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
       .enter()
       .append('line')
       .attr('class', 'links')
-      .attr('stroke', Vert)
+      .attr('stroke', (d) => { if(d.nb / this.nbMaxAppel> 0.5) return Vert; else return Rouge; })
       .attr('stroke-opacity', 0.6)
-      .attr('stroke-width', (d) => (Math.round(d.nb / this.nbMaxAppel)) * 15 + 2)
+      .attr('stroke-width', (d) => ((d.nb / d.source.nb)*10 +3))
       .attr('stroke-linecap', 'round')
       .attr("marker-end", (d) => "url(#arrowhead)");
 
     link.append("title")
-      .text((d)=> d.nb + " appel(s) de " + d.source.id + " à " + d.target.id + " : " + ((d.nb/this.nbMaxAppel)*100).toFixed(2) + "%");
+      .text((d)=> d.nb + " appel(s) de " + d.source.id + " à " + d.target.id + " : " + ((d.nb/d.source.nb)*100).toFixed(2) + "%");
 
     // create the nodes
     const node = svg.selectAll('.nodes')
@@ -179,16 +184,31 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
       .call(drag);
     node.append('circle')
       .attr('r', circle_size)
-      .attr('fill', '#e6e6e6')
+      .attr('fill', (d) => { if(d.nb/this.nbMaxAppel > 0.5) return "#80c380"; else return "lightgrey"; })
       .attr('stroke', "black");
 
     node.append('title')
-      .text((d) => d.id);
+      .text((d) => d.id + " : " + d.nb + " appel(s)");
 
     node.append('text')
       .attr('text-anchor', 'middle')
       .attr('dy', 5)// to correctly center the text
       .text((d) => d.id);
+
+    // Define the fixed node's position
+    const fixedNodeX = circle_size + 10; // Adjust the values as needed
+    const fixedNodeY = circle_size + 10; // Adjust the values as needed
+
+// Find the node you want to fix
+    const fixedNode = this.nodes.find((node) => node.id === this.labels[0][0]);
+
+// If the fixed node is found, set its position and disable the forces
+    if (fixedNode) {
+      fixedNode.fx = fixedNodeX;
+      fixedNode.fy = fixedNodeY;
+      fixedNode.vx = 0;
+      fixedNode.vy = 0;
+    }
   }
 
   ngOnInit(): void {
@@ -199,7 +219,7 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
     this.nodes = [];
     this.links = [];
     for (const element of this.labels) {
-      this.nodes.push({id: element});
+      this.nodes.push({id: element[0], nb: element[1]});
     }
     for (const element of this.arbre) {
       this.links.push({
@@ -208,6 +228,8 @@ export class GraphCheminementAppelComponent implements OnInit, OnDestroy, OnChan
         nb: parseInt(element[2])
       });
     }
+    console.log(this.nodes);
+    console.log(this.links);
     this.ngAfterViewInit();
   }
 

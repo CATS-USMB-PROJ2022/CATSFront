@@ -15,4 +15,5 @@ export interface Appel {
   labelsCauseFin: string[];
   valuesCauseFin: number[];
   nbDebordement: number;
+  nbAppelsDebordesAbandonnes: number;
 }

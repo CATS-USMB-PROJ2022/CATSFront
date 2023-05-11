@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
-  <file path="D:\Linux file\github repo\CATSFront\src\app\pages\diagramme-com-agent\diagramme-com-agent.component.spec.ts">
-    <testCase name="DiagrammeComAgentComponent should create" duration="226"/>
-    <testCase name="DiagrammeComAgentComponent should should update the data correctly" duration="24"/>
+  <file path="D:\Linux file\github repo\CATSFront\src\app\pages\graph-cheminement-appel\graph-cheminement-appel.component.spec.ts">
+    <testCase name="GraphCheminementAppelComponent should create" duration="65"/>
+    <testCase name="GraphCheminementAppelComponent should initialize data on init" duration="10"/>
+    <testCase name="GraphCheminementAppelComponent should call postCheminementAppel on data initialization" duration="45"/>
+    <testCase name="GraphCheminementAppelComponent should call ngOnChange on data initialization" duration="13"/>
+    <testCase name="GraphCheminementAppelComponent should return the correct node ID" duration="11"/>
+    <testCase name="GraphCheminementAppelComponent should return the max number of appel" duration="13"/>
   </file>
 </testExecutions>
